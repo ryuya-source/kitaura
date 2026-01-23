@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="北浦レイクサイドRVパーク｜湖畔で過ごす、静かな車中泊体験。電源完備、ペット同伴ルール、料金、予約、アクセス情報を分かりやすく。" />
+    <title>北浦レイクサイドRVパーク（UIプロトタイプ）</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <header class="site-header" data-elevate>
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-text">
+            <p class="brand-kicker">北浦レイクサイドRVパーク</p>
+            <p class="brand-name">KITAURA LAKESIDE</p>
+          </div>
+        </div>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+          <span class="sr-only">メニューを開く</span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
+          <a href="#top" class="nav-link">ホーム</a>
+          <a href="#sites" class="nav-link">サイト案内</a>
+          <a href="#price" class="nav-link">利用料金</a>
+          <a href="#reserve" class="nav-link nav-cta">ご予約</a>
+          <a href="#access" class="nav-link">アクセス</a>
+          <a href="#rules" class="nav-link">利用ルール</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-label="メインビジュアル">
+        <div class="hero-media" aria-hidden="true">
+          <img src="./assets/hero-lake.svg" alt="" loading="eager" />
+        </div>
+        <div class="container hero-content">
+          <p class="hero-eyebrow">湖畔の静けさ、ほどける時間。</p>
+          <h1 class="hero-title">
+            北浦の夕景とともに、<br />
+            車中泊を “体験” に。
+          </h1>
+          <p class="hero-lead">
+            電源完備の区画と、はじめてでも迷わない情報設計。<br />
+            予約・料金・ルール・周辺情報まで、まとめて分かりやすく。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#reserve">空き状況を見る</a>
+            <a class="btn btn-ghost" href="#sites">サイト案内へ</a>
+          </div>
+
+          <div class="hero-highlights" aria-label="特徴">
+            <div class="highlight">
+              <div class="highlight-icon" aria-hidden="true">⚡</div>
+              <div class="highlight-body">
+                <p class="highlight-title">電源完備</p>
+                <p class="highlight-desc">15A / 20A。季節を問わず安心。</p>
+              </div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-icon" aria-hidden="true">🌊</div>
+              <div class="highlight-body">
+                <p class="highlight-title">レイクサイド</p>
+                <p class="highlight-desc">北浦の湖畔で、穏やかな夕景。</p>
+              </div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-icon" aria-hidden="true">🐾</div>
+              <div class="highlight-body">
+                <p class="highlight-title">ペット同伴</p>
+                <p class="highlight-desc">ルールを分かりやすく整理。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="sites">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">SITE GUIDE</p>
+            <h2 class="section-title">サイト案内</h2>
+            <p class="section-lead">はじめての方でも選びやすいよう、特徴をシンプルに整理しました。</p>
+          </div>
+
+          <div class="site-cards">
+            <article class="site-card">
+              <div class="site-card-media">
+                <img src="./assets/site-1.svg" alt="サイト1のイメージ" loading="lazy" />
+              </div>
+              <div class="site-card-body">
+                <h3 class="card-title">サイト1（スタンダード）</h3>
+                <ul class="meta-list">
+                  <li><span>電源</span><strong>15A</strong></li>
+                  <li><span>眺望</span><strong>湖畔に近い</strong></li>
+                  <li><span>おすすめ</span><strong>夫婦・少人数</strong></li>
+                </ul>
+                <p class="card-desc">落ち着いた滞在を想定した基本区画。夕暮れの光が心地よい場所。</p>
+              </div>
+            </article>
+
+            <article class="site-card">
+              <div class="site-card-media">
+                <img src="./assets/site-2.svg" alt="サイト2のイメージ" loading="lazy" />
+              </div>
+              <div class="site-card-body">
+                <h3 class="card-title">サイト2（ワイド）</h3>
+                <ul class="meta-list">
+                  <li><span>電源</span><strong>20A</strong></li>
+                  <li><span>余白</span><strong>広め</strong></li>
+                  <li><span>おすすめ</span><strong>家族・大型車</strong></li>
+                </ul>
+                <p class="card-desc">ゆったり配置できる区画。テーブルやチェアも無理なくレイアウト。</p>
+              </div>
+            </article>
+
+            <article class="site-card">
+              <div class="site-card-media">
+                <img src="./assets/site-3.svg" alt="サイト3のイメージ" loading="lazy" />
+              </div>
+              <div class="site-card-body">
+                <h3 class="card-title">サイト3（静かな角）</h3>
+                <ul class="meta-list">
+                  <li><span>電源</span><strong>15A</strong></li>
+                  <li><span>雰囲気</span><strong>静か</strong></li>
+                  <li><span>おすすめ</span><strong>釣り・朝活</strong></li>
+                </ul>
+                <p class="card-desc">朝の空気が気持ちいい区画。釣りや散歩の拠点にも。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="体験を想像しやすく">
+        <div class="container">
+          <div class="split">
+            <div class="split-main">
+              <p class="section-kicker">STAY SCENES</p>
+              <h2 class="section-title">「行ってみたい」を、写真で。</h2>
+              <p class="section-lead">
+                湖畔の時間は、言葉よりも景色が伝えてくれる。<br />
+                夕景・焚き火・犬との散歩…滞在のイメージを先に届けます。
+              </p>
+
+              <div class="carousel" data-carousel>
+                <div class="carousel-track" data-carousel-track>
+                  <figure class="carousel-item">
+                    <img src="./assets/scene-1.svg" alt="夕日の湖畔で過ごすイメージ" loading="lazy" />
+                    <figcaption>夕景とともに、椅子を出してひと息。</figcaption>
+                  </figure>
+                  <figure class="carousel-item">
+                    <img src="./assets/scene-2.svg" alt="焚き火のイメージ" loading="lazy" />
+                    <figcaption>焚き火の音だけが聞こえる夜。</figcaption>
+                  </figure>
+                  <figure class="carousel-item">
+                    <img src="./assets/scene-3.svg" alt="湖畔の散歩のイメージ" loading="lazy" />
+                    <figcaption>朝の散歩が、旅の主役になる。</figcaption>
+                  </figure>
+                </div>
+                <div class="carousel-controls">
+                  <button class="icon-btn" type="button" data-carousel-prev aria-label="前へ">‹</button>
+                  <div class="dots" data-carousel-dots aria-label="スライド選択"></div>
+                  <button class="icon-btn" type="button" data-carousel-next aria-label="次へ">›</button>
+                </div>
+              </div>
+            </div>
+
+            <aside class="split-side">
+              <div class="photo-card">
+                <img src="./assets/dog.svg" alt="ペット同伴のイメージ（犬）" loading="lazy" />
+                <div class="photo-card-body">
+                  <p class="photo-card-title">ペットと一緒に、安心して。</p>
+                  <p class="photo-card-desc">ルールは “禁止事項の羅列” ではなく、気持ちよく過ごすための約束として整理。</p>
+                  <a class="text-link" href="#rules">ペット同伴ルールを見る</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="reserve">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">RESERVATION</p>
+            <h2 class="section-title">ご予約</h2>
+            <p class="section-lead">空き状況がひと目で分かるカレンダーと、予約ボタンを常に見える位置に。</p>
+          </div>
+
+          <div class="reserve-grid">
+            <div class="reserve-card">
+              <div class="reserve-card-head">
+                <h3 class="card-title">空き状況カレンダー（サンプル）</h3>
+                <p class="muted">○: 空きあり / △: 残りわずか / ×: 満室</p>
+              </div>
+              <div class="calendar" data-calendar>
+                <div class="calendar-head">
+                  <button class="icon-btn" type="button" data-cal-prev aria-label="前の月">‹</button>
+                  <div class="calendar-title" data-cal-title>—</div>
+                  <button class="icon-btn" type="button" data-cal-next aria-label="次の月">›</button>
+                </div>
+                <div class="calendar-grid" data-cal-grid aria-label="カレンダー"></div>
+              </div>
+              <div class="reserve-actions">
+                <a class="btn btn-primary btn-wide" href="#contact">この日程で予約する（ダミー）</a>
+                <p class="fineprint">※ここはUIデモです。実運用では外部予約システム/フォームへ接続します。</p>
+              </div>
+            </div>
+
+            <div class="stack">
+              <div class="info-card" id="price">
+                <h3 class="card-title">利用料金（例）</h3>
+                <dl class="price-list">
+                  <div class="price-row">
+                    <dt>サイト利用料（1台/1泊）</dt>
+                    <dd>¥4,500〜</dd>
+                  </div>
+                  <div class="price-row">
+                    <dt>追加人数（1名）</dt>
+                    <dd>¥500</dd>
+                  </div>
+                  <div class="price-row">
+                    <dt>チェックイン / アウト</dt>
+                    <dd>15:00 / 10:00</dd>
+                  </div>
+                </dl>
+                <p class="muted">正確な料金・条件は運用に合わせて差し替え可能です。</p>
+              </div>
+
+              <div class="info-card">
+                <h3 class="card-title">はじめてでも安心のチェック</h3>
+                <ul class="check-list">
+                  <li><strong>電源容量</strong>（15A/20A）と延長コードの目安</li>
+                  <li><strong>静かな時間帯</strong>（消灯・音量マナー）</li>
+                  <li><strong>ゴミ</strong>の持ち帰り/分別ルール</li>
+                  <li><strong>ペット</strong>の同伴ルール（後述）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="rules">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">RULES</p>
+            <h2 class="section-title">利用ルール（分かりやすく）</h2>
+            <p class="section-lead">
+              トラブルになりやすいポイントは、文章を短く・見出しを明確に。<br />
+              “守る理由” が伝わる言い回しで、安心感をつくります。
+            </p>
+          </div>
+
+          <div class="accordion" data-accordion>
+            <details class="acc-item" open>
+              <summary>
+                <span class="acc-title">ペット同伴のルール</span>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="acc-body">
+                <ul class="bullets">
+                  <li>リード着用を基本とし、共有スペースでは必ず管理をお願いします。</li>
+                  <li>排泄物は速やかに処理し、周囲が気持ちよく過ごせる環境づくりにご協力ください。</li>
+                  <li>犬種に関する条件がある場合は、ここに簡潔に明記して誤解を減らします。</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="acc-item">
+              <summary>
+                <span class="acc-title">電源利用の注意</span>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="acc-body">
+                <ul class="bullets">
+                  <li>同時使用の機器によってブレーカーが落ちる場合があります（季節家電の併用に注意）。</li>
+                  <li>必要に応じて延長コードをご持参ください。</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="acc-item">
+              <summary>
+                <span class="acc-title">静かな時間（夜間マナー）</span>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="acc-body">
+                <ul class="bullets">
+                  <li>夜間は小さめの声量で。スピーカー等の音量は控えめにお願いします。</li>
+                  <li>消灯後の車の出入りは、周囲への配慮をお願いします。</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" aria-label="周辺情報">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">AROUND</p>
+            <h2 class="section-title">周辺の立ち寄り情報</h2>
+            <p class="section-lead">車中泊でよく聞かれる「お風呂」と「買い出し」を中心に、使える情報をまとめます。</p>
+          </div>
+
+          <div class="around-grid">
+            <article class="around-card">
+              <div class="around-icon" aria-hidden="true">♨</div>
+              <h3 class="card-title">立ち寄り湯</h3>
+              <p class="card-desc">距離・営業時間・定休日など、迷いがちな情報を短く掲載。</p>
+            </article>
+            <article class="around-card">
+              <div class="around-icon" aria-hidden="true">🛒</div>
+              <h3 class="card-title">スーパー/直売所</h3>
+              <p class="card-desc">買い出しのしやすさは満足度に直結。地図リンクもセットで。</p>
+            </article>
+            <article class="around-card">
+              <div class="around-icon" aria-hidden="true">🎣</div>
+              <h3 class="card-title">釣り・アクティビティ</h3>
+              <p class="card-desc">北浦ならではの過ごし方を、写真とセットで提案。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="access">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">ACCESS</p>
+            <h2 class="section-title">アクセス</h2>
+            <p class="section-lead">地図は運用時に差し替え（Googleマップ埋め込み等）を想定しています。</p>
+          </div>
+
+          <div class="access-card">
+            <div class="map-placeholder" role="img" aria-label="地図（プレースホルダー）">
+              <img src="./assets/map.svg" alt="" loading="lazy" />
+            </div>
+            <div class="access-body">
+              <p class="access-name">北浦レイクサイドRVパーク</p>
+              <p class="access-meta">茨城県鉾田市梶山（北浦 湖畔）</p>
+              <div class="access-actions" id="contact">
+                <a class="btn btn-primary" href="#reserve">予約へ戻る</a>
+                <a class="btn btn-ghost" href="#top">トップへ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <p class="brand-kicker">北浦レイクサイドRVパーク</p>
+          <p class="muted">UIプロトタイプ（静的HTML）</p>
+        </div>
+        <p class="muted">© <span data-year></span> Kitaura Lakeside RV Park</p>
+      </div>
+    </footer>
+
+    <div class="sticky-cta" role="region" aria-label="予約導線（固定）">
+      <a class="btn btn-primary btn-wide" href="#reserve">空き状況を見る</a>
+      <a class="btn btn-ghost btn-wide" href="#contact">問い合わせ（ダミー）</a>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

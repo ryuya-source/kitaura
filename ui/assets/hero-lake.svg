@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Lake sunset background">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6d6bf"/>
+      <stop offset="0.45" stop-color="#f0c6a3"/>
+      <stop offset="0.75" stop-color="#d7b190"/>
+      <stop offset="1" stop-color="#c1a38a"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#b7c8cf" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#7f9aa7" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="haze" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.0"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.10"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect y="520" width="1600" height="380" fill="url(#lake)"/>
+
+  <!-- `o -->
+  <path d="M0,520 C220,470 390,520 560,498 C720,477 860,500 1040,485 C1230,470 1380,510 1600,490 L1600,540 L0,540 Z"
+        fill="#6e7a75" opacity="0.35" filter="url(#soft)"/>
+
+  <!-- *} -->
+  <circle cx="1120" cy="350" r="64" fill="#ffd8a5" opacity="0.9"/>
+  <circle cx="1120" cy="350" r="96" fill="#fff2dc" opacity="0.35" filter="url(#soft)"/>
+
+  <!-- 4bn� -->
+  <path d="M1080,520 C1100,480 1140,480 1160,520 C1140,560 1100,560 1080,520 Z" fill="#fff0d6" opacity="0.25"/>
+  <path d="M1060,560 C1090,530 1150,530 1180,560 C1150,610 1090,610 1060,560 Z" fill="#fff0d6" opacity="0.18"/>
+  <path d="M1040,620 C1080,585 1160,585 1200,620 C1160,680 1080,680 1040,620 Z" fill="#fff0d6" opacity="0.14"/>
+
+  <!-- �on� -->
+  <path d="M0,760 C260,690 390,820 620,760 C820,706 980,820 1200,770 C1400,720 1500,820 1600,780 L1600,900 L0,900 Z"
+        fill="#6b6c55" opacity="0.45"/>
+
+  <!-- Haze -->
+  <rect y="0" width="1600" height="900" fill="url(#haze)"/>
+
+  <!-- �'n_�n��� -->
+  <rect width="1600" height="900" fill="#ffffff" opacity="0.10"/>
+  <rect y="520" width="1600" height="380" fill="#ffffff" opacity="0.06"/>
+</svg>
