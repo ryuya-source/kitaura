@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RV Park LP Mock</title>
+  <style>
+    /* =========================
+       Base
+    ========================= */
+    :root{
+      --text: rgba(255,255,255,.92);
+      --text-dim: rgba(255,255,255,.72);
+      --glass: rgba(255,255,255,.10);
+      --glass-2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.18);
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --serif: ui-serif, "Hiragino Mincho ProN", "Yu Mincho", "Hiragino Mincho Pro", "Noto Serif JP", "Times New Roman", serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Segoe UI", sans-serif;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background:#0b0d14;
+      color:var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* iPhone縦長の見え方に寄せたコンテナ */
+    .phone{
+      width:min(420px, 100vw);
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+      background:#0b0d14;
+    }
+
+    /* 背景（画像差し替え） */
+    .bg{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to bottom, rgba(8,10,18,.55) 0%, rgba(8,10,18,.15) 40%, rgba(8,10,18,.55) 100%),
+        url("./hero.jpg") center/cover no-repeat;
+      /* ↑ hero.jpg を、あなたの背景画像ファイル名に差し替えてください */
+      filter:saturate(1.05) contrast(1.05);
+      transform:scale(1.03);
+    }
+
+    /* ふわっと光粒（星屑） */
+    .sparkles{
+      position:absolute; inset:-40px;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.35) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 24%, rgba(255,255,255,.25) 0 1px, transparent 2px),
+        radial-gradient(circle at 35% 65%, rgba(255,255,255,.18) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.18) 0 1px, transparent 2px);
+      opacity:.35;
+      mix-blend-mode:screen;
+      filter: blur(.1px);
+    }
+
+    /* 安全余白（ノッチ想定） */
+    .safe{
+      position:relative;
+      padding: 44px 18px 22px;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    /* =========================
+       Top / Hero copy
+    ========================= */
+    .brand{
+      text-align:center;
+      font-family: var(--serif);
+      letter-spacing:.26em;
+      font-size:12px;
+      color:rgba(255,255,255,.78);
+      text-transform:uppercase;
+    }
+
+    .hero-copy{
+      text-align:center;
+      margin-top:6px;
+      margin-bottom:4px;
+    }
+
+    .hero-copy .line1{
+      font-family: var(--serif);
+      font-weight:500;
+      font-size:22px;
+      letter-spacing:.18em;
+      color:rgba(255,255,255,.86);
+      margin:0 0 8px;
+    }
+    .hero-copy .line2{
+      font-family: var(--serif);
+      font-weight:600;
+      font-size:34px;
+      letter-spacing:.18em;
+      margin:0;
+    }
+
+    /* =========================
+       Section title
+    ========================= */
+    .section-title{
+      text-align:center;
+      margin-top:10px;
+    }
+    .section-title h2{
+      margin:0;
+      font-family: var(--serif);
+      font-weight:600;
+      font-size:20px;
+      letter-spacing:.22em;
+    }
+    .section-title p{
+      margin:8px 0 0;
+      font-family: var(--serif);
+      font-size:12px;
+      letter-spacing:.14em;
+      color:rgba(255,255,255,.65);
+    }
+
+    /* =========================
+       Card row (3 cards)
+    ========================= */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+
+    .card{
+      position:relative;
+      border-radius: var(--radius-md);
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background: var(--glass);
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      aspect-ratio: 1 / 1.15; /* ほぼ正方形より少し縦 */
+      min-height:110px;
+      isolation:isolate;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.45) 0%, rgba(0,0,0,.10) 45%, rgba(0,0,0,.00) 70%);
+      z-index:1;
+    }
+
+    .card img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+      opacity:.92;
+      filter:saturate(1.05) contrast(1.05);
+    }
+
+    .card .meta{
+      position:absolute;
+      left:12px; right:12px; bottom:12px;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .card .title{
+      font-family: var(--serif);
+      font-size:16px;
+      letter-spacing:.12em;
+      margin:0;
+    }
+
+    .card .subrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:rgba(255,255,255,.75);
+      font-size:11px;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .chev{
+      width:18px; height:18px;
+      display:grid; place-items:center;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.06);
+      flex:0 0 auto;
+    }
+    .chev svg{ width:10px; height:10px; opacity:.9; }
+
+    /* =========================
+       Large feature card
+    ========================= */
+    .feature{
+      position:relative;
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background: var(--glass-2);
+      box-shadow: var(--shadow);
+      min-height:168px;
+    }
+
+    .feature img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.92;
+      filter:saturate(1.05) contrast(1.03);
+      transform:scale(1.03);
+    }
+
+    .feature::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(120% 90% at 50% 30%, rgba(255,255,255,.10) 0%, transparent 55%),
+        linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.20) 55%, rgba(0,0,0,.10) 100%);
+      z-index:1;
+    }
+
+    .feature .content{
+      position:relative;
+      z-index:2;
+      padding:18px 18px 16px;
+      text-align:center;
+    }
+
+    .feature h3{
+      margin:0 0 10px;
+      font-family: var(--serif);
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:.18em;
+    }
+
+    .feature p{
+      margin:0 0 14px;
+      font-size:12px;
+      letter-spacing:.08em;
+      color:rgba(255,255,255,.72);
+      line-height:1.6;
+    }
+
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.08);
+      color:rgba(255,255,255,.90);
+      text-decoration:none;
+      font-family: var(--serif);
+      font-size:12px;
+      letter-spacing:.14em;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* =========================
+       Bottom CTA
+    ========================= */
+    .cta{
+      margin-top:auto;
+      padding-top:6px;
+    }
+
+    .btn-primary{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:16px 18px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color:rgba(255,255,255,.92);
+      text-decoration:none;
+      font-family: var(--serif);
+      font-size:18px;
+      letter-spacing:.18em;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* =========================
+       Fine tuning for small widths
+    ========================= */
+    @media (max-width:360px){
+      .hero-copy .line2{ font-size:30px; }
+      .cards{ gap:8px; }
+      .card .title{ font-size:15px; }
+      .safe{ padding-left:14px; padding-right:14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="phone">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+
+    <section class="safe">
+      <!-- Top brand -->
+      <div class="brand">RV PARK NAME</div>
+
+      <!-- Hero copy -->
+      <header class="hero-copy">
+        <p class="line1">湖畔で、</p>
+        <h1 class="line2">暮らすように泊まる</h1>
+      </header>
+
+      <!-- Section title -->
+      <div class="section-title">
+        <h2>ここで過ごす時間</h2>
+        <p>The time spent here</p>
+      </div>
+
+      <!-- 3 cards -->
+      <div class="cards">
+        <a class="card" href="#" aria-label="焚火">
+          <!-- 画像差し替え：card-1.jpg -->
+          <img src="./card-1.jpg" alt="" />
+          <div class="meta">
+            <p class="title">焚火</p>
+            <div class="subrow">
+              <span>湖畔でくつろぐ</span>
+              <span class="chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="#" aria-label="湖畔">
+          <!-- 画像差し替え：card-2.jpg -->
+          <img src="./card-2.jpg" alt="" />
+          <div class="meta">
+            <p class="title">湖畔</p>
+            <div class="subrow">
+              <span>湖畔に夕を眺める</span>
+              <span class="chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="#" aria-label="星空">
+          <!-- 画像差し替え：card-3.jpg -->
+          <img src="./card-3.jpg" alt="" />
+          <div class="meta">
+            <p class="title">星空</p>
+            <div class="subrow">
+              <span>湖畔の夜空を眺める</span>
+              <span class="chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Large feature card -->
+      <section class="feature" aria-label="湖泊のひととき">
+        <!-- 画像差し替え：feature.jpg -->
+        <img src="./feature.jpg" alt="" />
+        <div class="content">
+          <h3>湖泊のひととき</h3>
+          <p>日常を離れて、湖のほとりでゆっくりと過ごしています。</p>
+          <a class="btn-ghost" href="#">
+            <span>この場所の魅力を見る</span>
+            <span class="chev" aria-hidden="true" style="border-color:rgba(255,255,255,.22);">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <div class="cta">
+        <a class="btn-primary" href="#">
+          <span>空き状況を見る</span>
+          <span class="chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
