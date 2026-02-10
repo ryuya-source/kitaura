@@ -7,6 +7,8 @@ import Link from 'next/link';
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTop, setIsTop] = useState(true);
+  const [reasonIndex, setReasonIndex] = useState(0);
+  const reasonTotal = 9;
 
   useEffect(() => {
     const onScroll = () => {
@@ -153,91 +155,154 @@ export default function Home() {
         </section>
 
         {/* SP_2.ペットセクション（FhnNd） */}
-        <section id="pet" className="relative w-full min-h-[100vh] py-8 px-[10px] flex flex-col gap-[18px]">
+        <section
+          id="pet"
+          className="relative w-full min-h-[100vh] p-[11px] overflow-hidden"
+        >
           {/* 背景画像 */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/images/pet-bg.jpg" 
+              src="/images/pet-bg.png"
               alt="ペット同伴について"
               fill
               className="object-cover"
             />
           </div>
 
-          {/* オーバーレイ */}
-          <div 
-            className="absolute inset-0 z-[1]"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(255, 255, 255, 0.9) 100%)'
-            }}
-          />
-
-          {/* メインコンテンツ */}
-          <div className="relative z-10 flex flex-col gap-[18px]">
+          {/* メインコンテンツ（上寄せ：添付画像に合わせる） */}
+          <div className="absolute inset-x-0 top-[14%] z-10 flex flex-col items-center gap-[14px] px-[11px]">
             {/* グラスカード */}
-            <div className="w-full bg-white/20 backdrop-blur-[20px] border border-[#E8E5E0]/50 rounded-[9px] p-[14px] flex flex-col gap-[7px]">
-              <h2 className="text-[#1C1C1C] text-[16px] font-semibold tracking-[-0.3px] leading-[1.4]">
-                犬種制限と<br />ペット同伴のマナー
+            <div className="w-[225px] h-[175px] bg-white/20 rounded-[7px] flex flex-col justify-center items-center gap-[11px] px-[21px] py-[14px] border border-transparent">
+              <h2
+                className="w-[174px] text-white text-[13px] font-light tracking-[2px] leading-[1.4] text-center whitespace-pre-line"
+              >
+                犬種制限と{'\n'}ペット同伴のマナー
               </h2>
-              <p className="text-[#3D3D3D] text-[9px] font-normal leading-[1.7] whitespace-pre-line">
-                ペットも、飼い主さまも、{'\n'}そして周囲の方々も穏やかに過ごせるように。{'\n'}受け入れ条件と場内ルールをご案内しています。
+              <p className="text-white text-[7px] font-normal leading-[1.8] text-center whitespace-pre-line">
+                ペットも、飼い主さまも、{'\n'}
+                そして周囲の方々も穏やかに過ごせるように。{'\n'}
+                受け入れ条件と場内ルールをご案内しています。
               </p>
             </div>
 
-            {/* ギャラリー */}
-            <div className="w-full flex flex-col gap-[11px]">
-              <div className="flex flex-col gap-[5px]">
-                <div className="flex items-center gap-[5px] px-1">
-                  <svg className="w-3 h-3 stroke-[#1E3A5F] stroke-2 fill-none" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="M21 15l-5-5L5 21" />
-                  </svg>
-                  <h3 className="text-[#1E3A5F] text-[12px] font-medium">場内の雰囲気</h3>
-                </div>
-                <p className="text-[#6B6B6B] text-[9px] font-normal px-1">
-                  湖畔の自然に囲まれた、プライベート感のあるサイト
-                </p>
+            {/* CTA */}
+            <a
+              href="#pet-rules"
+              className="bg-white/30 border border-white text-white text-[7px] font-normal px-[14px] py-[6px] rounded-[4px]"
+            >
+              ペット同伴ルールを見る
+            </a>
+          </div>
+        </section>
+
+        {/* SP_3.ペット同伴ルール（GsBK0） */}
+        <section
+          id="pet-rules"
+          className="w-full bg-[#FAF8F5] px-[25px] py-[21px] flex flex-col items-center gap-[21px]"
+        >
+          {/* Header 1 */}
+          <header className="w-full flex flex-col items-center gap-[7px]">
+            <h2 className="text-[18px] font-light tracking-[-0.5px] text-[#1C1C1C] text-center">
+              犬種制限について
+            </h2>
+          </header>
+
+          {/* Dog rules block */}
+          <div className="w-full flex flex-col gap-[9px]">
+            <div className="w-full flex flex-col gap-[4px]">
+              <h3 className="text-[12px] font-medium tracking-[-0.3px] text-[#1C1C1C]">
+                入場可能なワンちゃんについて
+              </h3>
+              <p className="text-[7px] font-normal leading-[1.7] text-[#6B6B6B]">
+                アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。
+              </p>
+            </div>
+
+            {/* Breed OK card */}
+            <div className="w-full bg-white border border-[#D4E8D4] rounded-[7px] p-[9px] flex flex-col gap-[6px]">
+              <div className="text-[#5A8A5A] text-[7px] font-semibold tracking-[0.5px]">
+                同伴可能な犬種
               </div>
 
-              {/* 横スクロールギャラリー */}
-              <div className="w-full flex gap-[7px] overflow-x-auto px-1 no-scrollbar">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="w-[89px] h-[89px] rounded-[5px] bg-gray-300 flex-shrink-0">
-                    {/* 画像は後で追加 */}
+              <div className="w-full flex flex-col gap-[4px]">
+                {[
+                  { name: 'プードル', note: '　スタンダード / ミディアム / トイ' },
+                  { name: 'プードルミックス（○○プー）', note: '　※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合' },
+                  { name: 'ヨークシャーテリア' },
+                  { name: 'ミニチュアシュナウザー' },
+                  { name: 'ビションフリーゼ' },
+                  { name: 'マルチーズ' },
+                  { name: 'シーズー' },
+                  { name: 'チャイニーズクレステッドドッグ' },
+                  { name: 'オーストラリアン・ラブラドゥードル（AL）' },
+                ].map((item) => (
+                  <div key={item.name} className="w-full">
+                    <div className="text-[9px] font-normal text-[#1C1C1C]">
+                      {item.name}
+                    </div>
+                    {item.note ? (
+                      <div className="text-[7px] font-normal text-[#9A9A9A] leading-[1.5]">
+                        {item.note}
+                      </div>
+                    ) : null}
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* SP_3.ペット同伴ルール（a2HDt） */}
-        <section id="pet-rules" className="w-full bg-[#FAF8F5] py-8 px-[10px] flex flex-col gap-[14px]">
-          <header className="w-full flex flex-col items-center gap-[5px]">
-            <h2 className="text-[#1C1C1C] text-[18px] font-light tracking-[-0.5px] text-center">
-              犬種制限について
+            {/* Underlined link */}
+            <div className="w-full flex flex-col items-center gap-[1px] pt-[6px]">
+              <a
+                href="#manners"
+                className="text-[7px] font-medium text-[#6B8E6B] text-center"
+              >
+                詳しくは利用規約・マナーをご確認ください
+              </a>
+              <div className="h-[1px] w-[125px] bg-[#6B8E6B]" />
+            </div>
+          </div>
+
+          {/* Header 2 */}
+          <header className="w-full flex flex-col items-center gap-[7px]">
+            <h2 className="text-[18px] font-light tracking-[-0.5px] text-[#1C1C1C] text-center">
+              なぜ犬種制限があるのか
             </h2>
-            <p className="text-[#6B6B6B] text-[9px] font-normal text-center">
-              アレルギー反応が出にくい環境を維持するため
-            </p>
           </header>
 
-          <div className="w-full flex flex-col gap-[7px]">
-            {/* ルールカード例 */}
-            <div className="w-full bg-white border border-[#E8E5E0] rounded-[7px] p-[9px] flex flex-col gap-[5px]">
-              <div className="flex items-center gap-[5px]">
-                <svg className="w-[11px] h-[11px] stroke-[#6B8E6B] stroke-2 fill-none" viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <h3 className="text-[#1C1C1C] text-[11px] font-semibold">
-                  同伴可能な犬種
-                </h3>
-              </div>
-              <p className="text-[#6B6B6B] text-[9px] font-normal leading-[1.6] pl-4 whitespace-pre-line">
-                プードル（スタンダード、ミディアム、トイ）{'\n'}ヨークシャーテリア、ミニチュアシュナウザー{'\n'}ビションフリーゼ、マルチーズ、シーズー{'\n'}チャイニーズクレステッドドッグ{'\n'}オーストラリアン・ラブラドゥードル
-              </p>
+          {/* Reason slide (image) */}
+          <div className="w-[276px] h-[191px] overflow-hidden">
+            <Image
+              src="/images/image_side.jpg"
+              alt={`犬種制限の理由 ${reasonIndex + 1}`}
+              width={276}
+              height={191}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Pagination */}
+          <div className="w-[276px] flex items-center justify-center gap-[7px]">
+            <button
+              type="button"
+              aria-label="前のスライド"
+              className="bg-[#6B8E6B] text-white text-[8px] font-medium rounded-[5px] px-[11px] py-[6px] disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setReasonIndex((i) => Math.max(0, i - 1))}
+              disabled={reasonIndex <= 0}
+            >
+              前
+            </button>
+            <div className="text-[#1C1C1C] text-[8px] font-normal">
+              {reasonIndex + 1} / {reasonTotal}
             </div>
+            <button
+              type="button"
+              aria-label="次のスライド"
+              className="bg-[#6B8E6B] text-white text-[8px] font-medium rounded-[5px] px-[11px] py-[6px] disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setReasonIndex((i) => Math.min(reasonTotal - 1, i + 1))}
+              disabled={reasonIndex >= reasonTotal - 1}
+            >
+              次
+            </button>
           </div>
         </section>
 

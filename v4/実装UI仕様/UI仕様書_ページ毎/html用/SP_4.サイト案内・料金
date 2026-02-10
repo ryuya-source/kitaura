@@ -1,0 +1,594 @@
+# SP_4.サイト案内・料金 — HTML+CSS実装仕様書
+
+**ノードID:** `a2HDt`  
+**画面名:** SP_4.サイト案内・料金  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: a2HDt
+width: 375px
+高さ: 可変（コンテンツに応じて）
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `gap: 32px`
+- `padding: 32px 10px` (上下32px、左右10px)
+
+### 背景
+- **背景色:** `#FAF8F5` (明るいベージュ)
+
+---
+
+## 2. ヘッダー (`SLgeV`)
+
+```
+type: frame
+id: SLgeV
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 8px`
+- `align-items: center`
+
+**子要素:**
+
+### タイトル (`dB1b4`)
+- **テキスト:** `こだわりポイント`
+- **スタイル:**
+  - `color: #1C1C1C` (ダークグレー)
+  - `font-family: Inter`
+  - `font-size: 23px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: -0.5px`
+
+---
+
+## 3. ギャラリーセクション（共通構造）
+
+このページには4つのギャラリーセクションがあります。それぞれ以下の共通構造を持ちます：
+
+### 共通レイアウト
+- `display: flex`
+- `flex-direction: column`
+- `gap: 12px`
+- `width: 約364-365px`
+
+### 各セクションの構成要素
+
+#### 3.1 タイトル行
+- アイコン（18×18px、白背景、角丸14px）
+- タイトルテキスト（12px、font-weight 500、#1E3A5F）
+
+#### 3.2 説明文
+- テキスト: 9px、#6B6B6B、line-height 1.5
+
+#### 3.3 スクロールエリア
+- 横スクロール可能
+- 画像カード: 89×89px、角丸5px
+- gap: 10px
+- `overflow-x: auto`
+
+#### 3.4 ヒントテキスト（最初のセクションのみ）
+- テキスト: `← スクロールして他の写真を見る →`
+- 9px、#9B9B9B
+
+---
+
+## 4. 各ギャラリーセクションの詳細
+
+### 4.1 全サイト水回り・電源完備 (`hpMDG`)
+
+```
+id: hpMDG
+width: 365px
+```
+
+**アイコン:**
+- `droplets` (lucide) — 14×14px、#5A8F7B
+
+**タイトル:**
+- `全サイト水回り・電源完備`
+
+**説明:**
+- `トイレ・シャワー・炊事場・電源を全サイト完備`
+
+**画像:**
+- `./src/sites/site_no1/08_サイト１案内_シャワー.jpg`
+- `./src/sites/site_no1/06_サイト１案内_トイレ.jpg`
+- `./src/sites/site_no1/07_サイト１案内_シャワールーム.jpg`
+- `./src/sites/site_no1/05_サイト１案内_炊事場.jpg`
+- `../../../05_サイト１案内_トイレシャワー.jpg`
+
+---
+
+### 4.2 小型犬対応 (`XmYeY`)
+
+```
+id: XmYeY
+width: 364px
+```
+
+**アイコン:**
+- `dog` (lucide) — 14×14px、#5A8F7B
+
+**タイトル:**
+- `小型犬対応`
+
+**説明:**
+- `全サイト小型犬に配慮した設計・ノーリード可`
+
+**画像:**
+- `./src/sites/site_no1/04_サイト１案内_小型犬-768x576.jpg`
+- `./src/sites/site_no1/S__18489346-768x576.jpg`
+- `./src/sites/site_no1/03_サイト１案内_広さ-768x576.jpg`
+- その他複数の画像
+
+---
+
+### 4.3 その他 (`tQ8TG`)
+
+```
+id: tQ8TG
+width: 365px
+```
+
+**アイコン:**
+- `plus` (lucide) — 14×14px、#5A8F7B
+
+**タイトル:**
+- `その他`
+
+**説明:**
+- `全サイトゴミ置き場・電源コード完備・エアコンの有料貸出し(夏季限定)`
+
+**画像:**
+- `./src/sites/site_no1/S__18538510-1-1024x768.jpg`
+- `./src/sites/site_no1/ゴミ箱2-1-1024x768.jpg`
+- `./src/sites/site_no3/E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg`
+- `./src/sites/site_no3/B392931C-3C9D-404F-84DC-13CCA3438639.jpg`
+- `../../../S__61259783.jpg`
+
+---
+
+### 4.4 周辺環境 (`ysx85`)
+
+```
+id: ysx85
+width: 364px
+```
+
+**アイコン:**
+- `store` (lucide) — 14×14px、#5A8F7B
+
+**タイトル:**
+- `周辺環境`
+
+**説明:**
+- `セブンイレブン徒歩30秒の好立地・夕陽や花火大会も綺麗`
+
+**画像:**
+- `./src/seven11.png`
+- `./src/image_side.jpg`
+- その他の周辺環境の画像
+
+---
+
+## 5. 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_4.サイト案内・料金</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム a2HDt -->
+  <div class="sp4-site-guide">
+    
+    <!-- ヘッダー -->
+    <header class="page-header">
+      <h1 class="page-title">こだわりポイント</h1>
+    </header>
+    
+    <!-- ギャラリーセクション1: 全サイト水回り・電源完備 -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="icon-container">
+          <svg class="lucide-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <!-- droplets icon -->
+            <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z" fill="#5A8F7B"/>
+            <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="gallery-title">全サイト水回り・電源完備</h2>
+      </div>
+      <p class="gallery-desc">トイレ・シャワー・炊事場・電源を全サイト完備</p>
+      <div class="scroll-area">
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/08_サイト１案内_シャワー.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/06_サイト１案内_トイレ.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/07_サイト１案内_シャワールーム.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/05_サイト１案内_炊事場.jpg');"></div>
+        <div class="image-card" style="background-image: url('../../../05_サイト１案内_トイレシャワー.jpg');"></div>
+      </div>
+      <p class="hint-text">← スクロールして他の写真を見る →</p>
+    </section>
+    
+    <!-- ギャラリーセクション2: 小型犬対応 -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="icon-container">
+          <svg class="lucide-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <!-- dog icon (簡略版) -->
+            <circle cx="8" cy="16" r="2" fill="#5A8F7B"/>
+            <path d="M10 16v6M14 16v6M8 10l-2-2M16 10l2-2" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 class="gallery-title">小型犬対応</h2>
+      </div>
+      <p class="gallery-desc">全サイト小型犬に配慮した設計・ノーリード可</p>
+      <div class="scroll-area">
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/04_サイト１案内_小型犬-768x576.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/S__18489346-768x576.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/03_サイト１案内_広さ-768x576.jpg');"></div>
+        <!-- 他の画像 -->
+      </div>
+    </section>
+    
+    <!-- ギャラリーセクション3: その他 -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="icon-container">
+          <svg class="lucide-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <!-- plus icon -->
+            <line x1="12" y1="5" x2="12" y2="19" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5" y1="12" x2="19" y2="12" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 class="gallery-title">その他</h2>
+      </div>
+      <p class="gallery-desc">全サイトゴミ置き場・電源コード完備・エアコンの有料貸出し(夏季限定)</p>
+      <div class="scroll-area">
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/S__18538510-1-1024x768.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no1/ゴミ箱2-1-1024x768.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no3/E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg');"></div>
+        <div class="image-card" style="background-image: url('./src/sites/site_no3/B392931C-3C9D-404F-84DC-13CCA3438639.jpg');"></div>
+        <div class="image-card" style="background-image: url('../../../S__61259783.jpg');"></div>
+      </div>
+    </section>
+    
+    <!-- ギャラリーセクション4: 周辺環境 -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="icon-container">
+          <svg class="lucide-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <!-- store icon (簡略版) -->
+            <rect x="4" y="10" width="16" height="10" stroke="#5A8F7B" stroke-width="2" fill="none"/>
+            <path d="M4 10L12 4L20 10" stroke="#5A8F7B" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <h2 class="gallery-title">周辺環境</h2>
+      </div>
+      <p class="gallery-desc">セブンイレブン徒歩30秒の好立地・夕陽や花火大会も綺麗</p>
+      <div class="scroll-area">
+        <div class="image-card" style="background-image: url('./src/seven11.png');"></div>
+        <div class="image-card" style="background-image: url('./src/image_side.jpg');"></div>
+        <!-- 他の画像 -->
+      </div>
+    </section>
+    
+  </div>
+</body>
+</html>
+```
+
+---
+
+## 6. CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #FAF8F5;
+}
+
+/* ルートフレーム */
+.sp4-site-guide {
+  width: 375px;
+  padding: 32px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: #FAF8F5;
+}
+
+/* ページヘッダー */
+.page-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.page-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 23px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* ギャラリーセクション */
+.gallery-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ギャラリーヘッダー */
+.gallery-header {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+/* アイコンコンテナ */
+.icon-container {
+  width: 18px;
+  height: 18px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lucide-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ギャラリータイトル */
+.gallery-title {
+  margin: 0;
+  color: #1E3A5F;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ギャラリー説明 */
+.gallery-desc {
+  margin: 0;
+  color: #6B6B6B;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* スクロールエリア */
+.scroll-area {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* スムーズスクロール（iOS） */
+  scroll-snap-type: x mandatory; /* スナップスクロール */
+}
+
+/* スクロールバーのスタイル（WebKit系） */
+.scroll-area::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+  background: #E5E5E5;
+  border-radius: 2px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+  background: #5A8F7B;
+  border-radius: 2px;
+}
+
+/* 画像カード */
+.image-card {
+  flex-shrink: 0;
+  width: 89px;
+  height: 89px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  scroll-snap-align: start; /* スナップ位置 */
+}
+
+/* ヒントテキスト */
+.hint-text {
+  margin: 0;
+  color: #9B9B9B;
+  font-size: 9px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+  .sp4-site-guide {
+    max-width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+---
+
+## 7. アイコン実装の詳細
+
+### Lucideアイコンライブラリの使用
+
+**CDN読み込み:**
+```html
+<script src="https://unpkg.com/lucide@latest"></script>
+```
+
+**使用方法:**
+```html
+<i data-lucide="droplets" class="lucide-icon"></i>
+
+<script>
+  lucide.createIcons();
+</script>
+```
+
+### または、SVGで直接実装
+
+各アイコンのSVGコード（簡略版）を直接記述することも可能です。
+
+**droplets:**
+```html
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+  <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z" fill="#5A8F7B"/>
+  <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" stroke="#5A8F7B" stroke-width="2"/>
+</svg>
+```
+
+**dog:**
+```html
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+  <circle cx="8" cy="16" r="1" fill="#5A8F7B"/>
+  <circle cx="16" cy="16" r="1" fill="#5A8F7B"/>
+  <path d="M10 16v6M14 16v6M8 10l-2-2M16 10l2-2" stroke="#5A8F7B" stroke-width="2"/>
+</svg>
+```
+
+**plus:**
+```html
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+  <line x1="12" y1="5" x2="12" y2="19" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="5" y1="12" x2="19" y2="12" stroke="#5A8F7B" stroke-width="2" stroke-linecap="round"/>
+</svg>
+```
+
+**store:**
+```html
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+  <rect x="4" y="10" width="16" height="10" stroke="#5A8F7B" stroke-width="2" fill="none"/>
+  <path d="M4 10L12 4L20 10" stroke="#5A8F7B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+---
+
+## 8. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面幅: 375px
+- [ ] 背景色: #FAF8F5
+- [ ] padding: 32px 10px, gap: 32px
+- [ ] ページタイトル: 23px, font-weight 300
+- [ ] ギャラリーセクション数: 4つ
+- [ ] アイコン: 18×18px白背景、14×14px緑アイコン
+- [ ] タイトル: 12px, font-weight 500, #1E3A5F
+- [ ] 説明: 9px, #6B6B6B
+- [ ] 画像カード: 89×89px, 角丸5px
+- [ ] 横スクロール動作が正常
+- [ ] スクロールバーが表示される
+- [ ] ヒントテキスト: 9px, #9B9B9B
+- [ ] Inter フォントが読み込まれている
+
+---
+
+## 9. アクセシビリティ
+
+### セマンティックHTML
+```html
+<section class="gallery-section" aria-labelledby="gallery-1-title">
+  <div class="gallery-header">
+    <div class="icon-container" aria-hidden="true">
+      <!-- アイコン -->
+    </div>
+    <h2 id="gallery-1-title" class="gallery-title">全サイト水回り・電源完備</h2>
+  </div>
+  <!-- ... -->
+</section>
+```
+
+### スクロールエリアのアクセシビリティ
+```html
+<div class="scroll-area" role="region" aria-label="施設の写真ギャラリー" tabindex="0">
+  <div class="image-card" role="img" aria-label="シャワー室の写真"></div>
+  <!-- ... -->
+</div>
+```
+
+---
+
+## 10. パフォーマンス最適化
+
+### 画像の遅延読み込み
+```html
+<div class="image-card" 
+     data-bg="./src/sites/site_no1/08_サイト１案内_シャワー.jpg"
+     loading="lazy"></div>
+
+<script>
+  // Intersection Observer で遅延読み込み
+  const imageCards = document.querySelectorAll('.image-card[data-bg]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        card.style.backgroundImage = `url('${card.dataset.bg}')`;
+        observer.unobserve(card);
+      }
+    });
+  });
+  
+  imageCards.forEach(card => observer.observe(card));
+</script>
+```
+
+---
+
+## 11. 参考情報
+
+- **元ノードID:** `a2HDt`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **セクション数:** 4つのギャラリーセクション
+- **総画像数:** 約20枚以上
+- **アイコン:** droplets, dog, plus, store（Lucide）
+
+---
+
+以上が `SP_4.サイト案内・料金` の HTML+CSS 実装仕様書です。この仕様に従って実装することで、4つのカテゴリに分かれた横スクロール可能な画像ギャラリーを持つ施設案内ページを再現できます。

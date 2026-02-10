@@ -1,0 +1,886 @@
+# SP_3.ペット同伴ルール — HTML+CSS実装仕様書
+
+**ノードID:** `GsBK0`  
+**画面名:** SP_3.ペット同伴ルール  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: GsBK0
+width: 375px
+高さ: 可変（コンテンツに応じて）
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `justify-content: center`
+- `align-items: center`
+- `gap: 21px`
+- `padding: 21px 25px` (上下21px、左右25px)
+
+### 背景
+- **背景色:** `#FAF8F5` (明るいベージュ)
+
+---
+
+## 2. セクション構成
+
+### 2.1 ヘッダー1 — 犬種制限について (`AydsY`)
+
+```
+type: frame
+id: AydsY
+name: Header
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+- `align-items: center`
+
+**子要素:**
+
+#### タイトル (`EP3PH`)
+```
+type: text
+id: EP3PH
+```
+
+- **テキスト内容:** `犬種制限について`
+- **スタイル:**
+  - `color: #1C1C1C` (ダークグレー)
+  - `font-family: Inter`
+  - `font-size: 18px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: -0.5px`
+
+---
+
+### 2.2 ワンちゃん同伴ルール (`OL9lQ`)
+
+```
+type: frame
+id: OL9lQ
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 9px`
+
+#### 2.2.1 ドッグヘッダー (`Ouc4S`)
+
+```
+type: frame
+id: Ouc4S
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 4px`
+
+**子要素:**
+
+##### ドッグタイトル (`cjOUc`)
+- **テキスト:** `入場可能なワンちゃんについて`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: 500` (medium)
+  - `letter-spacing: -0.3px`
+
+##### ドッグサブタイトル (`Gnlzs`)
+- **テキスト:** `アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。`
+- **スタイル:**
+  - `color: #6B6B6B` (ミディアムグレー)
+  - `font-family: Inter`
+  - `font-size: 7px`
+  - `font-weight: normal` (400)
+  - `line-height: 1.7`
+  - `width: 100%`
+
+---
+
+#### 2.2.2 カード行 (`b8Mbm`)
+
+```
+type: frame
+id: b8Mbm
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `gap: 7px`
+
+**子要素:**
+
+##### 同伴可能カード (`hgZNS`)
+
+```
+type: frame
+id: hgZNS
+name: 同伴可能
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF` (白)
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #D4E8D4` (淡い緑)
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 6px`
+- `padding: 9px`
+
+**子要素:**
+
+###### ラベル (`HhSdX`)
+- **テキスト:** `同伴可能な犬種`
+- **スタイル:**
+  - `color: #5A8A5A` (緑)
+  - `font-family: Inter`
+  - `font-size: 7px`
+  - `font-weight: 600` (semibold)
+  - `letter-spacing: 0.5px`
+
+###### リスト (`B6Au1`)
+
+```
+type: frame
+id: B6Au1
+width: fill_container
+```
+
+- `display: flex`
+- `flex-direction: column`
+- `gap: 4px`
+
+**リスト項目:**
+
+| ID | テキスト | スタイル |
+|---|---|---|
+| `Gewzq` | プードル | 9px, normal, #1C1C1C |
+| `kVt3W` | 　スタンダード / ミディアム / トイ | 7px, normal, #9A9A9A (注釈) |
+| `1nCqu` | プードルミックス（○○プー） | 9px, normal, #1C1C1C |
+| `7XqYL` | 　※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合 | 7px, normal, #9A9A9A, line-height 1.5 |
+| `xqLR2` | ヨークシャーテリア | 9px, normal, #1C1C1C |
+| `Vnp1E` | ミニチュアシュナウザー | 9px, normal, #1C1C1C |
+| `cGVGL` | ビションフリーゼ | 9px, normal, #1C1C1C |
+| `t6viR` | マルチーズ | 9px, normal, #1C1C1C |
+| `ebKRy` | シーズー | 9px, normal, #1C1C1C |
+| `7TWX3` | チャイニーズクレステッドドッグ | 9px, normal, #1C1C1C |
+| `2m1wR` | オーストラリアン・ラブラドゥードル（AL） | 9px, normal, #1C1C1C |
+
+---
+
+#### 2.2.3 リンクコンテナ (`rN9Sn`)
+
+```
+type: frame
+id: rN9Sn
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 1px`
+- `align-items: center`
+
+**子要素:**
+
+##### リンクテキスト (`udGMq`)
+- **テキスト:** `詳しくは利用規約・マナーをご確認ください`
+- **スタイル:**
+  - `color: #6B8E6B` (緑)
+  - `font-family: Inter`
+  - `font-size: 7px`
+  - `font-weight: 500`
+  - `text-align: center`
+
+##### アンダーライン (`Gpiqn`)
+- **サイズ:** `125px × 1px`
+- **背景色:** `#6B8E6B` (緑)
+
+---
+
+### 2.3 ヘッダー2 — なぜ犬種制限があるのか (`DdXVQ`)
+
+```
+type: frame
+id: DdXVQ
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+- `align-items: center`
+
+**子要素:**
+
+#### タイトル (`l9NaO`)
+- **テキスト:** `なぜ犬種制限があるのか`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 18px`
+  - `font-weight: 300`
+  - `letter-spacing: -0.5px`
+
+---
+
+### 2.4 画像スライダー (`6G6Qm`)
+
+```
+type: rectangle
+id: 6G6Qm
+サイズ: 276px × 191px
+```
+
+**スタイル:**
+- **背景画像:** `../../../Gemini_Generated_Image_1z8xry1z8xry1z8x.png`
+- `background-size: cover`
+- `background-position: center`
+- `object-fit: fill`
+
+**実装メモ:**
+- 実際には複数の画像をスライダーで表示
+- JavaScriptで画像切り替えを実装
+- 画像パスは配列で管理
+
+---
+
+### 2.5 ページネーション (`H7Y98`)
+
+```
+type: frame
+id: H7Y98
+width: 276px
+```
+
+**レイアウト:**
+- `display: flex`
+- `gap: 7px`
+- `justify-content: center`
+- `align-items: center`
+
+**子要素:**
+
+#### 前ボタン (`iyHIF`)
+
+```
+type: frame
+id: iyHIF
+```
+
+**スタイル:**
+- **背景色:** `#6B8E6B` (緑)
+- **角丸:** `border-radius: 5px`
+- **padding:** `6px 11px`
+- **cursor:** `pointer`
+
+**子要素:**
+- **テキスト (`ToIvn`):** `前`
+  - `color: #FFFFFF`
+  - `font-size: 8px`
+  - `font-weight: 500`
+
+#### ページ情報 (`chKHE`)
+- **テキスト:** `1 / 9`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 8px`
+  - `font-weight: normal`
+
+#### 次ボタン (`PvSDN`)
+
+```
+type: frame
+id: PvSDN
+```
+
+**スタイル:**
+- **背景色:** `#6B8E6B` (緑)
+- **角丸:** `border-radius: 5px`
+- **padding:** `6px 11px`
+- **cursor:** `pointer`
+
+**子要素:**
+- **テキスト (`X6mB1`):** `次`
+  - `color: #FFFFFF`
+  - `font-size: 8px`
+  - `font-weight: 500`
+
+**ホバー効果 (推奨):**
+```css
+.pagination-btn:hover {
+  background: #5A7A5A;
+}
+
+.pagination-btn:active {
+  transform: scale(0.95);
+}
+```
+
+---
+
+### 2.6 固定フッター (`2sAp1`)
+
+```
+type: frame
+id: 2sAp1
+name: fixedFooter
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 4px`
+- `padding: 0 9px 9px 0` (右下のみ)
+- `align-items: flex-end`
+- `background: transparent`
+
+**子要素:**
+
+#### フッターボタン (`J1ZLe`)
+
+```
+type: frame
+id: J1ZLe
+```
+
+**スタイル:**
+- **背景色:** `#6B8E6B` (緑)
+- **角丸:** `border-radius: 20px`
+- **padding:** `10px 16px`
+- **cursor:** `pointer`
+
+**子要素:**
+- **テキスト (`1GNHq`):** `予約・空き確認`
+  - `color: #FFFFFF`
+  - `font-size: 11px`
+  - `font-weight: 600`
+
+**ホバー効果 (推奨):**
+```css
+.footer-btn:hover {
+  background: #5A7A5A;
+  box-shadow: 0 4px 12px rgba(107, 142, 107, 0.3);
+}
+```
+
+---
+
+## 3. 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_3.ペット同伴ルール</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム GsBK0 -->
+  <div class="sp3-pet-rules">
+    
+    <!-- ヘッダー1 -->
+    <header class="section-header">
+      <h1 class="section-title">犬種制限について</h1>
+    </header>
+    
+    <!-- ワンちゃん同伴ルール -->
+    <section class="dog-rules">
+      
+      <!-- ドッグヘッダー -->
+      <div class="dog-header">
+        <h2 class="dog-title">入場可能なワンちゃんについて</h2>
+        <p class="dog-subtitle">アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。</p>
+      </div>
+      
+      <!-- 同伴可能カード -->
+      <div class="card-row">
+        <div class="breed-card breed-card--ok">
+          <span class="breed-card__label">同伴可能な犬種</span>
+          <ul class="breed-list">
+            <li class="breed-item">プードル</li>
+            <li class="breed-note">　スタンダード / ミディアム / トイ</li>
+            <li class="breed-item">プードルミックス（○○プー）</li>
+            <li class="breed-note">　※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合</li>
+            <li class="breed-item">ヨークシャーテリア</li>
+            <li class="breed-item">ミニチュアシュナウザー</li>
+            <li class="breed-item">ビションフリーゼ</li>
+            <li class="breed-item">マルチーズ</li>
+            <li class="breed-item">シーズー</li>
+            <li class="breed-item">チャイニーズクレステッドドッグ</li>
+            <li class="breed-item">オーストラリアン・ラブラドゥードル（AL）</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- リンク -->
+      <a href="#rules" class="underlined-link">
+        <span class="underlined-link__text">詳しくは利用規約・マナーをご確認ください</span>
+        <span class="underlined-link__line"></span>
+      </a>
+      
+    </section>
+    
+    <!-- ヘッダー2 -->
+    <header class="section-header">
+      <h1 class="section-title">なぜ犬種制限があるのか</h1>
+    </header>
+    
+    <!-- 画像スライダー -->
+    <div class="image-slider">
+      <img id="sliderImage" src="../../../Gemini_Generated_Image_1z8xry1z8xry1z8x.png" alt="理由の説明" class="slider-image">
+    </div>
+    
+    <!-- ページネーション -->
+    <div class="pagination">
+      <button class="pagination-btn pagination-btn--prev" id="prevBtn">前</button>
+      <span class="pagination-info" id="pageInfo">1 / 9</span>
+      <button class="pagination-btn pagination-btn--next" id="nextBtn">次</button>
+    </div>
+    
+    <!-- 固定フッター -->
+    <div class="fixed-footer">
+      <button class="footer-btn">予約・空き確認</button>
+    </div>
+    
+  </div>
+
+  <script>
+    // 画像スライダーのJavaScript実装
+    let currentPage = 1;
+    const totalPages = 9;
+    const images = [
+      '../../../Gemini_Generated_Image_1z8xry1z8xry1z8x.png',
+      // ... 残りの8枚の画像パス
+    ];
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageInfo = document.getElementById('pageInfo');
+    const sliderImage = document.getElementById('sliderImage');
+
+    function updateSlider() {
+      pageInfo.textContent = `${currentPage} / ${totalPages}`;
+      sliderImage.src = images[currentPage - 1];
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updateSlider();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateSlider();
+      }
+    });
+
+    updateSlider();
+  </script>
+</body>
+</html>
+```
+
+---
+
+## 4. CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #FAF8F5;
+}
+
+/* ルートフレーム */
+.sp3-pet-rules {
+  width: 375px;
+  padding: 21px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  align-items: center;
+  background: #FAF8F5;
+}
+
+/* セクションヘッダー */
+.section-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+
+.section-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* ワンちゃん同伴ルール */
+.dog-rules {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* ドッグヘッダー */
+.dog-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dog-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.dog-subtitle {
+  margin: 0;
+  color: #6B6B6B;
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* カード行 */
+.card-row {
+  width: 100%;
+  display: flex;
+  gap: 7px;
+}
+
+/* 犬種カード */
+.breed-card {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 7px;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.breed-card--ok {
+  border: 1px solid #D4E8D4;
+}
+
+.breed-card__label {
+  color: #5A8A5A;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 犬種リスト */
+.breed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.breed-item {
+  color: #1C1C1C;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.breed-note {
+  color: #9A9A9A;
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* アンダーラインリンク */
+.underlined-link {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.underlined-link__text {
+  color: #6B8E6B;
+  font-size: 7px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.underlined-link__line {
+  width: 125px;
+  height: 1px;
+  background: #6B8E6B;
+}
+
+/* 画像スライダー */
+.image-slider {
+  width: 276px;
+  height: 191px;
+  overflow: hidden;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ページネーション */
+.pagination {
+  width: 276px;
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-btn {
+  background: #6B8E6B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 11px;
+  font-size: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #5A7A5A;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: #1C1C1C;
+  font-size: 8px;
+  font-weight: 400;
+}
+
+/* 固定フッター */
+.fixed-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 9px 9px 0;
+  align-items: flex-end;
+}
+
+.footer-btn {
+  background: #6B8E6B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.footer-btn:hover {
+  background: #5A7A5A;
+  box-shadow: 0 4px 12px rgba(107, 142, 107, 0.3);
+}
+
+.footer-btn:active {
+  transform: scale(0.98);
+}
+```
+
+---
+
+## 5. JavaScriptによる画像スライダー実装
+
+```javascript
+// 画像データの配列を準備
+const reasonImages = [
+  '../../../images/reason1.png',
+  '../../../images/reason2.png',
+  '../../../images/reason3.png',
+  '../../../images/reason4.png',
+  '../../../images/reason5.png',
+  '../../../images/reason6.png',
+  '../../../images/reason7.png',
+  '../../../images/reason8.png',
+  '../../../images/reason9.png'
+];
+
+// 状態管理
+let currentPage = 1;
+const totalPages = reasonImages.length;
+
+// DOM要素取得
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const pageInfo = document.getElementById('pageInfo');
+const sliderImage = document.getElementById('sliderImage');
+
+// スライダー更新関数
+function updateSlider() {
+  // ページ情報更新
+  pageInfo.textContent = `${currentPage} / ${totalPages}`;
+  
+  // 画像更新
+  sliderImage.src = reasonImages[currentPage - 1];
+  
+  // ボタンの有効/無効切り替え
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
+
+// イベントリスナー
+prevBtn.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    updateSlider();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    updateSlider();
+  }
+});
+
+// 初期化
+updateSlider();
+```
+
+---
+
+## 6. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面幅: 375px
+- [ ] 背景色: #FAF8F5
+- [ ] padding: 21px 25px, gap: 21px
+- [ ] セクションタイトル: 18px, font-weight 300
+- [ ] 犬種カード: 白背景、緑枠線 (#D4E8D4)
+- [ ] 犬種リスト: 9px (項目), 7px (注釈)
+- [ ] アンダーラインリンク: 125px × 1px
+- [ ] 画像スライダー: 276px × 191px
+- [ ] ページネーション: 前/次ボタン、ページ情報
+- [ ] 固定フッターボタン: 角丸20px、右下配置
+- [ ] Inter フォントが読み込まれている
+- [ ] JavaScriptでスライダーが動作する
+- [ ] ホバー効果が動作する
+
+---
+
+## 7. アクセシビリティ
+
+### 7.1 セマンティックHTML
+- ヘッダーは `<header>` と `<h1>`, `<h2>` を使用
+- リストは `<ul>` と `<li>` を使用
+- ボタンは `<button>` を使用
+
+### 7.2 キーボード操作
+- すべてのボタンが Tab キーで選択可能
+- Enter キーで操作可能
+- フォーカススタイルを明確に:
+  ```css
+  button:focus {
+    outline: 2px solid #6B8E6B;
+    outline-offset: 2px;
+  }
+  ```
+
+### 7.3 スクリーンリーダー対応
+```html
+<button aria-label="前のページへ" class="pagination-btn">前</button>
+<button aria-label="次のページへ" class="pagination-btn">次</button>
+<div role="status" aria-live="polite" id="pageInfo">1 / 9</div>
+```
+
+---
+
+## 8. レスポンシブ対応（オプション）
+
+より大きい画面での表示:
+
+```css
+@media (min-width: 768px) {
+  .sp3-pet-rules {
+    max-width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+---
+
+## 9. 参考情報
+
+- **元ノードID:** `GsBK0`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **関連ページ:** 
+  - SP_2.ペット（前のページ）
+  - SP_6.利用規約・マナー（詳細ページ）
+
+---
+
+以上が `SP_3.ペット同伴ルール` の HTML+CSS+JavaScript 実装仕様書です。この仕様に従って実装することで、犬種制限とその理由を説明するインタラクティブなページを再現できます。

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_0.TOP画面 - KITAURA LAKESIDE RV park</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* リセット */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* ルートフレーム Bfg2T - フルサイズ対応 */
+    .sp0-top {
+      width: 100vw;
+      height: 100vh;
+      padding: min(2vw, 15px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: min(4vw, 25px);
+      background-image: url('../../src/image_side.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* ヘッダー W5yeq - レスポンシブ対応 */
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: min(2vh, 15px);
+    }
+
+    /* ロゴエリア Blklp */
+    .logo-frame {
+      display: flex;
+      flex-direction: column;
+      gap: min(1vw, 6px);
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* ロゴ画像 jy9TP - レスポンシブ対応 */
+    .logo-img {
+      width: min(10vw, 60px);
+      height: min(9.8vw, 58px);
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ロゴテキスト mr5Vc - レスポンシブ対応 */
+    .logo-text {
+      color: #fff8f8;
+      font-size: clamp(10px, 2vw, 16px);
+      font-weight: 400;
+      line-height: 1.25;
+      text-align: center;
+      white-space: pre-line;
+      user-select: none;
+    }
+
+    /* ナビゲーション pPCQB */
+    .nav {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: min(3vw, 20px);
+    }
+
+    /* ハンバーガーアイコン I7ZN4 - レスポンシブ対応 */
+    .hamburger-icon {
+      width: min(6vw, 36px);
+      height: min(6vw, 36px);
+      cursor: pointer;
+      margin-top: -8px;
+    }
+
+    .hamburger-icon line {
+      stroke: #ffffff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: 0.8;
+    }
+
+    /* コンテンツエリア hpgef */
+    .content-area {
+      width: 100%;
+      flex: 1;
+      padding-top: min(20vh, 120px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* メインタイトル n3Cfn - レスポンシブ対応 */
+    .main-title {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(16px, 3.2vw, 28px);
+      font-weight: 400;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+      text-align: center;
+    }
+
+    /* タブレット・PC用の調整 */
+    @media (min-width: 768px) {
+      .sp0-top {
+        padding: 20px;
+        gap: 30px;
+      }
+
+      .logo-img {
+        width: 60px;
+        height: 58px;
+      }
+
+      .logo-text {
+        font-size: 14px;
+      }
+
+      .hamburger-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .main-title {
+        font-size: 24px;
+        letter-spacing: 4px;
+      }
+    }
+
+    /* スマートフォン横向き対応 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .content-area {
+        padding-top: 10vh;
+      }
+
+      .main-title {
+        font-size: clamp(14px, 2.5vh, 20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ルートフレーム Bfg2T: SP_0.TOP画面 -->
+  <div class="sp0-top" aria-label="TOP画面">
+    
+    <!-- ヘッダー W5yeq -->
+    <header class="header">
+      <!-- ロゴエリア Blklp -->
+      <div class="logo-frame" aria-label="ロゴ">
+        <!-- ロゴ画像 jy9TP -->
+        <img
+          class="logo-img"
+          src="../../src/futter_logo.png"
+          alt="KITAURA LAKESIDE RV park"
+          width="32"
+          height="31"
+        />
+        <!-- ロゴテキスト mr5Vc -->
+        <div class="logo-text">KITAURA LAKESIDE
+RV park</div>
+      </div>
+
+      <!-- ナビゲーション pPCQB -->
+      <nav class="nav" aria-label="メインナビゲーション">
+        <!-- ハンバーガーアイコン I7ZN4 -->
+        <svg
+          class="hamburger-icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-label="メニュー"
+          role="button"
+          tabindex="0"
+        >
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </nav>
+    </header>
+
+    <!-- コンテンツエリア hpgef -->
+    <main class="content-area">
+      <!-- メインタイトル n3Cfn -->
+      <h1 class="main-title">大切な人と、心ほどける時間</h1>
+    </main>
+
+  </div>
+</body>
+</html>

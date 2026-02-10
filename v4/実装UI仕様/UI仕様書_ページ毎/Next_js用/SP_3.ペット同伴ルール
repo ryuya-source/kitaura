@@ -1,0 +1,145 @@
+## SP_3.ペット同伴ルール（GsBK0）
+Next.js（App Router）+ Tailwind CSS で再現するための **エンジニア向け技術仕様（デザインシステム）**。
+
+---
+
+## ✅ 1) 前提（画面/レイアウト）
+- **対象**: SP（基準幅 375px）
+- **背景**: `bg-[#FAF8F5]`
+- **コンテナ**: `px-[25px] py-[21px]`
+- **縦スタック**: `flex flex-col items-center gap-[21px]`
+- **中央寄せ**: 各ヘッダーは `items-center text-center`
+
+---
+
+## 🎨 2) デザイントークン（Tailwind推奨）
+- **color.bg.base**: `#FAF8F5`
+- **color.text.primary**: `#1C1C1C`
+- **color.text.secondary**: `#6B6B6B`
+- **color.text.muted**: `#9A9A9A`
+- **color.accent.green**: `#6B8E6B`（CTA/リンク/ページネーションボタン）
+- **color.accent.navy**: `#1E3A5F`（強調テキスト）
+- **color.ok.green**: `#5A8A5A`（「同伴可能」ラベル）
+- **color.border.base**: `#E8E5E0`
+- **color.border.ok**: `#D4E8D4`
+- **surface.white**: `#FFFFFF`
+- **radius.sm**: 5
+- **radius.md**: 7
+- **radius.pill**: 20
+
+---
+
+## 🔤 3) タイポ（Tailwindの当て方）
+- **ページ見出し（18px）**:
+  - `text-[18px] font-light tracking-[-0.5px] text-[#1C1C1C]`
+- **セクション見出し（12px）**:
+  - `text-[12px] font-medium tracking-[-0.3px] text-[#1C1C1C]`
+- **説明（7px）**:
+  - `text-[7px] leading-[1.7] text-[#6B6B6B]`
+- **カード項目（9px）**:
+  - `text-[9px] text-[#1C1C1C]`
+- **注記（7px）**:
+  - `text-[7px] text-[#9A9A9A] leading-[1.5]`
+- **リンク（7px）**:
+  - `text-[7px] font-medium text-[#6B8E6B] text-center`
+
+---
+
+## 🧩 4) コンポーネント仕様（実装単位）
+
+### 4.1 `SectionHeader`（AydsY / DdXVQ 共通）
+- **構造**:
+  - `div.w-full.flex.flex-col.items-center.gap-[7px]`
+  - `h2` でタイトル表示
+- **Props**:
+  - `title: string`
+
+### 4.2 `DogRuleIntro`（Ouc4S）
+- **構造**:
+  - `div.w-full.flex.flex-col.gap-[4px]`
+  - `h3`（「入場可能なワンちゃんについて」）
+  - `p`（説明文）
+
+### 4.3 `BreedCardOk`（hgZNS）
+- **外観**:
+  - `bg-white border border-[#D4E8D4] rounded-[7px] p-[9px]`
+  - `flex flex-col gap-[6px]`
+- **子要素**:
+  - ラベル: `text-[#5A8A5A] text-[7px] font-semibold tracking-[0.5px]`
+  - リスト: 縦スタック `gap-[4px]`
+  - 項目（9px）+ 注記（7px / `#9A9A9A`）の混在を許容
+- **Props**:
+  - `label: string`（例: 同伴可能な犬種）
+  - `items: Array<{ name: string; note?: string }>`
+- **データ（GsBK0準拠）**:
+  - プードル（注: スタンダード / ミディアム / トイ）
+  - プードルミックス（○○プー）（注: ※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合）
+  - ヨークシャーテリア
+  - ミニチュアシュナウザー
+  - ビションフリーゼ
+  - マルチーズ
+  - シーズー
+  - チャイニーズクレステッドドッグ
+  - オーストラリアン・ラブラドゥードル（AL）
+
+### 4.4 `UnderlinedLink`（rN9Sn）
+- **構造**:
+  - `div.flex.flex-col.items-center.gap-[1px]`
+  - `a`（テキスト） + 下線 `div.h-[1px] w-[125px] bg-[#6B8E6B]`
+- **Props**:
+  - `href: string`
+  - `label: string`
+- **注意**:
+  - 下線はテキスト幅ではなく **固定125px**（デザイン再現優先）
+
+### 4.5 `ReasonSlider`（6G6Qm + H7Y98）
+- **目的**: 「なぜ犬種制限があるのか」を **1/9ページ** で段階表示
+- **表示領域**:
+  - **画像**: `w-[276px] h-[191px] rounded-[0px]`（角丸指定なし）
+  - 実装は `next/image` 推奨（レイアウト安定のため `width/height` 指定）
+- **ページネーション**:
+  - Wrapper: `w-[276px] flex items-center justify-center gap-[7px]`
+  - Prev/Next ボタン:
+    - `bg-[#6B8E6B] text-white text-[8px] font-medium rounded-[5px] px-[11px] py-[6px]`
+    - ラベル: 「前」/「次」
+  - ページ表示:
+    - `text-[#1C1C1C] text-[8px]`
+    - 表示形式: `"{current} / {total}"`（例: `1 / 9`）
+- **状態管理**:
+  - `const total = 9`
+  - `const [index, setIndex] = useState(0)`（表示は `index+1`）
+  - Prev: `setIndex((i) => Math.max(0, i-1))`
+  - Next: `setIndex((i) => Math.min(total-1, i+1))`
+- **アクセシビリティ**:
+  - `button type="button"` を使用
+  - `aria-label="前のスライド"` / `aria-label="次のスライド"`
+  - 端で disabled（`opacity-50 cursor-not-allowed` 等）推奨
+
+### 4.6 `FixedReserveCTA`（2sAp1）
+- **配置**: 画面右下固定
+  - 例: `fixed bottom-0 right-0 p-[9px_9px_9px_0] flex justify-end pointer-events-none`
+  - ボタンだけ `pointer-events-auto`
+- **ボタン**:
+  - `bg-[#6B8E6B] text-white text-[11px] font-semibold rounded-[20px] px-[16px] py-[10px] shadow-lg`
+  - ラベル: 「予約・空き確認」
+- **動作**:
+  - 押下で `SP_予約モーダル` を open（推奨: Zustand/Context などでグローバル制御）
+
+---
+
+## 🧭 5) 画面構成（実装順のツリー）
+- `SectionHeader(title="犬種制限について")`
+- `DogRuleIntro(title="入場可能なワンちゃんについて", description=...)`
+- `BreedCardOk(label="同伴可能な犬種", items=[...])`
+- `UnderlinedLink(label="詳しくは利用規約・マナーをご確認ください", href="#manners")`
+- `SectionHeader(title="なぜ犬種制限があるのか")`
+- `ReasonSlider(total=9, indexState, imagePerPage)`
+- `FixedReserveCTA(onClick=openReserveModal)`
+
+---
+
+## 🔒 6) 実装上の注意（Next.js / Tailwind）
+- **画像**: `next/image` を基本にし、`width/height` を固定値で入れてCLSを抑制
+- **色・余白**: デザイン再現のため、Tailwindの任意値（`text-[7px]` 等）を許容
+- **文字列**: 仕様書の文言を一次採用し、正式表記の校正は別タスクで行う
+- **リンク**: `href="#manners"` 等のページ内遷移は `scroll-padding-top`（ヘッダー高さ）を考慮

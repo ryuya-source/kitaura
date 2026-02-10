@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP_3.ペット同伴ルール（GsBK0）</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent-green: #6B8E6B;
+      --accent-navy: #1E3A5F;
+      --ok-green: #5A8A5A;
+      --border-base: #E8E5E0;
+      --border-ok: #D4E8D4;
+      --surface: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 21px 25px 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+      position: relative;
+    }
+
+    .section-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+    }
+
+    .intro {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .intro h3 {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      color: var(--text-primary);
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 7px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .card-ok {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border-ok);
+      border-radius: 7px;
+      padding: 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-ok .label {
+      color: var(--ok-green);
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .breed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .breed-item {
+      font-size: 9px;
+      color: var(--text-primary);
+    }
+
+    .breed-note {
+      font-size: 7px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .underlined-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+
+    .underlined-link a {
+      font-size: 7px;
+      font-weight: 500;
+      color: var(--accent-green);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .underlined-link .line {
+      width: 125px;
+      height: 1px;
+      background: var(--accent-green);
+    }
+
+    .image-block {
+      width: 276px;
+      height: 191px;
+      background: #EFEDEA;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      font-size: 9px;
+    }
+
+    .pager {
+      width: 276px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .pager button {
+      background: var(--accent-green);
+      color: #fff;
+      font-size: 8px;
+      font-weight: 500;
+      border: none;
+      border-radius: 5px;
+      padding: 6px 11px;
+      cursor: pointer;
+    }
+
+    .pager button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pager .count {
+      font-size: 8px;
+      color: var(--text-primary);
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      padding: 9px 9px 9px 0;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+      width: 100%;
+      max-width: 375px;
+      margin: 0 auto;
+      left: 0;
+    }
+
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent-green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="section-header">
+      <h2>犬種制限について</h2>
+    </div>
+
+    <section class="intro">
+      <h3>入場可能なワンちゃんについて</h3>
+      <p>アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。</p>
+    </section>
+
+    <section class="card-ok">
+      <div class="label">同伴可能な犬種</div>
+      <div class="breed-list">
+        <div class="breed-item">プードル
+          <div class="breed-note">スタンダード / ミディアム / トイ</div>
+        </div>
+        <div class="breed-item">プードルミックス（○○プー）
+          <div class="breed-note">※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合</div>
+        </div>
+        <div class="breed-item">ヨークシャーテリア</div>
+        <div class="breed-item">ミニチュアシュナウザー</div>
+        <div class="breed-item">ビションフリーゼ</div>
+        <div class="breed-item">マルチーズ</div>
+        <div class="breed-item">シーズー</div>
+        <div class="breed-item">チャイニーズクレステッドドッグ</div>
+        <div class="breed-item">オーストラリアン・ラブラドゥードル（AL）</div>
+      </div>
+    </section>
+
+    <div class="underlined-link">
+      <a href="#manners">詳しくは利用規約・マナーをご確認ください</a>
+      <div class="line"></div>
+    </div>
+
+    <div class="section-header">
+      <h2>なぜ犬種制限があるのか</h2>
+    </div>
+
+    <div class="image-block">イラスト画像</div>
+
+    <div class="pager" aria-label="ページネーション">
+      <button type="button" aria-label="前のスライド" disabled>前</button>
+      <div class="count">1 / 9</div>
+      <button type="button" aria-label="次のスライド">次</button>
+    </div>
+  </main>
+
+  <div class="fixed-cta">
+    <button type="button">予約・空き確認</button>
+  </div>
+</body>
+</html>
+EOF

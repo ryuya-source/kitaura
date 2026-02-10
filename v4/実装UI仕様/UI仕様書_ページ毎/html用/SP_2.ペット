@@ -1,0 +1,420 @@
+# SP_2.ペット — HTML+CSS実装仕様書
+
+**ノードID:** `FhnNd`  
+**画面名:** SP_2.ペット  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: FhnNd
+サイズ: 375px × 474px
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `gap: 21px`
+- `padding: 11px`
+
+### 背景
+- **背景画像:** `./src/grok-image-a29539b9-b5a3-4574-b258-a6aaffbf70b3のコピー6.png`
+- `background-size: cover`
+- `background-position: center`
+- `object-fit: fill` (mode: fill)
+
+---
+
+## 2. メインコンテンツ (`sE6TJ`)
+
+```
+type: frame
+id: sE6TJ
+name: mainContent
+サイズ: 356px × 322px
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column`
+- `gap: 14px`
+- `padding-bottom: 53px` (padding: [0, 0, 53, 0])
+- `justify-content: flex-end` (下揃え)
+- `align-items: center`
+
+### 子要素
+
+---
+
+## 3. グラスカード (`PHEvV`)
+
+```
+type: frame
+id: PHEvV
+name: glassCard
+サイズ: 225px × 175px
+```
+
+### スタイル
+- **背景色:** `#ffffff33` (白、opacity 20%)
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid transparent` (#00000000)
+- **backdrop-filter (推奨):** `blur(10px)` (グラスモーフィズム効果)
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column`
+- `gap: 11px`
+- `padding: 14px 21px` (上下14px、左右21px)
+- `justify-content: center`
+- `align-items: center`
+
+### 子要素
+
+#### 3.1 メインタイトル (`4yOvy`)
+
+```
+type: text
+id: 4yOvy
+name: mainTitle
+width: 174px (fixed-width)
+```
+
+- **テキスト内容:**  
+  ```
+  犬種制限と
+  ペット同伴のマナー
+  ```
+
+- **スタイル:**
+  - `color: #ffffff` (白)
+  - `font-family: Inter`
+  - `font-size: 13px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: 2px`
+  - `text-align: center`
+  - `white-space: pre-line` (改行を保持)
+
+#### 3.2 説明文 (`F6SyF`)
+
+```
+type: text
+id: F6SyF
+name: desc
+```
+
+- **テキスト内容:**  
+  ```
+  ペットも、飼い主さまも、
+   そして周囲の方々も穏やかに過ごせるように。
+   受け入れ条件と場内ルールをご案内しています。
+  ```
+
+- **スタイル:**
+  - `color: #FFFFFF` (白)
+  - `font-family: Inter`
+  - `font-size: 7px`
+  - `font-weight: normal` (400)
+  - `line-height: 1.8`
+  - `text-align: center`
+
+---
+
+## 4. CTAボタン (`rOqdq`)
+
+```
+type: frame
+id: rOqdq
+name: ctaBtn
+```
+
+### スタイル
+- **背景色:** `#ffffff4d` (白、opacity 30%)
+- **角丸:** `border-radius: 4px`
+- **枠線:** `border: 1px solid #FFFFFF` (白)
+- **padding:** `6px 14px` (上下6px、左右14px)
+
+### レイアウト
+- `display: inline-flex` または `flex`
+- `justify-content: center`
+- `align-items: center`
+- **カーソル:** `cursor: pointer`
+- **ホバー効果 (推奨):** `opacity: 0.8` や背景色変更
+
+### 子要素
+
+#### CTAテキスト (`u1vav`)
+
+```
+type: text
+id: u1vav
+name: ctaText
+```
+
+- **テキスト内容:** `ペット同伴ルールを見る`
+
+- **スタイル:**
+  - `color: #ffffff` (白)
+  - `font-family: Inter`
+  - `font-size: 7px`
+  - `font-weight: normal` (400)
+
+---
+
+## 5. 実装のポイント
+
+### 5.1 レスポンシブ対応
+- 画面全体を `width: 375px; height: 474px` の固定サイズで実装
+- より大きい画面では中央配置 (`margin: 0 auto` など)
+- または `max-width: 375px` + `width: 100%` で可変対応
+
+### 5.2 背景画像
+- 画像パス: `../../src/grok-image-a29539b9-b5a3-4574-b258-a6aaffbf70b3のコピー6.png`
+- `background-size: cover` で画面全体を覆う
+- `background-position: center` で中央配置
+
+### 5.3 グラスモーフィズム効果
+- カードに半透明背景 + ぼかし効果を適用:
+  ```css
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  ```
+
+### 5.4 フォント
+- **Inter** フォントを使用
+- Google Fonts から読み込み:
+  ```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  ```
+
+### 5.5 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_2.ペット</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム FhnNd -->
+  <div class="sp2-pet">
+    
+    <!-- メインコンテンツ sE6TJ -->
+    <div class="main-content">
+      
+      <!-- グラスカード PHEvV -->
+      <div class="glass-card">
+        <h2 class="main-title">犬種制限と<br>ペット同伴のマナー</h2>
+        <p class="desc">
+          ペットも、飼い主さまも、<br>
+          そして周囲の方々も穏やかに過ごせるように。<br>
+          受け入れ条件と場内ルールをご案内しています。
+        </p>
+      </div>
+      
+      <!-- CTAボタン rOqdq -->
+      <a href="#pet-rules" class="cta-btn">
+        <span class="cta-text">ペット同伴ルールを見る</span>
+      </a>
+      
+    </div>
+    
+  </div>
+</body>
+</html>
+```
+
+### 5.6 CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #000;
+}
+
+/* ルートフレーム */
+.sp2-pet {
+  width: 375px;
+  height: 474px;
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  background-image: url('../../src/grok-image-a29539b9-b5a3-4574-b258-a6aaffbf70b3のコピー6.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* メインコンテンツ */
+.main-content {
+  width: 356px;
+  height: 322px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 53px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* グラスカード */
+.glass-card {
+  width: 225px;
+  height: 175px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 7px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 14px 21px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* メインタイトル */
+.main-title {
+  margin: 0;
+  width: 174px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* 説明文 */
+.desc {
+  margin: 0;
+  color: #ffffff;
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* CTAボタン */
+.cta-btn {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  padding: 6px 14px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cta-btn:hover {
+  opacity: 0.8;
+}
+
+/* CTAテキスト */
+.cta-text {
+  color: #ffffff;
+  font-size: 7px;
+  font-weight: 400;
+}
+```
+
+---
+
+## 6. インタラクション
+
+### 6.1 CTAボタンのクリック動作
+- リンク先: `#pet-rules` (ペット同伴ルールセクションへのアンカーリンク)
+- または別ページへの遷移 (`href="./pet-rules.html"` など)
+
+### 6.2 ホバー効果（推奨）
+```css
+.cta-btn:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.cta-btn:active {
+  transform: scale(0.98);
+}
+```
+
+---
+
+## 7. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面サイズ: 375px × 474px
+- [ ] 背景画像が正しく表示される
+- [ ] メインコンテンツ: 356px × 322px
+- [ ] グラスカード: 225px × 175px, 半透明背景
+- [ ] backdrop-filter が適用されている
+- [ ] タイトル: 13px, font-weight 300, letter-spacing 2px
+- [ ] 説明文: 7px, line-height 1.8
+- [ ] CTAボタン: 7px, padding 6px 14px, border 1px white
+- [ ] CTAボタンがクリック可能（リンク設定）
+- [ ] Inter フォントが読み込まれている
+- [ ] ホバー効果が動作する
+
+---
+
+## 8. ブラウザ互換性
+
+### backdrop-filter のサポート
+- **対応ブラウザ:** Chrome 76+, Safari 9+, Edge 79+
+- **Firefox:** `layout.css.backdrop-filter.enabled` を `true` に設定する必要あり
+- **代替案:** backdrop-filter が使えない場合は背景色を少し濃くする:
+  ```css
+  background: rgba(255, 255, 255, 0.25);
+  ```
+
+---
+
+## 9. アクセシビリティ
+
+- CTAボタンに適切な `href` 属性を設定
+- テキストのコントラスト比を確保（白文字 + 半透明背景）
+- ボタンに `:focus` スタイルを追加:
+  ```css
+  .cta-btn:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+  ```
+
+---
+
+## 10. 参考情報
+
+- **元ノードID:** `FhnNd`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **関連ページ:** SP_3.ペット同伴ルール（遷移先）
+
+---
+
+以上が `SP_2.ペット` の HTML+CSS 実装仕様書です。この仕様に従って実装することで、グラスモーフィズム効果のある美しいペット案内カードを再現できます。

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お知らせ・メディア</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent: #6B8E6B;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 24px 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 10px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .yt-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #FF0000;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      flex: 0 0 auto;
+    }
+
+    .media-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .media-title {
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .media-desc {
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .media-date {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .media-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      color: var(--text-secondary);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .meta-icon {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+    }
+
+    .accordion {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .acc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+    }
+
+    .acc-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+    }
+
+    .cal {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #F5F2EE;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+    }
+
+    .date {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .acc-title {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .acc-body {
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .acc-body h4 {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .acc-body p {
+      margin: 0;
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .acc-note {
+      font-size: 8px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .insta-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #BFBFBF;
+      border-radius: 6px;
+    }
+
+    .follow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .ig {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: #E1306C;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      pointer-events: none;
+    }
+
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">お知らせ・メディア</h1>
+
+    <section>
+      <h2 class="section-title">メディア掲載情報</h2>
+      <div class="media-list">
+        <div class="card">
+          <div class="yt-icon">▶</div>
+          <div class="media-body">
+            <div class="media-title">板倉 趣味チャンネル</div>
+            <p class="media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。</p>
+            <div class="media-date">2025年7月25日投稿</div>
+            <div class="media-meta">
+              <span class="meta-item"><span class="meta-icon">👁</span>54万回</span>
+              <span class="meta-item"><span class="meta-icon">👍</span>4.7K</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="yt-icon">▶</div>
+          <div class="media-body">
+            <div class="media-title">ARJべんちゃん</div>
+            <p class="media-desc">キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
+            <div class="media-date">2024年12月20日掲載</div>
+            <div class="media-meta">
+              <span class="meta-item"><span class="meta-icon">👁</span>0.2万回</span>
+              <span class="meta-item"><span class="meta-icon">👍</span>2.1K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">お知らせ</h2>
+      <div class="accordion">
+        <div class="acc-head">
+          <div class="acc-left">
+            <span class="cal">📅</span>
+            <span class="date">2026/1/1</span>
+            <span class="acc-title">ご利用料金の改定</span>
+          </div>
+          <span>▾</span>
+        </div>
+        <div class="acc-body">
+          <h4>ご利用料金の改定</h4>
+          <p>昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。</p>
+          <p>「サイト1」料金改定：オープン記念価格を終了し、新料金を適用いたします。</p>
+          <p>お子様料金の変更：これまで無料だった3歳以下のお子様も、大人と同料金となります。</p>
+          <div class="acc-note">※改定日より前に完了しているご予約には、予約時点の料金が適用されます。</div>
+        </div>
+      </div>
+
+      <div class="accordion" style="margin-top:12px;">
+        <div class="acc-head">
+          <div class="acc-left">
+            <span class="cal">📅</span>
+            <span class="date">2026/1/25</span>
+            <span class="acc-title">小鳥（オウム・インコ等）の同伴について</span>
+          </div>
+          <span>▾</span>
+        </div>
+        <div class="acc-body">
+          <h4>小鳥（オウム・インコ等）の同伴について</h4>
+          <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
+          <p>キャンピングカー内のみ同伴可能（テント泊は不可）</p>
+          <p>オウム・インコ等の比較的小さな鳥（1羽まで）</p>
+          <p>常にケージを使用し、車内であっても放鳥は禁止</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">インスタグラム</h2>
+      <div class="insta-grid">
+        <div class="insta-thumb"></div>
+        <div class="insta-thumb"></div>
+        <div class="insta-thumb"></div>
+        <div class="insta-thumb"></div>
+      </div>
+      <div class="follow" style="margin-top:12px;">
+        <span class="ig">◎</span>
+        <span>@kitaura_lakeside_rvpark をフォロー</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="fixed-cta">
+    <button type="button">予約・空き確認</button>
+  </div>
+</body>
+</html>
+EOF

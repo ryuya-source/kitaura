@@ -1,0 +1,369 @@
+# SP_0.TOP画面 — HTML+CSS実装仕様書
+
+**ノードID:** `Bfg2T`  
+**画面名:** SP_0.TOP画面  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: Bfg2T
+サイズ: 375px × 434px
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `align-items: center`
+- `gap: 21px`
+- `padding: 11px`
+
+### 背景
+- **背景画像:** `./src/image_side.jpg`
+- `background-size: cover`
+- `background-position: center`
+- `object-fit: fill` (mode: fill)
+
+---
+
+## 2. 子要素構成
+
+### 2.1 ヘッダー (`W5yeq`)
+
+```
+type: frame
+id: W5yeq
+name: header
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `justify-content: space-between`
+- `align-items: center`
+
+**子要素:**
+
+#### 2.1.1 ロゴエリア (`Blklp`)
+
+```
+type: frame
+id: Blklp
+name: logoFrame
+サイズ: 49px × 47px
+```
+
+- `display: flex`
+- `flex-direction: column`
+- `gap: 4px`
+- `align-items: center`
+
+**子要素:**
+
+##### A) ロゴ画像 (`jy9TP`)
+```
+type: rectangle
+id: jy9TP
+サイズ: 32px × 31px
+背景画像: ./src/futter_logo.png
+object-fit: fill
+```
+
+##### B) ロゴテキスト (`mr5Vc`)
+```
+type: text
+id: mr5Vc
+name: logoText
+サイズ: 67px × 15px
+```
+
+- **テキスト内容:**  
+  ```
+  KITAURA LAKESIDE
+  RV park
+  ```
+- **スタイル:**
+  - `color: #fff8f8`
+  - `font-family: Inter`
+  - `font-size: 6px`
+  - `font-weight: normal` (400)
+  - `text-align: center`
+  - `line-height: normal` または `1.25` (高さ15px ÷ 2行)
+  - `white-space: pre-line` (改行を保持)
+
+---
+
+#### 2.1.2 ナビゲーション (`pPCQB`)
+
+```
+type: frame
+id: pPCQB
+name: nav
+width: fill_container (残りの幅)
+```
+
+- `display: flex`
+- `gap: 11px`
+- `justify-content: flex-end`
+- `align-items: center`
+
+**子要素:**
+
+##### ハンバーガーアイコン (`I7ZN4`)
+```
+type: icon_font
+id: I7ZN4
+name: hamburgerIcon
+サイズ: 18px × 18px
+```
+
+- **アイコン:** `menu` (lucide アイコンフォント)
+- **色:** `#ffffffcc` (白、opacity 80%)
+- **実装方法:**
+  - Lucide アイコンライブラリを使用
+  - または SVG で `<line>` 3本を描画
+    ```html
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="6" x2="20" y2="6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+      <line x1="4" y1="12" x2="20" y2="12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+      <line x1="4" y1="18" x2="20" y2="18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    </svg>
+    ```
+
+---
+
+### 2.2 メインコンテンツエリア (`hpgef`)
+
+```
+type: frame
+id: hpgef
+name: contentArea
+サイズ: fill_container × fill_container (残りの高さ)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `align-items: center`
+- `padding-top: 89px` (上余白)
+
+**子要素:**
+
+#### メインタイトル (`n3Cfn`)
+```
+type: text
+id: n3Cfn
+name: mainTitle
+```
+
+- **テキスト内容:** `大切な人と、心ほどける時間`
+- **スタイル:**
+  - `color: #FFFFFF`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: normal` (400)
+  - `letter-spacing: 2px`
+  - `text-align: center`
+
+---
+
+## 3. 実装のポイント
+
+### 3.1 レスポンシブ対応
+- 画面全体を `width: 375px; height: 434px` の固定サイズで実装
+- より大きい画面では中央配置 (`margin: 0 auto` など)
+- または `max-width: 375px` + `width: 100%` で可変対応
+
+### 3.2 背景画像
+- 画像パス: `../../src/image_side.jpg` (相対パスを調整)
+- `background-size: cover` で画面全体を覆う
+
+### 3.3 フォント
+- **Inter** フォントを使用
+- Google Fonts から読み込み:
+  ```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  ```
+
+### 3.4 アイコン
+- Lucide アイコンライブラリの使用を推奨
+- または SVG で直接描画（上記コード参照）
+
+### 3.5 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_0.TOP画面</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム Bfg2T -->
+  <div class="sp0-top">
+    
+    <!-- ヘッダー W5yeq -->
+    <header class="header">
+      <!-- ロゴエリア Blklp -->
+      <div class="logo-frame">
+        <img class="logo-img" src="../../src/futter_logo.png" alt="KITAURA LAKESIDE RV park">
+        <div class="logo-text">KITAURA LAKESIDE<br>RV park</div>
+      </div>
+      
+      <!-- ナビゲーション pPCQB -->
+      <nav class="nav">
+        <svg class="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <line x1="4" y1="6" x2="20" y2="6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="4" y1="18" x2="20" y2="18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+        </svg>
+      </nav>
+    </header>
+    
+    <!-- コンテンツエリア hpgef -->
+    <main class="content-area">
+      <h1 class="main-title">大切な人と、心ほどける時間</h1>
+    </main>
+    
+  </div>
+</body>
+</html>
+```
+
+### 3.6 CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #000;
+}
+
+/* ルートフレーム */
+.sp0-top {
+  width: 375px;
+  height: 434px;
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+  background-image: url('../../src/image_side.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* ヘッダー */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ロゴエリア */
+.logo-frame {
+  width: 49px;
+  height: 47px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.logo-img {
+  width: 32px;
+  height: 31px;
+  object-fit: cover;
+}
+
+.logo-text {
+  width: 67px;
+  height: 15px;
+  color: #fff8f8;
+  font-size: 6px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* ナビゲーション */
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 11px;
+}
+
+.hamburger-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* コンテンツエリア */
+.content-area {
+  width: 100%;
+  flex: 1;
+  padding-top: 89px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-align: center;
+}
+```
+
+---
+
+## 4. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面サイズ: 375px × 434px
+- [ ] 背景画像が正しく表示される
+- [ ] padding: 11px が適用されている
+- [ ] gap: 21px でヘッダーとコンテンツが分離
+- [ ] ロゴ画像: 32px × 31px
+- [ ] ロゴテキスト: 6px, 改行あり
+- [ ] ハンバーガーアイコン: 18px × 18px, opacity 80%
+- [ ] メインタイトル: 12px, letter-spacing 2px
+- [ ] コンテンツエリアの padding-top: 89px
+- [ ] Inter フォントが読み込まれている
+
+---
+
+## 5. 参考情報
+
+- **元ノードID:** `Bfg2T`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+
+---
+
+以上が `SP_0.TOP画面` の HTML+CSS 実装仕様書です。この仕様に従って実装することで、デザインを正確に再現できます。
