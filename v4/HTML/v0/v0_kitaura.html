@@ -15,6 +15,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html,
     body {
       height: 100%;
@@ -82,13 +86,19 @@
       user-select: none;
     }
 
-    /* ナビゲーション pPCQB */
+    /* ナビゲーション pPCQB：ハンバーガーメニューだけヘッダー固定 */
     .nav {
-      flex: 1;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: min(3vw, 20px);
+      padding: min(2vh, 15px) min(2vw, 15px);
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(6px);
+      border-bottom-left-radius: 8px;
     }
 
     /* ハンバーガーアイコン I7ZN4 - レスポンシブ対応 */
@@ -104,6 +114,58 @@
       stroke-width: 2;
       stroke-linecap: round;
       opacity: 0.8;
+    }
+
+    /* ハンバーガーメニューオーバーレイ */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .nav-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-overlay__panel {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 24px 32px;
+      min-width: 260px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-overlay__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-overlay__link {
+      display: block;
+      padding: 12px 16px;
+      color: #fff8f8;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-overlay__link:hover,
+    .nav-overlay__link:focus {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
     }
 
     /* コンテンツエリア hpgef */
@@ -456,7 +518,7 @@
       color: var(--text-primary);
     }
 
-    /* r5fjv / P6JY1 / w3uft 相当：ヘッダー帯付きカード */
+    /* r5fjv / P6JY1 / w3uft 相当：ヘッダー帯付きカード（I910U, f9umC, WQ2vh） */
     .sp6-terms__table-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -465,6 +527,11 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    /* 各カードの間に余白 */
+    .sp6-terms__table-card + .sp6-terms__table-card {
+      margin-top: 16px;
     }
 
     .sp6-terms__table-label {
@@ -664,10 +731,11 @@
       margin: 0;
     }
 
+    /* q0qGj sec1Header：所在地・ナビ設定など */
     .sp7-access__section-title {
       font-size: 12px;
       font-weight: 600;
-      margin: 0 0 8px;
+      margin: 0 0 12px;
       color: var(--text-primary);
     }
 
@@ -813,10 +881,11 @@
       margin: 0;
     }
 
+    /* W77mB / C3FC6 route1Label・route2Label 仕様：角丸7・ヘッダー padding 7,5 */
     .sp7-access__accordion {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 7px;
       overflow: hidden;
     }
 
@@ -824,10 +893,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 12px;
-      font-size: 10px;
+      padding: 7px 5px;
+      font-size: 9px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: #6B6B6B;
+      background: #F5F3F0;
+      border-radius: 7px 7px 0 0;
     }
 
     .sp7-access__route-icon {
@@ -861,7 +932,7 @@
     .sp7-access__acc-title {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
 
     .sp7-access__acc-row {
@@ -959,31 +1030,35 @@
       margin: 0;
     }
 
+    /* TmJjO media1Desc：12px */
     .sp8-media__media-desc {
-      font-size: 9px;
+      font-size: 12px;
       line-height: 1.6;
-      color: var(--text-secondary);
+      color: #6B6B6B;
       margin: 0;
     }
 
+    /* dZpWk media1Date：9px, #9B9B9B */
     .sp8-media__media-date {
       font-size: 9px;
-      color: var(--text-muted);
+      font-weight: 500;
+      color: #9B9B9B;
     }
 
     .sp8-media__media-meta {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 9px;
-      color: var(--text-secondary);
-      font-weight: 500; /* Unew3/6X1tK */
     }
 
+    /* WYGE7 viewsFrame1 / MOBVS likesFrame1：9px, 500, #6B6B6B */
     .sp8-media__meta-item {
       display: inline-flex;
       align-items: center;
-      gap: 3px; /* WYGE7/MOBVS */
+      gap: 3px;
+      font-size: 9px;
+      font-weight: 500;
+      color: #6B6B6B;
     }
 
     .sp8-media__meta-icon {
@@ -1030,16 +1105,16 @@
     }
 
     .sp8-media__date-icon {
-      width: 6px; /* nOtKw */
-      height: 6px; /* nOtKw */
+      width: 10px; /* nOtKw 大きめに */
+      height: 10px;
       display: block;
       color: #3D6B4F; /* nOtKw/6uvwJ */
       flex: 0 0 auto;
     }
 
     .sp8-media__date-icon svg {
-      width: 6px;
-      height: 6px;
+      width: 10px;
+      height: 10px;
       stroke: currentColor;
     }
 
@@ -1084,9 +1159,10 @@
       color: var(--text-primary);
     }
 
+    /* NiMV4 priceDesc / E0CkE priceItems 内テキスト：12px */
     .sp8-media__acc-body p {
       margin: 0;
-      font-size: 9px;
+      font-size: 12px;
       line-height: 1.6;
       color: var(--text-secondary);
     }
@@ -1324,6 +1400,21 @@ RV park</div>
       </nav>
     </header>
 
+    <!-- ハンバーガーメニューオーバーレイ -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <ul class="nav-overlay__list">
+          <li><a href="#pet" class="nav-overlay__link">ペット</a></li>
+          <li><a href="#feature" class="nav-overlay__link">こだわりポイント</a></li>
+          <li><a href="#site-type" class="nav-overlay__link">サイト種別</a></li>
+          <li><a href="#price" class="nav-overlay__link">料金</a></li>
+          <li><a href="#terms" class="nav-overlay__link">利用規約・マナー</a></li>
+          <li><a href="#access" class="nav-overlay__link">アクセス</a></li>
+          <li><a href="#news" class="nav-overlay__link">お知らせ・メディア</a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- コンテンツエリア hpgef -->
     <main class="content-area">
       <!-- メインタイトル n3Cfn -->
@@ -1357,7 +1448,7 @@ RV park</div>
   </section>
 
   <!-- こだわりポイント・サイト種別・料金 -->
-  <main class="info-page">
+  <main class="info-page" id="feature">
     <h1 class="section-title">こだわりポイント</h1>
 
     <section class="feature-section">
@@ -1450,7 +1541,7 @@ RV park</div>
 
     <div class="divider"></div>
 
-    <h1 class="section-title">サイト種別</h1>
+    <h1 class="section-title" id="site-type">サイト種別</h1>
 
     <section class="site-block feature-section">
       <h3 class="site-title">サイト1</h3>
@@ -1487,7 +1578,7 @@ RV park</div>
 
     <div class="divider"></div>
 
-    <h1 class="section-title">料金</h1>
+    <h1 class="section-title" id="price">料金</h1>
 
     <section class="table-section pricing-section">
       <div class="table-label pricing-heading">サイト別料金</div>
@@ -1853,6 +1944,64 @@ RV park</div>
   <div class="fixed-cta">
     <button type="button">予約・空き確認</button>
   </div>
+
+  <!-- ハンバーガーメニュー開閉・セクションスクロール -->
+  <script>
+    (function () {
+      var overlay = document.getElementById('nav-overlay');
+      var hamburger = document.querySelector('.hamburger-icon');
+      var links = document.querySelectorAll('.nav-overlay__link');
+
+      function openMenu() {
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function toggleMenu() {
+        if (overlay.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      hamburger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+          closeMenu();
+        }
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            closeMenu();
+            var id = href.slice(1);
+            var target = document.getElementById(id);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    })();
+  </script>
 
   <!-- lucide icons（Pencilのicon_fontに合わせる） -->
   <script src="https://unpkg.com/lucide@latest"></script>
