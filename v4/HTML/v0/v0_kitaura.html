@@ -292,9 +292,11 @@
 
     /* こだわりポイントセクション */
     .info-page .feature-section {
-      width: calc(100vw - 10px);
-      max-width: none;
-      margin-right: -10px;
+      width: 100vw;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -302,7 +304,12 @@
 
     /* 料金セクション */
     .info-page .pricing-section {
-      width: 365px;
+      width: 100vw;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      /* 料金エリアは左右余白を小さめにして“横に広げる” */
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -337,6 +344,13 @@
       display: none;
     }
 
+    /* こだわりポイント / サイト種別のギャラリーだけ右端いっぱい */
+    .info-page .feature-section .image-row {
+      width: calc(100% + min(2.7vw, 10px));
+      margin-right: calc(-1 * min(2.7vw, 10px));
+      padding-right: min(2.7vw, 10px);
+    }
+
     .thumb {
       width: 120px;
       height: 120px;
@@ -347,6 +361,17 @@
       place-items: center;
       font-size: clamp(7px, 2.1vw, 8px);
       color: var(--text-muted);
+      object-fit: cover;
+    }
+
+    /* 実画像用（Pencil埋め込み画像を反映） */
+    .thumb-img {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      background: #EDE9E3;
+      border-radius: 5px;
+      display: block;
       object-fit: cover;
     }
 
@@ -380,10 +405,743 @@
       color: var(--text-secondary);
     }
 
+    /* 料金エリア見出し（CvkhF / AzYRb / l9hBl） */
+    .pricing-heading {
+      font-size: 12px;
+      color: #6B6B6B;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ===============================================
+       SP_6.利用規約・マナー（test3.html 移植 / スコープ付き）
+       =============================================== */
+    .sp6-terms {
+      width: 100vw;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .sp6-terms__page {
+      width: 100%;
+      padding: 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    .sp6-terms__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .sp6-terms__subtitle {
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-align: center;
+      margin: -6px 0 0;
+    }
+
+    .sp6-terms__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+    }
+
+    /* r5fjv / P6JY1 / w3uft 相当：ヘッダー帯付きカード */
+    .sp6-terms__table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 0 2px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sp6-terms__table-label {
+      width: 100%;
+      background: #F5F3F0;
+      padding: 7px 5px;
+      border-radius: 12px 12px 0 0;
+      font-size: 9px;
+      font-weight: 600;
+      color: #6B6B6B;
+    }
+
+    .sp6-terms__table-body--pad {
+      padding: 9px;
+    }
+
+    .sp6-terms__rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sp6-terms__row {
+      display: grid;
+      align-items: center;
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp6-terms__row:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__row-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* I910U: 左カラム 100px / f9umC: 左カラム 140px */
+    .sp6-terms__rows--w100 .sp6-terms__row {
+      grid-template-columns: 100px 1fr;
+    }
+
+    .sp6-terms__rows--w140 .sp6-terms__row {
+      grid-template-columns: 140px 1fr;
+    }
+
+    /* 右側テキストも左詰め（Pencilの見た目に合わせる） */
+    .sp6-terms__rows--w100 .sp6-terms__row > span:last-child,
+    .sp6-terms__rows--w140 .sp6-terms__row > span:last-child {
+      justify-self: start;
+      text-align: left;
+    }
+
+    .sp6-terms__text {
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .sp6-terms__text--muted {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .sp6-terms__bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 12px; /* pt8nJ */
+      font-size: 10px;
+      line-height: 1.6; /* pt8nJ */
+      color: #1C1C1C; /* pt8nJ */
+    }
+
+    /* ぶら下げインデント（pt8nJの見た目） */
+    .sp6-terms__bullet {
+      padding-left: 18px;
+      text-indent: -18px;
+    }
+
+    .sp6-terms__bullet::before {
+      content: "・ ";
+      display: inline-block;
+      width: 18px;
+    }
+
+    .sp6-terms__rule-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 0 2px;
+      overflow: hidden;
+    }
+
+    .sp6-terms__rule-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sp6-terms__rule-item:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__rule-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #F7F5F2;
+      display: grid;
+      place-items: center;
+      color: #1E3A5F; /* Pencilのicon_font(fill)に合わせる */
+      flex: 0 0 auto;
+    }
+
+    .sp6-terms__rule-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp6-terms__rule-title {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    .sp6-terms__rule-desc {
+      font-size: 9px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .sp6-terms__pet-note {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .sp6-terms__check-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 0 2px;
+      overflow: hidden;
+    }
+
+    .sp6-terms__check-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp6-terms__check-item:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__check {
+      color: var(--accent-green);
+      font-weight: 700;
+      width: 12px;
+      display: inline-block;
+      margin-top: 1px;
+    }
+
+    /* ===============================================
+       SP_7.アクセス（test4.html 移植 / スコープ付き）
+       =============================================== */
+    .sp7-access {
+      width: 100vw;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .sp7-access__page {
+      width: 100%;
+      padding: 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    .sp7-access__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .sp7-access__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+    }
+
+    .sp7-access__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sp7-access__address {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sp7-access__pin {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: #F5F3F0;
+      display: grid;
+      place-items: center;
+      color: #1E3A5F; /* aLHmM */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__pin svg {
+      width: 8px;
+      height: 8px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__notice {
+      background: #FFF4DA;
+      border: 1px solid #F1E1B8;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp7-access__notice-headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #8B6914; /* UBmb5 */
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sp7-access__notice-icon {
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #B8860B; /* wDp7E */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__notice-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__notice-text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #7A6A4A;
+      margin: 0;
+    }
+
+    .sp7-access__navbox {
+      background: #EEF6EE;
+      border: 1px solid #CFE3CF;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp7-access__navbox-headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #3D6B4F; /* o8Rn4 */
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sp7-access__tip-icon {
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #3D6B4F; /* fD04m */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__tip-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__navbox-text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #4F6A4F;
+      margin: 0;
+    }
+
+    .sp7-access__map {
+      width: 100%;
+      height: 210px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .sp7-access__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .sp7-access__desc {
+      font-size: 9px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .sp7-access__accordion {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .sp7-access__acc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .sp7-access__route-icon {
+      width: 12px;
+      height: 12px;
+      display: block;
+      color: #6B6B6B; /* oVHG9 */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__route-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__chevron {
+      width: 12px;
+      height: 12px;
+      display: block;
+      color: #6B6B6B; /* ClwQU */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__chevron svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__acc-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sp7-access__acc-row {
+      display: grid;
+      grid-template-columns: 140px 1fr; /* x13Tv と同じ右カラム開始位置 */
+      align-items: center;
+      padding: 9px 8px; /* x13Tv側の行(padding:9 8)に寄せる */
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp7-access__time {
+      color: #1E3A5F;
+      font-weight: 600;
+      justify-self: start;
+      text-align: left;
+    }
+
+    /* ===============================================
+       SP_8.お知らせ・メディア（test5.html 移植 / スコープ付き）
+       =============================================== */
+    .sp8-media {
+      width: 100vw;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .sp8-media__page {
+      width: 100%;
+      padding: 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .sp8-media__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sp8-media__media-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .sp8-media__yt-icon {
+      width: 20px; /* UoLKh */
+      height: 20px; /* UoLKh */
+      border-radius: 5px; /* UoLKh */
+      background: #FF0000;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__yt-icon svg {
+      width: 9px; /* 7PxNm */
+      height: 9px; /* 7PxNm */
+      stroke: currentColor;
+    }
+
+    .sp8-media__media-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp8-media__media-title {
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .sp8-media__media-desc {
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .sp8-media__media-date {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .sp8-media__media-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      color: var(--text-secondary);
+      font-weight: 500; /* Unew3/6X1tK */
+    }
+
+    .sp8-media__meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px; /* WYGE7/MOBVS */
+    }
+
+    .sp8-media__meta-icon {
+      width: 9px;
+      height: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B6B6B; /* MtOtw/x77np */
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__meta-icon svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+    }
+
+    .sp8-media__accordion {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sp8-media__accordion + .sp8-media__accordion {
+      margin-top: 12px;
+    }
+
+    .sp8-media__acc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 7px; /* YwwMw */
+      gap: 5px; /* YwwMw */
+    }
+
+    .sp8-media__acc-left {
+      display: flex;
+      align-items: center;
+      gap: 5px; /* QOu9r */
+    }
+
+    .sp8-media__date-icon {
+      width: 6px; /* nOtKw */
+      height: 6px; /* nOtKw */
+      display: block;
+      color: #3D6B4F; /* nOtKw/6uvwJ */
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__date-icon svg {
+      width: 6px;
+      height: 6px;
+      stroke: currentColor;
+    }
+
+    .sp8-media__date {
+      color: #3D6B4F; /* 6uvwJ */
+      font-weight: 600;
+      font-size: 7px; /* 6uvwJ */
+    }
+
+    .sp8-media__acc-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 9px; /* 6o7J3 */
+    }
+
+    .sp8-media__chevron {
+      width: 9px; /* tiF3W */
+      height: 9px; /* tiF3W */
+      display: block;
+      color: #6B6B6B;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__chevron svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+    }
+
+    .sp8-media__acc-body {
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp8-media__acc-body h4 {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__acc-body p {
+      margin: 0;
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .sp8-media__acc-note {
+      font-size: 8px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .sp8-media__insta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .sp8-media__insta-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #BFBFBF;
+      border-radius: 6px;
+    }
+
+    .sp8-media__follow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 11px; /* B9vTA */
+      padding: 5px 9px; /* B9vTA */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px; /* B9vTA */
+      font-size: 7px; /* Nlc4W */
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .sp8-media__ig {
+      width: 9px; /* y60Jz */
+      height: 9px; /* y60Jz */
+      color: #E1306C; /* y60Jz */
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__ig svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+    }
+
     table {
-      width: 96%;
-      margin-left: auto;
-      margin-right: auto;
+      width: calc(100% - 4px);
+      margin: 0 2px;
       border-collapse: collapse;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -409,9 +1167,11 @@
     }
 
     .table-note {
-      font-size: clamp(7px, 2.1vw, 8px);
+      font-size: 10px;
       color: var(--accent-green);
       line-height: 1.4;
+      margin: 0 2px;
+      font-weight: 700;
     }
 
     .card {
@@ -422,6 +1182,11 @@
       display: flex;
       flex-direction: column;
       gap: min(2.1vw, 8px);
+    }
+
+    /* 料金セクションのカードはテーブルと同じ左右2px */
+    .info-page .pricing-section .card {
+      margin: 0 2px;
     }
 
     .check-item {
@@ -607,14 +1372,13 @@ RV park</div>
       </h2>
       <p class="subtext">トイレ・シャワー・炊事場・電源を全サイト完備</p>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/08_サイト１案内_シャワー.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/06_サイト１案内_トイレ.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/07_サイト１案内_シャワールーム.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_炊事場.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
       </div>
-      <div class="note-link">&larr; スクロールして他の写真を見る</div>
+      <div class="note-link">← スクロールして他の写真を見る →</div>
     </section>
 
     <section class="feature-section">
@@ -633,12 +1397,11 @@ RV park</div>
       </h2>
       <p class="subtext">全サイト小型犬に配慮した設計・ノーリード可</p>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/04_サイト１案内_小型犬-768x576.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__18489346-768x576.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no1/03_サイト１案内_広さ-768x576.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no2/F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__38764551_0.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -654,12 +1417,11 @@ RV park</div>
       </h2>
       <p class="subtext">全サイトゴミ置き場・電源コード完備・エアコンの有料貸出し（夏季限定）</p>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/S__18538510-1-1024x768.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/ゴミ箱2-1-1024x768.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/B392931C-3C9D-404F-84DC-13CCA3438639.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -678,12 +1440,11 @@ RV park</div>
       </h2>
       <p class="subtext">セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景</p>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../v2_kitaura/images/seven11.png" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/image_side.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/337320DC-41EF-470B-BB71-E913B495280D.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -691,39 +1452,36 @@ RV park</div>
 
     <h1 class="section-title">サイト種別</h1>
 
-    <section class="site-block">
+    <section class="site-block feature-section">
       <h3 class="site-title">サイト1</h3>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/02_サイト１案内_景観.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/04_サイト１案内_小型犬-768x576.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no1/03_サイト１案内_広さ-768x576.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
-    <section class="site-block">
+    <section class="site-block feature-section">
       <h3 class="site-title">サイト2</h3>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/S__38764551_0.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__38764550_0.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no2/S__38764547_0.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/S__34291715_0.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
-    <section class="site-block">
+    <section class="site-block feature-section">
       <h3 class="site-title">サイト3</h3>
       <div class="image-row">
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
-        <div class="thumb">photo</div>
+        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/B392931C-3C9D-404F-84DC-13CCA3438639.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -731,8 +1489,8 @@ RV park</div>
 
     <h1 class="section-title">料金</h1>
 
-    <section class="table-section">
-      <div class="table-label">サイト別料金</div>
+    <section class="table-section pricing-section">
+      <div class="table-label pricing-heading">サイト別料金</div>
       <table>
         <thead>
           <tr>
@@ -785,7 +1543,7 @@ RV park</div>
     </section>
 
     <section class="pricing-section">
-      <h2 class="subheading">ペット料金・頭数制限</h2>
+      <h2 class="subheading pricing-heading">ペット料金・頭数制限</h2>
       <div class="card">
         <div class="check-item"><span class="check">✓</span><span>基本料金：2頭まで無料</span></div>
         <div class="check-item"><span class="check">✓</span><span>追加料金：3頭目以降は1頭につき＋500円</span></div>
@@ -794,9 +1552,299 @@ RV park</div>
     </section>
 
     <section class="pricing-section">
-      <h2 class="subheading">オプション</h2>
+      <h2 class="subheading pricing-heading">オプション</h2>
       <div class="card">
         <div class="check-item"><span class="check">✓</span><span>人数追加は+2,000円／1名（大人・子供・幼児共通）</span></div>
+      </div>
+    </section>
+
+    <!-- SP_6.利用規約・マナー（test3.html 移植） -->
+    <section class="sp6-terms" id="terms">
+      <div class="sp6-terms__page">
+        <h1 class="sp6-terms__title">利用規約・マナー</h1>
+        <p class="sp6-terms__subtitle">すべてのお客様が快適で安全な時間を過ごせるよう、<br>以下の規約を設けております。</p>
+
+        <section>
+          <h2 class="sp6-terms__section-title">予約・キャンセル・その他</h2>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">チェックイン・アウト</div>
+            <div class="sp6-terms__rows sp6-terms__rows--w140">
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">IN</span><span>13:00 〜 17:00</span></div>
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">OUT</span><span>〜 10:00</span></div>
+            </div>
+          </div>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">キャンセルポリシー</div>
+            <div class="sp6-terms__rows sp6-terms__rows--w140">
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">1日前 〜 3日前</span><span>宿泊代の50%</span></div>
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">当日</span><span>宿泊代の100%</span></div>
+            </div>
+          </div>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">免責事項・環境について</div>
+            <div class="sp6-terms__table-body--pad">
+              <div class="sp6-terms__bullets">
+                <div class="sp6-terms__bullet">場内での事故、盗難、ペット間のトラブル等について、<br/>当施設は一切の責任を負いません。</div>
+                <div class="sp6-terms__bullet">ゴミはサイト内のゴミ置き場で分別回収しております。<br/>買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。</div>
+                <div class="sp6-terms__bullet">県道に隣接しているため、時間帯によっては<br/>車両の走行音が聞こえる場合がございます。</div>
+                <div class="sp6-terms__bullet">暴力団およびその関係者のご利用はお断りいたします。</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">基本ルール・禁止事項</h2>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="moon" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">クワイエットタイム：21:00 〜 翌7:00</div>
+                <div class="sp6-terms__rule-desc">話し声や生活音が隣のサイトに漏れないようご配慮ください</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="flame" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">直火禁止（焚き火台・焚き火シート必須）</div>
+                <div class="sp6-terms__rule-desc">床は指定の灰捨て場へ処理をお願いします</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="volume-x" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">騒音・音響の制限</div>
+                <div class="sp6-terms__rule-desc">音楽は隣のサイトに聞こえない音量で。アイドリング禁止。</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="cigarette" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">喫煙はご自身のサイト内のみ</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="circle-dot" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">サッカーやフリスビー等、飛んでいく遊具の使用禁止</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">グループ利用の制限</h2>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="ban" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">グループ利用不可</div>
+                <div class="sp6-terms__rule-desc">複数サイト予約、代表者名を変えての予約、現地での合流行為は一切禁止</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="calendar" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">予約頻度の制限</div>
+                <div class="sp6-terms__rule-desc">土曜・祝日のご予約は、1組につき「月に1回まで」（連泊除く）</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">ペット同伴規約</h2>
+          <p class="sp6-terms__text sp6-terms__text--muted">愛犬と安心して過ごせるよう、マナーの遵守をお願いします。</p>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="dog" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">サイト外はリード着用</div>
+                <div class="sp6-terms__rule-desc">サイト外では必ずリード着用。共有スペースで2m以内。</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="dog" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">噛みつき・破壊癖のあるペットは利用不可</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="ban" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">制限外の動物の持ち込み禁止</div>
+                <div class="sp6-terms__rule-desc">発覚した場合は即退場（返金なし）</div>
+              </div>
+            </div>
+          </div>
+          <div class="sp6-terms__pet-note">ペット同士のトラブルについて、施設側は責任を負いかねます。</div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">小鳥（オウム・インコ）の同伴について</h2>
+          <div class="sp6-terms__check-card">
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>キャンピングカー利用の方のみ<br><span class="sp6-terms__text sp6-terms__text--muted">テント泊での同伴はできません</span></span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>1羽まで</span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>必ずケージ内でお過ごしください（放鳥不可）</span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>鳴き声など、周囲へのご配慮をお願いします</span></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SP_7.アクセス（test4.html 移植） -->
+    <section class="sp7-access" id="access">
+      <div class="sp7-access__page">
+        <h1 class="sp7-access__title">アクセス</h1>
+
+        <section>
+          <h2 class="sp7-access__section-title">所在地・ナビ設定</h2>
+          <div class="sp7-access__card">
+            <div class="sp7-access__address">
+              <span class="sp7-access__pin"><i data-lucide="map-pin" aria-hidden="true"></i></span>
+              <span>〒311-2104 茨城県鉾田市根山2947</span>
+            </div>
+
+            <div class="sp7-access__notice">
+              <div class="sp7-access__notice-headline"><span class="sp7-access__notice-icon"><i data-lucide="alert-circle" aria-hidden="true"></i></span><span>重要：ナビ設定時のご注意</span></div>
+              <p class="sp7-access__notice-text">住所検索を行うと、地図上のピンが実際の場所とズレて表示される場合がございます。</p>
+            </div>
+
+            <div class="sp7-access__navbox">
+              <div class="sp7-access__navbox-headline"><span class="sp7-access__tip-icon"><i data-lucide="navigation" aria-hidden="true"></i></span><span>ナビの目的地設定</span></div>
+              <p class="sp7-access__navbox-text">「セブンイレブン 鉾田梶山店」を目的地に設定してお越しください。当施設はすぐ隣です。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="sp7-access__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.2417857230967!2d140.5344194!3d36.1119668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60224fa01ff7d6e9%3A0x79981e4f948c6858!2z5YyX5rWm44Os44Kk44Kv44K144Kk44OJUlbjg5Hjg7zjgq8!5e0!3m2!1sja!2sjp!4v1770747600676!5m2!1sja!2sjp"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <section>
+          <h2 class="sp7-access__section-title">お車での所要時間</h2>
+          <p class="sp7-access__desc">最寄りのインターチェンジからの目安時間です。</p>
+
+          <div class="sp7-access__accordion">
+            <div class="sp7-access__acc-head">
+              <div class="sp7-access__acc-title"><span class="sp7-access__route-icon"><i data-lucide="car" aria-hidden="true"></i></span><span>東関東自動車道をご利用の方</span></div>
+              <span class="sp7-access__chevron"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="sp7-access__acc-row"><span>鉾田IC</span><span class="sp7-access__time">約15分</span></div>
+            <div class="sp7-access__acc-row"><span>潮来IC</span><span class="sp7-access__time">約30分</span></div>
+          </div>
+
+          <div class="sp7-access__accordion">
+            <div class="sp7-access__acc-head">
+              <div class="sp7-access__acc-title"><span class="sp7-access__route-icon"><i data-lucide="car" aria-hidden="true"></i></span><span>常磐自動車道をご利用の方</span></div>
+              <span class="sp7-access__chevron"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="sp7-access__acc-row"><span>土浦北IC</span><span class="sp7-access__time">約50分</span></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SP_8.お知らせ・メディア（test5.html 移植） -->
+    <section class="sp8-media" id="news">
+      <div class="sp8-media__page">
+        <h1 class="sp8-media__title">お知らせ・メディア</h1>
+
+        <section>
+          <h2 class="sp8-media__section-title">メディア掲載情報</h2>
+          <div class="sp8-media__media-list">
+            <div class="sp8-media__media-card">
+              <div class="sp8-media__yt-icon"><i data-lucide="play" aria-hidden="true"></i></div>
+              <div class="sp8-media__media-body">
+                <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
+                <p class="sp8-media__media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。</p>
+                <div class="sp8-media__media-date">2025年7月25日投稿</div>
+                <div class="sp8-media__media-meta">
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>54万回</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>4.7K</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp8-media__media-card">
+              <div class="sp8-media__yt-icon"><i data-lucide="play" aria-hidden="true"></i></div>
+              <div class="sp8-media__media-body">
+                <div class="sp8-media__media-title">ARJべんちゃん</div>
+                <p class="sp8-media__media-desc">キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
+                <div class="sp8-media__media-date">2024年12月20日掲載</div>
+                <div class="sp8-media__media-meta">
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>0.2万回</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>2.1K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp8-media__section-title">お知らせ</h2>
+
+          <div class="sp8-media__accordion">
+            <div class="sp8-media__acc-head">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="calendar" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026/1/1</span>
+                <span class="sp8-media__acc-title">ご利用料金の改定</span>
+              </div>
+              <span class="sp8-media__chevron"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="sp8-media__acc-body">
+              <h4>ご利用料金の改定</h4>
+              <p>昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。</p>
+              <p>「サイト1」料金改定：オープン記念価格を終了し、新料金を適用いたします。</p>
+              <p>お子様料金の変更：これまで無料だった3歳以下のお子様も、大人と同料金となります。</p>
+              <div class="sp8-media__acc-note">※改定日より前に完了しているご予約には、予約時点の料金が適用されます。</div>
+            </div>
+          </div>
+
+          <div class="sp8-media__accordion">
+            <div class="sp8-media__acc-head">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="calendar" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026/1/25</span>
+                <span class="sp8-media__acc-title">小鳥（オウム・インコ等）の同伴について</span>
+              </div>
+              <span class="sp8-media__chevron"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="sp8-media__acc-body">
+              <h4>小鳥（オウム・インコ等）の同伴について</h4>
+              <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
+              <p>キャンピングカー内のみ同伴可能（テント泊は不可）</p>
+              <p>オウム・インコ等の比較的小さな鳥（1羽まで）</p>
+              <p>常にケージを使用し、車内であっても放鳥は禁止</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp8-media__section-title">インスタグラム</h2>
+          <div class="sp8-media__insta-grid">
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+          </div>
+          <div class="sp8-media__follow">
+            <span class="sp8-media__ig"><i data-lucide="instagram" aria-hidden="true"></i></span>
+            <span>@kitaura_lakeside_rvpark をフォロー</span>
+          </div>
+        </section>
       </div>
     </section>
   </main>
@@ -805,6 +1853,12 @@ RV park</div>
   <div class="fixed-cta">
     <button type="button">予約・空き確認</button>
   </div>
+
+  <!-- lucide icons（Pencilのicon_fontに合わせる） -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.lucide?.createIcons?.();
+  </script>
 
 </body>
 </html>
