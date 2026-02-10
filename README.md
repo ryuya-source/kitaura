@@ -2,17 +2,19 @@
 
 ## 目的
 
-`要件定義` を踏襲し、UIデザイン（プロトタイプ）を `ui/` に実装しています。
+`要件定義` を踏襲し、UIデザイン（プロトタイプ）を Next.js（`v4/v2_kitaura/`）に実装しています。
 
 ## UI
 
-- 場所: `ui/`
-- 起点: `ui/index.html`
+- 場所: `v4/v2_kitaura/`（Next.js）
+- 起点: `http://localhost:3000`
 
-### ブラウザで開く（macOS）
+### 起動（macOS）
 
 ```bash
-open ./index.html
+cd v4/v2_kitaura
+npm ci
+npm run dev
 ```
 
 ## バージョン管理
@@ -21,5 +23,5 @@ open ./index.html
 
 ## かんたん起動（ターミナル不要）
 
-- `open-ui.command` をダブルクリックするとブラウザで開きます
+- `open-ui.command` をダブルクリックすると dev server を起動してブラウザで開きます
 

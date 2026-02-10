@@ -1,0 +1,1448 @@
+# KITAURA LAKESIDE RV park - 完全UI実装仕様書
+
+このドキュメントは、Pencilデザインファイル（PS_kitaura.pen）に基づいた全画面の詳細なUI実装仕様を記載します。
+
+---
+
+## 目次
+
+1. [SP_0.TOP画面（Bfg2T）](#sp_0top画面bfg2t)
+2. [SP_2.ペット（FhnNd）](#sp_2ペットfhnnd)
+3. [SP_3.ペット同伴ルール（GsBK0）](#sp_3ペット同伴ルールgsbk0)
+4. [SP_4.サイト案内・料金（a2HDt）](#sp_4サイト案内料金a2hdt)
+5. [SP_6.利用規約・マナー（3UNaB）](#sp_6利用規約マナー3unab)
+6. [SP_7.アクセス（g5WKr）](#sp_7アクセスg5wkr)
+7. [SP_8.お知らせ・メディア（WawUF）](#sp_8お知らせメディアwawuf)
+
+---
+
+## SP_0.TOP画面（Bfg2T）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px（スマートフォン）
+- **画面高**: 434px
+- **背景**: 画像（`./src/image_side.jpg`）- `fill`モード
+- **レイアウト**: `vertical`（縦積み）
+- **gap**: 21px
+- **padding**: 11px（全辺）
+- **alignItems**: `center`（中央寄せ）
+
+---
+
+### 1. ヘッダー（W5yeq）
+
+#### **基本仕様**
+- **幅**: `fill_container`（親幅いっぱい）
+- **justifyContent**: `space_between`（左右端揃え）
+- **alignItems**: `center`（垂直中央揃え）
+
+#### **1-1. ロゴフレーム（Blklp）**
+- **幅**: 49px
+- **高さ**: 47px
+- **レイアウト**: `vertical`
+- **gap**: 4px
+- **alignItems**: `center`
+
+##### **ロゴ画像（jy9TP）**
+- **タイプ**: rectangle
+- **画像**: `./src/futter_logo.png`（fillモード）
+- **幅**: 32px
+- **高さ**: 31px
+
+##### **ロゴテキスト（mr5Vc）**
+- **テキスト**: `KITAURA LAKESIDE\nRV park`
+- **色**: `#FFF8F8`（白）
+- **幅**: 67px（固定）
+- **高さ**: 15px（固定）
+- **text-align**: `center`
+- **fontFamily**: Inter
+- **fontSize**: 6px
+- **fontWeight**: normal
+
+#### **1-2. ナビゲーション（pPCQB）**
+- **幅**: `fill_container`
+- **gap**: 11px
+- **justifyContent**: `end`（右寄せ）
+- **alignItems**: `center`
+
+##### **ハンバーガーアイコン（I7ZN4）**
+- **タイプ**: icon_font
+- **アイコン名**: `menu`（Lucide）
+- **幅**: 18px
+- **高さ**: 18px
+- **色**: `#FFFFFFCC`（白、透明度80%）
+
+---
+
+### 2. コンテンツエリア（hpgef）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **高さ**: `fill_container`
+- **レイアウト**: `vertical`
+- **padding**: `[89px, 0, 0, 0]`（上のみ89px）
+- **alignItems**: `center`
+
+#### **メインタイトル（n3Cfn）**
+- **テキスト**: 「大切な人と、心ほどける時間」
+- **色**: `#FFFFFF`
+- **text-align**: `center`
+- **fontFamily**: Inter
+- **fontSize**: 12px
+- **fontWeight**: normal
+- **letterSpacing**: 2px
+
+---
+
+## SP_2.ペット（FhnNd）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **画面高**: 474px
+- **背景**: 画像（`./src/grok-image-a29539b9-b5a3-4574-b258-a6aaffbf70b3のコピー6.png`）- `fill`モード
+- **レイアウト**: `vertical`
+- **gap**: 21px
+- **padding**: 11px（全辺）
+
+---
+
+### 1. メインコンテンツ（sE6TJ）
+
+#### **基本仕様**
+- **幅**: 356px
+- **高さ**: 322px
+- **レイアウト**: `vertical`
+- **gap**: 14px
+- **padding**: `[0, 0, 53px, 0]`（下のみ53px）
+- **justifyContent**: `end`（下揃え）
+- **alignItems**: `center`
+
+---
+
+### 1-1. グラスカード（PHEvV）
+
+#### **カード基本仕様**
+- **幅**: 225px
+- **高さ**: 175px
+- **背景色**: `#FFFFFF33`（白、透明度20%）
+- **角丸**: 7px
+- **ボーダー**: 1px solid `#00000000`（透明）
+- **レイアウト**: `vertical`
+- **gap**: 11px
+- **padding**: `[14px, 21px]`（上下14px、左右21px）
+- **justifyContent**: `center`
+- **alignItems**: `center`
+- **エフェクト**: backdrop-filter blur（グラスモーフィズム）
+
+##### **メインタイトル（4yOvy）**
+- **テキスト**: `犬種制限と\nペット同伴のマナー`
+- **色**: `#FFFFFF`
+- **幅**: 174px（固定）
+- **text-align**: `center`
+- **fontFamily**: Inter
+- **fontSize**: 13px
+- **fontWeight**: 300（ライト）
+- **letterSpacing**: 2px
+
+##### **説明文（F6SyF）**
+- **テキスト**: 
+  ```
+  ペットも、飼い主さまも、
+   そして周囲の方々も穏やかに過ごせるように。
+   受け入れ条件と場内ルールをご案内しています。
+  ```
+- **色**: `#FFFFFF`
+- **line-height**: 1.8
+- **text-align**: `center`
+- **fontFamily**: Inter
+- **fontSize**: 7px
+- **fontWeight**: normal
+
+---
+
+### 1-2. CTAボタン（rOqdq）
+
+#### **ボタン基本仕様**
+- **背景色**: `#FFFFFF4D`（白、透明度30%）
+- **角丸**: 4px
+- **ボーダー**: 1px solid `#FFFFFF`
+- **padding**: `[6px, 14px]`（上下6px、左右14px）
+- **justifyContent**: `center`
+- **alignItems**: `center`
+- **エフェクト**: backdrop-filter blur
+
+##### **ボタンテキスト（u1vav）**
+- **テキスト**: 「ペット同伴ルールを見る」
+- **色**: `#FFFFFF`
+- **fontFamily**: Inter
+- **fontSize**: 7px
+- **fontWeight**: normal
+
+---
+
+## SP_3.ペット同伴ルール（GsBK0）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **背景色**: `#FAF8F5`（淡いベージュ）
+- **レイアウト**: `vertical`
+- **gap**: 21px
+- **padding**: `[21px, 25px]`（上下21px、左右25px）
+- **justifyContent**: `center`
+- **alignItems**: `center`
+
+---
+
+### 1. ヘッダー（AydsY）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 7px
+- **alignItems**: `center`
+
+##### **タイトル（EP3PH）**
+- **テキスト**: 「犬種制限について」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 18px
+- **fontWeight**: 300（ライト）
+- **letterSpacing**: -0.5px
+
+---
+
+### 2. ワンちゃん同伴ルール（OL9lQ）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 9px
+
+---
+
+### 2-1. ヘッダー（Ouc4S）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 4px
+
+##### **タイトル（cjOUc）**
+- **テキスト**: 「入場可能なワンちゃんについて」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 12px
+- **fontWeight**: 500
+- **letterSpacing**: -0.3px
+
+##### **サブテキスト（Gnlzs）**
+- **テキスト**: 「アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。」
+- **色**: `#6B6B6B`
+- **幅**: `fill_container`（固定幅）
+- **line-height**: 1.7
+- **fontFamily**: Inter
+- **fontSize**: 7px
+- **fontWeight**: normal
+
+---
+
+### 2-2. カード行（b8Mbm）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **gap**: 7px
+
+---
+
+### 2-2-1. 同伴可能カード（hgZNS）
+
+#### **カード基本仕様**
+- **幅**: `fill_container`
+- **背景色**: `#FFFFFF`
+- **角丸**: 7px
+- **ボーダー**: 1px solid `#D4E8D4`（緑系）
+- **レイアウト**: `vertical`
+- **gap**: 6px
+- **padding**: 9px（全辺）
+
+##### **ラベル（HhSdX）**
+- **テキスト**: 「同伴可能な犬種」
+- **色**: `#5A8A5A`（緑）
+- **fontFamily**: Inter
+- **fontSize**: 7px
+- **fontWeight**: 600
+- **letterSpacing**: 0.5px
+
+##### **リスト（B6Au1）**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 4px
+
+**犬種リスト項目仕様:**
+
+###### **項目1（Gewzq）**
+- **テキスト**: 「プードル」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 9px
+- **fontWeight**: normal
+
+###### **注釈1（kVt3W）**
+- **テキスト**: 「　スタンダード / ミディアム / トイ」
+- **色**: `#9A9A9A`（薄いグレー）
+- **fontFamily**: Inter
+- **fontSize**: 7px
+- **fontWeight**: normal
+
+###### **項目2（1nCqu）**
+- **テキスト**: 「プードルミックス（○○プー）」
+- **色**: `#1C1C1C`
+- **fontSize**: 9px
+
+###### **注釈2（7XqYL）**
+- **テキスト**: 「　※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合」
+- **色**: `#9A9A9A`
+- **幅**: `fill_container`（固定幅）
+- **line-height**: 1.5
+- **fontSize**: 7px
+
+**その他の犬種（同様の仕様）:**
+- 項目3（xqLR2）: 「ヨークシャーテリア」
+- 項目4（Vnp1E）: 「ミニチュアシュナウザー」
+- 項目5（cGVGL）: 「ビションフリーゼ」
+- 項目6（t6viR）: 「マルチーズ」
+- 項目7（ebKRy）: 「シーズー」
+- 項目8（7TWX3）: 「チャイニーズクレステッドドッグ」
+- 項目9（2m1wR）: 「オーストラリアン・ラブラドゥードル（AL）」
+
+---
+
+## SP_4.サイト案内・料金（a2HDt）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **背景色**: `#FAF8F5`（淡いベージュ）
+- **レイアウト**: `vertical`
+- **gap**: 32px
+- **padding**: `[32px, 10px]`（上下32px、左右10px）
+
+*(詳細仕様は既に実装済みのため省略 - 必要に応じて追加)*
+
+---
+
+## SP_6.利用規約・マナー（3UNaB）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **背景色**: `#FAF8F5`（淡いベージュ）
+- **レイアウト**: `vertical`
+- **gap**: 40px
+- **padding**: `[32px, 10px]`（上下32px、左右10px）
+- **フォント**: Inter（Google Fonts）+ Hiragino Sans（日本語フォールバック）
+
+---
+
+### 1. ヘッダーセクション（LENAp）
+
+#### **構造**
+- **レイアウト**: `vertical`
+- **gap**: 16px
+- **alignItems**: `center`（中央寄せ）
+
+##### **タイトル（un1q5）**
+- **テキスト**: 「利用規約・マナー」
+- **色**: `#1C1C1C`（濃いグレー）
+- **fontSize**: 23px
+- **fontWeight**: 300（ライト）
+- **letterSpacing**: -0.5px
+
+##### **リード文（FIFM1）**
+- **テキスト**: `すべてのお客様が快適で安全な時間を過ごせるよう、\n以下の規約を設けております。`
+- **色**: `#6B6B6B`（グレー）
+- **幅**: 320px（固定）
+- **fontSize**: 12px
+- **line-height**: 1.8
+- **text-align**: `center`
+
+---
+
+### 2. 予約・キャンセル・その他（Zed5V）
+
+#### **セクションタイトル（9xo0B）**
+- **テキスト**: 「予約・キャンセル・その他」
+- **色**: `#1C1C1C`
+- **fontSize**: 12px
+- **fontWeight**: 500
+- **letterSpacing**: -0.3px
+
+---
+
+#### **2-1. チェックイン・アウトカード（I910U）**
+
+##### **カード基本仕様**
+- **背景色**: `#FFFFFF`
+- **角丸**: 12px
+- **ボーダー**: 1px solid `#E8E5E0`
+- **レイアウト**: `vertical`
+
+##### **カードヘッダー（r5fjv）**
+- **背景色**: `#F5F3F0`
+- **角丸**: `[12px, 12px, 0, 0]`（上部のみ角丸）
+- **padding**: `[7px, 5px]`
+- **テキスト**: 「チェックイン・アウト」
+- **テキスト色**: `#6B6B6B`
+- **fontSize**: 9px
+- **fontWeight**: 600
+
+##### **行1（fff4F）**
+- **padding**: `[9px, 8px]`
+- **下ボーダー**: 1px solid `#E8E5E0`
+- **ラベル（rAyH4）**:
+  - **幅**: 100px
+  - **テキスト**: 「IN」
+  - **色**: `#6B6B6B`
+  - **fontSize**: 12px
+  - **fontWeight**: 600
+- **値（4CbWz）**:
+  - **テキスト**: 「13:00 ～ 17:00」
+  - **色**: `#1C1C1C`
+  - **fontSize**: 12px
+  - **fontWeight**: normal
+
+##### **行2（cuxPh）**
+- **padding**: `[9px, 8px]`
+- **ボーダーなし**（最終行）
+- **ラベル（zNl95）**: 「OUT」（100px幅、#6B6B6B、12px、600）
+- **値（1mLxl）**: 「～ 10:00」（#1C1C1C、12px、normal）
+
+---
+
+#### **2-2. キャンセルポリシーカード（f9umC）**
+
+##### **カード基本仕様**
+- チェックイン・アウトカードと同じ
+
+##### **カードヘッダー（P6JY1）**
+- **テキスト**: 「キャンセルポリシー」
+- 他の仕様はチェックイン・アウトのヘッダーと同じ
+
+##### **行1（iTm3Z）**
+- **ラベル（LTv8W）**: 「1日前 ～ 3日前」（140px幅、#6B6B6B、12px、500）
+- **値（x13Tv）**: 「宿泊代の50％」（#1C1C1C、12px、normal）
+
+##### **行2（aGs8w）**
+- **ラベル（Ir6mc）**: 「当日」（140px幅）
+- **値（aQOwY）**: 「宿泊代の100％」
+
+---
+
+#### **2-3. 免責事項・環境カード（WQ2vh）**
+
+##### **カードヘッダー（w3uft）**
+- **テキスト**: 「免責事項・環境について」
+
+##### **リストコンテナ（pt8nJ）**
+- **padding**: 9px
+- **gap**: 12px
+- **レイアウト**: `vertical`
+
+**項目リスト（各項目の仕様）:**
+- **色**: `#1C1C1C`
+- **fontSize**: 12px
+- **line-height**: 1.6
+- **テキスト（改行含む）**:
+  - 項目1: `・ 場内での事故、盗難、ペット間のトラブル等について、\n　 当施設は一切の責任を負いません。`
+  - 項目2: `・ ゴミはサイト内のゴミ置き場で分別回収しております。\n　 買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。`
+  - 項目3: `・ 県道に隣接しているため、時間帯によっては\n　 車両の走行音が聞こえる場合がございます。`
+  - 項目4: `・ 暴力団およびその関係者のご利用はお断りいたします。`
+
+---
+
+### 3. 基本ルール・禁止事項（nClN7）
+
+*(詳細は既に実装済みのため省略)*
+
+### 4. グループ利用の制限（J1gX3）
+
+*(詳細は既に実装済みのため省略)*
+
+### 5. ペット同伴規約（u2RJg）
+
+*(詳細は既に実装済みのため省略)*
+
+### 6. 小鳥（オウム・インコ）の同伴について（6F1RW）
+
+*(詳細は既に実装済みのため省略)*
+
+---
+
+## SP_7.アクセス（g5WKr）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **背景色**: `#FAF8F5`（淡いベージュ）
+- **レイアウト**: `vertical`
+- **gap**: 32px
+- **padding**: `[32px, 10px]`（上下32px、左右10px）
+
+---
+
+### 1. ヘッダー（BcXwJ）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 5px
+- **alignItems**: `center`
+
+##### **タイトル（SQmzR）**
+- **テキスト**: 「アクセス」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 23px
+- **fontWeight**: 300（ライト）
+- **letterSpacing**: -0.5px
+
+---
+
+### 2. 所在地・ナビ設定（R22RR）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 7px
+
+---
+
+#### **2-1. セクションヘッダー（q0qGj）**
+- **幅**: `fill_container`
+- **gap**: 8px
+
+##### **タイトル（TufBl）**
+- **テキスト**: 「所在地・ナビ設定」
+- **色**: `#1C1C1C`
+- **fontSize**: 12px
+- **fontWeight**: 500
+- **letterSpacing**: -0.3px
+
+---
+
+#### **2-2. 住所カード（r7ELh）**
+
+##### **カード基本仕様**
+- **幅**: `fill_container`
+- **背景色**: `#FFFFFF`
+- **角丸**: 7px
+- **ボーダー**: 1px solid `#E8E5E0`
+- **レイアウト**: `vertical`
+- **gap**: 7px
+- **padding**: 9px
+
+---
+
+##### **2-2-1. 住所行（EWHVz）**
+- **幅**: `fill_container`
+- **gap**: 5px
+- **alignItems**: `center`
+
+###### **アイコンコンテナ（CJns5）**
+- **幅**: 14px
+- **高さ**: 14px
+- **背景色**: `#F5F3F0`
+- **角丸**: 4px
+- **レイアウト**: `vertical`
+- **justifyContent**: `center`
+- **alignItems**: `center`
+
+**アイコン（aLHmM）**
+- **タイプ**: icon_font
+- **アイコン名**: `map-pin`（Lucide）
+- **幅**: 8px
+- **高さ**: 8px
+- **色**: `#1E3A5F`（ネイビー）
+
+###### **住所テキスト（M7yLA）**
+- **テキスト**: 「〒311-2104 茨城県鋒田市梖山2947」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 9px
+- **fontWeight**: 500
+
+---
+
+##### **2-2-2. 警告ボックス（imNYA）**
+
+###### **ボックス基本仕様**
+- **幅**: `fill_container`
+- **背景色**: `#FFF8E6`（薄い黄色）
+- **角丸**: 5px
+- **ボーダー**: 1px solid `#F0E4C8`（ベージュ系）
+- **レイアウト**: `vertical`
+- **gap**: 5px
+- **padding**: 7px
+
+###### **警告ヘッダー（mg2wk）**
+- **gap**: 4px
+- **alignItems**: `center`
+
+**警告アイコン（wDp7E）**
+- **タイプ**: icon_font
+- **アイコン名**: `alert-circle`（Lucide）
+- **幅**: 7px
+- **高さ**: 7px
+- **色**: `#B8860B`（ゴールド）
+
+**警告タイトル（UBmb5）**
+- **テキスト**: 「重要：ナビ設定時のご注意」
+- **色**: `#8B6914`（濃いゴールド）
+- **fontFamily**: Inter
+- **fontSize**: 9px
+- **fontWeight**: 600
+
+###### **警告テキスト（i1GVt）**
+- **テキスト**: 
+  ```
+  住所検索を行うと、地図上のピンが実際の場所とズレて
+  表示される場合がございます。
+  ```
+- **色**: `#6B5A2A`（茶色系）
+- **幅**: `fill_container`（固定幅）
+- **line-height**: 1.6
+- **fontSize**: 9px
+- **fontWeight**: normal
+
+---
+
+##### **2-2-3. ヒントボックス（fAh18）**
+
+###### **ボックス基本仕様**
+- **幅**: `fill_container`
+- **背景色**: `#F0F7F0`（薄い緑）
+- **角丸**: 5px
+- **ボーダー**: 1px solid `#D4E8D4`（緑系）
+- **レイアウト**: `vertical`
+- **gap**: 4px
+- **padding**: 7px
+
+###### **ヒントヘッダー（cZFPR）**
+- **gap**: 4px
+- **alignItems**: `center`
+
+**ヒントアイコン（fD04m）**
+- **タイプ**: icon_font
+- **アイコン名**: `navigation`（Lucide）
+- **幅**: 7px
+- **高さ**: 7px
+- **色**: `#3D6B4F`（深緑）
+
+**ヒントタイトル（o8Rn4）**
+- **テキスト**: 「ナビの目的地設定」
+- **色**: `#3D6B4F`
+- **fontSize**: 9px
+- **fontWeight**: 600
+
+###### **ヒントテキスト（nkxjv）**
+- **テキスト**: 
+  ```
+  「セブンイレブン 鋒田梖山店」を目的地に設定して
+  お越しください。当施設はすぐ隣です。
+  ```
+- **色**: `#2D5A3F`（深緑）
+- **幅**: `fill_container`（固定幅）
+- **line-height**: 1.6
+- **fontSize**: 9px
+- **fontWeight**: normal
+
+---
+
+### 3. 地図コンテナ（b1w1U）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **高さ**: 178px
+
+*(Google Maps埋め込みまたはiframe想定)*
+
+---
+
+## SP_8.お知らせ・メディア（WawUF）
+
+### 全体構造
+
+#### **ルートフレーム**
+- **画面幅**: 375px
+- **背景色**: `#FAF8F5`（淡いベージュ）
+- **レイアウト**: `vertical`
+- **gap**: 32px
+- **padding**: `[32px, 10px]`（上下32px、左右10px）
+
+---
+
+### 1. ヘッダー（I2mAW）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 5px
+- **alignItems**: `center`
+
+##### **タイトル（z6ags）**
+- **テキスト**: 「お知らせ・メディア」
+- **色**: `#1C1C1C`
+- **fontFamily**: Inter
+- **fontSize**: 18px
+- **fontWeight**: 300（ライト）
+- **letterSpacing**: -0.5px
+
+---
+
+### 2. メディア掲載情報（jnMSf）
+
+#### **基本仕様**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 7px
+
+---
+
+#### **2-1. セクションヘッダー（RhQsi）**
+- **幅**: `fill_container`
+- **gap**: 3px
+
+##### **タイトル（rNafz）**
+- **テキスト**: 「メディア掲載情報」
+- **色**: `#1C1C1C`
+- **fontSize**: 12px
+- **fontWeight**: 500
+- **letterSpacing**: -0.3px
+
+---
+
+#### **2-2. メディアカード1（uxsQb）**
+
+##### **カード基本仕様**
+- **幅**: `fill_container`
+- **背景色**: `#FFFFFF`
+- **角丸**: 7px
+- **ボーダー**: 1px solid `#E8E5E0`
+- **gap**: 7px
+- **padding**: 9px
+
+---
+
+##### **2-2-1. メディアアイコン（UoLKh）**
+- **幅**: 20px
+- **高さ**: 20px
+- **背景色**: `#FF0000`（YouTubeレッド）
+- **角丸**: 5px
+- **レイアウト**: `vertical`
+- **justifyContent**: `center`
+- **alignItems**: `center`
+
+**アイコン（7PxNm）**
+- **タイプ**: icon_font
+- **アイコン名**: `play`（Lucide）
+- **幅**: 9px
+- **高さ**: 9px
+- **色**: `#FFFFFF`
+
+---
+
+##### **2-2-2. メディアコンテンツ（wQdZU）**
+- **幅**: `fill_container`
+- **レイアウト**: `vertical`
+- **gap**: 4px
+
+###### **タイトル（VLth3）**
+- **テキスト**: 「板倉 趣味チャンネル」
+- **色**: `#1C1C1C`
+- **fontSize**: 9px
+- **fontWeight**: 600
+
+###### **説明文（TmJjO）**
+- **テキスト**: 
+  ```
+  インパルスの板倉俊之さんのYouTubeチャンネルにて、
+  当施設をご利用いただいた様子が公開されています。
+  ```
+- **色**: `#6B6B6B`
+- **幅**: `fill_container`（固定幅）
+- **line-height**: 1.6
+- **fontSize**: 12px
+- **fontWeight**: normal
+
+###### **日付（dZpWk）**
+- **テキスト**: 「2025年7月25日投稿」
+- **色**: `#9B9B9B`
+- **fontSize**: 7px
+- **fontWeight**: 500
+
+---
+
+##### **2-2-3. 統計行（Ml0uU）**
+- **幅**: `fill_container`
+- **gap**: 7px
+- **alignItems**: `center`
+
+###### **再生回数フレーム（WYGE7）**
+- **gap**: 3px
+- **alignItems**: `center`
+
+**アイコン（MtOtw）**
+- **タイプ**: icon_font
+- **アイコン名**: `eye`（Lucide）
+- **幅**: 9px
+- **高さ**: 9px
+- **色**: `#6B6B6B`
+
+**テキスト（Unew3）**
+- **テキスト**: 「54万回」
+- **色**: `#6B6B6B`
+- **fontSize**: 7px
+- **fontWeight**: 500
+
+###### **いいねフレーム（MOBVS）**
+- **gap**: 3px
+- **alignItems**: `center`
+
+**アイコン（x77np）**
+- **タイプ**: icon_font
+- **アイコン名**: `thumbs-up`（Lucide）
+- **幅**: 9px
+- **高さ**: 9px
+- **色**: `#6B6B6B`
+
+**テキスト（6X1tK）**
+- **テキスト**: 「4.7K」
+- **色**: `#6B6B6B`
+- **fontSize**: 7px
+- **fontWeight**: 500
+
+---
+
+#### **2-3. メディアカード2（3uD0N）**
+
+##### **カード基本仕様**
+- メディアカード1と同じ基本仕様
+- コンテンツは異なるメディア情報（構造は同じ）
+
+---
+
+## 共通仕様
+
+### カラーパレット
+
+```css
+:root {
+  /* 背景色 */
+  --bg-beige: #FAF8F5;
+  --bg-white: #FFFFFF;
+  --bg-glass: #FFFFFF33; /* 透明度20% */
+  
+  /* ボーダー色 */
+  --border-light: #E8E5E0;
+  --border-medium: #E0D8D0;
+  --border-green: #D4E8D4;
+  --border-warning: #F0E4C8;
+  
+  /* テキスト色 */
+  --text-dark: #1C1C1C;
+  --text-medium: #6B6B6B;
+  --text-light: #9A9A9A;
+  --text-white: #FFFFFF;
+  
+  /* アクセント色 */
+  --accent-green: #5A8A5A;
+  --accent-navy: #1E3A5F;
+  --accent-gold: #B8860B;
+  --accent-red: #FF0000;
+  
+  /* ボックス背景色 */
+  --box-warning: #FFF8E6;
+  --box-success: #F0F7F0;
+  --box-header: #F5F3F0;
+}
+```
+
+---
+
+### フォント仕様
+
+#### **フォントファミリー**
+```css
+font-family: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+```
+
+#### **フォントサイズスケール**
+- **6px**: ロゴテキスト（小）、補足注釈
+- **7px**: 小テキスト、説明文、CTA
+- **9px**: カード内テキスト、ラベル
+- **12px**: 標準テキスト、タイトル（中）
+- **13px**: グラスカードタイトル
+- **16px**: セクションタイトル（中）
+- **18px**: セクションタイトル（大）
+- **23px**: ページタイトル（最大）
+
+#### **フォントウェイト**
+- **300**: Light（ページタイトル、セクションタイトル）
+- **normal / 400**: Regular（本文、説明文）
+- **500**: Medium（ラベル、サブタイトル）
+- **600**: Semi-Bold（強調テキスト、ボタン）
+
+---
+
+### レイアウトパターン
+
+#### **カード共通仕様**
+```css
+.card {
+  width: 100%; /* またはfill_container */
+  background: #FFFFFF;
+  border: 1px solid #E8E5E0;
+  border-radius: 7px; /* または12px */
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+```
+
+#### **アイコンバッジ共通仕様**
+```css
+.icon-badge {
+  width: 14px-20px; /* 用途により */
+  height: 14px-20px;
+  background: #F5F3F0;
+  border-radius: 4px-8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
+
+---
+
+### レスポンシブ考慮事項
+
+- **画面幅**: 375px固定（スマートフォン最適化）
+- **デスクトップ表示**: `max-width: 375px; margin: 0 auto;`で中央寄せ推奨
+- **padding**: 左右10pxを基本として、コンテンツが画面端に触れないようにする
+- **gap**: セクション間32-40px、要素間7-21pxを基本とする
+
+---
+
+### アイコン実装
+
+#### **Lucide Icons**
+- **CDN**: `<script src="https://unpkg.com/lucide@latest"></script>`
+- **使用アイコン**:
+  - `menu`: ハンバーガーメニュー
+  - `map-pin`: 住所アイコン
+  - `alert-circle`: 警告アイコン
+  - `navigation`: ナビゲーションアイコン
+  - `play`: 動画再生アイコン
+  - `eye`: 再生回数アイコン
+  - `thumbs-up`: いいねアイコン
+  - `calendar`: カレンダーアイコン
+  - `chevron-down`: 開閉アイコン
+  - `check`: チェックマークアイコン
+
+---
+
+## SP_8.お知らせ・メディア（WawUF）
+
+### 全体構造
+```
+section.media-section
+├── Header (I2mAW)
+│   └── タイトル「お知らせ・メディア」
+├── メディア掲載セクション (jnMSf)
+│   ├── セクションヘッダー「メディア掲載情報」
+│   ├── メディアカード1（YouTube: 板倉 趣味チャンネル）
+│   └── メディアカード2（YouTube: ARJべんちゃん）
+├── お知らせセクション (BwQ6Z)
+│   ├── セクションヘッダー「お知らせ」
+│   ├── アコーディオンカード1（料金改定）
+│   └── アコーディオンカード2（小鳥同伴ルール）
+└── インスタグラムセクション (FguyL)
+    ├── セクションヘッダー「インスタグラム」
+    ├── リールグリッド（4枚のサムネイル）
+    └── Instagramボタン
+```
+
+### 共通仕様
+- **背景色**: `#FAF8F5`
+- **パディング**: `32px 10px`
+- **セクション間ギャップ**: `32px`
+- **フォント**: Inter
+
+---
+
+### 1. ヘッダー（I2mAW）
+
+#### タイトル (z6ags)
+```
+要素: h2.media-section__title
+内容: 「お知らせ・メディア」
+フォントサイズ: 18px
+フォントウェイト: 300
+文字色: #1C1C1C
+文字間隔: -0.5px
+配置: 中央揃え
+```
+
+---
+
+### 2. メディア掲載セクション（jnMSf）
+
+#### セクションヘッダー (RhQsi)
+```
+要素: h3.media-section__subtitle
+内容: 「メディア掲載情報」
+フォントサイズ: 12px
+フォントウェイト: 500
+文字色: #1C1C1C
+文字間隔: -0.3px
+下マージン: 7px
+```
+
+#### メディアカード1（YouTube: 板倉 趣味チャンネル）(uxsQb)
+```
+要素: div.media-card
+幅: 100%（fill_container）
+背景色: #FFFFFF
+角丸: 7px
+ボーダー: 1px solid #E8E5E0
+パディング: 9px
+ギャップ: 7px
+レイアウト: 横並び（flex）
+
+├── YouTubeアイコン (UoLKh)
+│   要素: div.media-card__icon
+│   幅: 20px
+│   高さ: 20px
+│   背景色: #FF0000（YouTube赤）
+│   角丸: 5px
+│   配置: 中央（flex center）
+│   
+│   └── 再生アイコン (7PxNm)
+│       要素: svg.media-card__icon-play
+│       サイズ: 9px × 9px
+│       アイコン: lucide "play"
+│       色: #FFFFFF
+│
+└── コンテンツエリア (wQdZU)
+    要素: div.media-card__content
+    幅: 100%（fill_container）
+    ギャップ: 4px（縦）
+    
+    ├── タイトル (VLth3)
+    │   要素: p.media-card__title
+    │   内容: 「板倉 趣味チャンネル」
+    │   フォントサイズ: 9px
+    │   フォントウェイト: 600
+    │   文字色: #1C1C1C
+    │
+    ├── 説明文 (TmJjO)
+    │   要素: p.media-card__desc
+    │   内容: 「インパルスの板倉俊之さんのYouTubeチャンネルにて、\n当施設をご利用いただいた様子が公開されています。」
+    │   フォントサイズ: 12px
+    │   フォントウェイト: normal
+    │   文字色: #6B6B6B
+    │   行高: 1.6
+    │   改行: 保持（white-space: pre-line）
+    │
+    ├── 投稿日 (dZpWk)
+    │   要素: p.media-card__date
+    │   内容: 「2025年7月25日投稿」
+    │   フォントサイズ: 7px
+    │   フォントウェイト: 500
+    │   文字色: #9B9B9B
+    │
+    └── 統計情報行 (Ml0uU)
+        要素: div.media-card__stats
+        ギャップ: 7px（横）
+        配置: 横並び
+        
+        ├── 再生回数 (WYGE7)
+        │   要素: div.media-card__stat
+        │   ギャップ: 3px
+        │   
+        │   ├── 目アイコン (MtOtw)
+        │   │   要素: svg.media-card__stat-icon
+        │   │   サイズ: 9px × 9px
+        │   │   アイコン: lucide "eye"
+        │   │   色: #6B6B6B
+        │   │
+        │   └── テキスト (Unew3)
+        │       要素: span.media-card__stat-text
+        │       内容: 「54万回」
+        │       フォントサイズ: 7px
+        │       フォントウェイト: 500
+        │       文字色: #6B6B6B
+        │
+        └── いいね数 (MOBVS)
+            要素: div.media-card__stat
+            ギャップ: 3px
+            
+            ├── いいねアイコン (x77np)
+            │   要素: svg.media-card__stat-icon
+            │   サイズ: 9px × 9px
+            │   アイコン: lucide "thumbs-up"
+            │   色: #6B6B6B
+            │
+            └── テキスト (6X1tK)
+                要素: span.media-card__stat-text
+                内容: 「4.7K」
+                フォントサイズ: 7px
+                フォントウェイト: 500
+                文字色: #6B6B6B
+```
+
+#### メディアカード2（YouTube: ARJべんちゃん）(3uD0N)
+```
+要素: div.media-card
+構造: メディアカード1と同じ構造
+上マージン: 7px
+
+├── YouTubeアイコン (VF6ds)
+│   [メディアカード1と同じ仕様]
+│
+└── コンテンツエリア (4vXO4)
+    ├── タイトル (wCXSz)
+    │   内容: 「ARJべんちゃん」
+    │
+    ├── 説明文 (XR9gd)
+    │   内容: 「キャンピングカーや車中泊情報を発信する\n「ARJべんちゃん」チャンネルにてご紹介いただきました。」
+    │   フォントサイズ: 9px
+    │
+    ├── 投稿日 (SwPXJ)
+    │   内容: 「2024年12月20日掲載」
+    │
+    └── 統計情報行 (hHHUH)
+        ├── 再生回数: 「0.2万回」
+        └── いいね数: 「2.1K」
+```
+
+---
+
+### 3. お知らせセクション（BwQ6Z）
+
+#### セクションヘッダー (QYmzK)
+```
+要素: h3.news-section__subtitle
+内容: 「お知らせ」
+フォントサイズ: 12px
+フォントウェイト: 500
+文字色: #1C1C1C
+文字間隔: -0.3px
+上マージン: 32px
+下マージン: 7px
+```
+
+#### アコーディオンカード1（料金改定）(f84a7)
+```
+要素: div.accordion-card
+幅: 100%（fill_container）
+背景色: #FFFFFF
+角丸: 7px
+ボーダー: 1px solid #E8E5E0
+
+├── ヘッダー (YwwMw)
+│   要素: div.accordion-card__header
+│   幅: 100%
+│   背景色: #FFFFFF
+│   下ボーダー: 1px solid #E8E5E0
+│   パディング: 9px 7px
+│   ギャップ: 5px
+│   配置: space-between（横）
+│   
+│   ├── 日付・タイトル行 (QOu9r)
+│   │   要素: div.accordion-card__title-row
+│   │   幅: 100%（fill_container）
+│   │   ギャップ: 5px
+│   │   配置: 横並び、中央揃え
+│   │   
+│   │   ├── カレンダーアイコン (nOtKw)
+│   │   │   要素: svg.accordion-card__date-icon
+│   │   │   サイズ: 6px × 6px
+│   │   │   アイコン: lucide "calendar"
+│   │   │   色: #3D6B4F
+│   │   │
+│   │   ├── 日付 (6uvwJ)
+│   │   │   要素: span.accordion-card__date
+│   │   │   内容: 「2026/1/1」
+│   │   │   フォントサイズ: 7px
+│   │   │   フォントウェイト: 600
+│   │   │   文字色: #3D6B4F
+│   │   │
+│   │   └── タイトル (6o7J3)
+│   │       要素: h4.accordion-card__title
+│   │       内容: 「ご利用料金の改定」
+│   │       フォントサイズ: 9px
+│   │       フォントウェイト: 600
+│   │       文字色: #1C1C1C
+│   │
+│   └── 開閉アイコン (tiF3W)
+│       要素: svg.accordion-card__chevron
+│       サイズ: 9px × 9px
+│       アイコン: lucide "chevron-down"
+│       色: #6B6B6B
+│       ※アコーディオン展開時は回転（transform: rotate(180deg)）
+│
+└── コンテンツエリア (0xNcU)
+    要素: div.accordion-card__content
+    幅: 100%
+    パディング: 9px 7px
+    ギャップ: 7px（縦）
+    
+    ├── タイトル (cTqDJ)
+    │   要素: h5.accordion-card__content-title
+    │   内容: 「ご利用料金の改定」
+    │   フォントサイズ: 9px
+    │   フォントウェイト: 600
+    │   文字色: #1C1C1C
+    │
+    ├── 説明文 (NiMV4)
+    │   要素: p.accordion-card__desc
+    │   内容: 「昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。」
+    │   フォントサイズ: 7px
+    │   フォントウェイト: normal
+    │   文字色: #6B6B6B
+    │   行高: 1.6
+    │
+    ├── 詳細項目リスト (E0CkE)
+    │   要素: div.accordion-card__items
+    │   ギャップ: 5px（縦）
+    │   
+    │   ├── 項目1 (fW2u8)
+    │   │   要素: div.accordion-card__item
+    │   │   
+    │   │   └── テキスト (baeqo)
+    │   │       要素: p.accordion-card__item-text
+    │   │       内容: 「「サイト1」料金改定：オープン記念価格を終了し、\n新料金を適用いたします。」
+    │   │       フォントサイズ: 6px
+    │   │       文字色: #4A4A4A
+    │   │       行高: 1.6
+    │   │
+    │   └── 項目2 (1goPU)
+    │       要素: div.accordion-card__item
+    │       
+    │       └── テキスト (hGRTo)
+    │           内容: 「お子様料金の変更：これまで無料だった3歳以下の\nお子様も、大人と同料金となります。」
+    │           [項目1と同じスタイル]
+    │
+    └── 注意書き (PEhug)
+        要素: p.accordion-card__note
+        内容: 「※改定日より前に完了しているご予約には、予約時点の料金が適用されます。」
+        フォントサイズ: 7px
+        フォントウェイト: normal
+        文字色: #9B9B9B
+        行高: 1.5
+```
+
+#### アコーディオンカード2（小鳥同伴ルール）(BNvk1)
+```
+要素: div.accordion-card
+上マージン: 7px
+[基本構造はカード1と同じ]
+
+├── ヘッダー (EYBuS)
+│   └── 日付・タイトル行 (d65Sg)
+│       ├── 日付: 「2026/1/25」
+│       └── タイトル: 「小鳥（オウム・インコ等）の同伴について」
+│
+└── コンテンツエリア (QtS5s)
+    ├── タイトル (SFjTw)
+    │   内容: 「小鳥（オウム・インコ等）の同伴について」
+    │
+    ├── 説明文 (SXQaY)
+    │   内容: 「これまで禁止としておりました小鳥の同伴が可能になりますが、\n以下の条件付きとなります。」
+    │   フォントサイズ: 7px
+    │
+    └── 条件リスト (bkrjq)
+        要素: div.accordion-card__conditions
+        ギャップ: 5px（縦）
+        
+        ├── 条件1 (J9Khk)
+        │   要素: div.accordion-card__condition
+        │   ギャップ: 4px（横）
+        │   
+        │   ├── チェックアイコン (SLdCi)
+        │   │   要素: svg.accordion-card__check-icon
+        │   │   サイズ: 6px × 6px
+        │   │   アイコン: lucide "check"
+        │   │   色: #3D6B4F
+        │   │
+        │   └── テキスト (SemUj)
+        │       要素: p.accordion-card__condition-text
+        │       内容: 「キャンピングカー内のみ同伴可能（テント泊は不可）」
+        │       フォントサイズ: 6px
+        │       文字色: #4A4A4A
+        │
+        ├── 条件2 (n1alY)
+        │   内容: 「オウム・インコ等の比較的小さな鳥（1羽まで）」
+        │   [条件1と同じ構造]
+        │
+        └── 条件3 (srO3u)
+            内容: 「常にケージを使用し、車内であっても放鳥は禁止」
+            [条件1と同じ構造]
+```
+
+---
+
+### 4. インスタグラムセクション（FguyL）
+
+#### セクションヘッダー (kZkN0)
+```
+要素: h3.instagram-section__subtitle
+内容: 「インスタグラム」
+フォントサイズ: 12px
+フォントウェイト: 500
+文字色: #1C1C1C
+文字間隔: -0.3px
+上マージン: 32px
+下マージン: 9px
+```
+
+#### リールグリッド (afOcr)
+```
+要素: div.instagram-grid
+幅: 100%（fill_container）
+ギャップ: 5px（横）
+配置: 横並び（flex）
+
+├── リール1 (xr7dF)
+│   要素: div.instagram-grid__item
+│   幅: 73px
+│   高さ: 73px
+│   背景色: #E8E5E0（プレースホルダー）
+│   角丸: 5px
+│
+├── リール2 (1ZiB0)
+│   [リール1と同じ仕様]
+│
+├── リール3 (m7Zw2)
+│   [リール1と同じ仕様]
+│
+└── リール4 (6sUWR)
+    [リール1と同じ仕様]
+
+※実装時には実際のInstagram画像URLまたはプレースホルダー画像を使用
+```
+
+#### Instagramボタン (B9vTA)
+```
+要素: a.instagram-btn
+幅: 100%（fill_container）
+背景色: #FFFFFF
+角丸: 11px
+ボーダー: 1px solid #E8E5E0
+パディング: 5px 7px
+ギャップ: 4px（横）
+配置: 中央揃え
+上マージン: 9px
+
+├── Instagramアイコン
+│   要素: svg.instagram-btn__icon
+│   サイズ: 14px × 14px
+│   ※Instagram公式アイコンまたはlucide "instagram"
+│   色: #E4405F（Instagram色）
+│
+└── ボタンテキスト
+    要素: span.instagram-btn__text
+    内容: 「Instagramで見る」
+    フォントサイズ: 9px
+    フォントウェイト: 500
+    文字色: #1C1C1C
+```
+
+---
+
+### レスポンシブ対応
+
+#### SP（375px基準）
+- 全要素のパディング・マージンを上記仕様通り実装
+- リールグリッドは4列（73px × 4 + gap 5px × 3 = 307px）で横スクロール不要
+
+#### タブレット・PC
+- 最大幅を設定し、中央配置
+- カードのホバー効果を追加（オプション）
+
+---
+
+### 実装時の注意点
+
+1. **アコーディオン機能**
+   - 初期状態は全て閉じた状態
+   - ヘッダークリックで開閉
+   - chevronアイコンは展開時に180度回転
+   - JavaScriptでの開閉制御が必要
+
+2. **YouTubeアイコン**
+   - 背景色は `#FF0000`（YouTube公式赤）
+   - 再生アイコンは白色で中央配置
+
+3. **統計情報**
+   - アイコンとテキストは常に横並び
+   - 数値は実際のデータまたはプレースホルダーを使用
+
+4. **Instagramグリッド**
+   - 4つのサムネイルは等幅
+   - 実際のInstagram埋め込みまたは静的画像を使用
+
+5. **テキストの改行**
+   - `\n`を含む全てのテキストに `white-space: pre-line` を適用
+   - または `<br>` タグで明示的に改行
+
+---
+
+## 実装時の重要ポイント
+
+### 1. **テキストの改行**
+- `white-space: pre-line;`を使用して改行（`\n`）を保持
+- または`<br>`タグで明示的に改行
+
+### 2. **グラスモーフィズム効果**
+```css
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+```
+
+### 3. **固定幅テキストの扱い**
+- `textGrowth: "fixed-width"`の場合: `width`プロパティを明示的に設定
+- 改行を含むテキストは`line-height`を必ず指定
+
+### 4. **SVGアイコンの埋め込み**
+- Lucideアイコンを使用する場合、適切な`viewBox`と`stroke`属性を設定
+- `stroke-linecap: round; stroke-linejoin: round;`を基本とする
+
+---
+
+## このドキュメントの使い方
+
+1. **画面ごとの実装**: 各セクションのタイトル（例: SP_0.TOP画面）から該当する仕様を参照
+2. **コンポーネントの再利用**: 共通仕様セクションのカラーパレット、フォント、レイアウトパターンを活用
+3. **詳細確認**: 各要素のID（例: Bfg2T）を使ってPencilデザインファイルと照合可能
+4. **実装順序**: TOP画面 → ペット → サイト案内・料金 → 利用規約 → アクセス → お知らせの順を推奨
+
+---
+
+**最終更新**: 2026年2月9日  
+**デザインファイル**: PS_kitaura.pen  
+**実装対象画面**: 7画面（SP_0, SP_2, SP_3, SP_4, SP_6, SP_7, SP_8）
