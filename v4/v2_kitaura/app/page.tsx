@@ -1,25 +1,52 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTop, setIsTop] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // TOPヒーロー上では透過、それ以降は白背景に戻す
+      setIsTop(window.scrollY < 40);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <>
       {/* 固定ヘッダー */}
-      <header className="fixed top-0 left-0 right-0 z-[999] bg-white/95 backdrop-blur-[10px] shadow-sm flex justify-between items-center px-6 h-[71px]">
+      <header
+        className={[
+          'fixed top-0 left-0 right-0 z-[999] flex justify-between items-center px-6 h-[71px] transition-colors duration-300',
+          isTop
+            ? 'bg-transparent'
+            : 'bg-white/95 backdrop-blur-[10px] shadow-sm',
+        ].join(' ')}
+      >
         <div className="flex flex-col items-center gap-1">
           <Image 
             src="/images/futter_logo.png" 
             alt="KITAURA LAKESIDE RV park"
             width={48}
             height={46}
-            className="object-contain"
+            className={[
+              'object-contain',
+              isTop ? 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]' : '',
+            ].join(' ')}
           />
-          <span className="text-[#1C1C1C] text-[6px] font-normal text-center leading-[1.4] tracking-[0.08em] w-[67px] whitespace-pre-line">
+          <span
+            className={[
+              'text-[6px] font-normal text-center leading-[1.4] tracking-[0.08em] w-[67px] whitespace-pre-line transition-colors duration-300',
+              isTop ? 'text-[#FFF8F8]' : 'text-[#1C1C1C]',
+            ].join(' ')}
+            style={isTop ? { textShadow: '0 1px 6px rgba(0, 0, 0, 0.4)' } : undefined}
+          >
             KITAURA LAKESIDE{'\n'}RV park
           </span>
         </div>
@@ -29,7 +56,14 @@ export default function Home() {
           className="w-[18px] h-[18px] flex items-center justify-center"
           aria-label="メニュー"
         >
-          <svg className="w-[18px] h-[18px] stroke-[#1C1C1C] stroke-2 fill-none" viewBox="0 0 24 24">
+          <svg
+            className={[
+              'w-[18px] h-[18px] stroke-2 fill-none transition-colors duration-300',
+              isTop ? 'stroke-white' : 'stroke-[#1C1C1C]',
+            ].join(' ')}
+            viewBox="0 0 24 24"
+            style={isTop ? { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' } : undefined}
+          >
             <line x1="3" y1="12" x2="21" y2="12" />
             <line x1="3" y1="6" x2="21" y2="6" />
             <line x1="3" y1="18" x2="21" y2="18" />
@@ -79,10 +113,13 @@ export default function Home() {
       )}
 
       {/* メインコンテンツ */}
-      <main className="pt-[71px] pb-[90px]">
+      <main className="pb-[90px]">
         
         {/* SP_0.TOP画面（Bfg2T） */}
-        <section id="top" className="relative w-full h-[100vh] overflow-hidden flex flex-col">
+        <section
+          id="top"
+          className="relative w-full h-[100vh] overflow-hidden flex flex-col pt-[71px]"
+        >
           {/* 背景画像 */}
           <div className="absolute inset-0 z-0">
             <Image 
@@ -102,45 +139,12 @@ export default function Home() {
             }}
           />
 
-          {/* ヘッダー（TOPページ用） */}
-          <div className="relative z-10 flex justify-between items-center px-6 py-5 -mt-[71px]">
-            <div className="flex flex-col items-center gap-1">
-              <Image 
-                src="/images/futter_logo.png" 
-                alt="KITAURA LAKESIDE RV park"
-                width={48}
-                height={46}
-                className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-              />
-              <span 
-                className="text-[#FFF8F8] text-[6px] font-normal text-center leading-[1.4] tracking-[0.08em] w-[67px] whitespace-pre-line"
-                style={{ textShadow: '0 1px 6px rgba(0, 0, 0, 0.4)' }}
-              >
-                KITAURA LAKESIDE{'\n'}RV park
-              </span>
-            </div>
+          {/* TOP内ヘッダーは固定ヘッダーに統合 */}
 
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-[18px] h-[18px] flex items-center justify-center"
-              aria-label="メニュー"
-            >
-              <svg 
-                className="w-[18px] h-[18px] stroke-white stroke-2 fill-none"
-                viewBox="0 0 24 24"
-                style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}
-              >
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            </button>
-          </div>
-
-          {/* コンテンツエリア */}
-          <div className="relative z-10 flex-1 flex items-end px-[22px] pb-[46px]">
-            <h1 
-              className="text-white text-[23px] font-light tracking-[0.8px] leading-[1.4]"
+          {/* コンテンツ（太陽の上に配置） */}
+          <div className="absolute inset-x-0 top-[46%] z-10 flex justify-center px-[22px]">
+            <h1
+              className="text-white text-[23px] font-light tracking-[0.8px] leading-[1.4] text-center"
               style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)' }}
             >
               大切な人と、心ほどける時間
