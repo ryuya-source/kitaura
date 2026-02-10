@@ -397,7 +397,6 @@
               "width": "fill_container",
               "gap": 11,
               "justifyContent": "end",
-              "alignItems": "center",
               "children": [
                 {
                   "type": "icon_font",
@@ -455,12 +454,13 @@
       "fill": {
         "type": "image",
         "enabled": true,
-        "url": "./src/grok-image-a29539b9-b5a3-4574-b258-a6aaffbf70b3のコピー6.png",
+        "url": "./src/a446ccbc-a1e6-48a5-bf1c-352af3d98d73.png",
         "mode": "fill"
       },
       "layout": "vertical",
       "gap": 21,
       "padding": 11,
+      "alignItems": "center",
       "children": [
         {
           "type": "frame",
@@ -2677,6 +2677,7 @@
               "type": "frame",
               "id": "cCovq",
               "name": "titleRow",
+              "rotation": 0.0913139201403996,
               "gap": 3,
               "alignItems": "center",
               "children": [
