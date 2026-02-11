@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <title>SP_0.TOP画面 - KITAURA LAKESIDE RV park</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1095,6 +1096,11 @@
       display: block;
     }
 
+    /* アコーディオンタイトル同士の間隔を等間隔（12px）に */
+    .sp8-media__content[data-panels="news media"] + .sp8-media__content[data-panels="news notice"] {
+      margin-top: -12px;
+    }
+
     .sp8-media__media-list {
       display: flex;
       flex-direction: column;
@@ -1111,12 +1117,15 @@
       flex-direction: column;
     }
 
+    /* hdHq4: アコーディオンヘッダー（お知らせと上下幅を揃える） */
     .sp8-media__media-head {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 9px 7px;
+      min-height: 32px;
+      box-sizing: border-box;
       gap: 5px;
       background: #FFFFFF;
       border-bottom: 1px solid #E8E5E0;
@@ -1258,6 +1267,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 9px 7px; /* YwwMw */
+      min-height: 32px;
+      box-sizing: border-box;
       gap: 5px; /* YwwMw */
       background: #FFFFFF;
       border: 0;
@@ -2003,34 +2014,21 @@ RV park</div>
 
     <section class="site-block feature-section">
       <h3 class="site-title">サイト1</h3>
-      <div class="image-row">
-        <img class="thumb-img" src="../../src/02_サイト１案内_景観.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/04_サイト１案内_小型犬-768x576.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no1/03_サイト１案内_広さ-768x576.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <div class="image-row" id="site-no1-image-row" data-site-images="site_no1"></div>
     </section>
 
     <section class="site-block feature-section">
       <h3 class="site-title">サイト2</h3>
-      <div class="image-row">
-        <img class="thumb-img" src="../../src/S__38764551_0.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__38764550_0.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no2/S__38764547_0.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__34291715_0.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <div class="image-row" id="site-no2-image-row" data-site-images="site_no2"></div>
     </section>
 
     <section class="site-block feature-section">
       <h3 class="site-title">サイト3</h3>
       <div class="image-row">
-        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/B392931C-3C9D-404F-84DC-13CCA3438639.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="src/site_no3/S__61259783.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="src/site_no3/119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="src/site_no3/4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg" alt="" loading="lazy" decoding="async">
+        <img class="thumb-img" src="src/site_no3/B392931C-3C9D-404F-84DC-13CCA3438639.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -2601,6 +2599,59 @@ RV park</div>
           body.hidden = !isOpen;
         });
       });
+    })();
+
+    /* サイト1（Pencil q53Bt 相当）: src/site_no1/ に格納した画像を全てここで表示 */
+    (function () {
+      var SITE_NO1_IMAGES = [
+        '02_サイト１案内_景観.jpg',
+        '03_サイト１案内_広さ-768x576.jpg',
+        '04_サイト１案内_小型犬-768x576.jpg',
+        '05_サイト１案内_炊事場.jpg',
+        '05_サイト１案内_トイレシャワー.jpg',
+        '06_サイト１案内_トイレ.jpg',
+        '07_サイト１案内_シャワールーム.jpg',
+        '08_サイト１案内_シャワー.jpg'
+      ];
+      var base = 'src/site_no1/';
+      var row = document.getElementById('site-no1-image-row');
+      if (row) {
+        row.innerHTML = '';
+        SITE_NO1_IMAGES.forEach(function (name) {
+          var img = document.createElement('img');
+          img.className = 'thumb-img';
+          img.src = base + name;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          row.appendChild(img);
+        });
+      }
+    })();
+
+    /* サイト2（Pencil Ynr7c 相当）: src/site_no2/ に格納した画像を全てここで表示 */
+    (function () {
+      var SITE_NO2_IMAGES = [
+        'S__38764551_0.jpg',
+        'S__38764550_0.jpg',
+        'S__38764547_0.jpg',
+        'S__34291715_0.jpg',
+        'F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg'
+      ];
+      var base = 'src/site_no2/';
+      var row = document.getElementById('site-no2-image-row');
+      if (row) {
+        row.innerHTML = '';
+        SITE_NO2_IMAGES.forEach(function (name) {
+          var img = document.createElement('img');
+          img.className = 'thumb-img';
+          img.src = base + name;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          row.appendChild(img);
+        });
+      }
     })();
   </script>
 
