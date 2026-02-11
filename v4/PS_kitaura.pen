@@ -1218,7 +1218,7 @@
                       "fill": "#2D5A3F",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "「セブンイレブン 鋒田梖山店」を目的地に設定して\nお越しください。当施設はすぐ隣です。",
+                      "content": "「セブンイレブン 鉾田梶山店」を目的地に設定して\nお越しください。当施設はすぐ隣です。",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
                       "fontSize": 10,
@@ -1704,6 +1704,76 @@
             },
             {
               "type": "frame",
+              "id": "9Frqa",
+              "name": "media1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 7,
+              "padding": 9,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "4I95T",
+                  "name": "media1Icon",
+                  "width": 19,
+                  "height": 14,
+                  "fill": "#FF0000",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ZokZs",
+                      "name": "media1IconI",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "play",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "zLkt7",
+                  "name": "media1Date",
+                  "fill": "#9B9B9B",
+                  "content": "2026年02月01日",
+                  "fontFamily": "Inter",
+                  "fontSize": 9,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "SXVc6",
+                  "name": "media1Content",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F1Zzm",
+                      "name": "media1Title",
+                      "fill": "#1C1C1C",
+                      "content": "全国10位に入賞しました",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
               "id": "uxsQb",
               "name": "media1",
               "width": "fill_container",
@@ -1720,8 +1790,8 @@
                   "type": "frame",
                   "id": "UoLKh",
                   "name": "media1Icon",
-                  "width": 20,
-                  "height": 20,
+                  "width": 19,
+                  "height": 14,
                   "fill": "#FF0000",
                   "cornerRadius": 5,
                   "layout": "vertical",
@@ -1741,6 +1811,16 @@
                   ]
                 },
                 {
+                  "type": "text",
+                  "id": "dZpWk",
+                  "name": "media1Date",
+                  "fill": "#9B9B9B",
+                  "content": "2025年07月25日",
+                  "fontFamily": "Inter",
+                  "fontSize": 9,
+                  "fontWeight": "500"
+                },
+                {
                   "type": "frame",
                   "id": "wQdZU",
                   "name": "media1Content",
@@ -1757,95 +1837,44 @@
                       "fontFamily": "Inter",
                       "fontSize": 9,
                       "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "TmJjO",
-                      "name": "media1Desc",
-                      "fill": "#6B6B6B",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "インパルスの板倉俊之さんのYouTubeチャンネルにて、\n当施設をご利用いただいた様子が公開されています。",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "dZpWk",
-                      "name": "media1Date",
-                      "fill": "#9B9B9B",
-                      "content": "2025年7月25日投稿",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "500"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ml0uU",
+                  "name": "statsRow1",
+                  "width": "fill_container",
+                  "gap": 7,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
                     {
                       "type": "frame",
-                      "id": "Ml0uU",
-                      "name": "statsRow1",
-                      "width": "fill_container",
-                      "gap": 7,
+                      "id": "WYGE7",
+                      "name": "viewsFrame1",
+                      "gap": 3,
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "frame",
-                          "id": "WYGE7",
-                          "name": "viewsFrame1",
-                          "gap": 3,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "MtOtw",
-                              "name": "viewsIcon1",
-                              "width": 9,
-                              "height": 9,
-                              "iconFontName": "eye",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6B6B6B"
-                            },
-                            {
-                              "type": "text",
-                              "id": "Unew3",
-                              "name": "viewsText1",
-                              "fill": "#6B6B6B",
-                              "content": "54万回",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "500"
-                            }
-                          ]
+                          "type": "icon_font",
+                          "id": "MtOtw",
+                          "name": "viewsIcon1",
+                          "width": 9,
+                          "height": 9,
+                          "iconFontName": "eye",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6B6B6B"
                         },
                         {
-                          "type": "frame",
-                          "id": "MOBVS",
-                          "name": "likesFrame1",
-                          "gap": 3,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "x77np",
-                              "name": "likesIcon1",
-                              "width": 9,
-                              "height": 9,
-                              "iconFontName": "thumbs-up",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6B6B6B"
-                            },
-                            {
-                              "type": "text",
-                              "id": "6X1tK",
-                              "name": "likesText1",
-                              "fill": "#6B6B6B",
-                              "content": "4.7K",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "500"
-                            }
-                          ]
+                          "type": "text",
+                          "id": "Unew3",
+                          "name": "viewsText1",
+                          "fill": "#6B6B6B",
+                          "content": "54万回",
+                          "fontFamily": "Inter",
+                          "fontSize": 9,
+                          "fontWeight": "500"
                         }
                       ]
                     }
@@ -1855,8 +1884,8 @@
             },
             {
               "type": "frame",
-              "id": "3uD0N",
-              "name": "media2",
+              "id": "Mglsa",
+              "name": "media1",
               "width": "fill_container",
               "fill": "#FFFFFF",
               "cornerRadius": 7,
@@ -1869,10 +1898,10 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "VF6ds",
-                  "name": "media2Icon",
-                  "width": 20,
-                  "height": 20,
+                  "id": "c6Wd8",
+                  "name": "media1Icon",
+                  "width": 19,
+                  "height": 14,
                   "fill": "#FF0000",
                   "cornerRadius": 5,
                   "layout": "vertical",
@@ -1881,8 +1910,8 @@
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "GtY6a",
-                      "name": "media2IconI",
+                      "id": "eor68",
+                      "name": "media1IconI",
                       "width": 9,
                       "height": 9,
                       "iconFontName": "play",
@@ -1892,111 +1921,290 @@
                   ]
                 },
                 {
+                  "type": "text",
+                  "id": "amTXs",
+                  "name": "media1Date",
+                  "fill": "#9B9B9B",
+                  "content": "2025年02月02日",
+                  "fontFamily": "Inter",
+                  "fontSize": 9,
+                  "fontWeight": "500"
+                },
+                {
                   "type": "frame",
-                  "id": "4vXO4",
-                  "name": "media2Content",
+                  "id": "MCDb0",
+                  "name": "media1Content",
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 4,
                   "children": [
                     {
                       "type": "text",
-                      "id": "wCXSz",
+                      "id": "UxkMJ",
+                      "name": "media1Title",
+                      "fill": "#1C1C1C",
+                      "content": "休日やること / Kyuuzitsu Yarukoto",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TwwvN",
+                  "name": "statsRow1",
+                  "width": "fill_container",
+                  "gap": 7,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kUr6z",
+                      "name": "viewsFrame1",
+                      "gap": 3,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "AfaKf",
+                          "name": "viewsIcon1",
+                          "width": 9,
+                          "height": 9,
+                          "iconFontName": "eye",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6B6B6B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S1Y0P",
+                          "name": "viewsText1",
+                          "fill": "#6B6B6B",
+                          "content": "0.8万回",
+                          "fontFamily": "Inter",
+                          "fontSize": 9,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L7Nhj",
+              "name": "media1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 7,
+              "padding": 9,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Y47Fc",
+                  "name": "media1Icon",
+                  "width": 19,
+                  "height": 14,
+                  "fill": "#FF0000",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "IFdb3",
+                      "name": "media1IconI",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "play",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "lx7jC",
+                  "name": "media1Date",
+                  "fill": "#9B9B9B",
+                  "content": "2024年12月20日",
+                  "fontFamily": "Inter",
+                  "fontSize": 9,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "gdc2L",
+                  "name": "media1Content",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dATIA",
+                      "name": "media2Title",
+                      "fill": "#1C1C1C",
+                      "content": "めがねおばさんのキャンプ生活",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "A4NUN",
+                  "name": "statsRow1",
+                  "width": "fill_container",
+                  "gap": 7,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TjlhI",
+                      "name": "viewsFrame1",
+                      "gap": 3,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "ehjcY",
+                          "name": "viewsIcon1",
+                          "width": 9,
+                          "height": 9,
+                          "iconFontName": "eye",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6B6B6B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ogvk5",
+                          "name": "viewsText1",
+                          "fill": "#6B6B6B",
+                          "content": "0.5万回",
+                          "fontFamily": "Inter",
+                          "fontSize": 9,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "SfJnl",
+              "name": "media1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 7,
+              "padding": 9,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "QDOTS",
+                  "name": "media1Icon",
+                  "width": 19,
+                  "height": 14,
+                  "fill": "#FF0000",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ddvjN",
+                      "name": "media1IconI",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "play",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "FwQ1p",
+                  "name": "media1Date",
+                  "fill": "#9B9B9B",
+                  "content": "2024年12月20日",
+                  "fontFamily": "Inter",
+                  "fontSize": 9,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "XZSMN",
+                  "name": "media1Content",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GUeio",
                       "name": "media2Title",
                       "fill": "#1C1C1C",
                       "content": "ARJべんちゃん",
                       "fontFamily": "Inter",
                       "fontSize": 9,
                       "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "XR9gd",
-                      "name": "media2Desc",
-                      "fill": "#6B6B6B",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "キャンピングカーや車中泊情報を発信する\n「ARJべんちゃん」チャンネルにてご紹介いただきました。",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "SwPXJ",
-                      "name": "media2Date",
-                      "fill": "#9B9B9B",
-                      "content": "2024年12月20日掲載",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "500"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "6Gk0R",
+                  "name": "statsRow1",
+                  "width": "fill_container",
+                  "gap": 7,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
                     {
                       "type": "frame",
-                      "id": "hHHUH",
-                      "name": "statsRow2",
-                      "width": "fill_container",
-                      "gap": 7,
+                      "id": "16n6D",
+                      "name": "viewsFrame1",
+                      "gap": 3,
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "frame",
-                          "id": "HlnXY",
-                          "name": "viewsFrame2",
-                          "gap": 3,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "U1A8u",
-                              "name": "viewsIcon2",
-                              "width": 9,
-                              "height": 9,
-                              "iconFontName": "eye",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6B6B6B"
-                            },
-                            {
-                              "type": "text",
-                              "id": "rWShz",
-                              "name": "viewsText2",
-                              "fill": "#6B6B6B",
-                              "content": "0.2万回",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "500"
-                            }
-                          ]
+                          "type": "icon_font",
+                          "id": "XMLwl",
+                          "name": "viewsIcon1",
+                          "width": 9,
+                          "height": 9,
+                          "iconFontName": "eye",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6B6B6B"
                         },
                         {
-                          "type": "frame",
-                          "id": "GkSyf",
-                          "name": "likesFrame2",
-                          "gap": 3,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "WDfUZ",
-                              "name": "likesIcon2",
-                              "width": 9,
-                              "height": 9,
-                              "iconFontName": "thumbs-up",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6B6B6B"
-                            },
-                            {
-                              "type": "text",
-                              "id": "sxZLo",
-                              "name": "likesText2",
-                              "fill": "#6B6B6B",
-                              "content": "2.1K",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "500"
-                            }
-                          ]
+                          "type": "text",
+                          "id": "XUxID",
+                          "name": "viewsText1",
+                          "fill": "#6B6B6B",
+                          "content": "1.0万回",
+                          "fontFamily": "Inter",
+                          "fontSize": 9,
+                          "fontWeight": "500"
                         }
                       ]
                     }
@@ -2722,9 +2930,9 @@
               "id": "jmkxF",
               "name": "descCopy",
               "fill": "#6B6B6B",
-              "content": "トイレ・シャワー・炊事場・電源を全サイト完備",
+              "content": "トイレ・シャワー・炊事場・電源を全サイトに完備",
               "fontFamily": "Inter",
-              "fontSize": 9,
+              "fontSize": 10,
               "fontWeight": "normal"
             },
             {
@@ -2842,7 +3050,7 @@
               "id": "ELUwJ",
               "name": "hintText",
               "fill": "#9B9B9B",
-              "content": "← スクロールして他の写真を見る →",
+              "content": "←スクロールして他の写真を見る →",
               "fontFamily": "Inter",
               "fontSize": 9,
               "fontWeight": "normal"
@@ -5110,6 +5318,8 @@
                       "id": "4CbWz",
                       "name": "chkR1t1",
                       "fill": "#1C1C1C",
+                      "textGrowth": "fixed-width",
+                      "width": 80,
                       "content": "13:00 ～ 17:00",
                       "fontFamily": "Inter",
                       "fontSize": 12,
@@ -5150,6 +5360,8 @@
                       "id": "1mLxl",
                       "name": "chkR2t1",
                       "fill": "#1C1C1C",
+                      "textGrowth": "fixed-width",
+                      "width": 47,
                       "content": "～ 10:00",
                       "fontFamily": "Inter",
                       "fontSize": 12,

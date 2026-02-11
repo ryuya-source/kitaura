@@ -358,7 +358,7 @@
       font-size: clamp(15px, 4.5vw, 17px);
       font-weight: 300;
       letter-spacing: -0.3px;
-      margin: 0;
+      margin: 36px 0 24px;
     }
 
     .subheading {
@@ -524,19 +524,20 @@
 
     .sp6-terms__page {
       width: 100%;
-      padding: 24px 0 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
       color: var(--text-primary);
     }
 
+    /* 他のセクションタイトル(.section-title)と同じ余白：上36px・下24px */
     .sp6-terms__title {
       font-size: 18px;
       font-weight: 300;
       letter-spacing: -0.4px;
       text-align: center;
-      margin: 0;
+      margin: 36px 0 24px;
     }
 
     .sp6-terms__subtitle {
@@ -550,8 +551,12 @@
     .sp6-terms__section-title {
       font-size: 12px;
       font-weight: 600;
-      margin: 0 0 8px;
+      margin: 36px 0 16px;
       color: var(--text-primary);
+    }
+
+    .sp6-terms__section-title:first-child {
+      margin-top: 0;
     }
 
     /* r5fjv / P6JY1 / w3uft 相当：ヘッダー帯付きカード（I910U, f9umC, WQ2vh） */
@@ -752,27 +757,32 @@
 
     .sp7-access__page {
       width: 100%;
-      padding: 24px 0 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
       color: var(--text-primary);
     }
 
+    /* 他のセクションタイトルと同じ余白：上36px・下24px */
     .sp7-access__title {
       font-size: 18px;
       font-weight: 300;
       letter-spacing: -0.4px;
       text-align: center;
-      margin: 0;
+      margin: 36px 0 24px;
     }
 
     /* q0qGj sec1Header：所在地・ナビ設定など */
     .sp7-access__section-title {
       font-size: 12px;
       font-weight: 600;
-      margin: 0 0 12px;
+      margin: 36px 0 20px;
       color: var(--text-primary);
+    }
+
+    .sp7-access__section-title:first-child {
+      margin-top: 0;
     }
 
     .sp7-access__card {
@@ -1000,26 +1010,60 @@
 
     .sp8-media__page {
       width: 100%;
-      padding: 24px 0 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
       color: var(--text-primary);
     }
 
+    /* 他のセクションタイトルと同じ余白：上36px・下24px */
     .sp8-media__title {
       font-size: 18px;
       font-weight: 300;
       letter-spacing: -0.4px;
       text-align: center;
-      margin: 0;
+      margin: 36px 0 24px;
     }
 
     .sp8-media__section-title {
       font-size: 12px;
       font-weight: 600;
-      margin: 0 0 10px;
+      margin: 36px 0 20px;
       color: var(--text-primary);
+    }
+
+    .sp8-media__section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* YPILL: タブバー（News #2C5F7C 56x33 / メディア・お知らせ #F5F3F0 stroke） */
+    .sp8-media__tab-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .sp8-media__tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 500;
+      font-family: inherit;
+      border: 1px solid #E8E5E0;
+      background: #F5F3F0;
+      color: #1C1C1C;
+      min-width: 56px;
+      height: 33px;
+      box-sizing: border-box;
+    }
+    .sp8-media__tab.is-active {
+      background: #2C5F7C;
+      color: #FFFFFF;
+      border-color: #2C5F7C;
     }
 
     .sp8-media__media-list {
@@ -1028,42 +1072,78 @@
       gap: 12px;
     }
 
+    /* mQmwm / OsQ7A: メディアアコーディオン（camera #d4a017 12px, 角丸7） */
     .sp8-media__media-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
+      border: 1px solid #E8E5E0;
+      border-radius: 7px;
+      overflow: hidden;
       display: flex;
-      gap: 10px;
+      flex-direction: column;
+    }
+
+    .sp8-media__media-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 7px;
+      gap: 5px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E8E5E0;
+    }
+
+    .sp8-media__media-head-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .sp8-media__yt-icon {
-      width: 20px; /* UoLKh */
-      height: 20px; /* UoLKh */
-      border-radius: 5px; /* UoLKh */
-      background: #FF0000;
-      color: #fff;
-      display: grid;
-      place-items: center;
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4a017;
       flex: 0 0 auto;
     }
 
     .sp8-media__yt-icon svg {
-      width: 9px; /* 7PxNm */
-      height: 9px; /* 7PxNm */
+      width: 12px;
+      height: 12px;
       stroke: currentColor;
     }
 
+    .sp8-media__media-head .sp8-media__media-date {
+      font-size: 10px;
+      font-weight: 600;
+      color: #d4a017;
+    }
+
     .sp8-media__media-body {
+      padding: 9px 7px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
     .sp8-media__media-title {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       margin: 0;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__date-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sp8-media__date-meta-row .sp8-media__media-date {
+      font-size: 9px;
+      font-weight: 500;
+      color: #9B9B9B;
     }
 
     /* TmJjO media1Desc：12px */
@@ -1074,8 +1154,7 @@
       margin: 0;
     }
 
-    /* dZpWk media1Date：9px, #9B9B9B */
-    .sp8-media__media-date {
+    .sp8-media__media-body .sp8-media__media-date {
       font-size: 9px;
       font-weight: 500;
       color: #9B9B9B;
@@ -1113,10 +1192,11 @@
       stroke: currentColor;
     }
 
+    /* 3q1Dx / 53lXe: お知らせアコーディオン（megaphone 12px #3D6B4F, date 10px, 角丸7） */
     .sp8-media__accordion {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      border: 1px solid #E8E5E0;
+      border-radius: 7px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1141,29 +1221,31 @@
     }
 
     .sp8-media__date-icon {
-      width: 10px; /* nOtKw 大きめに */
-      height: 10px;
-      display: block;
-      color: #3D6B4F; /* nOtKw/6uvwJ */
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3D6B4F;
       flex: 0 0 auto;
     }
 
     .sp8-media__date-icon svg {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       stroke: currentColor;
     }
 
     .sp8-media__date {
-      color: #3D6B4F; /* 6uvwJ */
+      color: #3D6B4F;
       font-weight: 600;
-      font-size: 7px; /* 6uvwJ */
+      font-size: 10px;
     }
 
     .sp8-media__acc-title {
       font-weight: 600;
       color: var(--text-primary);
-      font-size: 9px; /* 6o7J3 */
+      font-size: 10px;
     }
 
     .sp8-media__chevron {
@@ -1181,8 +1263,8 @@
     }
 
     .sp8-media__acc-body {
-      border-top: 1px solid var(--border);
-      padding: 10px 12px;
+      border-top: 1px solid #E8E5E0;
+      padding: 9px 7px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -1235,7 +1317,7 @@
     }
 
     .sp8-timeline__date {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       color: #3D6B4F;
       margin-bottom: 6px;
@@ -1245,7 +1327,7 @@
     .sp8-timeline__card {
       background: #FFFFFF;
       border: 1px solid #E8E5E0;
-      border-radius: 8px;
+      border-radius: 7px;
       padding: 12px 14px;
       margin-left: 0;
     }
@@ -1830,8 +1912,6 @@ RV park</div>
       </div>
     </section>
 
-    <div class="divider"></div>
-
     <h1 class="section-title" id="site-type">サイト種別</h1>
 
     <section class="site-block feature-section">
@@ -1866,8 +1946,6 @@ RV park</div>
         <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
       </div>
     </section>
-
-    <div class="divider"></div>
 
     <h1 class="section-title" id="price">料金</h1>
 
@@ -1944,7 +2022,7 @@ RV park</div>
     <section class="sp6-terms" id="terms">
       <div class="sp6-terms__page">
         <h1 class="sp6-terms__title">利用規約・マナー</h1>
-        <p class="sp6-terms__subtitle">すべてのお客様が快適で安全な時間を過ごせるよう、<br>以下の規約を設けております。</p>
+        
 
         <section>
           <h2 class="sp6-terms__section-title">予約・キャンセル・その他</h2>
@@ -2143,16 +2221,27 @@ RV park</div>
       <div class="sp8-media__page">
         <h1 class="sp8-media__title">お知らせ・メディア</h1>
 
+        <div class="sp8-media__tab-bar" role="tablist" aria-label="News・メディア">
+          <button type="button" class="sp8-media__tab is-active" role="tab" aria-selected="true" data-tab="news">News</button>
+          <button type="button" class="sp8-media__tab" role="tab" aria-selected="false" data-tab="media">メディア</button>
+        </div>
+
         <section>
           <h2 class="sp8-media__section-title">メディア掲載情報</h2>
           <div class="sp8-media__media-list">
             <div class="sp8-media__media-card">
-              <div class="sp8-media__yt-icon"><i data-lucide="play" aria-hidden="true"></i></div>
+              <div class="sp8-media__media-head">
+                <div class="sp8-media__media-head-left">
+                  <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
+                  <span class="sp8-media__media-date">2026年01月01日</span>
+                  <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
+                </div>
+                <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+              </div>
               <div class="sp8-media__media-body">
-                <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
                 <p class="sp8-media__media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。</p>
-                <div class="sp8-media__media-date">2025年7月25日投稿</div>
-                <div class="sp8-media__media-meta">
+                <div class="sp8-media__date-meta-row">
+                  <span class="sp8-media__media-date">2025年7月25日投稿</span>
                   <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>54万回</span>
                   <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>4.7K</span>
                 </div>
@@ -2160,52 +2249,23 @@ RV park</div>
             </div>
 
             <div class="sp8-media__media-card">
-              <div class="sp8-media__yt-icon"><i data-lucide="play" aria-hidden="true"></i></div>
+              <div class="sp8-media__media-head">
+                <div class="sp8-media__media-head-left">
+                  <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
+                  <span class="sp8-media__media-date">2026年01月01日</span>
+                  <div class="sp8-media__media-title">ARJべんちゃん</div>
+                </div>
+                <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+              </div>
               <div class="sp8-media__media-body">
-                <div class="sp8-media__media-title">ARJべんちゃん</div>
                 <p class="sp8-media__media-desc">キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
-                <div class="sp8-media__media-date">2024年12月20日掲載</div>
-                <div class="sp8-media__media-meta">
+                <div class="sp8-media__date-meta-row">
+                  <span class="sp8-media__media-date">2024年12月20日掲載</span>
                   <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>0.2万回</span>
                   <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>2.1K</span>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="sp8-media__section-title">お知らせ</h2>
-
-          <div class="sp8-timeline" aria-label="お知らせタイムライン">
-            <div class="sp8-timeline__line" aria-hidden="true"></div>
-
-            <article class="sp8-timeline__item">
-              <div class="sp8-timeline__date">2026.01/01</div>
-              <div class="sp8-timeline__card">
-                <h3 class="sp8-timeline__card-title">ご利用料金の改定</h3>
-                <ul class="sp8-timeline__card-body">
-                  <li>昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。</li>
-                  <li>「サイト1」料金改定：オープン記念価格を終了し、新料金を適用いたします。</li>
-                  <li>お子様料金の変更：これまで無料だった3歳以下のお子様も、大人と同料金となります。</li>
-                </ul>
-                <button type="button" class="sp8-timeline__card-cta js-open-booking">予約・空き確認</button>
-                <p class="sp8-timeline__note">※改定日より前に完了しているご予約には、予約時点の料金が適用されます。</p>
-              </div>
-            </article>
-
-            <article class="sp8-timeline__item">
-              <div class="sp8-timeline__date">2026.01/25</div>
-              <div class="sp8-timeline__card">
-                <h3 class="sp8-timeline__card-title">小鳥（オウム・インコ等）の同伴について</h3>
-                <ul class="sp8-timeline__card-body">
-                  <li>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</li>
-                  <li>キャンピングカー内のみ同伴可能（テント泊は不可）</li>
-                  <li>オウム・インコ等の比較的小さな鳥（1羽まで）</li>
-                  <li>常にケージを使用し、車内であっても放鳥は禁止</li>
-                </ul>
-              </div>
-            </article>
           </div>
         </section>
 
@@ -2343,6 +2403,18 @@ RV park</div>
       });
       if (closeBtn) closeBtn.addEventListener('click', closeBookingModal);
       if (overlay) overlay.addEventListener('click', closeBookingModal);
+    })();
+
+    /* SP_8 タブ切替（YPILL） */
+    (function () {
+      var tabs = document.querySelectorAll('.sp8-media__tab');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+        });
+      });
     })();
   </script>
 
