@@ -390,7 +390,7 @@
 
     /* こだわりポイントセクション */
     .info-page .feature-section {
-      width: 100vw;
+      width: 100%;
       margin-left: calc(-1 * min(6.4vw, 24px));
       margin-right: calc(-1 * min(6.4vw, 24px));
       padding-left: min(2.7vw, 10px);
@@ -402,7 +402,7 @@
 
     /* 料金セクション */
     .info-page .pricing-section {
-      width: 100vw;
+      width: 100%;
       margin-left: calc(-1 * min(6.4vw, 24px));
       margin-right: calc(-1 * min(6.4vw, 24px));
       /* 料金エリアは左右余白を小さめにして“横に広げる” */
@@ -515,7 +515,7 @@
        SP_6.利用規約・マナー（test3.html 移植 / スコープ付き）
        =============================================== */
     .sp6-terms {
-      width: 100vw;
+      width: 100%;
       margin-left: calc(-1 * min(6.4vw, 24px));
       margin-right: calc(-1 * min(6.4vw, 24px));
       padding-left: min(2.7vw, 10px);
@@ -748,7 +748,7 @@
        SP_7.アクセス（test4.html 移植 / スコープ付き）
        =============================================== */
     .sp7-access {
-      width: 100vw;
+      width: 100%;
       margin-left: calc(-1 * min(6.4vw, 24px));
       margin-right: calc(-1 * min(6.4vw, 24px));
       padding-left: min(2.7vw, 10px);
@@ -1001,29 +1001,35 @@
        SP_8.お知らせ・メディア（test5.html 移植 / スコープ付き）
        =============================================== */
     .sp8-media {
-      width: 100vw;
+      width: 100%;
       margin-left: calc(-1 * min(6.4vw, 24px));
       margin-right: calc(-1 * min(6.4vw, 24px));
       padding-left: min(2.7vw, 10px);
       padding-right: min(2.7vw, 10px);
+      background: var(--bg);
     }
 
     .sp8-media__page {
       width: 100%;
-      padding: 0;
+      padding: 36px 0 0; /* 上余白を padding に（マージン相殺でタイトルが消えないように） */
       display: flex;
       flex-direction: column;
       gap: 24px;
       color: var(--text-primary);
     }
 
-    /* 他のセクションタイトルと同じ余白：上36px・下24px */
+    /* 他のセクションタイトルと同じ余白：下24px（Vugpo 大見出し） */
     .sp8-media__title {
       font-size: 18px;
       font-weight: 300;
       letter-spacing: -0.4px;
+      line-height: 1.4;
       text-align: center;
-      margin: 36px 0 24px;
+      margin: 0 0 24px;
+      padding: 0;
+      color: #1C1C1C !important;
+      flex-shrink: 0;
+      min-height: 1.4em;
     }
 
     .sp8-media__section-title {
@@ -1685,10 +1691,34 @@
       color: #8B8680;
     }
 
-    /* タブレット以上 */
+    /* スマホ（横向き含む）：左寄りになりすぎないよう余白を確保
+       ※iPhone横向きは CSS 幅が 800px 前後になるため 767px だと効かない */
+    @media (max-width: 900px) {
+      /* スマホは全体の左右余白をもう少し潰す */
+      .info-page {
+        padding-left: clamp(10px, 3.5vw, 16px);
+        padding-right: clamp(10px, 3.5vw, 16px);
+      }
+
+      .info-page .feature-section,
+      .info-page .pricing-section,
+      .sp6-terms,
+      .sp7-access,
+      .sp8-media {
+        margin-left: 0;
+        margin-right: 0;
+        /* 親(.info-page)の左右paddingに揃える（= ここでは追加paddingしない） */
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    /* タブレット以上：セクション幅を広げて左右の余白を埋める */
     @media (min-width: 768px) {
       .info-page {
-        max-width: 600px;
+        width: 100%;
+        /* 広めの画面でも余白が残りすぎないように、上限を上げる */
+        max-width: min(1400px, 96vw);
       }
     }
 
