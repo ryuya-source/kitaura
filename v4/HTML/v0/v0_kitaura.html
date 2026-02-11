@@ -107,11 +107,13 @@
       cursor: pointer;
       padding: 10px;
       box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      /* 白背景なし（透過） */
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+      /* 背景が無いので影は控えめに */
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -119,8 +121,8 @@
     }
 
     .hamburger-icon:hover {
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+      background: transparent;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
     }
 
     .hamburger-icon:active {
@@ -157,7 +159,8 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.7);
+      /* 予約モーダル（S3QQi）と同じ暗さ */
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
@@ -173,11 +176,11 @@
     }
 
     .nav-overlay__panel {
-      background: #1a1a1a;
+      background: #FAF8F5;
       border-radius: 12px;
       padding: 24px 32px;
       min-width: 260px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
     }
 
     .nav-overlay__list {
@@ -190,7 +193,7 @@
     .nav-overlay__link {
       display: block;
       padding: 12px 16px;
-      color: #fff8f8;
+      color: #1C1C1C;
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
@@ -200,8 +203,8 @@
 
     .nav-overlay__link:hover,
     .nav-overlay__link:focus {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: rgba(0, 0, 0, 0.06);
+      color: #1C1C1C;
     }
 
     /* コンテンツエリア hpgef */
@@ -1067,9 +1070,29 @@
       box-sizing: border-box;
     }
     .sp8-media__tab.is-active {
-      background: #2C5F7C;
       color: #FFFFFF;
+      border-color: transparent;
+    }
+    /* 押下時の色（Pencil: UXCkc / KbLlS / j8TZL に合わせる） */
+    .sp8-media__tab.is-active[data-tab="news"] {
+      background: #2C5F7C; /* News */
       border-color: #2C5F7C;
+    }
+    .sp8-media__tab.is-active[data-tab="media"] {
+      background: #D4A017; /* メディア */
+      border-color: #D4A017;
+    }
+    .sp8-media__tab.is-active[data-tab="notice"] {
+      background: #4A7C59; /* お知らせ */
+      border-color: #4A7C59;
+    }
+
+    /* タブで表示切替するコンテンツ */
+    .sp8-media__content {
+      display: none;
+    }
+    .sp8-media__content.is-active {
+      display: block;
     }
 
     .sp8-media__media-list {
@@ -1089,6 +1112,7 @@
     }
 
     .sp8-media__media-head {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1096,6 +1120,15 @@
       gap: 5px;
       background: #FFFFFF;
       border-bottom: 1px solid #E8E5E0;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+    }
+    .sp8-media__media-head:focus-visible {
+      outline: 2px solid rgba(44, 95, 124, 0.45);
+      outline-offset: 2px;
+      border-radius: 6px;
     }
 
     .sp8-media__media-head-left {
@@ -1131,6 +1164,13 @@
       display: flex;
       flex-direction: column;
       gap: 7px;
+    }
+    /* デフォルトは閉（hidden属性で非表示）。開いたときだけ表示 */
+    .sp8-media__media-body[hidden] {
+      display: none;
+    }
+    .sp8-media__media-card.is-open .sp8-media__chevron svg {
+      transform: rotate(180deg);
     }
 
     .sp8-media__media-title {
@@ -1213,11 +1253,22 @@
     }
 
     .sp8-media__acc-head {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 9px 7px; /* YwwMw */
       gap: 5px; /* YwwMw */
+      background: #FFFFFF;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+    }
+    .sp8-media__acc-head:focus-visible {
+      outline: 2px solid rgba(74, 124, 89, 0.45);
+      outline-offset: 2px;
+      border-radius: 6px;
     }
 
     .sp8-media__acc-left {
@@ -1266,6 +1317,7 @@
       width: 9px;
       height: 9px;
       stroke: currentColor;
+      transition: transform 160ms ease;
     }
 
     .sp8-media__acc-body {
@@ -1274,6 +1326,12 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+    }
+    .sp8-media__acc-body[hidden] {
+      display: none;
+    }
+    .sp8-media__accordion.is-open .sp8-media__chevron svg {
+      transform: rotate(180deg);
     }
 
     .sp8-media__acc-body h4 {
@@ -1807,9 +1865,8 @@ RV park</div>
     <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
       <div class="nav-overlay__panel">
         <ul class="nav-overlay__list">
-          <li><a href="#pet" class="nav-overlay__link">ペット</a></li>
-          <li><a href="#feature" class="nav-overlay__link">こだわりポイント</a></li>
-          <li><a href="#site-type" class="nav-overlay__link">サイト種別</a></li>
+          <li><a href="#pet" class="nav-overlay__link">犬種制限について</a></li>
+          <li><a href="#feature" class="nav-overlay__link">サイト案内</a></li>
           <li><a href="#price" class="nav-overlay__link">料金</a></li>
           <li><a href="#terms" class="nav-overlay__link">利用規約・マナー</a></li>
           <li><a href="#access" class="nav-overlay__link">アクセス</a></li>
@@ -2257,19 +2314,19 @@ RV park</div>
           <button type="button" class="sp8-media__tab" role="tab" aria-selected="false" data-tab="notice">お知らせ</button>
         </div>
 
-        <section>
-          <h2 class="sp8-media__section-title">メディア掲載情報</h2>
+        <!-- mQmwm / OsQ7A（News と メディアで表示） -->
+        <section class="sp8-media__content is-active" data-panels="news media">
           <div class="sp8-media__media-list">
             <div class="sp8-media__media-card">
-              <div class="sp8-media__media-head">
+              <button type="button" class="sp8-media__media-head" aria-expanded="false" aria-controls="sp8-media-body-itakura">
                 <div class="sp8-media__media-head-left">
                   <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
                   <span class="sp8-media__media-date">2026年01月01日</span>
                   <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
                 </div>
                 <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
-              </div>
-              <div class="sp8-media__media-body">
+              </button>
+              <div class="sp8-media__media-body" id="sp8-media-body-itakura" hidden>
                 <p class="sp8-media__media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。</p>
                 <div class="sp8-media__date-meta-row">
                   <span class="sp8-media__media-date">2025年7月25日投稿</span>
@@ -2280,15 +2337,15 @@ RV park</div>
             </div>
 
             <div class="sp8-media__media-card">
-              <div class="sp8-media__media-head">
+              <button type="button" class="sp8-media__media-head" aria-expanded="false" aria-controls="sp8-media-body-arj">
                 <div class="sp8-media__media-head-left">
                   <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
                   <span class="sp8-media__media-date">2026年01月01日</span>
                   <div class="sp8-media__media-title">ARJべんちゃん</div>
                 </div>
                 <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
-              </div>
-              <div class="sp8-media__media-body">
+              </button>
+              <div class="sp8-media__media-body" id="sp8-media-body-arj" hidden>
                 <p class="sp8-media__media-desc">キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
                 <div class="sp8-media__date-meta-row">
                   <span class="sp8-media__media-date">2024年12月20日掲載</span>
@@ -2300,6 +2357,42 @@ RV park</div>
           </div>
         </section>
 
+        <!-- 3q1Dx / 53lXe（News と お知らせで表示） -->
+        <section class="sp8-media__content is-active" data-panels="news notice">
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-1">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年01月01日</span>
+                <div class="sp8-media__acc-title">RV協会の全国アンケートで10位に選ばれました</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-1" hidden>
+              <h4>お知らせ</h4>
+              <p>〇〇ランキングにて当施設が全国10位に選出されました。</p>
+              <div class="sp8-media__acc-note">※本文は仮テキストです（Pencilの内容に合わせて差し替えできます）</div>
+            </div>
+          </div>
+
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-2">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年01月01日</span>
+                <div class="sp8-media__acc-title">小鳥（オウム・インコ等）の同伴について</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-2" hidden>
+              <h4>お知らせ</h4>
+              <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
+              <p>キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- インスタ（jScjk相当）：タブに関係なく常に表示） -->
         <section>
           <h2 class="sp8-media__section-title">インスタグラム</h2>
           <div class="sp8-media__insta-grid">
@@ -2439,11 +2532,73 @@ RV park</div>
     /* SP_8 タブ切替（YPILL） */
     (function () {
       var tabs = document.querySelectorAll('.sp8-media__tab');
+      var contents = document.querySelectorAll('.sp8-media__content');
+
+      function setActive(tabName) {
+        // tabs
+        tabs.forEach(function (t) {
+          var isActive = t.dataset.tab === tabName;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        // contents
+        contents.forEach(function (c) {
+          var panels = (c.getAttribute('data-panels') || '').split(/\s+/).filter(Boolean);
+          c.classList.toggle('is-active', panels.indexOf(tabName) !== -1);
+        });
+      }
+
+      // init from markup
+      var initial = document.querySelector('.sp8-media__tab.is-active');
+      setActive((initial && initial.dataset.tab) ? initial.dataset.tab : 'news');
+
       tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
-          tabs.forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
-          tab.classList.add('is-active');
-          tab.setAttribute('aria-selected', 'true');
+          setActive(tab.dataset.tab);
+        });
+      });
+    })();
+
+    /* SP_8 メディアカード：アコーディオン（mQmwm相当） */
+    (function () {
+      var cards = document.querySelectorAll('.sp8-media__media-card');
+      cards.forEach(function (card) {
+        var head = card.querySelector('.sp8-media__media-head');
+        var bodyId = head && head.getAttribute('aria-controls');
+        var body = bodyId ? document.getElementById(bodyId) : null;
+        if (!head || !body) return;
+
+        // 初期状態は閉（hidden）
+        head.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+        card.classList.remove('is-open');
+
+        head.addEventListener('click', function () {
+          var isOpen = card.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          body.hidden = !isOpen;
+        });
+      });
+    })();
+
+    /* SP_8 お知らせカード：アコーディオン（3q1Dx / 53lXe相当） */
+    (function () {
+      var accs = document.querySelectorAll('.sp8-media__accordion');
+      accs.forEach(function (acc) {
+        var head = acc.querySelector('.sp8-media__acc-head');
+        var bodyId = head && head.getAttribute('aria-controls');
+        var body = bodyId ? document.getElementById(bodyId) : null;
+        if (!head || !body) return;
+
+        // 初期状態は閉（hidden）
+        head.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+        acc.classList.remove('is-open');
+
+        head.addEventListener('click', function () {
+          var isOpen = acc.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          body.hidden = !isOpen;
         });
       });
     })();
