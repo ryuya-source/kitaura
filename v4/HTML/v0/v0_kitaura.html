@@ -4,14 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <script>
-  (function(){
-    var p = location.pathname;
-    if (p === '/' || p === '/contact.html' || p === '/contact_complete.html') {
-      document.write('<base href="/v4/HTML/v0/">');
-    }
-  })();
-  </script>
+  <!-- base タグは未使用（/ や実機 http://IP:3000/ で画像が相対パスで正しく読めるようにする） -->
   <title>SP_0.TOP画面 - KITAURA LAKESIDE RV park</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +52,7 @@
       flex-direction: column;
       align-items: center;
       gap: min(4vw, 25px);
-      background-image: url('../../src/image_side.jpg');
+      background-image: url('src/image_side.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -410,13 +403,6 @@
       font-weight: 300;
       letter-spacing: -0.3px;
     }
-    .section-title-row .section-title-img {
-      width: 50px;
-      height: 38px;
-      object-fit: contain;
-      opacity: 0.9;
-      flex-shrink: 0;
-    }
 
     /* Pencil tjRrM（L3AZkWrapper）: dIDF0 の上、右寄せ */
     .site-type-notice {
@@ -427,9 +413,9 @@
       margin-bottom: 0;
     }
     .site-type-notice img {
-      width: min(560px, 95vw);
+      width: min(700px, 96vw);
       height: auto;
-      max-height: 520px;
+      max-height: 680px;
       object-fit: contain;
     }
 
@@ -1192,7 +1178,7 @@
     }
 
     /* アコーディオンタイトル同士の間隔を等間隔（12px）に */
-    .sp8-media__content[data-panels="news media"] + .sp8-media__content[data-panels="news notice"] {
+    .sp8-media__content[data-panels="news notice"] + .sp8-media__content[data-panels="news media"] {
       margin-top: -12px;
     }
 
@@ -1670,15 +1656,16 @@
       z-index: 100;
     }
 
+    /* Pencil mssla: 予約・空き確認ボタン（実装で少し大きく） */
     .fixed-cta button {
       pointer-events: auto;
       background: var(--accent-green);
       color: #fff;
-      font-size: clamp(10px, 2.9vw, 11px);
+      font-size: clamp(12px, 3.5vw, 14px);
       font-weight: 600;
       border: none;
-      border-radius: min(5.3vw, 20px);
-      padding: min(2.7vw, 10px) min(4.3vw, 16px);
+      border-radius: min(5.3vw, 22px);
+      padding: min(3.2vw, 12px) min(5vw, 20px);
       box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
       cursor: pointer;
       transition: all 0.2s ease;
@@ -1944,7 +1931,7 @@
         <!-- ロゴ画像 jy9TP -->
         <img
           class="logo-img"
-          src="../../src/futter_logo.png"
+          src="src/futter_logo.png"
           alt="KITAURA LAKESIDE RV park"
           width="32"
           height="31"
@@ -2027,7 +2014,6 @@ RV park</div>
       <div class="section-title-row__left" aria-hidden="true"></div>
       <div class="section-title-row__center">
         <h1 class="section-title">こだわりポイント</h1>
-        <img src="src/anime/dogrun1.png" alt="" class="section-title-img" width="50" height="38" loading="eager">
       </div>
       <div class="section-title-row__right" aria-hidden="true"></div>
     </div>
@@ -2098,9 +2084,9 @@ RV park</div>
       <div class="image-row" id="surroundings-image-row" data-src-folder="4_nearby"></div>
     </section>
 
-    <!-- Pencil tjRrM（L3AZkWrapper）: dIDF0（サイト種別）の上に表示 -->
+    <!-- Pencil tjRrM（L3AZkWrapper）: dIDF0（サイト種別）の上に表示（実装で大きく表示） -->
     <div class="site-type-notice" aria-hidden="true">
-      <img src="src/anime/apology4.png" alt="" width="560" height="auto" loading="lazy">
+      <img src="src/anime/apology4.png" alt="" width="700" height="auto" loading="lazy">
     </div>
 
     <h1 class="section-title" id="site-type">サイト種別</h1>
@@ -2412,6 +2398,41 @@ RV park</div>
           <button type="button" class="sp8-media__tab" role="tab" aria-selected="false" data-tab="notice">お知らせ</button>
         </div>
 
+        <!-- 3q1Dx / 53lXe（News と お知らせで表示）※Newsタブで一番上＝最新になるよう先に配置 -->
+        <section class="sp8-media__content is-active" data-panels="news notice">
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-1">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年02月01日</span>
+                <div class="sp8-media__acc-title">RV協会の全国アンケートで10位に選ばれました</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-1" hidden>
+              <h4>お知らせ</h4>
+              <p>〇〇ランキングにて当施設が全国10位に選出されました。</p>
+              <div class="sp8-media__acc-note">※本文は仮テキストです（Pencilの内容に合わせて差し替えできます）</div>
+            </div>
+          </div>
+
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-2">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年01月25日</span>
+                <div class="sp8-media__acc-title">小鳥（オウム・インコ等）の同伴について</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-2" hidden>
+              <h4>お知らせ</h4>
+              <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
+              <p>キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。</p>
+            </div>
+          </div>
+        </section>
+
         <!-- mQmwm / OsQ7A（News と メディアで表示） -->
         <section class="sp8-media__content is-active" data-panels="news media">
           <div class="sp8-media__media-list">
@@ -2419,7 +2440,7 @@ RV park</div>
               <button type="button" class="sp8-media__media-head" aria-expanded="false" aria-controls="sp8-media-body-itakura">
                 <div class="sp8-media__media-head-left">
                   <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
-                  <span class="sp8-media__media-date">2026年01月01日</span>
+                  <span class="sp8-media__media-date">2025年08月15日</span>
                   <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
                 </div>
                 <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
@@ -2451,41 +2472,6 @@ RV park</div>
                   <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>2.1K</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 3q1Dx / 53lXe（News と お知らせで表示） -->
-        <section class="sp8-media__content is-active" data-panels="news notice">
-          <div class="sp8-media__accordion">
-            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-1">
-              <div class="sp8-media__acc-left">
-                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
-                <span class="sp8-media__date">2026年01月01日</span>
-                <div class="sp8-media__acc-title">RV協会の全国アンケートで10位に選ばれました</div>
-              </div>
-              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
-            </button>
-            <div class="sp8-media__acc-body" id="sp8-notice-body-1" hidden>
-              <h4>お知らせ</h4>
-              <p>〇〇ランキングにて当施設が全国10位に選出されました。</p>
-              <div class="sp8-media__acc-note">※本文は仮テキストです（Pencilの内容に合わせて差し替えできます）</div>
-            </div>
-          </div>
-
-          <div class="sp8-media__accordion">
-            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-2">
-              <div class="sp8-media__acc-left">
-                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
-                <span class="sp8-media__date">2026年01月01日</span>
-                <div class="sp8-media__acc-title">小鳥（オウム・インコ等）の同伴について</div>
-              </div>
-              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
-            </button>
-            <div class="sp8-media__acc-body" id="sp8-notice-body-2" hidden>
-              <h4>お知らせ</h4>
-              <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
-              <p>キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。</p>
             </div>
           </div>
         </section>
@@ -2677,6 +2663,42 @@ RV park</div>
           body.hidden = !isOpen;
         });
       });
+    })();
+
+    /* SP_8 お知らせ・メディア：表示順を「一番上が最新」にソート */
+    (function () {
+      function parseDateYMD(text) {
+        if (!text) return 0;
+        var m = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+        if (!m) return 0;
+        return new Date(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10)).getTime();
+      }
+      var accordionParent = document.querySelector('.sp8-media__content[data-panels="news notice"]');
+      if (accordionParent) {
+        var accs = Array.from(accordionParent.querySelectorAll('.sp8-media__accordion'));
+        accs.sort(function (a, b) {
+          var dateElA = a.querySelector('.sp8-media__date');
+          var dateElB = b.querySelector('.sp8-media__date');
+          var tA = parseDateYMD(dateElA ? dateElA.textContent : '');
+          var tB = parseDateYMD(dateElB ? dateElB.textContent : '');
+          return tB - tA;
+        });
+        accs.forEach(function (node) { accordionParent.appendChild(node); });
+      }
+      var mediaList = document.querySelector('.sp8-media__media-list');
+      if (mediaList) {
+        var cards = Array.from(mediaList.querySelectorAll('.sp8-media__media-card'));
+        cards.sort(function (a, b) {
+          var headA = a.querySelector('.sp8-media__media-head');
+          var headB = b.querySelector('.sp8-media__media-head');
+          var dateElA = headA ? headA.querySelector('.sp8-media__media-date') : null;
+          var dateElB = headB ? headB.querySelector('.sp8-media__media-date') : null;
+          var tA = parseDateYMD(dateElA ? dateElA.textContent : '');
+          var tB = parseDateYMD(dateElB ? dateElB.textContent : '');
+          return tB - tA;
+        });
+        cards.forEach(function (node) { mediaList.appendChild(node); });
+      }
     })();
 
     /* SP_8 お知らせカード：アコーディオン（3q1Dx / 53lXe相当） */
