@@ -55,6 +55,9 @@
       align-items: center;
       margin-top: min(2vh, 15px);
     }
+    .header--no-logo {
+      justify-content: flex-end;
+    }
 
     /* ロゴエリア Blklp */
     .logo-frame {
@@ -2189,6 +2192,20 @@
       font-size: 12px;
       font-weight: normal;
       color: var(--text-primary);
+    }
+
+    .pet-rules-back-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .pet-rules-back-bottom__link {
+      font-size: 12px;
+      color: var(--accent-green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     /* 固定フッター CTA：v0 .fixed-cta button と同一 */

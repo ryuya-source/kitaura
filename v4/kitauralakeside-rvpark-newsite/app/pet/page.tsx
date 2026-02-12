@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PetFlipBook from "@/components/PetFlipBook";
 import PetBookingFooter from "@/components/PetBookingFooter";
+import HeaderWithNav from "@/components/HeaderWithNav";
 
 export const metadata = {
   title: "ペット同伴ルール - KITAURA LAKESIDE RV park",
@@ -22,6 +23,7 @@ export default function PetPage() {
 
   return (
     <div className="pet-rules-wrapper">
+      <HeaderWithNav hideLogo />
       <main className="pet-rules-page" aria-label="ペット同伴ルール">
         <div className="pet-rules-title-row" aria-label="犬種制限について">
           <div className="pet-rules-title-row__left" aria-hidden />

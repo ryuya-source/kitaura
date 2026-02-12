@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 
 type Props = {
   className?: string;
@@ -46,7 +47,8 @@ export default function PetFlipBook({ className }: Props) {
         // 縦(スマホ)は1ページ、横幅が取れる時は見開き表示
         usePortrait: true,
         mobileScrollSupport: true,
-        showCover: true,
+        // 表紙モードだと「最初の1回だけ」めくれ方が変わるため、全ページ同一アニメに統一
+        showCover: false,
         drawShadow: true,
         maxShadowOpacity: 0.35,
         flippingTime: 900,
@@ -96,7 +98,8 @@ export default function PetFlipBook({ className }: Props) {
             <div
               key={src}
               className="pet-flipbook__page"
-              data-density={i === 0 || i === total - 1 ? "hard" : "soft"}
+              // 1枚目（表紙）のめくれ方を全ページに統一
+              data-density="hard"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -133,6 +136,12 @@ export default function PetFlipBook({ className }: Props) {
         >
           次
         </button>
+      </div>
+
+      <div className="pet-rules-back-bottom">
+        <Link href="/" className="pet-rules-back-bottom__link">
+          TOPに戻る
+        </Link>
       </div>
     </>
   );
