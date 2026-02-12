@@ -20,7 +20,7 @@ const ACCORDIONS = [
 ];
 
 export default function Sp7AccessSection() {
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openIds, setOpenIds] = useState<Set<string>>(() => new Set());
 
   return (
     <section className="sp7-access" id="access">
@@ -76,16 +76,26 @@ export default function Sp7AccessSection() {
           <p className="sp7-access__desc">最寄りのインターチェンジからの目安時間です。</p>
           <div className="sp7-access__accordion-group">
             {ACCORDIONS.map((acc) => (
+              (() => {
+                const isOpen = openIds.has(acc.id);
+                return (
               <div
                 key={acc.id}
-                className={`sp7-access__accordion ${openId === acc.id ? "is-open" : ""}`}
+                className={`sp7-access__accordion ${isOpen ? "is-open" : ""}`}
               >
                 <button
                   type="button"
                   className="sp7-access__acc-head"
-                  aria-expanded={openId === acc.id}
+                  aria-expanded={isOpen}
                   aria-controls={acc.id}
-                  onClick={() => setOpenId(openId === acc.id ? null : acc.id)}
+                  onClick={() => {
+                    setOpenIds((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(acc.id)) next.delete(acc.id);
+                      else next.add(acc.id);
+                      return next;
+                    });
+                  }}
                 >
                   <span className="sp7-access__acc-title">
                     <span className="sp7-access__route-icon">
@@ -100,7 +110,7 @@ export default function Sp7AccessSection() {
                 <div
                   id={acc.id}
                   className="sp7-access__acc-body"
-                  hidden={openId !== acc.id}
+                  hidden={!isOpen}
                 >
                   {acc.rows.map((row) => (
                     <div key={row.label} className="sp7-access__acc-row">
@@ -110,6 +120,8 @@ export default function Sp7AccessSection() {
                   ))}
                 </div>
               </div>
+                );
+              })()
             ))}
           </div>
         </section>

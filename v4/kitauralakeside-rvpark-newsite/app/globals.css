@@ -94,33 +94,31 @@
       justify-content: flex-end;
       align-items: center;
       padding: 12px;
-      padding-top: max(12px, env(safe-area-inset-top));
+      padding-top: max(24px, env(safe-area-inset-top));
       padding-right: max(12px, env(safe-area-inset-right));
     }
 
-    /* ハンバーガーアイコン - モダンデザイン（開閉で×に変形） */
+    /* ハンバーガーアイコン - 枠なし・やや大きく */
     .hamburger-icon {
-      width: 44px;
-      height: 44px;
+      width: 56px;
+      height: 56px;
       cursor: pointer;
-      padding: 10px;
+      padding: 12px;
       box-sizing: border-box;
-      /* 白背景なし（透過） */
       background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-radius: 12px;
-      /* 背景が無いので影は控えめに */
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .hamburger-icon:hover {
       background: transparent;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+      box-shadow: none;
+      opacity: 0.85;
     }
 
     .hamburger-icon:active {
@@ -209,19 +207,19 @@
     .content-area {
       width: 100%;
       flex: 1;
-      padding-top: min(20vh, 120px);
+      padding-top: min(28vh, 160px);
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* メインタイトル n3Cfn - レスポンシブ対応 */
+    /* メインタイトル n3Cfn - レスポンシブ対応（やや大きく） */
     .main-title {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(16px, 3.2vw, 28px);
+      font-size: clamp(20px, 4.2vw, 36px);
       font-weight: 400;
-      letter-spacing: clamp(2px, 0.5vw, 4px);
+      letter-spacing: clamp(2px, 0.5vw, 5px);
       text-align: center;
     }
 
@@ -258,18 +256,19 @@
     }
 
     /* グラスカード PHEvV */
+    /* PHEvV ガラスカード（やや大きく） */
     .glass-card {
-      width: min(60vw, 280px);
-      min-height: min(46vw, 220px);
+      width: min(72vw, 340px);
+      min-height: min(54vw, 260px);
       background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-radius: min(2vw, 12px);
+      border-radius: min(2.2vw, 14px);
       border: 1px solid transparent;
       display: flex;
       flex-direction: column;
-      gap: min(3vw, 16px);
-      padding: min(3.5vw, 18px) min(5.5vw, 28px);
+      gap: min(3.5vw, 20px);
+      padding: min(4vw, 22px) min(6vw, 32px);
       justify-content: center;
       align-items: center;
     }
@@ -278,9 +277,9 @@
     .glass-card__title {
       margin: 0;
       color: #ffffff;
-      font-size: clamp(16px, 3.5vw, 22px);
+      font-size: clamp(20px, 4.5vw, 28px);
       font-weight: 300;
-      letter-spacing: clamp(2px, 0.5vw, 3px);
+      letter-spacing: clamp(2px, 0.5vw, 4px);
       text-align: center;
       white-space: pre-line;
       line-height: 1.5;
@@ -290,19 +289,19 @@
     .glass-card__desc {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(10px, 2vw, 14px);
+      font-size: clamp(12px, 2.5vw, 17px);
       font-weight: 400;
       line-height: 1.8;
       text-align: center;
     }
 
-    /* CTAボタン rOqdq */
+    /* CTAボタン rOqdq（もっと大きく） */
     .pet-cta-btn {
       display: inline-flex;
       background: rgba(255, 255, 255, 0.3);
-      border-radius: min(1.2vw, 8px);
+      border-radius: min(1.6vw, 12px);
       border: 1px solid #ffffff;
-      padding: min(1.8vw, 10px) min(4vw, 20px);
+      padding: min(2.6vw, 18px) min(5.5vw, 32px);
       justify-content: center;
       align-items: center;
       text-decoration: none;
@@ -322,7 +321,7 @@
     /* CTAテキスト u1vav */
     .pet-cta-btn__text {
       color: #ffffff;
-      font-size: clamp(11px, 2.2vw, 16px);
+      font-size: clamp(14px, 2.8vw, 20px);
       font-weight: 400;
     }
 
@@ -400,11 +399,34 @@
       margin-top: 12px;
       margin-bottom: 0;
     }
-    .site-type-notice img {
-      width: min(700px, 96vw);
+    .site-type-notice img,
+    .site-type-notice .site-type-notice__img {
+      width: min(1100px, 100vw);
       height: auto;
-      max-height: 680px;
+      max-height: 1000px;
       object-fit: contain;
+    }
+
+    /* スマホ表示：大きく表示しつつ、見切れないようにする */
+    @media (max-width: 768px) {
+      .site-type-notice {
+        /* .info-page の左右 padding を打ち消して横幅を広げる */
+        margin-left: calc(-1 * min(6.4vw, 24px));
+        margin-right: calc(-1 * min(6.4vw, 24px));
+        width: 100vw;
+        max-width: 100vw;
+        justify-content: flex-end;
+      }
+
+      .site-type-notice img,
+      .site-type-notice .site-type-notice__img {
+        width: 100%;
+        height: auto;
+        max-height: 75vh;
+        object-fit: contain; /* 見切れないように全体を表示 */
+        object-position: center;
+        display: block;
+      }
     }
 
     .subheading {
@@ -835,7 +857,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 12px;
+      padding: 18px 12px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -870,7 +892,7 @@
       background: #FFF4DA;
       border: 1px solid #F1E1B8;
       border-radius: 8px;
-      padding: 10px;
+      padding: 14px 10px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -912,7 +934,7 @@
       background: #EEF6EE;
       border: 1px solid #CFE3CF;
       border-radius: 8px;
-      padding: 10px;
+      padding: 14px 10px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -992,7 +1014,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 7px 5px;
+      padding: 14px 10px;
       background: #F5F3F0;
       border: 0;
       border-radius: 7px 7px 0 0;
@@ -1058,7 +1080,7 @@
       display: grid;
       grid-template-columns: 140px 1fr; /* x13Tv と同じ右カラム開始位置 */
       align-items: center;
-      padding: 9px 8px; /* x13Tv側の行(padding:9 8)に寄せる */
+      padding: 12px 10px;
       border-top: 1px solid var(--border);
       font-size: 10px;
     }
@@ -1192,8 +1214,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 7px;
-      min-height: 32px;
+      padding: 16px 7px;
+      min-height: 48px;
       box-sizing: border-box;
       gap: 5px;
       background: #FFFFFF;
@@ -1238,7 +1260,7 @@
     }
 
     .sp8-media__media-body {
-      padding: 9px 7px;
+      padding: 16px 7px;
       display: flex;
       flex-direction: column;
       gap: 7px;
@@ -1335,10 +1357,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 7px; /* YwwMw */
-      min-height: 32px;
+      padding: 16px 7px;
+      min-height: 48px;
       box-sizing: border-box;
-      gap: 5px; /* YwwMw */
+      gap: 5px;
       background: #FFFFFF;
       border: 0;
       cursor: pointer;
@@ -1402,7 +1424,7 @@
 
     .sp8-media__acc-body {
       border-top: 1px solid #E8E5E0;
-      padding: 9px 7px;
+      padding: 16px 7px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -1535,30 +1557,41 @@
       gap: 6px;
     }
 
-    .sp8-media__insta-thumb {
+    .sp8-media__insta-thumb,
+    .sp8-media__insta-embed {
       width: 100%;
       aspect-ratio: 1 / 1;
       background: #BFBFBF;
       border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* Instagram公式埋め込みは内部で高さが出やすいので、枠内に収める */
+    .sp8-media__insta-embed .instagram-media {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      background: transparent !important;
     }
 
     .sp8-media__follow {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 11px; /* B9vTA */
-      padding: 5px 9px; /* B9vTA */
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px; /* B9vTA */
-      font-size: 7px; /* Nlc4W */
+      gap: 6px;
+      font-size: 12px;
       font-weight: 600;
       margin-top: 12px;
     }
 
     .sp8-media__ig {
-      width: 9px; /* y60Jz */
-      height: 9px; /* y60Jz */
+      width: 14px;
+      height: 14px;
       color: #E1306C; /* y60Jz */
       display: grid;
       place-items: center;
@@ -1885,13 +1918,13 @@
       }
 
       .hamburger-icon {
-        width: 44px;
-        height: 44px;
+        width: 56px;
+        height: 56px;
       }
 
       .main-title {
-        font-size: 24px;
-        letter-spacing: 4px;
+        font-size: 30px;
+        letter-spacing: 5px;
       }
     }
 
@@ -1902,7 +1935,7 @@
       }
 
       .main-title {
-        font-size: clamp(14px, 2.5vh, 20px);
+        font-size: clamp(18px, 3vh, 24px);
       }
     }
 
@@ -1955,9 +1988,9 @@
     }
     .pet-rules-title-row .pet-rules-page__title {
       margin: 0;
-      font-size: 18px;
+      font-size: clamp(15px, 4.5vw, 17px);
       font-weight: 300;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
       text-align: center;
       flex-shrink: 0;
     }
@@ -1992,7 +2025,7 @@
 
     /* 小見出し：v0 .subheading と同一 */
     .pet-rules-section__header-title {
-      font-size: clamp(11px, 3.2vw, 12px);
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: -0.3px;
       color: var(--text-primary);
@@ -2000,7 +2033,7 @@
 
     /* 説明文：v0 .subtext / .table-label と同一 */
     .pet-rules-section__header-desc {
-      font-size: clamp(9px, 2.7vw, 10px);
+      font-size: 10px;
       font-weight: normal;
       line-height: 1.7;
       color: var(--text-secondary);
@@ -2010,7 +2043,7 @@
     /* 同伴可能カード：v0 .card と同一（角丸・padding・gap） */
     .pet-rules-card {
       background: var(--surface);
-      border: 1px solid #D4E8D4;
+      border: 1px solid #E8E5E0;
       border-radius: min(2.1vw, 8px);
       padding: min(3.2vw, 12px);
       display: flex;
@@ -2020,7 +2053,7 @@
     }
 
     .pet-rules-card__label {
-      font-size: clamp(9px, 2.7vw, 10px);
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.5px;
       color: #5A8A5A;
@@ -2033,13 +2066,13 @@
     }
 
     .pet-rules-card__item {
-      font-size: clamp(9px, 2.7vw, 10px);
+      font-size: 12px;
       font-weight: normal;
       color: var(--text-primary);
     }
 
     .pet-rules-card__note {
-      font-size: clamp(7px, 2.1vw, 8px);
+      font-size: 10px;
       font-weight: normal;
       color: var(--text-muted);
       line-height: 1.5;
@@ -2054,29 +2087,30 @@
     .pet-rules-link {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 1px;
       width: 100%;
       text-decoration: none;
     }
 
     .pet-rules-link__text {
-      font-size: clamp(7px, 2.1vw, 8px);
+      font-size: 12px;
       font-weight: 500;
-      color: var(--accent-green);
-      text-align: center;
+      color: var(--text-primary);
+      text-align: left;
     }
 
-    .pet-rules-link__underline {
-      width: 125px;
-      height: 1px;
-      background: var(--accent-green);
+    .pet-rules-link__em {
+      color: var(--accent-green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
     }
 
     /* スライダー画像：v0 .thumb と同様の角丸・背景 */
     .pet-rules-slider {
       width: 100%;
-      max-width: 276px;
+      max-width: 100%;
       aspect-ratio: 276 / 191;
       border-radius: 5px;
       overflow: hidden;
@@ -2091,14 +2125,38 @@
       display: block;
     }
 
-    /* ページネーション：v0 のボタン・テキストサイズに合わせる */
+    /* ページめくり（StPageFlip / page-flip） */
+    .pet-flipbook {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pet-flipbook__page {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pet-flipbook__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ページネーション：スライダー幅に合わせる */
     .pet-rules-pagination {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
       width: 100%;
-      max-width: 276px;
+      max-width: 100%;
     }
 
     .pet-rules-pagination__btn {
@@ -2111,7 +2169,7 @@
       border: none;
       cursor: pointer;
       font-family: inherit;
-      font-size: clamp(7px, 2.1vw, 8px);
+      font-size: 12px;
       font-weight: 500;
       color: #FFFFFF;
     }
@@ -2121,7 +2179,7 @@
     }
 
     .pet-rules-pagination__info {
-      font-size: clamp(7px, 2.1vw, 8px);
+      font-size: 12px;
       font-weight: normal;
       color: var(--text-primary);
     }
@@ -2141,18 +2199,19 @@
       pointer-events: none;
     }
 
+    /* ホーム .fixed-cta button と同一サイズ */
     .pet-rules-footer__btn {
       pointer-events: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: min(2.7vw, 10px) min(4.3vw, 16px);
-      border-radius: min(5.3vw, 20px);
+      padding: min(3.2vw, 12px) min(5vw, 20px);
+      border-radius: min(5.3vw, 22px);
       background: var(--accent-green);
       border: none;
       cursor: pointer;
       font-family: inherit;
-      font-size: clamp(10px, 2.9vw, 11px);
+      font-size: clamp(12px, 3.5vw, 14px);
       font-weight: 600;
       color: #FFFFFF;
       text-decoration: none;
@@ -2269,8 +2328,64 @@
       border-radius: 8px;
       background: #fff;
     }
+
+    /* select：iOSネイティブをやめて独自スタイル（電話番号欄と同じ高さ） */
+    .contact-form .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      min-height: 48px;
+      height: 48px;
+      padding: 12px 36px 12px 12px;
+      line-height: 1.4;
+      color: #1C1C1C;
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+    .contact-form .form-group select:invalid,
+    .contact-form .form-group select option[value=""] {
+      color: #6B8E6B;
+    }
+    .contact-form .form-group select option:not([value=""]) {
+      color: #1C1C1C;
+    }
+
+    /* input[type=date]：iOSネイティブをやめて独自スタイル（電話番号欄と同じ高さ） */
+    .contact-form .form-group input[type="date"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: relative;
+      min-height: 48px;
+      height: 48px;
+      padding: 12px 12px;
+      line-height: 1.4;
+      display: block;
+      text-align: left;
+      color: #1C1C1C;
+      background-color: #fff;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .contact-form .form-group input[type="date"]::-webkit-date-and-time-value {
+      text-align: left;
+      color: #1C1C1C;
+    }
+    .contact-form .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
     .contact-form .form-group textarea {
-      min-height: 100px;
+      min-height: 180px;
       resize: vertical;
     }
     .contact-form .form-note {

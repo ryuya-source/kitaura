@@ -57,7 +57,7 @@ export default function HeaderWithNav() {
             onClick={toggleMenu}
             aria-expanded={open}
           >
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <svg width={32} height={32} viewBox="0 0 24 24" fill="none" aria-hidden>
               <line className="hamburger-icon__line hamburger-icon__line--top" x1={5} y1={7} x2={19} y2={7} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />
               <line className="hamburger-icon__line hamburger-icon__line--mid" x1={5} y1={12} x2={19} y2={12} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />
               <line className="hamburger-icon__line hamburger-icon__line--btm" x1={5} y1={17} x2={19} y2={17} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />

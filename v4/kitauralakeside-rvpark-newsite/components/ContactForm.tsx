@@ -111,13 +111,11 @@ export default function ContactForm() {
             <label>
               ご利用人数 <span className="required">必須</span>
             </label>
-            <input
-              type="number"
-              name="ご利用人数"
-              required
-              min={1}
-              placeholder="例：2"
-            />
+            <select name="ご利用人数" required>
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">

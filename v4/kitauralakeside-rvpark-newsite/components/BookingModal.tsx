@@ -55,7 +55,11 @@ export default function BookingModal({
             ×
           </button>
         </div>
-        <a href="#" className="booking-modal__main-cta" id="booking-line-cta">
+        <a
+          href="https://lin.ee/D9p4FmI"
+          className="booking-modal__main-cta"
+          id="booking-line-cta"
+        >
           LINE
           <span className="booking-modal__main-cta-sub">お問い合わせ・空き状況確認</span>
         </a>
@@ -73,7 +77,7 @@ export default function BookingModal({
             </span>
             <span>メール</span>
           </Link>
-          <a href="tel:0299-00-0000" className="booking-modal__other-btn booking-modal__other-btn--tel">
+          <a href="tel:07084148109" className="booking-modal__other-btn booking-modal__other-btn--tel">
             <span className="booking-modal__other-icon" aria-hidden>
               <Phone size={20} strokeWidth={2} />
             </span>
