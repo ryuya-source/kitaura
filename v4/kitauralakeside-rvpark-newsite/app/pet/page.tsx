@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PetSliderImage from "@/components/PetSliderImage";
 
 export const metadata = {
   title: "ペット同伴ルール - KITAURA LAKESIDE RV park",
@@ -65,20 +66,7 @@ export default function PetPage() {
         </section>
 
         <h2 className="pet-rules-page__title">なぜ犬種制限があるのか</h2>
-        <div className="pet-rules-slider">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="pet-rules-slider__img"
-            src="/src/dog_breeds/slide_01.png"
-            alt="犬種制限の説明"
-            width={276}
-            height={191}
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-            }}
-          />
-        </div>
+        <PetSliderImage />
         <div className="pet-rules-pagination" role="group" aria-label="スライダー操作">
           <button type="button" className="pet-rules-pagination__btn" aria-label="前へ">前</button>
           <span className="pet-rules-pagination__info">1 / 9</span>
