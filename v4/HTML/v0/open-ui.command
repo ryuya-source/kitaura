@@ -3,8 +3,8 @@ set -euo pipefail
 
 SCRIPT_DIR="${0:A:h}"
 
-# Next.js UI（v4/v2_kitaura）を起動してブラウザで開く
-APP_DIR="${SCRIPT_DIR}/v4/v2_kitaura"
+# Next.js UI（v2_kitaura）を起動してブラウザで開く（v0 から見て ../.. が v4）
+APP_DIR="${SCRIPT_DIR}/../../v2_kitaura"
 
 cd "${APP_DIR}"
 

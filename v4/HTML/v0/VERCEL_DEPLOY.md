@@ -1,16 +1,16 @@
-# Vercel デプロイ手順
+# Vercel デプロイ手順（v0）
 
 ## 1. Vercel にリポジトリを接続
 
 1. [vercel.com](https://vercel.com) にログイン
 2. **Add New** → **Project**
-3. 対象の Git リポジトリ（例: kitaura）を **Import**
+3. 対象の Git リポジトリを **Import**
 
 ## 2. プロジェクト設定
 
-- **Root Directory**: `v4` を指定（**Edit** で変更）
-  - これで `v4` フォルダがデプロイのルートになります
-- **Framework Preset**: Other（そのまま）
+- **Root Directory**: `v4/HTML/v0` を指定
+  - このフォルダがデプロイのルートになります（v0 内の HTML がそのまま公開されます）
+- **Framework Preset**: Other
 - **Build Command**: 未設定のまま
 - **Output Directory**: 未設定のまま
 
@@ -20,8 +20,6 @@
 
 ## 4. 確認
 
-デプロイ後、次の URL でトップが開きます。
-
-- `https://あなたのプロジェクト.vercel.app/`
-
-`vercel.json` により `/` が `HTML/v0/v0_kitaura.html` にリライトされています。
+- トップ: `https://あなたのプロジェクト.vercel.app/` → `vercel.json` で `/v0_kitaura.html` にリライト
+- 問い合わせ: `https://あなたのプロジェクト.vercel.app/contact.html`
+- 送信完了: `https://あなたのプロジェクト.vercel.app/contact_complete.html`
