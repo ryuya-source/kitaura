@@ -229,7 +229,7 @@
        SP_2.ペット (FhnNd)
        =============================================== */
     
-    /* ペットセクション全体 */
+    /* ペットセクション全体（FhnNd 背景写真） */
     .sp2-pet {
       width: 100vw;
       height: 100vh;
@@ -237,7 +237,7 @@
       display: flex;
       flex-direction: column;
       gap: min(5vw, 30px);
-      background-image: url('/src/pet_section_sunset.png');
+      background-image: url('/src/pet_section_hero.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -2187,6 +2187,10 @@
       align-items: center;
       justify-content: center;
       padding: 21px 25px;
+      cursor: pointer;
+    }
+    .contact-page-wrapper .contact-page {
+      cursor: default;
     }
     .contact-page {
       width: 100%;
@@ -2199,12 +2203,41 @@
       gap: 21px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
+    .contact-page__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .contact-page__title {
       font-size: 18px;
       font-weight: 300;
       color: #1C1C1C;
       letter-spacing: -0.5px;
       text-align: center;
+      margin: 0;
+      flex: 1;
+    }
+    .contact-page__close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: #F5F3F0;
+      color: #6B6B6B;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .contact-page__close:hover {
+      background: #E8E5E0;
+      color: #1C1C1C;
     }
     .contact-form {
       display: flex;

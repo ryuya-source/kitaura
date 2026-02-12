@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 const FORM_SUBMIT_URL = "https://formsubmit.co/info@kitauralakeside.com";
 
 export default function ContactForm() {
+  const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
   const nextInputRef = useRef<HTMLInputElement>(null);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
@@ -24,9 +26,22 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="contact-page-wrapper">
-      <div className="contact-page">
-        <h1 className="contact-page__title">お問合せページ</h1>
+    <div
+      className="contact-page-wrapper"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) router.push("/");
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") router.push("/");
+      }}
+    >
+      <div className="contact-page" onClick={(e) => e.stopPropagation()}>
+        <div className="contact-page__header">
+          <h1 className="contact-page__title">お問い合わせ</h1>
+          <Link href="/" className="contact-page__close" aria-label="TOPに戻る">
+            ×
+          </Link>
+        </div>
 
         <form
           ref={formRef}
@@ -106,34 +121,58 @@ export default function ContactForm() {
           </div>
 
           <div className="form-group">
-            <label>チェックイン時間</label>
-            <input
-              type="text"
-              name="チェックイン時間"
-              placeholder="例：14時〜15時"
-            />
+            <label>ご希望のご宿泊スタイル</label>
+            <select name="ご希望のご宿泊スタイル">
+              <option value="">選択してください</option>
+              <option value="テント泊">テント泊</option>
+              <option value="車中泊">車中泊</option>
+              <option value="両方">両方</option>
+            </select>
           </div>
 
           <div className="form-group">
-            <label>ワンちゃんの頭数と犬種</label>
-            <textarea
-              name="ワンちゃんの頭数と犬種"
-              placeholder="例：1頭・トイプードル　※同伴されない場合は「なし」とご入力ください"
+            <label>チェックイン時間</label>
+            <select name="チェックイン時間">
+              <option value="">選択してください</option>
+              {[12, 13, 14, 15, 16, 17, 18].flatMap((h) =>
+                [0, 15, 30, 45].map((m) => {
+                  const value = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+                  const label = m === 0 ? `${h}:00` : `${h}:${m.toString().padStart(2, "0")}`;
+                  return h === 18 && m > 0 ? null : (
+                    <option key={value} value={value}>{label}</option>
+                  );
+                })
+              ).filter(Boolean)}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>ワンちゃんの頭数</label>
+            <select name="ワンちゃんの頭数">
+              <option value="なし">なし</option>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+            <p className="form-note">※ペット同伴されない場合は「なし」をご選択ください。</p>
+          </div>
+
+          <div className="form-group">
+            <label>犬種</label>
+            <input
+              type="text"
+              name="犬種"
+              placeholder="例：トイプードル"
             />
             <p className="form-note">
-              ※ペット同伴されない場合は「なし」とご入力お願いします。
-              <br />
               ※アレルギー対策のため、プードル（スタンダード・ミディアム・トイ）・ヨークシャテリア・ミニチュアシュナウザー・ビジョンフリーゼ・マルチーズ・シーズー・チャイニーズクレステッドドッグ・オーストラリアン・ラブラドゥードルに制限があります。上記犬種の組み合わせ以外のプードルミックス（チワプー・ダップー・ポメプー・ペキプー等）はご入場いただけます。
             </p>
           </div>
 
           <div className="form-group">
-            <label>
-              お問い合わせ内容 <span className="required">必須</span>
-            </label>
+            <label>お問い合わせ内容</label>
             <textarea
               name="お問い合わせ内容"
-              required
               placeholder="ご質問・ご要望などをご記入ください"
             />
           </div>
@@ -147,10 +186,6 @@ export default function ContactForm() {
             送信する
           </button>
         </form>
-
-        <Link href="/" className="contact-page__back">
-          TOPに戻る
-        </Link>
 
         <p className="contact-page__privacy">
           ご入力いただいた個人情報は、お問い合わせへの対応およびご連絡の目的でのみ利用し、適切に管理いたします。第三者に開示・提供することはありません。
