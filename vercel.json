@@ -1,8 +1,1 @@
-{
-  "rewrites": [
-    { "source": "/", "destination": "/v4/HTML/v0/v0_kitaura.html" },
-    { "source": "/contact.html", "destination": "/v4/HTML/v0/contact.html" },
-    { "source": "/contact_complete.html", "destination": "/v4/HTML/v0/contact_complete.html" },
-    { "source": "/pet.html", "destination": "/v4/HTML/v0/pet.html" }
-  ]
-}
+{}
