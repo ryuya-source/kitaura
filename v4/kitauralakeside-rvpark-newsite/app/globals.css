@@ -2118,6 +2118,13 @@
       flex-shrink: 0;
     }
 
+    /* 画面が広い時は「見開き」比率で本っぽく */
+    @media (min-width: 768px) {
+      .pet-rules-slider {
+        aspect-ratio: 552 / 191;
+      }
+    }
+
     .pet-rules-slider__img {
       width: 100%;
       height: 100%;

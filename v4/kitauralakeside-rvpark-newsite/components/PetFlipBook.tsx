@@ -39,15 +39,17 @@ export default function PetFlipBook({ className }: Props) {
         height: 191,
         size: "stretch",
         minWidth: 240,
-        maxWidth: 1100,
+        maxWidth: 1400,
         minHeight: 166,
         maxHeight: 800,
         autoSize: true,
+        // 縦(スマホ)は1ページ、横幅が取れる時は見開き表示
         usePortrait: true,
         mobileScrollSupport: true,
-        showCover: false,
+        showCover: true,
         drawShadow: true,
-        flippingTime: 700,
+        maxShadowOpacity: 0.35,
+        flippingTime: 900,
       });
 
       pageFlipRef.current = pf;
@@ -85,9 +87,17 @@ export default function PetFlipBook({ className }: Props) {
   return (
     <>
       <div className={`pet-rules-slider ${className ?? ""}`.trim()}>
-        <div ref={bookRef} className="pet-flipbook" aria-label="犬種制限スライダー">
+        <div
+          ref={bookRef}
+          className={`pet-flipbook ${className ?? ""}`.trim()}
+          aria-label="犬種制限スライダー"
+        >
           {pages.map((src, i) => (
-            <div key={src} className="pet-flipbook__page" data-density="soft">
+            <div
+              key={src}
+              className="pet-flipbook__page"
+              data-density={i === 0 || i === total - 1 ? "hard" : "soft"}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="pet-flipbook__img"
