@@ -4,8 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <!-- Vercelで/にリライト時も画像・リンクの相対パスを正しく解決するため -->
-  <base href="/v4/HTML/v0/">
+  <script>
+  (function(){
+    var p = location.pathname;
+    if (p === '/' || p === '/contact.html' || p === '/contact_complete.html') {
+      document.write('<base href="/v4/HTML/v0/">');
+    }
+  })();
+  </script>
   <title>SP_0.TOP画面 - KITAURA LAKESIDE RV park</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1947,8 +1953,8 @@ RV park</div>
         <p class="glass-card__desc">ペットも、飼い主さまも、<br>そして周囲の方々も穏やかに過ごせるように。<br>受け入れ条件と場内ルールをご案内しています。</p>
       </div>
       
-      <!-- CTAボタン rOqdq -->
-      <a href="#pet-rules" class="pet-cta-btn">
+      <!-- CTAボタン rOqdq → pet.html へ遷移 -->
+      <a href="pet.html" class="pet-cta-btn">
         <span class="pet-cta-btn__text">ペット同伴ルールを見る</span>
       </a>
       
@@ -1971,13 +1977,7 @@ RV park</div>
         全サイト水回り・電源完備
       </h2>
       <p class="subtext">トイレ・シャワー・炊事場・電源を全サイト完備</p>
-      <div class="image-row">
-        <img class="thumb-img" src="../../src/08_サイト１案内_シャワー.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/06_サイト１案内_トイレ.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/07_サイト１案内_シャワールーム.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_炊事場.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/05_サイト１案内_トイレシャワー.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <div class="image-row" id="water-image-row" data-src-folder="1-watter" aria-label="水回り写真（src/1-watter の枚数分表示）"></div>
       <div class="note-link">← スクロールして他の写真を見る →</div>
     </section>
 
@@ -2662,7 +2662,47 @@ RV park</div>
       });
     })();
 
-    /* サイト1（Pencil q53Bt 相当）: src/site_no1/ に格納した画像を11枚表示 */
+    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の枚数分表示。空ならフォールバックで5枚（ローカル・Vercel両方で表示） */
+    (function () {
+      var row = document.getElementById('water-image-row');
+      if (!row) return;
+      var folder = 'src/1-watter/';
+      var listUrl = folder + 'list.json';
+      var fallbackPaths = [
+        '../../src/08_サイト１案内_シャワー.jpg',
+        '../../src/06_サイト１案内_トイレ.jpg',
+        '../../src/07_サイト１案内_シャワールーム.jpg',
+        '../../src/05_サイト１案内_炊事場.jpg',
+        '../../src/05_サイト１案内_トイレシャワー.jpg'
+      ];
+      function render(srcList, useFolder) {
+        row.innerHTML = '';
+        srcList.forEach(function (pathOrName) {
+          var src = useFolder ? folder + pathOrName : pathOrName;
+          var img = document.createElement('img');
+          img.className = 'thumb-img';
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
+          row.appendChild(img);
+        });
+      }
+      fetch(listUrl)
+        .then(function (res) { return res.ok ? res.json() : []; })
+        .catch(function () { return []; })
+        .then(function (names) {
+          if (Array.isArray(names) && names.length > 0) {
+            render(names, true);
+          } else {
+            render(fallbackPaths, false);
+          }
+        });
+    })();
+
+    /* サイト1（Pencil q53Bt 相当）: src/site_no1/ に格納した画像を11枚表示
+       表示されない場合 → 画像が v4/HTML/v0/src/site_no1/ に無いため。該当フォルダにファイルを配置してください。 */
     (function () {
       var SITE_NO1_IMAGES = [
         '02_サイト１案内_景観.jpg',
@@ -2688,12 +2728,14 @@ RV park</div>
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
           row.appendChild(img);
         });
       }
     })();
 
-    /* サイト2（Pencil Ynr7c 相当）: src/site_no2/ に格納した画像を全てここで表示 */
+    /* サイト2（Pencil Ynr7c 相当）: src/site_no2/ に格納した画像を全てここで表示
+       表示されない場合 → 画像が v4/HTML/v0/src/site_no2/ に無いため。該当フォルダにファイルを配置してください。 */
     (function () {
       var SITE_NO2_IMAGES = [
         'S__38764551_0.jpg',
@@ -2718,12 +2760,14 @@ RV park</div>
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
           row.appendChild(img);
         });
       }
     })();
 
-    /* サイト3（Pencil 8Zt6F 相当）: src/site_no3/ に格納した画像を9枚表示 */
+    /* サイト3（Pencil 8Zt6F 相当）: src/site_no3/ に格納した画像を9枚表示
+       表示されない場合 → 画像が v4/HTML/v0/src/site_no3/ に無いため。該当フォルダにファイルを配置してください。 */
     (function () {
       var SITE_NO3_IMAGES = [
         'S__61259783.jpg',
@@ -2747,10 +2791,16 @@ RV park</div>
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
           row.appendChild(img);
         });
       }
     })();
+
+    /* 画像なし時は表示しない（Pencil hme4H 等のスクロールエリア対応） */
+    document.querySelectorAll('.thumb-img').forEach(function (img) {
+      img.onerror = function () { this.style.display = 'none'; };
+    });
   </script>
 
   <!-- lucide icons（Pencilのicon_fontに合わせる） -->

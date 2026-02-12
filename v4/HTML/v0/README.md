@@ -25,3 +25,31 @@ npm run dev
 
 - `open-ui.command` をダブルクリックすると dev server を起動してブラウザで開きます
 
+## 静的 HTML（v0）をローカルで画像付きで見る
+
+`v0_kitaura.html` を **file://** で開くと、サイト1・2・3の画像が読み込まれません（ブラウザの制約）。  
+Vercel と同じように画像を表示するには、**ローカルで HTTP サーバー** を使います。
+
+1. **方法A（推奨）**  
+   `open-v0-local.command` をダブルクリック  
+   → 静的サーバーが起動し、ブラウザで `http://localhost:5000/v0_kitaura.html` が開きます。
+
+2. **方法B（ターミナル）**  
+   ```bash
+   cd v4/HTML/v0
+   npx -y serve . -p 5000
+   ```  
+   ブラウザで **http://localhost:5000/v0_kitaura.html** を開く。
+
+## 水回り写真（Pencil hme4H スクロールエリア）
+
+- 画像は **`src/1-watter/`** に格納します。
+- 表示枚数は **`src/1-watter/list.json`** の配列の長さで決まります。
+- 枚数をフォルダの実画像数に合わせるには、v0 フォルダで以下を実行してください。
+
+  ```bash
+  cd v4/HTML/v0
+  node update-1-watter-list.js
+  ```
+  これで `src/1-watter/` 内の画像ファイル名が list.json に書き出され、その枚数分だけページに表示されます。
+

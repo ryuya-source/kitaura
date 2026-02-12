@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ペット同伴ルール - KITAURA LAKESIDE RV park</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+      background: #FAF8F5;
+      color: #1C1C1C;
+      min-height: 100vh;
+      padding: 21px 25px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* GsBK0: SP_3.ペット同伴ルール ルート */
+    .pet-rules-page {
+      width: 100%;
+      max-width: 375px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+    }
+
+    /* 見出し（AydsY / DdXVQ） */
+    .pet-rules-page__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      color: #1C1C1C;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ワンちゃん同伴ルールセクション（OL9lQ） */
+    .pet-rules-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .pet-rules-section__header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pet-rules-section__header-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      color: #1C1C1C;
+    }
+
+    .pet-rules-section__header-desc {
+      font-size: 7px;
+      font-weight: normal;
+      line-height: 1.7;
+      color: #6B6B6B;
+      width: 100%;
+    }
+
+    /* 同伴可能カード（hgZNS） */
+    .pet-rules-card {
+      background: #FFFFFF;
+      border: 1px solid #D4E8D4;
+      border-radius: 7px;
+      padding: 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .pet-rules-card__label {
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #5A8A5A;
+    }
+
+    .pet-rules-card__list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pet-rules-card__item {
+      font-size: 9px;
+      font-weight: normal;
+      color: #1C1C1C;
+    }
+
+    .pet-rules-card__note {
+      font-size: 7px;
+      font-weight: normal;
+      color: #9A9A9A;
+      line-height: 1.5;
+      padding-left: 0;
+    }
+
+    .pet-rules-card__note--indent {
+      padding-left: 1em;
+    }
+
+    /* リンク（rN9Sn） */
+    .pet-rules-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .pet-rules-link__text {
+      font-size: 7px;
+      font-weight: 500;
+      color: #6B8E6B;
+      text-align: center;
+    }
+
+    .pet-rules-link__underline {
+      width: 125px;
+      height: 1px;
+      background: #6B8E6B;
+    }
+
+    /* スライダー画像エリア（6G6Qm） */
+    .pet-rules-slider {
+      width: 276px;
+      height: 191px;
+      border-radius: 0;
+      overflow: hidden;
+      background: #EDE9E3;
+      flex-shrink: 0;
+    }
+
+    .pet-rules-slider__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ページネーション（H7Y98） */
+    .pet-rules-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 276px;
+    }
+
+    .pet-rules-pagination__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 11px;
+      border-radius: 5px;
+      background: #6B8E6B;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 8px;
+      font-weight: 500;
+      color: #FFFFFF;
+    }
+
+    .pet-rules-pagination__btn:hover {
+      background: #5a7a5a;
+    }
+
+    .pet-rules-pagination__info {
+      font-size: 8px;
+      font-weight: normal;
+      color: #1C1C1C;
+    }
+
+    /* 固定フッター（2sAp1 / J1ZLe） */
+    .pet-rules-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 9px 9px 0;
+      padding-bottom: max(9px, env(safe-area-inset-bottom));
+      padding-right: max(9px, env(safe-area-inset-right));
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .pet-rules-footer__btn {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 20px;
+      background: #6B8E6B;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(107, 142, 107, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .pet-rules-footer__btn:hover {
+      background: #5a7a5a;
+      transform: translateY(-1px);
+    }
+
+    .pet-rules-footer__btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <main class="pet-rules-page" aria-label="ペット同伴ルール">
+    <!-- 犬種制限について（AydsY） -->
+    <h1 class="pet-rules-page__title">犬種制限について</h1>
+
+    <!-- ワンちゃん同伴ルール（OL9lQ） -->
+    <section class="pet-rules-section" aria-labelledby="dog-heading">
+      <div class="pet-rules-section__header">
+        <h2 class="pet-rules-section__header-title" id="dog-heading">入場可能なワンちゃんについて</h2>
+        <p class="pet-rules-section__header-desc">アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。</p>
+      </div>
+
+      <div class="pet-rules-card">
+        <span class="pet-rules-card__label">同伴可能な犬種</span>
+        <div class="pet-rules-card__list">
+          <div class="pet-rules-card__item">プードル</div>
+          <div class="pet-rules-card__note pet-rules-card__note--indent">　スタンダード / ミディアム / トイ</div>
+          <div class="pet-rules-card__item">プードルミックス（○○プー）</div>
+          <div class="pet-rules-card__note">　※ 抜け毛が少ないなど、プードルの特徴を引き継いでいる場合</div>
+          <div class="pet-rules-card__item">ヨークシャーテリア</div>
+          <div class="pet-rules-card__item">ミニチュアシュナウザー</div>
+          <div class="pet-rules-card__item">ビションフリーゼ</div>
+          <div class="pet-rules-card__item">マルチーズ</div>
+          <div class="pet-rules-card__item">シーズー</div>
+          <div class="pet-rules-card__item">チャイニーズクレステッドドッグ</div>
+          <div class="pet-rules-card__item">オーストラリアン・ラブラドゥードル（AL）</div>
+        </div>
+      </div>
+
+      <a href="v0_kitaura.html#terms" class="pet-rules-link">
+        <span class="pet-rules-link__text">詳しくは利用規約・マナーをご確認ください</span>
+        <span class="pet-rules-link__underline" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- なぜ犬種制限があるのか（DdXVQ） -->
+    <h2 class="pet-rules-page__title">なぜ犬種制限があるのか</h2>
+
+    <!-- スライダー画像（6G6Qm） -->
+    <div class="pet-rules-slider">
+      <img
+        class="pet-rules-slider__img"
+        src="src/dog_breeds/slide_01.png"
+        alt="犬種制限の説明"
+        width="276"
+        height="191"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      >
+    </div>
+
+    <!-- ページネーション（H7Y98） -->
+    <div class="pet-rules-pagination" role="group" aria-label="スライダー操作">
+      <button type="button" class="pet-rules-pagination__btn" aria-label="前へ">前</button>
+      <span class="pet-rules-pagination__info">1 / 9</span>
+      <button type="button" class="pet-rules-pagination__btn" aria-label="次へ">次</button>
+    </div>
+  </main>
+
+  <!-- 固定フッター CTA（2sAp1） -->
+  <div class="pet-rules-footer">
+    <a href="v0_kitaura.html#booking" class="pet-rules-footer__btn">予約・空き確認</a>
+  </div>
+</body>
+</html>
