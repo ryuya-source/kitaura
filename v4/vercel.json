@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/HTML/v0/v0_kitaura.html" }
+    { "source": "/", "destination": "/HTML/v0/v0_kitaura.html" },
+    { "source": "/contact.html", "destination": "/HTML/v0/contact.html" },
+    { "source": "/contact_complete.html", "destination": "/HTML/v0/contact_complete.html" }
   ]
 }
