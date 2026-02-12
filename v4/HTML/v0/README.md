@@ -32,14 +32,17 @@ Vercel と同じように画像を表示するには、**ローカルで HTTP �
 
 1. **方法A（推奨）**  
    `open-v0-local.command` をダブルクリック  
-   → 静的サーバーが起動し、ブラウザで `http://localhost:5000/v0_kitaura.html` が開きます。
+   → **server.js** が起動し、**v0 フォルダをルート**に配信します。ブラウザで **http://localhost:3000/** が開き、`/` で v0_kitaura.html が表示されます。
 
-2. **方法B（ターミナル）**  
+2. **実機で確認する**  
+   同じ Wi-Fi のスマホ・タブレットで、起動時に表示される **http://〈あなたのPCのIP〉:3000/** を開いてください（例: http://192.168.11.10:3000/）。
+
+3. **方法B（ターミナル）**  
    ```bash
    cd v4/HTML/v0
-   npx -y serve . -p 5000
+   node server.js
    ```  
-   ブラウザで **http://localhost:5000/v0_kitaura.html** を開く。
+   ブラウザで **http://localhost:3000/** を開く。実機からは **http://〈PCのIP〉:3000/** でアクセス可能。
 
 ## 水回り写真（Pencil hme4H スクロールエリア）
 

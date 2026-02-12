@@ -2717,23 +2717,22 @@ RV park</div>
       });
     })();
 
-    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の枚数分表示。相対パスで Vercel（Root=v4/HTML/v0）・ローカル両対応 */
+    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の番号順（配列順）で左から表示 */
     (function () {
       var row = document.getElementById('water-image-row');
       if (!row) return;
       var folder = 'src/1-watter/';
       var listUrl = folder + 'list.json';
       var fallbackNames = [
+        '01_サイト１案内_トイレ.jpg',
+        '02_サイト１案内_シャワー.jpg',
+        '03_サイト１案内_シャワールーム.jpg',
+        '04_サイト１案内_炊事場.jpg',
         '05_サイト１案内_トイレシャワー.jpg',
-        '05_サイト１案内_炊事場.jpg',
-        '06_サイト１案内_トイレ.jpg',
-        '07_サイト１案内_シャワールーム.jpg',
-        '08_サイト１案内_シャワー.jpg',
-        '4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg',
+        '05炊事場.jpg',
         'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
         'S__34291715_0.jpg',
         'S__34291717_0.jpg',
-        'S__34291719_0.jpg',
         '炊事場.jpg'
       ];
       function render(names, useFolder) {
@@ -2794,23 +2793,20 @@ RV park</div>
         });
     }
 
-    /* 小型犬（Pencil xYQHo）: src/2_dog/list.json の枚数分表示。hme4H と同様の仕様 */
+    /* 小型犬（Pencil xYQHo）: src/2_dog/list.json の番号順（配列順）で左から表示 */
     renderImageRow('small-dog-image-row', '2_dog', [
-      '02_サイト１案内_景観.jpg', '03_サイト１案内_広さ-768x576.jpg', '04_サイト１案内_小型犬-768x576.jpg',
-      '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'S__18489346-768x576.jpg', 'S__38764547_0.jpg', 'S__61259783.jpg'
+      '01_61259783.jpg', '02__18489346-768x576.jpg', '02_サイト１案内_景観.jpg', '03_サイト１案内_小型犬-768x576.jpg',
+      '05_サイト１案内_広さ-768x576.jpg', '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'S__38764547_0.jpg'
     ]);
-    /* その他（Pencil LXQHY）: src/3_els の7枚を list.json の枚数分表示。hme4H と同様の仕様 */
+    /* その他（Pencil LXQHY）: src/3_els/list.json の番号順（配列順）で左から表示 */
     renderImageRow('other-image-row', '3_els', [
-      '1-elec.jpg', '10-エアコン.jpg', '2-trash.jpg', '2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg',
-      '3-trash2.jpg', '72994D5A-FA90-469A-884E-BF89DB666517.jpg', 'D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg'
+      '01-elec.jpg', '02-trash.jpg', '03-trash2.jpg', '04-72994D5A-FA90-469A-884E-BF89DB666517.jpg',
+      '05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg', '10-エアコン.jpg', '2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg'
     ]);
-    /* 周辺環境（Pencil R9swJ）: src/4_nearby の5枚を list.json の枚数分表示。hme4H と同様の仕様 */
+    /* 周辺環境（Pencil R9swJ）: src/4_nearby/list.json の番号順（配列順）で左から表示 */
     renderImageRow('surroundings-image-row', '4_nearby', [
-      '337320DC-41EF-470B-BB71-E913B495280D.jpg',
-      '353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg',
-      'C489887B-5980-4B98-B4A9-39509D8506B4.jpg',
-      'image_side.jpg',
-      'セブンイレブン.png'
+      '01-セブンイレブン.png', '02-image_side.jpg', '03-C489887B-5980-4B98-B4A9-39509D8506B4.jpg',
+      '04-337320DC-41EF-470B-BB71-E913B495280D.jpg', '05-353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg'
     ]);
     /* サイト1（Pencil q53Bt） */
     renderImageRow('site-no1-image-row', 'site_no1', [
