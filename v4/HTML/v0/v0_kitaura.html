@@ -381,6 +381,58 @@
       margin: 36px 0 24px;
     }
 
+    /* Pencil e7nNg（HeaderRow）: タイトルと画像を近づけて画面中央に配置 */
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 36px 0 24px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+    }
+    .section-title-row__left,
+    .section-title-row__right {
+      flex: 1;
+      min-width: 0;
+    }
+    .section-title-row__center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .section-title-row .section-title {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(15px, 4.5vw, 17px);
+      font-weight: 300;
+      letter-spacing: -0.3px;
+    }
+    .section-title-row .section-title-img {
+      width: 50px;
+      height: 38px;
+      object-fit: contain;
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    /* Pencil tjRrM（L3AZkWrapper）: dIDF0 の上、右寄せ */
+    .site-type-notice {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+    .site-type-notice img {
+      width: 300px;
+      height: auto;
+      max-height: 286px;
+      object-fit: contain;
+    }
+
     .subheading {
       font-size: clamp(11px, 3.2vw, 12px);
       font-weight: 500;
@@ -1812,6 +1864,13 @@
         padding-right: clamp(10px, 3.5vw, 16px);
       }
 
+      /* セクションタイトル（こだわりポイント）を画面中央に固定 */
+      .section-title-row__left,
+      .section-title-row__right {
+        flex: 1 1 0%;
+        min-width: 0;
+      }
+
       .info-page .feature-section,
       .info-page .pricing-section,
       .sp6-terms,
@@ -1964,7 +2023,14 @@ RV park</div>
 
   <!-- こだわりポイント・サイト種別・料金 -->
   <main class="info-page" id="feature">
-    <h1 class="section-title">こだわりポイント</h1>
+    <div class="section-title-row" aria-label="こだわりポイント">
+      <div class="section-title-row__left" aria-hidden="true"></div>
+      <div class="section-title-row__center">
+        <h1 class="section-title">こだわりポイント</h1>
+        <img src="src/anime/dogrun1.png" alt="" class="section-title-img" width="50" height="38" loading="eager">
+      </div>
+      <div class="section-title-row__right" aria-hidden="true"></div>
+    </div>
 
     <section class="feature-section">
       <h2 class="subheading">
@@ -1976,7 +2042,7 @@ RV park</div>
         </span>
         全サイト水回り・電源完備
       </h2>
-      <p class="subtext">トイレ・シャワー・炊事場・電源を全サイト完備</p>
+      <p class="subtext">トイレ・シャワー・炊事場・電源完備</p>
       <div class="image-row" id="water-image-row" data-src-folder="1-watter" aria-label="水回り写真（src/1-watter の枚数分表示）"></div>
       <div class="note-link">← スクロールして他の写真を見る →</div>
     </section>
@@ -1995,14 +2061,10 @@ RV park</div>
         </span>
         小型犬対応
       </h2>
-      <p class="subtext">全サイト小型犬に配慮した設計・ノーリード可</p>
-      <div class="image-row">
-        <img class="thumb-img" src="../../src/04_サイト１案内_小型犬-768x576.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__18489346-768x576.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no1/03_サイト１案内_広さ-768x576.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/sites/site_no2/F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__38764551_0.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <p class="subtext">小型犬に配慮した設計・ゲートを閉じるとドックランになります
+
+      </p>
+      <div class="image-row" id="small-dog-image-row" data-src-folder="2_dog"></div>
     </section>
 
     <section class="feature-section">
@@ -2015,14 +2077,8 @@ RV park</div>
         </span>
         その他
       </h2>
-      <p class="subtext">全サイトゴミ置き場・電源コード完備・エアコンの有料貸出し（夏季限定）</p>
-      <div class="image-row">
-        <img class="thumb-img" src="../../src/S__18538510-1-1024x768.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/ゴミ箱2-1-1024x768.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/B392931C-3C9D-404F-84DC-13CCA3438639.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <p class="subtext">ゴミ置き場・コードリール完備・エアコンの有料貸出し(夏季限定)</p>
+      <div class="image-row" id="other-image-row" data-src-folder="3_els"></div>
     </section>
 
     <section class="feature-section">
@@ -2039,14 +2095,13 @@ RV park</div>
         周辺環境
       </h2>
       <p class="subtext">セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景</p>
-      <div class="image-row">
-        <img class="thumb-img" src="../../v2_kitaura/images/seven11.png" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/image_side.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/337320DC-41EF-470B-BB71-E913B495280D.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../v2_kitaura/images/353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg" alt="" loading="lazy" decoding="async">
-        <img class="thumb-img" src="../../src/S__61259783.jpg" alt="" loading="lazy" decoding="async">
-      </div>
+      <div class="image-row" id="surroundings-image-row" data-src-folder="4_nearby"></div>
     </section>
+
+    <!-- Pencil tjRrM（L3AZkWrapper）: dIDF0（サイト種別）の上に表示 -->
+    <div class="site-type-notice" aria-hidden="true">
+      <img src="src/anime/2.png" alt="" width="300" height="286" loading="lazy">
+    </div>
 
     <h1 class="section-title" id="site-type">サイト種別</h1>
 
@@ -2662,26 +2717,31 @@ RV park</div>
       });
     })();
 
-    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の枚数分表示。空ならフォールバックで5枚（ローカル・Vercel両方で表示） */
+    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の枚数分表示。相対パスで Vercel（Root=v4/HTML/v0）・ローカル両対応 */
     (function () {
       var row = document.getElementById('water-image-row');
       if (!row) return;
       var folder = 'src/1-watter/';
       var listUrl = folder + 'list.json';
-      var fallbackPaths = [
-        '../../src/08_サイト１案内_シャワー.jpg',
-        '../../src/06_サイト１案内_トイレ.jpg',
-        '../../src/07_サイト１案内_シャワールーム.jpg',
-        '../../src/05_サイト１案内_炊事場.jpg',
-        '../../src/05_サイト１案内_トイレシャワー.jpg'
+      var fallbackNames = [
+        '05_サイト１案内_トイレシャワー.jpg',
+        '05_サイト１案内_炊事場.jpg',
+        '06_サイト１案内_トイレ.jpg',
+        '07_サイト１案内_シャワールーム.jpg',
+        '08_サイト１案内_シャワー.jpg',
+        '4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg',
+        'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
+        'S__34291715_0.jpg',
+        'S__34291717_0.jpg',
+        'S__34291719_0.jpg',
+        '炊事場.jpg'
       ];
-      function render(srcList, useFolder) {
+      function render(names, useFolder) {
         row.innerHTML = '';
-        srcList.forEach(function (pathOrName) {
-          var src = useFolder ? folder + pathOrName : pathOrName;
+        names.forEach(function (name) {
           var img = document.createElement('img');
           img.className = 'thumb-img';
-          img.src = src;
+          img.src = useFolder ? folder + name : name;
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
@@ -2696,35 +2756,23 @@ RV park</div>
           if (Array.isArray(names) && names.length > 0) {
             render(names, true);
           } else {
-            render(fallbackPaths, false);
+            render(fallbackNames, true);
           }
         });
     })();
 
-    /* サイト1（Pencil q53Bt 相当）: src/site_no1/ に格納した画像を11枚表示
-       表示されない場合 → 画像が v4/HTML/v0/src/site_no1/ に無いため。該当フォルダにファイルを配置してください。 */
-    (function () {
-      var SITE_NO1_IMAGES = [
-        '02_サイト１案内_景観.jpg',
-        '03_サイト１案内_広さ-768x576.jpg',
-        '04_サイト１案内_小型犬-768x576.jpg',
-        '05_サイト１案内_炊事場.jpg',
-        '05_サイト１案内_トイレシャワー.jpg',
-        '06_サイト１案内_トイレ.jpg',
-        '07_サイト１案内_シャワールーム.jpg',
-        '08_サイト１案内_シャワー.jpg',
-        'S__18489346-768x576.jpg',
-        'S__18538510-1-1024x768.jpg',
-        '湖総2-1-1024x768.jpg'
-      ];
-      var base = 'src/site_no1/';
-      var row = document.getElementById('site-no1-image-row');
-      if (row) {
+    /* 共通: list.json の枚数分表示。相対パスで Vercel（Root=v4/HTML/v0）・ローカル両対応 */
+    function renderImageRow(rowId, folderName, fallbackNames, fallbackPaths) {
+      var row = document.getElementById(rowId);
+      if (!row) return;
+      var folder = 'src/' + folderName + '/';
+      var listUrl = folder + 'list.json';
+      function render(list, useFolder) {
         row.innerHTML = '';
-        SITE_NO1_IMAGES.forEach(function (name) {
+        list.forEach(function (item) {
           var img = document.createElement('img');
           img.className = 'thumb-img';
-          img.src = base + name;
+          img.src = useFolder ? folder + item : item;
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
@@ -2732,70 +2780,57 @@ RV park</div>
           row.appendChild(img);
         });
       }
-    })();
+      fetch(listUrl)
+        .then(function (res) { return res.ok ? res.json() : []; })
+        .catch(function () { return []; })
+        .then(function (names) {
+          if (Array.isArray(names) && names.length > 0) {
+            render(names, true);
+          } else if (fallbackPaths && fallbackPaths.length > 0) {
+            render(fallbackPaths, false);
+          } else {
+            render(fallbackNames, true);
+          }
+        });
+    }
 
-    /* サイト2（Pencil Ynr7c 相当）: src/site_no2/ に格納した画像を全てここで表示
-       表示されない場合 → 画像が v4/HTML/v0/src/site_no2/ に無いため。該当フォルダにファイルを配置してください。 */
-    (function () {
-      var SITE_NO2_IMAGES = [
-        'S__38764551_0.jpg',
-        'S__38764550_0.jpg',
-        'S__38764547_0.jpg',
-        'S__34291715_0.jpg',
-        'S__34291717_0.jpg',
-        'S__34291719_0.jpg',
-        'S__34291723_0.jpg',
-        'F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg',
-        '炊事場.jpg',
-        '景観.jpg'
-      ];
-      var base = 'src/site_no2/';
-      var row = document.getElementById('site-no2-image-row');
-      if (row) {
-        row.innerHTML = '';
-        SITE_NO2_IMAGES.forEach(function (name) {
-          var img = document.createElement('img');
-          img.className = 'thumb-img';
-          img.src = base + name;
-          img.alt = '';
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.onerror = function () { this.style.display = 'none'; };
-          row.appendChild(img);
-        });
-      }
-    })();
-
-    /* サイト3（Pencil 8Zt6F 相当）: src/site_no3/ に格納した画像を9枚表示
-       表示されない場合 → 画像が v4/HTML/v0/src/site_no3/ に無いため。該当フォルダにファイルを配置してください。 */
-    (function () {
-      var SITE_NO3_IMAGES = [
-        'S__61259783.jpg',
-        '119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg',
-        '4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg',
-        'B392931C-3C9D-404F-84DC-13CCA3438639.jpg',
-        '25214C0D-279C-4153-B11E-E98744486041.jpg',
-        '921F7B01-FD9C-4F2F-8637-76232126C816.jpg',
-        'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
-        'E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg',
-        '景観.jpg'
-      ];
-      var base = 'src/site_no3/';
-      var row = document.getElementById('site-no3-image-row');
-      if (row) {
-        row.innerHTML = '';
-        SITE_NO3_IMAGES.forEach(function (name) {
-          var img = document.createElement('img');
-          img.className = 'thumb-img';
-          img.src = base + name;
-          img.alt = '';
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.onerror = function () { this.style.display = 'none'; };
-          row.appendChild(img);
-        });
-      }
-    })();
+    /* 小型犬（Pencil xYQHo）: src/2_dog/list.json の枚数分表示。hme4H と同様の仕様 */
+    renderImageRow('small-dog-image-row', '2_dog', [
+      '02_サイト１案内_景観.jpg', '03_サイト１案内_広さ-768x576.jpg', '04_サイト１案内_小型犬-768x576.jpg',
+      '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'S__18489346-768x576.jpg', 'S__38764547_0.jpg', 'S__61259783.jpg'
+    ]);
+    /* その他（Pencil LXQHY）: src/3_els の7枚を list.json の枚数分表示。hme4H と同様の仕様 */
+    renderImageRow('other-image-row', '3_els', [
+      '1-elec.jpg', '10-エアコン.jpg', '2-trash.jpg', '2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg',
+      '3-trash2.jpg', '72994D5A-FA90-469A-884E-BF89DB666517.jpg', 'D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg'
+    ]);
+    /* 周辺環境（Pencil R9swJ）: src/4_nearby の5枚を list.json の枚数分表示。hme4H と同様の仕様 */
+    renderImageRow('surroundings-image-row', '4_nearby', [
+      '337320DC-41EF-470B-BB71-E913B495280D.jpg',
+      '353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg',
+      'C489887B-5980-4B98-B4A9-39509D8506B4.jpg',
+      'image_side.jpg',
+      'セブンイレブン.png'
+    ]);
+    /* サイト1（Pencil q53Bt） */
+    renderImageRow('site-no1-image-row', 'site_no1', [
+      '02_サイト１案内_景観.jpg', '03_サイト１案内_広さ-768x576.jpg', '04_サイト１案内_小型犬-768x576.jpg',
+      '05_サイト１案内_炊事場.jpg', '05_サイト１案内_トイレシャワー.jpg', '06_サイト１案内_トイレ.jpg',
+      '07_サイト１案内_シャワールーム.jpg', '08_サイト１案内_シャワー.jpg', 'S__18489346-768x576.jpg',
+      'S__18538510-1-1024x768.jpg', '湖総2-1-1024x768.jpg'
+    ]);
+    /* サイト2（Pencil Ynr7c） */
+    renderImageRow('site-no2-image-row', 'site_no2', [
+      'S__38764551_0.jpg', 'S__38764550_0.jpg', 'S__38764547_0.jpg', 'S__34291715_0.jpg', 'S__34291717_0.jpg',
+      'S__34291719_0.jpg', 'S__34291723_0.jpg', 'F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg', '炊事場.jpg', '景観.jpg'
+    ]);
+    /* サイト3（Pencil 8Zt6F） */
+    renderImageRow('site-no3-image-row', 'site_no3', [
+      'S__61259783.jpg', '119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg', '4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg',
+      'B392931C-3C9D-404F-84DC-13CCA3438639.jpg', '25214C0D-279C-4153-B11E-E98744486041.jpg',
+      '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
+      'E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg', '景観.jpg'
+    ]);
 
     /* 画像なし時は表示しない（Pencil hme4H 等のスクロールエリア対応） */
     document.querySelectorAll('.thumb-img').forEach(function (img) {

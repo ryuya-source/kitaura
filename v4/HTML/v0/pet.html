@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* v0_kitaura.html と同一のトークン・余白・フォントスケール */
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent-green: #6B8E6B;
+      --accent-navy: #1E3A5F;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,41 +28,82 @@
 
     body {
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-      background: #FAF8F5;
-      color: #1C1C1C;
+      background: var(--bg);
+      color: var(--text-primary);
       min-height: 100vh;
-      padding: 21px 25px 100px;
+      padding: min(6.4vw, 24px) min(6.4vw, 24px) min(23.5vw, 88px);
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
     }
 
-    /* GsBK0: SP_3.ペット同伴ルール ルート */
+    /* ページルート：v0 .info-page と同一の幅・余白・gap */
     .pet-rules-page {
       width: 100%;
-      max-width: 375px;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 21px;
+      gap: min(6.4vw, 24px);
     }
 
-    /* 見出し（AydsY / DdXVQ） */
+    /* 見出し：v0 .section-title / .sp6-terms__title と同一 */
     .pet-rules-page__title {
+      font-size: clamp(15px, 4.5vw, 17px);
+      font-weight: 300;
+      letter-spacing: -0.3px;
+      color: var(--text-primary);
+      text-align: center;
+      width: 100%;
+      margin: 36px 0 24px;
+    }
+
+    .pet-rules-page__title:first-child {
+      margin-top: 0;
+    }
+
+    /* Pencil Dv8is（DogHeaderRow）: 左スペース・中央タイトル・右スペース内に画像。テキストと被らない */
+    .pet-rules-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 36px 0 24px;
+      gap: 12px;
+    }
+    .pet-rules-title-row__left {
+      flex: 1;
+      min-width: 0;
+    }
+    .pet-rules-title-row .pet-rules-page__title {
+      margin: 0;
       font-size: 18px;
       font-weight: 300;
       letter-spacing: -0.5px;
-      color: #1C1C1C;
       text-align: center;
-      width: 100%;
+      flex-shrink: 0;
+    }
+    .pet-rules-title-row__right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-width: 0;
+    }
+    .pet-rules-title-row .pet-rules-title-row__img {
+      width: 44px;
+      height: 57px;
+      object-fit: contain;
+      opacity: 0.9;
+      flex-shrink: 0;
     }
 
-    /* ワンちゃん同伴ルールセクション（OL9lQ） */
+    /* ワンちゃん同伴ルールセクション */
     .pet-rules-section {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: min(2.1vw, 8px);
     }
 
     .pet-rules-section__header {
@@ -59,35 +112,37 @@
       gap: 4px;
     }
 
+    /* 小見出し：v0 .subheading と同一 */
     .pet-rules-section__header-title {
-      font-size: 12px;
+      font-size: clamp(11px, 3.2vw, 12px);
       font-weight: 500;
       letter-spacing: -0.3px;
-      color: #1C1C1C;
+      color: var(--text-primary);
     }
 
+    /* 説明文：v0 .subtext / .table-label と同一 */
     .pet-rules-section__header-desc {
-      font-size: 7px;
+      font-size: clamp(9px, 2.7vw, 10px);
       font-weight: normal;
       line-height: 1.7;
-      color: #6B6B6B;
+      color: var(--text-secondary);
       width: 100%;
     }
 
-    /* 同伴可能カード（hgZNS） */
+    /* 同伴可能カード：v0 .card と同一（角丸・padding・gap） */
     .pet-rules-card {
-      background: #FFFFFF;
+      background: var(--surface);
       border: 1px solid #D4E8D4;
-      border-radius: 7px;
-      padding: 9px;
+      border-radius: min(2.1vw, 8px);
+      padding: min(3.2vw, 12px);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: min(2.1vw, 8px);
       width: 100%;
     }
 
     .pet-rules-card__label {
-      font-size: 7px;
+      font-size: clamp(9px, 2.7vw, 10px);
       font-weight: 600;
       letter-spacing: 0.5px;
       color: #5A8A5A;
@@ -96,19 +151,19 @@
     .pet-rules-card__list {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: min(2.1vw, 8px);
     }
 
     .pet-rules-card__item {
-      font-size: 9px;
+      font-size: clamp(9px, 2.7vw, 10px);
       font-weight: normal;
-      color: #1C1C1C;
+      color: var(--text-primary);
     }
 
     .pet-rules-card__note {
-      font-size: 7px;
+      font-size: clamp(7px, 2.1vw, 8px);
       font-weight: normal;
-      color: #9A9A9A;
+      color: var(--text-muted);
       line-height: 1.5;
       padding-left: 0;
     }
@@ -117,7 +172,7 @@
       padding-left: 1em;
     }
 
-    /* リンク（rN9Sn） */
+    /* リンク：v0 の小テキストと同一 */
     .pet-rules-link {
       display: flex;
       flex-direction: column;
@@ -128,23 +183,24 @@
     }
 
     .pet-rules-link__text {
-      font-size: 7px;
+      font-size: clamp(7px, 2.1vw, 8px);
       font-weight: 500;
-      color: #6B8E6B;
+      color: var(--accent-green);
       text-align: center;
     }
 
     .pet-rules-link__underline {
       width: 125px;
       height: 1px;
-      background: #6B8E6B;
+      background: var(--accent-green);
     }
 
-    /* スライダー画像エリア（6G6Qm） */
+    /* スライダー画像：v0 .thumb と同様の角丸・背景 */
     .pet-rules-slider {
-      width: 276px;
-      height: 191px;
-      border-radius: 0;
+      width: 100%;
+      max-width: 276px;
+      aspect-ratio: 276 / 191;
+      border-radius: 5px;
       overflow: hidden;
       background: #EDE9E3;
       flex-shrink: 0;
@@ -157,26 +213,27 @@
       display: block;
     }
 
-    /* ページネーション（H7Y98） */
+    /* ページネーション：v0 のボタン・テキストサイズに合わせる */
     .pet-rules-pagination {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-      width: 276px;
+      width: 100%;
+      max-width: 276px;
     }
 
     .pet-rules-pagination__btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 11px;
+      padding: min(1.6vw, 6px) min(2.9vw, 11px);
       border-radius: 5px;
-      background: #6B8E6B;
+      background: var(--accent-green);
       border: none;
       cursor: pointer;
       font-family: inherit;
-      font-size: 8px;
+      font-size: clamp(7px, 2.1vw, 8px);
       font-weight: 500;
       color: #FFFFFF;
     }
@@ -186,12 +243,12 @@
     }
 
     .pet-rules-pagination__info {
-      font-size: 8px;
+      font-size: clamp(7px, 2.1vw, 8px);
       font-weight: normal;
-      color: #1C1C1C;
+      color: var(--text-primary);
     }
 
-    /* 固定フッター（2sAp1 / J1ZLe） */
+    /* 固定フッター CTA：v0 .fixed-cta button と同一 */
     .pet-rules-footer {
       position: fixed;
       bottom: 0;
@@ -199,9 +256,9 @@
       right: 0;
       display: flex;
       justify-content: flex-end;
-      padding: 0 9px 9px 0;
-      padding-bottom: max(9px, env(safe-area-inset-bottom));
-      padding-right: max(9px, env(safe-area-inset-right));
+      padding: 0 min(4.3vw, 16px) min(4.3vw, 16px) 0;
+      padding-bottom: max(min(4.3vw, 16px), env(safe-area-inset-bottom));
+      padding-right: max(min(4.3vw, 16px), env(safe-area-inset-right));
       background: transparent;
       pointer-events: none;
     }
@@ -211,34 +268,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
-      border-radius: 20px;
-      background: #6B8E6B;
+      padding: min(2.7vw, 10px) min(4.3vw, 16px);
+      border-radius: min(5.3vw, 20px);
+      background: var(--accent-green);
       border: none;
       cursor: pointer;
       font-family: inherit;
-      font-size: 11px;
+      font-size: clamp(10px, 2.9vw, 11px);
       font-weight: 600;
       color: #FFFFFF;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(107, 142, 107, 0.3);
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
       transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .pet-rules-footer__btn:hover {
       background: #5a7a5a;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(107, 142, 107, 0.3);
     }
 
     .pet-rules-footer__btn:active {
       transform: translateY(0);
     }
+
+    /* タブレット以上：v0 .info-page と同一の最大幅 */
+    @media (min-width: 768px) {
+      .pet-rules-page {
+        max-width: 600px;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="pet-rules-page" aria-label="ペット同伴ルール">
-    <!-- 犬種制限について（AydsY） -->
-    <h1 class="pet-rules-page__title">犬種制限について</h1>
+    <!-- Pencil Dv8is（DogHeaderRow）: 左・中央タイトル・右（画像）でテキストと被らない -->
+    <div class="pet-rules-title-row" aria-label="犬種制限について">
+      <div class="pet-rules-title-row__left" aria-hidden="true"></div>
+      <h1 class="pet-rules-page__title">犬種制限について</h1>
+      <div class="pet-rules-title-row__right">
+        <img src="src/anime/dog-kezukuroi.png" alt="" class="pet-rules-title-row__img" width="44" height="57" loading="eager">
+      </div>
+    </div>
 
     <!-- ワンちゃん同伴ルール（OL9lQ） -->
     <section class="pet-rules-section" aria-labelledby="dog-heading">

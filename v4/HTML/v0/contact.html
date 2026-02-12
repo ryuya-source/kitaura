@@ -4,7 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <base href="/v4/HTML/v0/">
+  <script>
+  (function(){
+    var p = location.pathname;
+    if (p === '/' || p === '/contact.html' || p === '/contact_complete.html') {
+      document.write('<base href="/v4/HTML/v0/">');
+    }
+  })();
+  </script>
   <title>お問い合わせ - KITAURA LAKESIDE RV park</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
