@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * v0 静的サイト用サーバー（実機確認用）
- * - 必ずこのファイルがある v4/HTML/v0 をルートに配信
- * - / と /index.html → v0_kitaura.html を返す
- * - 0.0.0.0:3000 で待ち受け（同一Wi-Fiの実機から http://<PCのIP>:3000/ でアクセス可）
+ * - v4/HTML/v0 をドキュメントルートに配信（相対パス src/... で画像が読める）
+ * - / と /index.html → v0_kitaura.html
+ * - 0.0.0.0:3000 で待ち受け（実機: http://<PCのIP>:3000/ ）
  */
 
 const http = require('http');
@@ -35,31 +35,30 @@ function getMime(ext) {
 }
 
 const server = http.createServer((req, res) => {
-  let urlPath = decodeURIComponent(new URL(req.url || '/', 'http://localhost').pathname);
-  if (urlPath === '/' || urlPath === '/index.html') {
-    urlPath = '/v0_kitaura.html';
-  }
-  const filePath = path.join(ROOT, path.join('/', urlPath));
-
-  if (!filePath.startsWith(ROOT)) {
+  const urlPath = decodeURIComponent(new URL(req.url || '/', 'http://localhost').pathname);
+  const isRoot = urlPath === '/' || urlPath === '/index.html';
+  const servePath = isRoot ? '/v0_kitaura.html' : urlPath;
+  const relativePath = servePath.replace(/^\//, '').split('/').filter(Boolean).join(path.sep);
+  if (relativePath.includes('..')) {
     res.writeHead(403);
     res.end('Forbidden');
     return;
   }
-
+  const filePath = path.join(ROOT, relativePath);
+  const resolved = path.resolve(filePath);
+  const rootResolved = path.resolve(ROOT) + path.sep;
+  if (!resolved.startsWith(rootResolved)) {
+    res.writeHead(403);
+    res.end('Forbidden');
+    return;
+  }
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      if (err.code === 'ENOENT') {
-        res.writeHead(404);
-        res.end('Not Found');
-        return;
-      }
-      res.writeHead(500);
-      res.end('Server Error');
+      res.writeHead(err.code === 'ENOENT' ? 404 : 500);
+      res.end(err.code === 'ENOENT' ? 'Not Found' : 'Server Error');
       return;
     }
-    const ext = path.extname(filePath);
-    res.writeHead(200, { 'Content-Type': getMime(ext) });
+    res.writeHead(200, { 'Content-Type': getMime(path.extname(filePath)) });
     res.end(data);
   });
 });
