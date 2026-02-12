@@ -66,6 +66,15 @@ export default function Home() {
         <div className="section-title-row" aria-label="こだわりポイント">
           <div className="section-title-row__left" aria-hidden />
           <div className="section-title-row__center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/src/anime/feature_worker.png"
+              alt=""
+              className="section-title-row__img"
+              width={72}
+              height={72}
+              loading="lazy"
+            />
             <h1 className="section-title">こだわりポイント</h1>
           </div>
           <div className="section-title-row__right" aria-hidden />

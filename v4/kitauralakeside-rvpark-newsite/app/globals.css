@@ -386,6 +386,14 @@
       gap: 8px;
       flex-shrink: 0;
     }
+    .section-title-row__img {
+      height: clamp(72px, 18vw, 128px);
+      width: auto;
+      max-width: min(52vw, 200px);
+      object-fit: contain;
+      display: block;
+      opacity: 0.95;
+    }
     .section-title-row .section-title {
       margin: 0;
       text-align: center;
