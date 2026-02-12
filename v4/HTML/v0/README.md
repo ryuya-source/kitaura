@@ -6,13 +6,13 @@
 
 ## UI
 
-- 場所: `v4/v2_kitaura/`（Next.js）
-- 起点: `http://localhost:3000`
+- 場所: `v4/kitauralakeside-rvpark-newsite/`（Next.js）
+- 起点: `http://localhost:3000`（Next.js は 3000、静的 v0 は 3001）
 
 ### 起動（macOS）
 
 ```bash
-cd v4/v2_kitaura
+cd v4/kitauralakeside-rvpark-newsite
 npm ci
 npm run dev
 ```
@@ -32,18 +32,19 @@ Vercel と同じように画像を表示するには、**ローカルで HTTP �
 
 1. **方法A（推奨）**  
    `open-v0-local.command` をダブルクリック  
-   → **server.js** が起動し、**v0 フォルダをルート**に配信します。ブラウザで **http://localhost:3000/** が開き、`/` で v0_kitaura.html が表示されます。  
-   ※ ポート 3000 が別アプリ（例: Next.js）で使われている場合は、いったん終了してから実行してください。
+   → **server.js** が起動し、**v0 フォルダをルート**に配信します。ブラウザで **http://localhost:3001/** が開き、`/` で v0_kitaura.html が表示されます。  
+   ※ ポート 3000 は Next.js（kitauralakeside-rvpark-newsite）用です。v0 は 3001 で動きます。
 
 2. **実機で確認する**  
-   同じ Wi-Fi のスマホ・タブレットで、起動時に表示される **http://〈あなたのPCのIP〉:3000/** を開いてください（例: http://192.168.11.10:3000/）。
+   - **Next.js サイト**: 同じ Wi-Fi で **http://〈PCのIP〉:3000/**（例: http://192.168.11.10:3000/）
+   - **静的 v0**: 起動時に表示される **http://〈あなたのPCのIP〉:3001/** を開いてください。
 
 3. **方法B（ターミナル）**  
    ```bash
    cd v4/HTML/v0
    node server.js
    ```  
-   ブラウザで **http://localhost:3000/** を開く。実機からは **http://〈PCのIP〉:3000/** でアクセス可能。
+   ブラウザで **http://localhost:3001/** を開く。実機からは **http://〈PCのIP〉:3001/** でアクセス可能。
 
 ## 水回り写真（Pencil hme4H スクロールエリア）
 

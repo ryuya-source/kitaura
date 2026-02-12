@@ -3,14 +3,15 @@
  * v0 静的サイト用サーバー（実機確認用）
  * - v4/HTML/v0 をドキュメントルートに配信（相対パス src/... で画像が読める）
  * - / と /index.html → v0_kitaura.html
- * - 0.0.0.0:3000 で待ち受け（実機: http://<PCのIP>:3000/ ）
+ * - 0.0.0.0:3001 で待ち受け（実機: http://<PCのIP>:3001/ ）
+ * - 3000 は Next.js (kitauralakeside-rvpark-newsite) 用に空けておく
  */
 
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = 3001;
 const HOST = '0.0.0.0';
 const ROOT = path.resolve(__dirname);
 
@@ -64,6 +65,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`[v0 server] http://${HOST}:${PORT}/ → v0_kitaura.html`);
+  console.log(`[v0 server] http://localhost:${PORT}/ → v0_kitaura.html`);
   console.log(`[v0 server] 実機: http://<このPCのIP>:${PORT}/`);
 });

@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="${0:A:h}"
 cd "${SCRIPT_DIR}"
-PORT=3000
+PORT=3001
 HOST="0.0.0.0"
 # vercel.json のリライトで / → /v0_kitaura.html になる
 URL_LOCAL="http://127.0.0.1:${PORT}/"

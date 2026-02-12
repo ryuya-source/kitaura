@@ -33,4 +33,4 @@
 
 ## ローカル・実機での確認
 
-`v4/HTML/v0/` で `node server.js` を実行し、`http://localhost:3000/` または `http://<PCのIP>:3000/` で開く。同じ相対パスで画像が表示されます。
+`v4/HTML/v0/` で `node server.js` を実行し、`http://localhost:3001/` または `http://<PCのIP>:3001/` で開く。同じ相対パスで画像が表示されます。

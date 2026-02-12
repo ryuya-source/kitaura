@@ -328,8 +328,8 @@
     {
       "type": "frame",
       "id": "Bfg2T",
-      "x": -1346,
-      "y": -443,
+      "x": -1347,
+      "y": -457,
       "name": "SP_0.TOP画面",
       "width": 375,
       "height": 434,
@@ -580,23 +580,62 @@
       "children": [
         {
           "type": "frame",
-          "id": "AydsY",
-          "name": "Header",
+          "id": "Dv8is",
+          "name": "DogHeaderRow",
           "width": "fill_container",
-          "layout": "vertical",
-          "gap": 7,
+          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "EP3PH",
-              "name": "title",
-              "fill": "#1C1C1C",
-              "content": "犬種制限について",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "300",
-              "letterSpacing": -0.5
+              "type": "frame",
+              "id": "EukJK",
+              "name": "leftSpacer",
+              "width": "fill_container",
+              "height": "fit_content(0)"
+            },
+            {
+              "type": "frame",
+              "id": "AydsY",
+              "name": "Header",
+              "layout": "vertical",
+              "gap": 7,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "EP3PH",
+                  "name": "title",
+                  "fill": "#1C1C1C",
+                  "content": "犬種制限について",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                  "letterSpacing": -0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DxX2r",
+              "name": "rightSection",
+              "width": "fill_container",
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "g9XLK",
+                  "fill": {
+                    "type": "image",
+                    "opacity": 0.9,
+                    "enabled": true,
+                    "url": "./HTML/v0/src/anime/dog-kezukuroi.png",
+                    "mode": "fill"
+                  },
+                  "width": 44,
+                  "height": 57
+                }
+              ]
             }
           ]
         },
@@ -1400,7 +1439,7 @@
                       "fill": "#6B6B6B",
                       "content": "東関東自動車道をご利用の方",
                       "fontFamily": "Inter",
-                      "fontSize": 9,
+                      "fontSize": 10,
                       "fontWeight": "600"
                     },
                     {
@@ -1539,7 +1578,7 @@
                       "fill": "#6B6B6B",
                       "content": "常磐自動車道をご利用の方",
                       "fontFamily": "Inter",
-                      "fontSize": 9,
+                      "fontSize": 10,
                       "fontWeight": "600"
                     },
                     {
@@ -1638,1208 +1677,8 @@
     },
     {
       "type": "frame",
-      "id": "WawUF",
-      "x": 1005,
-      "y": -469,
-      "name": "SP_8.お知らせ・メディア",
-      "width": 375,
-      "fill": "#FAF8F5",
-      "layout": "vertical",
-      "gap": 32,
-      "padding": [
-        32,
-        10
-      ],
-      "children": [
-        {
-          "type": "frame",
-          "id": "I2mAW",
-          "name": "Header",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 5,
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "z6ags",
-              "name": "mediaTitle",
-              "fill": "#1C1C1C",
-              "content": "お知らせ・メディア",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "300",
-              "letterSpacing": -0.5
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "jnMSf",
-          "name": "メディア掲載",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 7,
-          "children": [
-            {
-              "type": "frame",
-              "id": "RhQsi",
-              "name": "sec1Header",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 3,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "rNafz",
-                  "name": "sec1Title",
-                  "fill": "#1C1C1C",
-                  "content": "メディア掲載情報",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "500",
-                  "letterSpacing": -0.3
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "9Frqa",
-              "name": "media1",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 7,
-              "padding": 9,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "4I95T",
-                  "name": "media1Icon",
-                  "width": 19,
-                  "height": 14,
-                  "fill": "#FF0000",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "ZokZs",
-                      "name": "media1IconI",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "play",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "zLkt7",
-                  "name": "media1Date",
-                  "fill": "#9B9B9B",
-                  "content": "2026年02月01日",
-                  "fontFamily": "Inter",
-                  "fontSize": 9,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "SXVc6",
-                  "name": "media1Content",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "F1Zzm",
-                      "name": "media1Title",
-                      "fill": "#1C1C1C",
-                      "content": "全国10位に入賞しました",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "uxsQb",
-              "name": "media1",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 7,
-              "padding": 9,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "UoLKh",
-                  "name": "media1Icon",
-                  "width": 19,
-                  "height": 14,
-                  "fill": "#FF0000",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "7PxNm",
-                      "name": "media1IconI",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "play",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "dZpWk",
-                  "name": "media1Date",
-                  "fill": "#9B9B9B",
-                  "content": "2025年07月25日",
-                  "fontFamily": "Inter",
-                  "fontSize": 9,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "wQdZU",
-                  "name": "media1Content",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "VLth3",
-                      "name": "media1Title",
-                      "fill": "#1C1C1C",
-                      "content": "板倉 趣味チャンネル",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Ml0uU",
-                  "name": "statsRow1",
-                  "width": "fill_container",
-                  "gap": 7,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "WYGE7",
-                      "name": "viewsFrame1",
-                      "gap": 3,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "MtOtw",
-                          "name": "viewsIcon1",
-                          "width": 9,
-                          "height": 9,
-                          "iconFontName": "eye",
-                          "iconFontFamily": "lucide",
-                          "fill": "#6B6B6B"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Unew3",
-                          "name": "viewsText1",
-                          "fill": "#6B6B6B",
-                          "content": "54万回",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "Mglsa",
-              "name": "media1",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 7,
-              "padding": 9,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "c6Wd8",
-                  "name": "media1Icon",
-                  "width": 19,
-                  "height": 14,
-                  "fill": "#FF0000",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "eor68",
-                      "name": "media1IconI",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "play",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "amTXs",
-                  "name": "media1Date",
-                  "fill": "#9B9B9B",
-                  "content": "2025年02月02日",
-                  "fontFamily": "Inter",
-                  "fontSize": 9,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "MCDb0",
-                  "name": "media1Content",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "UxkMJ",
-                      "name": "media1Title",
-                      "fill": "#1C1C1C",
-                      "content": "休日やること / Kyuuzitsu Yarukoto",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "TwwvN",
-                  "name": "statsRow1",
-                  "width": "fill_container",
-                  "gap": 7,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "kUr6z",
-                      "name": "viewsFrame1",
-                      "gap": 3,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "AfaKf",
-                          "name": "viewsIcon1",
-                          "width": 9,
-                          "height": 9,
-                          "iconFontName": "eye",
-                          "iconFontFamily": "lucide",
-                          "fill": "#6B6B6B"
-                        },
-                        {
-                          "type": "text",
-                          "id": "S1Y0P",
-                          "name": "viewsText1",
-                          "fill": "#6B6B6B",
-                          "content": "0.8万回",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "L7Nhj",
-              "name": "media1",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 7,
-              "padding": 9,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "Y47Fc",
-                  "name": "media1Icon",
-                  "width": 19,
-                  "height": 14,
-                  "fill": "#FF0000",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "IFdb3",
-                      "name": "media1IconI",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "play",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "lx7jC",
-                  "name": "media1Date",
-                  "fill": "#9B9B9B",
-                  "content": "2024年12月20日",
-                  "fontFamily": "Inter",
-                  "fontSize": 9,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "gdc2L",
-                  "name": "media1Content",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "dATIA",
-                      "name": "media2Title",
-                      "fill": "#1C1C1C",
-                      "content": "めがねおばさんのキャンプ生活",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "A4NUN",
-                  "name": "statsRow1",
-                  "width": "fill_container",
-                  "gap": 7,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "TjlhI",
-                      "name": "viewsFrame1",
-                      "gap": 3,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "ehjcY",
-                          "name": "viewsIcon1",
-                          "width": 9,
-                          "height": 9,
-                          "iconFontName": "eye",
-                          "iconFontFamily": "lucide",
-                          "fill": "#6B6B6B"
-                        },
-                        {
-                          "type": "text",
-                          "id": "ogvk5",
-                          "name": "viewsText1",
-                          "fill": "#6B6B6B",
-                          "content": "0.5万回",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "SfJnl",
-              "name": "media1",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 7,
-              "padding": 9,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "QDOTS",
-                  "name": "media1Icon",
-                  "width": 19,
-                  "height": 14,
-                  "fill": "#FF0000",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "ddvjN",
-                      "name": "media1IconI",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "play",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "FwQ1p",
-                  "name": "media1Date",
-                  "fill": "#9B9B9B",
-                  "content": "2024年12月20日",
-                  "fontFamily": "Inter",
-                  "fontSize": 9,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "XZSMN",
-                  "name": "media1Content",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "GUeio",
-                      "name": "media2Title",
-                      "fill": "#1C1C1C",
-                      "content": "ARJべんちゃん",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "6Gk0R",
-                  "name": "statsRow1",
-                  "width": "fill_container",
-                  "gap": 7,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "16n6D",
-                      "name": "viewsFrame1",
-                      "gap": 3,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "XMLwl",
-                          "name": "viewsIcon1",
-                          "width": 9,
-                          "height": 9,
-                          "iconFontName": "eye",
-                          "iconFontFamily": "lucide",
-                          "fill": "#6B6B6B"
-                        },
-                        {
-                          "type": "text",
-                          "id": "XUxID",
-                          "name": "viewsText1",
-                          "fill": "#6B6B6B",
-                          "content": "1.0万回",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "BwQ6Z",
-          "name": "ルール変更",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 7,
-          "children": [
-            {
-              "type": "frame",
-              "id": "QYmzK",
-              "name": "sec2Header",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 3,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "FuiRm",
-                  "name": "sec2Title",
-                  "fill": "#1C1C1C",
-                  "content": "お知らせ",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "500",
-                  "letterSpacing": -0.3
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "f84a7",
-              "name": "priceCard",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "layout": "vertical",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "YwwMw",
-                  "name": "accordionHeader1",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "stroke": {
-                    "thickness": {
-                      "bottom": 1
-                    },
-                    "fill": "#E8E5E0"
-                  },
-                  "gap": 5,
-                  "padding": [
-                    9,
-                    7
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "QOu9r",
-                      "name": "dateTitle1",
-                      "width": "fill_container",
-                      "gap": 5,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "nOtKw",
-                          "name": "dateIcon1",
-                          "width": 6,
-                          "height": 6,
-                          "iconFontName": "calendar",
-                          "iconFontFamily": "lucide",
-                          "fill": "#3D6B4F"
-                        },
-                        {
-                          "type": "text",
-                          "id": "6uvwJ",
-                          "name": "date1",
-                          "fill": "#3D6B4F",
-                          "content": "2026/1/1",
-                          "fontFamily": "Inter",
-                          "fontSize": 7,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "6o7J3",
-                          "name": "title1",
-                          "fill": "#1C1C1C",
-                          "content": "ご利用料金の改定",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon_font",
-                      "id": "tiF3W",
-                      "name": "chevron1",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "chevron-down",
-                      "iconFontFamily": "lucide",
-                      "fill": "#6B6B6B"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "0xNcU",
-                  "name": "priceContent",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 7,
-                  "padding": [
-                    9,
-                    7
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "cTqDJ",
-                      "name": "priceTitle",
-                      "fill": "#1C1C1C",
-                      "content": "ご利用料金の改定",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "NiMV4",
-                      "name": "priceDesc",
-                      "fill": "#4a4a4a",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "E0CkE",
-                      "name": "priceItems",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 5,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "fW2u8",
-                          "name": "item1",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "baeqo",
-                              "name": "item1Text",
-                              "fill": "#4A4A4A",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "「サイト1」料金改定：オープン記念価格を終了し、\n新料金を適用いたします。",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "1goPU",
-                          "name": "item2",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "hGRTo",
-                              "name": "item2Text",
-                              "fill": "#4A4A4A",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "お子様料金の変更：これまで無料だった3歳以下の\nお子様も、大人と同料金となります。",
-                              "lineHeight": 1.6,
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "PEhug",
-                      "name": "priceNote",
-                      "fill": "#9B9B9B",
-                      "content": "※改定日より前に完了しているご予約には、予約時点の料金が適用されます。",
-                      "lineHeight": 1.5,
-                      "fontFamily": "Inter",
-                      "fontSize": 7,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "BNvk1",
-              "name": "birdCard",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 7,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "layout": "vertical",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "EYBuS",
-                  "name": "accordionHeader2",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "stroke": {
-                    "thickness": {
-                      "bottom": 1
-                    },
-                    "fill": "#E8E5E0"
-                  },
-                  "gap": 5,
-                  "padding": [
-                    9,
-                    7
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "d65Sg",
-                      "name": "dateTitle2",
-                      "width": "fill_container",
-                      "gap": 5,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "nmqsU",
-                          "name": "dateIcon2",
-                          "width": 6,
-                          "height": 6,
-                          "iconFontName": "calendar",
-                          "iconFontFamily": "lucide",
-                          "fill": "#3D6B4F"
-                        },
-                        {
-                          "type": "text",
-                          "id": "qcMpm",
-                          "name": "date2",
-                          "fill": "#3D6B4F",
-                          "content": "2026/1/25",
-                          "fontFamily": "Inter",
-                          "fontSize": 7,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "GxaNd",
-                          "name": "title2",
-                          "fill": "#1C1C1C",
-                          "content": "小鳥（オウム・インコ等）の同伴について",
-                          "fontFamily": "Inter",
-                          "fontSize": 9,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon_font",
-                      "id": "ICWBx",
-                      "name": "chevron2",
-                      "width": 9,
-                      "height": 9,
-                      "iconFontName": "chevron-down",
-                      "iconFontFamily": "lucide",
-                      "fill": "#6B6B6B"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "QtS5s",
-                  "name": "birdContent",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 7,
-                  "padding": [
-                    9,
-                    7
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "SFjTw",
-                      "name": "birdTitle",
-                      "fill": "#1C1C1C",
-                      "content": "小鳥（オウム・インコ等）の同伴について",
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "SXQaY",
-                      "name": "birdDesc",
-                      "fill": "#4a4a4a",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "これまで禁止としておりました小鳥の同伴が可能になりますが、\n以下の条件付きとなります。",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 9,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "bkrjq",
-                      "name": "birdItems",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 5,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "J9Khk",
-                          "name": "bItem1",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "SemUj",
-                              "name": "bItem1Text",
-                              "fill": "#4A4A4A",
-                              "content": "キャンピングカー内のみ同伴可能（テント泊は不可）",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "n1alY",
-                          "name": "bItem2",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "8O657",
-                              "name": "bItem2Text",
-                              "fill": "#4A4A4A",
-                              "content": "オウム・インコ等の比較的小さな鳥（1羽まで）",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "srO3u",
-                          "name": "bItem3",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "hnV7b",
-                              "name": "bItem3Text",
-                              "fill": "#4A4A4A",
-                              "content": "常にケージを使用し、車内であっても放鳥は禁止",
-                              "fontFamily": "Inter",
-                              "fontSize": 9,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "FguyL",
-          "name": "キャンペーン",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 9,
-          "children": [
-            {
-              "type": "frame",
-              "id": "kZkN0",
-              "name": "sec3Header",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 3,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "viAid",
-                  "name": "sec3Title",
-                  "fill": "#1C1C1C",
-                  "content": "インスタグラム",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "500",
-                  "letterSpacing": -0.3
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "afOcr",
-              "name": "reelsGrid",
-              "width": "fill_container",
-              "gap": 5,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "xr7dF",
-                  "name": "reel1",
-                  "width": 73,
-                  "height": 73,
-                  "fill": "#E8E5E0",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "yl0Gs",
-                      "name": "reel1Wrap",
-                      "width": 73,
-                      "height": 73,
-                      "layout": "none",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "s63lD",
-                          "x": 0,
-                          "y": 0,
-                          "name": "reel1Img",
-                          "fill": "#C0C0C0",
-                          "width": 73,
-                          "height": 73
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "1ZiB0",
-                  "name": "reel2",
-                  "width": 73,
-                  "height": 73,
-                  "fill": "#E8E5E0",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "KlfBc",
-                      "name": "reel2Wrap",
-                      "width": 73,
-                      "height": 73,
-                      "layout": "none",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "Za41S",
-                          "x": 0,
-                          "y": 0,
-                          "name": "reel2Img",
-                          "fill": "#C0C0C0",
-                          "width": 73,
-                          "height": 73
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "m7Zw2",
-                  "name": "reel3",
-                  "width": 73,
-                  "height": 73,
-                  "fill": "#E8E5E0",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "qBhrN",
-                      "name": "reel3Wrap",
-                      "width": 73,
-                      "height": 73,
-                      "layout": "none",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "BtLl5",
-                          "x": 0,
-                          "y": 0,
-                          "name": "reel3Img",
-                          "fill": "#C0C0C0",
-                          "width": 73,
-                          "height": 73
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "6sUWR",
-                  "name": "reel3",
-                  "width": 73,
-                  "height": 73,
-                  "fill": "#E8E5E0",
-                  "cornerRadius": 5,
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "CG2AN",
-                      "name": "reel3Wrap",
-                      "width": 73,
-                      "height": 73,
-                      "layout": "none",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "6P1uu",
-                          "x": 0,
-                          "y": 0,
-                          "name": "reel3Img",
-                          "fill": "#C0C0C0",
-                          "width": 73,
-                          "height": 73
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "B9vTA",
-              "name": "igBtn",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 11,
-              "stroke": {
-                "thickness": 1,
-                "fill": "#E8E5E0"
-              },
-              "gap": 4,
-              "padding": [
-                5,
-                9
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "y60Jz",
-                  "name": "igIcon",
-                  "width": 9,
-                  "height": 9,
-                  "iconFontName": "instagram",
-                  "iconFontFamily": "lucide",
-                  "fill": "#E1306C"
-                },
-                {
-                  "type": "text",
-                  "id": "Nlc4W",
-                  "name": "igText",
-                  "fill": "#1C1C1C",
-                  "content": "@kitaura_lakeside_rvpark をフォロー",
-                  "fontFamily": "Inter",
-                  "fontSize": 7,
-                  "fontWeight": "600"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
       "id": "a2HDt",
-      "x": -446,
+      "x": -458,
       "y": -457,
       "name": "SP_4.サイト案内・料金",
       "width": 375,
@@ -2853,23 +1692,71 @@
       "children": [
         {
           "type": "frame",
-          "id": "SLgeV",
-          "name": "Header",
+          "id": "e7nNg",
+          "name": "HeaderRow",
           "width": "fill_container",
-          "layout": "vertical",
-          "gap": 8,
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "dB1b4",
-              "name": "priceTitle",
-              "fill": "#1C1C1C",
-              "content": "こだわりポイント",
-              "fontFamily": "Inter",
-              "fontSize": 23,
-              "fontWeight": "300",
-              "letterSpacing": -0.5
+              "type": "frame",
+              "id": "p7Uv1",
+              "name": "leftSpacer",
+              "width": "fill_container",
+              "height": "fit_content(33)",
+              "justifyContent": "end",
+              "alignItems": "center"
+            },
+            {
+              "type": "frame",
+              "id": "dC0oX",
+              "name": "titleImageCenter",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SLgeV",
+                  "name": "Header",
+                  "width": 187,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dB1b4",
+                      "name": "priceTitle",
+                      "fill": "#1C1C1C",
+                      "content": "こだわりポイント",
+                      "fontFamily": "Inter",
+                      "fontSize": 23,
+                      "fontWeight": "300",
+                      "letterSpacing": -0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "MueHG",
+                  "opacity": 0.9,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./HTML/v0/src/anime/dogrun1.png",
+                    "mode": "fill"
+                  },
+                  "width": 50,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vWnbV",
+              "name": "rightSpacer",
+              "width": "fill_container",
+              "height": "fit_content(0)"
             }
           ]
         },
@@ -2930,7 +1817,7 @@
               "id": "jmkxF",
               "name": "descCopy",
               "fill": "#6B6B6B",
-              "content": "トイレ・シャワー・炊事場・電源を全サイトに完備",
+              "content": "トイレ・シャワー・炊事場・電源完備",
               "fontFamily": "Inter",
               "fontSize": 10,
               "fontWeight": "normal"
@@ -3115,7 +2002,7 @@
               "id": "V0sL0",
               "name": "desc1",
               "fill": "#6B6B6B",
-              "content": "全サイト小型犬に配慮した設計・ノーリード可",
+              "content": "小型犬に配慮した設計・ゲートを閉じるとドックランになります",
               "lineHeight": 1.5,
               "fontFamily": "Inter",
               "fontSize": 9,
@@ -3290,7 +2177,7 @@
               "id": "xP0EA",
               "name": "desc3",
               "fill": "#6B6B6B",
-              "content": "全サイトゴミ置き場・電源コード完備・エアコンの有料貸出し(夏季限定)",
+              "content": "ゴミ置き場・コードリール完備・エアコンの有料貸出し(夏季限定)",
               "textAlign": "center",
               "fontFamily": "Inter",
               "fontSize": 9,
@@ -3580,6 +2467,29 @@
                   "cornerRadius": 5
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tjRrM",
+          "name": "L3AZkWrapper",
+          "width": 357,
+          "gap": 12,
+          "justifyContent": "end",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "L3AZk",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./HTML/v0/src/anime/2.png",
+                "mode": "fill"
+              },
+              "width": 214,
+              "height": 204
             }
           ]
         },
@@ -6795,6 +5705,2623 @@
           "height": "fit_content(0)",
           "layout": "vertical",
           "gap": 16
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wPsD5",
+      "x": 963,
+      "y": -469,
+      "name": "SP_8.お知らせ・メディア",
+      "width": 375,
+      "height": 899,
+      "fill": "#FAF8F5",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": [
+        32,
+        10
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Vugpo",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 5,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "3rwDz",
+              "name": "mediaTitle",
+              "fill": "#1C1C1C",
+              "content": "お知らせ・メディア",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "300",
+              "letterSpacing": -0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1EevJ",
+          "name": "メディア掲載",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 7,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Mwnb9",
+              "name": "sec1Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aO4FS",
+                  "name": "sec1Title",
+                  "fill": "#1C1C1C",
+                  "content": "メディア掲載情報",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YPILL",
+              "name": "mediaTabBar",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UXCkc",
+                  "name": "tab1",
+                  "width": 56,
+                  "height": 33,
+                  "fill": "#2C5F7C",
+                  "cornerRadius": 6,
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fXgkz",
+                      "name": "tabLabel",
+                      "fill": "#FFFFFF",
+                      "content": "News",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Wz5qm",
+                  "name": "tab2",
+                  "fill": "#F5F3F0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#E8E5E0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vuXuT",
+                      "name": "tabLabel",
+                      "fill": "#1C1C1C",
+                      "content": "メディア",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9X3UC",
+                  "name": "tab3",
+                  "fill": "#F5F3F0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#E8E5E0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Coacg",
+                      "name": "tabLabel",
+                      "fill": "#1C1C1C",
+                      "content": "お知らせ",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3q1Dx",
+              "name": "birdCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "BmwJL",
+                  "name": "accordionHeader2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "wJZuj",
+                      "name": "dateTitle2",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "zLqzj",
+                          "name": "noticeIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "megaphone",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3D6B4F"
+                        },
+                        {
+                          "type": "text",
+                          "id": "iE0eW",
+                          "name": "date2",
+                          "fill": "#3D6B4F",
+                          "content": "2026年02月01日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NOG3p",
+                          "name": "titleTxt",
+                          "fill": "#1C1C1C",
+                          "content": "全国10位に入賞しました",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "fh9pW",
+                      "name": "chevron2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8WMFs",
+                  "name": "birdContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k7C8v",
+                      "name": "birdTitle",
+                      "fill": "#1C1C1C",
+                      "content": "RV協会の全国アンケートで10位に選ばれました",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "M693d",
+                      "name": "descTxt",
+                      "fill": "#6B6B6B",
+                      "content": "〇〇ランキングにて当施設が全国10位に選出されました。",
+                      "fontFamily": "Inter",
+                      "fontSize": 9
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mQmwm",
+              "name": "priceCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hdHq4",
+                  "name": "accordionHeader1",
+                  "width": "fill_container",
+                  "height": 32,
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "g0PhB",
+                      "name": "playIcon2",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#d4a017"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b9lTJ",
+                      "name": "dateTitle1",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZKial",
+                          "name": "date1",
+                          "fill": "#d4a017",
+                          "content": "2025年08月15日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GNCv7",
+                          "name": "ytHeaderTitle",
+                          "fill": "#1C1C1C",
+                          "content": "板倉 趣味チャンネル",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "MZReE",
+                      "name": "chevron1",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fi242",
+                  "name": "priceContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jwxIc",
+                      "name": "ytContent",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 7,
+                      "padding": [
+                        9,
+                        7
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "LFESm",
+                          "name": "mediaDesc",
+                          "fill": "#6B6B6B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HBeNR",
+                          "name": "dateMetaRow",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vbfuv",
+                              "name": "mediaDate",
+                              "fill": "#9B9B9B",
+                              "content": "2025年7月25日投稿",
+                              "fontFamily": "Inter",
+                              "fontSize": 9,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "un4aZ",
+                              "name": "metaRow",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "TqWWX",
+                                  "name": "views1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "RASWO",
+                                      "name": "eye1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "eye",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "Gu5MV",
+                                      "name": "viewsText",
+                                      "fill": "#6B6B6B",
+                                      "content": "54万回",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "NOKEN",
+                                  "name": "likes1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "gbH52",
+                                      "name": "thumbs1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "thumbs-up",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "jCrzH",
+                                      "name": "likesText",
+                                      "fill": "#6B6B6B",
+                                      "content": "4.7K",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OsQ7A",
+              "name": "priceCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "av66j",
+                  "name": "accordionHeader1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "9gilf",
+                      "name": "playIcon2",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#d4a017"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4J4O4",
+                      "name": "dateTitle1",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RnnTp",
+                          "name": "date1",
+                          "fill": "#d4a017",
+                          "content": "2026年０1月０1日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ypd6c",
+                          "name": "ytHeaderTitle",
+                          "fill": "#1C1C1C",
+                          "content": "ARJべんちゃん",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "VdUH5",
+                      "name": "chevron1",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "LvLCp",
+                      "name": "playIcon2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#3D6B4F"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "ZPTlN",
+                      "name": "playIcon2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#3D6B4F"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "p5Fgt",
+                  "name": "priceContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "0uZUl",
+                      "name": "ytContent",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 7,
+                      "padding": [
+                        9,
+                        7
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4QRDe",
+                          "name": "mediaDesc",
+                          "fill": "#6B6B6B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lt73r",
+                          "name": "dateMetaRow",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ekB9u",
+                              "name": "mediaDate",
+                              "fill": "#9B9B9B",
+                              "content": "2025年7月25日投稿",
+                              "fontFamily": "Inter",
+                              "fontSize": 9,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "9PXZW",
+                              "name": "metaRow",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "pCOJ9",
+                                  "name": "views1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "o8lUE",
+                                      "name": "eye1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "eye",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "KIMdB",
+                                      "name": "viewsText",
+                                      "fill": "#6B6B6B",
+                                      "content": "54万回",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Ua4EB",
+                                  "name": "likes1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "0chfh",
+                                      "name": "thumbs1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "thumbs-up",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "aqGbk",
+                                      "name": "likesText",
+                                      "fill": "#6B6B6B",
+                                      "content": "4.7K",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "53lXe",
+              "name": "birdCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "7iDg6",
+                  "name": "accordionHeader2",
+                  "width": "fill_container",
+                  "height": 32,
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "l9nuo",
+                      "name": "dateTitle2",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "vEoCQ",
+                          "name": "noticeIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "megaphone",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3D6B4F"
+                        },
+                        {
+                          "type": "text",
+                          "id": "T2xna",
+                          "name": "date2",
+                          "fill": "#3D6B4F",
+                          "content": "2026年０1月25日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "KEwFM",
+                          "name": "title2",
+                          "fill": "#1C1C1C",
+                          "content": "小鳥（オウム・インコ等）の同伴について",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "EFGjN",
+                      "name": "chevron2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FIyX1",
+                  "name": "birdContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ALAmO",
+                      "name": "birdTitle",
+                      "fill": "#1C1C1C",
+                      "content": "小鳥（オウム・インコ等）の同伴について",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yyKei",
+                      "name": "birdDesc",
+                      "fill": "#4a4a4a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hmxLk",
+                      "name": "birdItems",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 5,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Rl6Ms",
+                          "name": "bItem1",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ia6kc",
+                              "name": "bItem1Text",
+                              "fill": "#4A4A4A",
+                              "content": "キャンピングカー内のみ同伴可能（テント泊は不可）",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "XmBYI",
+                          "name": "bItem2",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "BM4es",
+                              "name": "bItem2Text",
+                              "fill": "#4A4A4A",
+                              "content": "オウム・インコ等の比較的小さな鳥（1羽まで）",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "7SDeQ",
+                          "name": "bItem3",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "0TKFH",
+                              "name": "bItem3Text",
+                              "fill": "#4A4A4A",
+                              "content": "常にケージを使用し、車内であっても放鳥は禁止",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jScjk",
+          "name": "キャンペーン",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 9,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Xbh6G",
+              "name": "sec3Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wa3Oc",
+                  "name": "sec3Title",
+                  "fill": "#1C1C1C",
+                  "content": "インスタグラム",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Xsbrh",
+              "name": "reelsGrid",
+              "width": "fill_container",
+              "gap": 5,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TrJox",
+                  "name": "reel1",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Uw7bc",
+                      "name": "reel1Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "TPIQO",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel1Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ca1mS",
+                  "name": "reel2",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dtVX9",
+                      "name": "reel2Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "7f5Hn",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel2Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IyT2G",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "OmDLS",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "zYBqw",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VhH34",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "prj1K",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "jzYuQ",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uMTz6",
+              "name": "igBtn",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 11,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 4,
+              "padding": [
+                5,
+                9
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "lMTht",
+                  "name": "igIcon",
+                  "width": 9,
+                  "height": 9,
+                  "iconFontName": "instagram",
+                  "iconFontFamily": "lucide",
+                  "fill": "#E1306C"
+                },
+                {
+                  "type": "text",
+                  "id": "dGXfb",
+                  "name": "igText",
+                  "fill": "#1C1C1C",
+                  "content": "@kitaura_lakeside_rvpark をフォロー",
+                  "fontFamily": "Inter",
+                  "fontSize": 7,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "4S7o1",
+      "x": 1365,
+      "y": -469,
+      "name": "SP_8.お知らせ・メディア",
+      "width": 375,
+      "fill": "#FAF8F5",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": [
+        32,
+        10
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "RBOIK",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 5,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "frxYf",
+              "name": "mediaTitle",
+              "fill": "#1C1C1C",
+              "content": "お知らせ・メディア",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "300",
+              "letterSpacing": -0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tnQz1",
+          "name": "メディア掲載",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 7,
+          "children": [
+            {
+              "type": "frame",
+              "id": "YAyVo",
+              "name": "sec1Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nz8rW",
+                  "name": "sec1Title",
+                  "fill": "#1C1C1C",
+                  "content": "メディア掲載情報",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "7qNRK",
+              "name": "mediaTabBar",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gb2DC",
+                  "name": "tab1",
+                  "width": 56,
+                  "height": 33,
+                  "fill": "#f5f3f0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#e8e5e0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "9F5zC",
+                      "name": "tabLabel",
+                      "fill": "#1c1c1c",
+                      "content": "News",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KbLlS",
+                  "name": "tab2",
+                  "fill": "#d4a017",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#E8E5E0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kLLGj",
+                      "name": "tabLabel",
+                      "fill": "#FFFFFF",
+                      "content": "メディア",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "krBax",
+                  "name": "tab3",
+                  "fill": "#F5F3F0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#E8E5E0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "3jVnk",
+                      "name": "tabLabel",
+                      "fill": "#1C1C1C",
+                      "content": "お知らせ",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "6rKT7",
+              "name": "priceCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dIhAJ",
+                  "name": "accordionHeader1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "vgTML",
+                      "name": "playIcon2",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#d4a017"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FoRba",
+                      "name": "dateTitle1",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "unl20",
+                          "name": "date1",
+                          "fill": "#d4a017",
+                          "content": "2026年０1月０1日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SQsFU",
+                          "name": "ytHeaderTitle",
+                          "fill": "#1C1C1C",
+                          "content": "板倉 趣味チャンネル",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "ttJfJ",
+                      "name": "chevron1",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rKatf",
+                  "name": "priceContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hTjCN",
+                      "name": "ytContent",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 7,
+                      "padding": [
+                        9,
+                        7
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PBRRB",
+                          "name": "mediaDesc",
+                          "fill": "#6B6B6B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "gIFrQ",
+                          "name": "dateMetaRow",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "cqCdn",
+                              "name": "mediaDate",
+                              "fill": "#9B9B9B",
+                              "content": "2025年7月25日投稿",
+                              "fontFamily": "Inter",
+                              "fontSize": 9,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "S9Bed",
+                              "name": "metaRow",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ZlZsR",
+                                  "name": "views1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "vYfmq",
+                                      "name": "eye1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "eye",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "YoDs9",
+                                      "name": "viewsText",
+                                      "fill": "#6B6B6B",
+                                      "content": "54万回",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "XXTaA",
+                                  "name": "likes1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "bOXnd",
+                                      "name": "thumbs1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "thumbs-up",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "Uu0al",
+                                      "name": "likesText",
+                                      "fill": "#6B6B6B",
+                                      "content": "4.7K",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sCfpx",
+              "name": "priceCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Poj8T",
+                  "name": "accordionHeader1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "JCac2",
+                      "name": "playIcon2",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "camera",
+                      "iconFontFamily": "lucide",
+                      "fill": "#d4a017"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Sings",
+                      "name": "dateTitle1",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "L5vPA",
+                          "name": "date1",
+                          "fill": "#d4a017",
+                          "content": "2026年０1月０1日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jU6fy",
+                          "name": "ytHeaderTitle",
+                          "fill": "#1C1C1C",
+                          "content": "ARJべんちゃん",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "kdoWM",
+                      "name": "chevron1",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yhVxV",
+                  "name": "priceContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QOifZ",
+                      "name": "ytContent",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 7,
+                      "padding": [
+                        9,
+                        7
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pDAc6",
+                          "name": "mediaDesc",
+                          "fill": "#6B6B6B",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。",
+                          "lineHeight": 1.6,
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "7ETLt",
+                          "name": "dateMetaRow",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "HWTGN",
+                              "name": "mediaDate",
+                              "fill": "#9B9B9B",
+                              "content": "2025年7月25日投稿",
+                              "fontFamily": "Inter",
+                              "fontSize": 9,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Scd0d",
+                              "name": "metaRow",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "LChBM",
+                                  "name": "views1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "jUNdO",
+                                      "name": "eye1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "eye",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "HR9X3",
+                                      "name": "viewsText",
+                                      "fill": "#6B6B6B",
+                                      "content": "54万回",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "jYsFR",
+                                  "name": "likes1",
+                                  "gap": 3,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "7KwQS",
+                                      "name": "thumbs1",
+                                      "width": 9,
+                                      "height": 9,
+                                      "iconFontName": "thumbs-up",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#6B6B6B"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "xKg3c",
+                                      "name": "likesText",
+                                      "fill": "#6B6B6B",
+                                      "content": "4.7K",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 9,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "2QTQi",
+          "name": "キャンペーン",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 9,
+          "children": [
+            {
+              "type": "frame",
+              "id": "QisZJ",
+              "name": "sec3Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jkvED",
+                  "name": "sec3Title",
+                  "fill": "#1C1C1C",
+                  "content": "インスタグラム",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IqErk",
+              "name": "reelsGrid",
+              "width": "fill_container",
+              "gap": 5,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "56MIz",
+                  "name": "reel1",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "5nsqF",
+                      "name": "reel1Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "EElLS",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel1Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qObLc",
+                  "name": "reel2",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BWxlO",
+                      "name": "reel2Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "OuIXK",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel2Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "t8H4J",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "3u3Mo",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "ucIxE",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qZyQQ",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "INLJh",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "zMboz",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HDI40",
+              "name": "igBtn",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 11,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 4,
+              "padding": [
+                5,
+                9
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "ImFuK",
+                  "name": "igIcon",
+                  "width": 9,
+                  "height": 9,
+                  "iconFontName": "instagram",
+                  "iconFontFamily": "lucide",
+                  "fill": "#E1306C"
+                },
+                {
+                  "type": "text",
+                  "id": "ddEuq",
+                  "name": "igText",
+                  "fill": "#1C1C1C",
+                  "content": "@kitaura_lakeside_rvpark をフォロー",
+                  "fontFamily": "Inter",
+                  "fontSize": 7,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "oPoEg",
+      "x": 1774,
+      "y": -469,
+      "name": "SP_8.お知らせ・メディア",
+      "width": 375,
+      "fill": "#FAF8F5",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": [
+        32,
+        10
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "cHzSu",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 5,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "0AG7N",
+              "name": "mediaTitle",
+              "fill": "#1C1C1C",
+              "content": "お知らせ・メディア",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "300",
+              "letterSpacing": -0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "w1RZy",
+          "name": "メディア掲載",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 7,
+          "children": [
+            {
+              "type": "frame",
+              "id": "D8KMC",
+              "name": "sec1Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ywmBa",
+                  "name": "sec1Title",
+                  "fill": "#1C1C1C",
+                  "content": "メディア掲載情報",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C3tYB",
+              "name": "mediaTabBar",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LfofE",
+                  "name": "tab3",
+                  "width": 56,
+                  "height": 33,
+                  "fill": "#f5f3f0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#e8e5e0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YPZx5",
+                      "name": "tabLabel",
+                      "fill": "#1c1c1c",
+                      "content": "News",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HkNcU",
+                  "name": "tab2",
+                  "width": 56,
+                  "height": 33,
+                  "fill": "#F5F3F0",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#E8E5E0"
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "m22pF",
+                      "name": "tabLabel",
+                      "fill": "#1C1C1C",
+                      "content": "メディア",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "j8TZL",
+                  "name": "tab3",
+                  "fill": "#4A7C59",
+                  "cornerRadius": 6,
+                  "stroke": {
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "padding": 10,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7FEC0",
+                      "name": "tabLabel",
+                      "fill": "#FFFFFF",
+                      "content": "お知らせ",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tMrkK",
+              "name": "birdCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "BhRzr",
+                  "name": "accordionHeader2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dybjR",
+                      "name": "dateTitle2",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "UuNeA",
+                          "name": "noticeIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "megaphone",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3D6B4F"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ATNim",
+                          "name": "date2",
+                          "fill": "#3D6B4F",
+                          "content": "2026年０2月01日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "eGB1z",
+                          "name": "titleTxt",
+                          "fill": "#1C1C1C",
+                          "content": "全国10位に入賞しました",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "TjQF0",
+                      "name": "chevron2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8zibd",
+                  "name": "birdContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5sHKv",
+                      "name": "birdTitle",
+                      "fill": "#1C1C1C",
+                      "content": "RV協会の全国アンケートで10位に選ばれました",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "704o4",
+                      "name": "descTxt",
+                      "fill": "#6B6B6B",
+                      "content": "〇〇ランキングにて当施設が全国10位に選出されました。",
+                      "fontFamily": "Inter",
+                      "fontSize": 9
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LoICb",
+              "name": "birdCard",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 7,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "mBh3t",
+                  "name": "accordionHeader2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#E8E5E0"
+                  },
+                  "gap": 5,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Fu9Zg",
+                      "name": "dateTitle2",
+                      "width": "fill_container",
+                      "gap": 5,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "IUeA4",
+                          "name": "noticeIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "megaphone",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3D6B4F"
+                        },
+                        {
+                          "type": "text",
+                          "id": "2tXb6",
+                          "name": "date2",
+                          "fill": "#3D6B4F",
+                          "content": "2026年０1月25日",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Zv0av",
+                          "name": "title2",
+                          "fill": "#1C1C1C",
+                          "content": "小鳥（オウム・インコ等）の同伴について",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "prnj7",
+                      "name": "chevron2",
+                      "width": 9,
+                      "height": 9,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B6B6B"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nUkm4",
+                  "name": "birdContent",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "padding": [
+                    9,
+                    7
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "l5iiV",
+                      "name": "birdTitle",
+                      "fill": "#1C1C1C",
+                      "content": "小鳥（オウム・インコ等）の同伴について",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JmOFG",
+                      "name": "birdDesc",
+                      "fill": "#4a4a4a",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GbBFr",
+                      "name": "birdItems",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 5,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ec0LP",
+                          "name": "bItem1",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "BsJQl",
+                              "name": "bItem1Text",
+                              "fill": "#4A4A4A",
+                              "content": "キャンピングカー内のみ同伴可能（テント泊は不可）",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UjqJm",
+                          "name": "bItem2",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Yj2WR",
+                              "name": "bItem2Text",
+                              "fill": "#4A4A4A",
+                              "content": "オウム・インコ等の比較的小さな鳥（1羽まで）",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J1Hdj",
+                          "name": "bItem3",
+                          "width": "fill_container",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "w3gJE",
+                              "name": "bItem3Text",
+                              "fill": "#4A4A4A",
+                              "content": "常にケージを使用し、車内であっても放鳥は禁止",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eKyZd",
+          "name": "キャンペーン",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 9,
+          "children": [
+            {
+              "type": "frame",
+              "id": "EcOZh",
+              "name": "sec3Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GHBfx",
+                  "name": "sec3Title",
+                  "fill": "#1C1C1C",
+                  "content": "インスタグラム",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "letterSpacing": -0.3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vF2ca",
+              "name": "reelsGrid",
+              "width": "fill_container",
+              "gap": 5,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fMnIw",
+                  "name": "reel1",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "m9YuL",
+                      "name": "reel1Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "iBdE5",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel1Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rfxfd",
+                  "name": "reel2",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QQ4YI",
+                      "name": "reel2Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "XHy4f",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel2Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LgDNl",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4necu",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "EZn95",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zA3Q9",
+                  "name": "reel3",
+                  "width": 73,
+                  "height": 73,
+                  "fill": "#E8E5E0",
+                  "cornerRadius": 5,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RcHm3",
+                      "name": "reel3Wrap",
+                      "width": 73,
+                      "height": 73,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "iBu5w",
+                          "x": 0,
+                          "y": 0,
+                          "name": "reel3Img",
+                          "fill": "#C0C0C0",
+                          "width": 73,
+                          "height": 73
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AQr1t",
+              "name": "igBtn",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 11,
+              "stroke": {
+                "thickness": 1,
+                "fill": "#E8E5E0"
+              },
+              "gap": 4,
+              "padding": [
+                5,
+                9
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "r6xix",
+                  "name": "igIcon",
+                  "width": 9,
+                  "height": 9,
+                  "iconFontName": "instagram",
+                  "iconFontFamily": "lucide",
+                  "fill": "#E1306C"
+                },
+                {
+                  "type": "text",
+                  "id": "8TvIl",
+                  "name": "igText",
+                  "fill": "#1C1C1C",
+                  "content": "@kitaura_lakeside_rvpark をフォロー",
+                  "fontFamily": "Inter",
+                  "fontSize": 7,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
