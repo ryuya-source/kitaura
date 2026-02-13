@@ -62,6 +62,17 @@ export default function PetPage() {
               ))}
             </div>
           </div>
+          <div className="pet-rules-dogs-row" aria-hidden>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/src/anime/dogs_row.png"
+              alt=""
+              width={552}
+              height={160}
+              loading="lazy"
+              className="pet-rules-dogs-row__img"
+            />
+          </div>
           <Link href="/#terms" className="pet-rules-link">
             <span className="pet-rules-link__text">
               詳しくは
