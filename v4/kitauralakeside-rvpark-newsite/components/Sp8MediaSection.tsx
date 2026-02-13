@@ -9,6 +9,7 @@ import {
   ThumbsUp,
   Instagram,
 } from "lucide-react";
+import InstagramEmbeds from "@/components/InstagramEmbeds";
 
 type TabName = "news" | "media" | "notice";
 
@@ -60,10 +61,16 @@ const MEDIA_ITEMS = [
   },
 ];
 
+// 実際に埋め込みたい Instagram 投稿URL をここに追加（公開投稿のみ表示されます）
+const INSTAGRAM_PERMALINKS: string[] = [
+  // 例: "https://www.instagram.com/p/POST_SHORTCODE/",
+  // 例: "https://www.instagram.com/reel/REEL_SHORTCODE/",
+];
+
 export default function Sp8MediaSection() {
   const [tab, setTab] = useState<TabName>("news");
-  const [noticeOpen, setNoticeOpen] = useState<string | null>(null);
-  const [mediaOpen, setMediaOpen] = useState<string | null>(null);
+  const [noticeOpenIds, setNoticeOpenIds] = useState<Set<string>>(() => new Set());
+  const [mediaOpenIds, setMediaOpenIds] = useState<Set<string>>(() => new Set());
 
   const showNotice = tab === "news" || tab === "notice";
   const showMedia = tab === "news" || tab === "media";
@@ -95,16 +102,26 @@ export default function Sp8MediaSection() {
             data-panels="news notice"
           >
             {NOTICE_ITEMS.map((item) => (
+              (() => {
+                const isOpen = noticeOpenIds.has(item.id);
+                return (
               <div
                 key={item.id}
-                className={`sp8-media__accordion ${noticeOpen === item.id ? "is-open" : ""}`}
+                className={`sp8-media__accordion ${isOpen ? "is-open" : ""}`}
               >
                 <button
                   type="button"
                   className="sp8-media__acc-head"
-                  aria-expanded={noticeOpen === item.id}
+                  aria-expanded={isOpen}
                   aria-controls={item.id}
-                  onClick={() => setNoticeOpen(noticeOpen === item.id ? null : item.id)}
+                  onClick={() => {
+                    setNoticeOpenIds((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(item.id)) next.delete(item.id);
+                      else next.add(item.id);
+                      return next;
+                    });
+                  }}
                 >
                   <div className="sp8-media__acc-left">
                     <span className="sp8-media__date-icon">
@@ -117,10 +134,12 @@ export default function Sp8MediaSection() {
                     <ChevronDown size={9} strokeWidth={2} />
                   </span>
                 </button>
-                <div id={item.id} className="sp8-media__acc-body" hidden={noticeOpen !== item.id}>
+                <div id={item.id} className="sp8-media__acc-body" hidden={!isOpen}>
                   {item.body}
                 </div>
               </div>
+                );
+              })()
             ))}
           </section>
         )}
@@ -133,16 +152,26 @@ export default function Sp8MediaSection() {
           >
             <div className="sp8-media__media-list">
               {MEDIA_ITEMS.map((item) => (
+                (() => {
+                  const isOpen = mediaOpenIds.has(item.id);
+                  return (
                 <div
                   key={item.id}
-                  className={`sp8-media__media-card ${mediaOpen === item.id ? "is-open" : ""}`}
+                  className={`sp8-media__media-card ${isOpen ? "is-open" : ""}`}
                 >
                   <button
                     type="button"
                     className="sp8-media__media-head"
-                    aria-expanded={mediaOpen === item.id}
+                    aria-expanded={isOpen}
                     aria-controls={item.id}
-                    onClick={() => setMediaOpen(mediaOpen === item.id ? null : item.id)}
+                    onClick={() => {
+                      setMediaOpenIds((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(item.id)) next.delete(item.id);
+                        else next.add(item.id);
+                        return next;
+                      });
+                    }}
                   >
                     <div className="sp8-media__media-head-left">
                       <span className="sp8-media__yt-icon">
@@ -155,7 +184,7 @@ export default function Sp8MediaSection() {
                       <ChevronDown size={9} strokeWidth={2} />
                     </span>
                   </button>
-                  <div id={item.id} className="sp8-media__media-body" hidden={mediaOpen !== item.id}>
+                  <div id={item.id} className="sp8-media__media-body" hidden={!isOpen}>
                     <p className="sp8-media__media-desc">{item.desc}</p>
                     <div className="sp8-media__date-meta-row">
                       <span className="sp8-media__media-date">{item.metaDate}</span>
@@ -170,6 +199,8 @@ export default function Sp8MediaSection() {
                     </div>
                   </div>
                 </div>
+                  );
+                })()
               ))}
             </div>
           </section>
@@ -177,11 +208,15 @@ export default function Sp8MediaSection() {
 
         <section>
           <h2 className="sp8-media__section-title">インスタグラム</h2>
-          <div className="sp8-media__insta-grid">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="sp8-media__insta-thumb" />
-            ))}
-          </div>
+          {INSTAGRAM_PERMALINKS.length ? (
+            <InstagramEmbeds permalinks={INSTAGRAM_PERMALINKS} className="sp8-media__insta-grid" />
+          ) : (
+            <div className="sp8-media__insta-grid" aria-label="Instagram埋め込み（URL未設定）">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="sp8-media__insta-thumb" />
+              ))}
+            </div>
+          )}
           <div className="sp8-media__follow">
             <span className="sp8-media__ig">
               <Instagram size={9} strokeWidth={2} />

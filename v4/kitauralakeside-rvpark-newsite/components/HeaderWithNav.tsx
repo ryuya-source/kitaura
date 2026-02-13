@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { href: "#pet", label: "犬種制限について" },
@@ -13,8 +14,14 @@ const navLinks = [
   { href: "/contact", label: "お問い合わせ" },
 ];
 
-export default function HeaderWithNav() {
+type Props = {
+  hideLogo?: boolean;
+};
+
+export default function HeaderWithNav({ hideLogo = false }: Props) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const closeMenu = useCallback(() => setOpen(false), []);
   const toggleMenu = useCallback(() => setOpen((o) => !o), []);
@@ -28,6 +35,13 @@ export default function HeaderWithNav() {
     if (href.startsWith("#")) {
       e.preventDefault();
       closeMenu();
+
+      // /pet など別ページからはホームの該当セクションへ遷移
+      if (pathname !== "/") {
+        router.push(`/${href}`);
+        return;
+      }
+
       const id = href.slice(1);
       const el = document.getElementById(id);
       el?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -36,19 +50,21 @@ export default function HeaderWithNav() {
 
   return (
     <>
-      <header className="header">
-        <div className="logo-frame" aria-label="ロゴ">
-          <img
-            className="logo-img"
-            src="/src/futter_logo.png"
-            alt="KITAURA LAKESIDE RV park"
-            width={32}
-            height={31}
-          />
-          <div className="logo-text">
-            {"KITAURA LAKESIDE\nRV park"}
+      <header className={`header ${hideLogo ? "header--no-logo" : ""}`.trim()}>
+        {!hideLogo && (
+          <div className="logo-frame" aria-label="ロゴ">
+            <img
+              className="logo-img"
+              src="/src/futter_logo.png"
+              alt="KITAURA LAKESIDE RV park"
+              width={32}
+              height={31}
+            />
+            <div className="logo-text">
+              {"KITAURA LAKESIDE\nRV park"}
+            </div>
           </div>
-        </div>
+        )}
         <nav className="nav" aria-label="メインナビゲーション">
           <button
             type="button"
@@ -57,7 +73,7 @@ export default function HeaderWithNav() {
             onClick={toggleMenu}
             aria-expanded={open}
           >
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <svg width={32} height={32} viewBox="0 0 24 24" fill="none" aria-hidden>
               <line className="hamburger-icon__line hamburger-icon__line--top" x1={5} y1={7} x2={19} y2={7} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />
               <line className="hamburger-icon__line hamburger-icon__line--mid" x1={5} y1={12} x2={19} y2={12} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />
               <line className="hamburger-icon__line hamburger-icon__line--btm" x1={5} y1={17} x2={19} y2={17} strokeWidth={2} strokeLinecap="round" stroke="#1a1a1a" />
@@ -75,7 +91,7 @@ export default function HeaderWithNav() {
             {navLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link
-                  href={href}
+                  href={href.startsWith("#") && pathname !== "/" ? `/${href}` : href}
                   className="nav-overlay__link"
                   onClick={(e) => handleLinkClick(e, href)}
                 >

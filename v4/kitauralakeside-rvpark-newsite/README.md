@@ -23,7 +23,8 @@ v0 と同一にするには、**v4/HTML/v0/src** の内容を **public/src** に
 
 - `public/src/futter_logo.png` - ロゴ
 - `public/src/image_side.jpg` - TOP 背景
-- `public/src/pet_section_sunset.png` - ペットセクション背景
+- `public/src/pet_section_hero.png` - ペットセクション背景（Pencil: PS_kitaura.pen の FhnNd「SP_2.ペット」で使っている写真。フレームを画像エクスポートするか、背景用画像をここに配置）
+- （従来）`public/src/pet_section_sunset.png` - 上記の代わりに使う場合
 - `public/src/anime/` - apology4.png, dog-kezukuroi.png など
 - `public/src/dog_breeds/` - slide_01.png など
 - `public/src/1-watter/`, `2_dog/`, `3_els/`, `4_nearby/`, `site_no1/`, `site_no2/`, `site_no3/` - 各 list.json と画像

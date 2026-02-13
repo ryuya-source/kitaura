@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 0.0.0.0",
+    "lan-ip": "node -e \"const os=require('os');const en=os.networkInterfaces().en0;const ip=en&&en.find(m=>m.family==='IPv4');console.log(ip?'実機で開く: http://'+ip.address+':3000':'en0 が見つかりません');process.exit(ip?0:1)\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -11,6 +12,7 @@
   "dependencies": {
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
+    "page-flip": "^2.0.7",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

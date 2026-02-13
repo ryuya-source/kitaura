@@ -1,4 +1,7 @@
 import Link from "next/link";
+import PetFlipBook from "@/components/PetFlipBook";
+import PetBookingFooter from "@/components/PetBookingFooter";
+import HeaderWithNav from "@/components/HeaderWithNav";
 
 export const metadata = {
   title: "ペット同伴ルール - KITAURA LAKESIDE RV park",
@@ -20,6 +23,7 @@ export default function PetPage() {
 
   return (
     <div className="pet-rules-wrapper">
+      <HeaderWithNav hideLogo />
       <main className="pet-rules-page" aria-label="ペット同伴ルール">
         <div className="pet-rules-title-row" aria-label="犬種制限について">
           <div className="pet-rules-title-row__left" aria-hidden />
@@ -58,36 +62,30 @@ export default function PetPage() {
               ))}
             </div>
           </div>
+          <div className="pet-rules-dogs-row" aria-hidden>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/src/anime/dogs_row.png"
+              alt=""
+              width={552}
+              height={160}
+              loading="lazy"
+              className="pet-rules-dogs-row__img"
+            />
+          </div>
           <Link href="/#terms" className="pet-rules-link">
-            <span className="pet-rules-link__text">詳しくは利用規約・マナーをご確認ください</span>
-            <span className="pet-rules-link__underline" aria-hidden />
+            <span className="pet-rules-link__text">
+              詳しくは
+              <span className="pet-rules-link__em">利用規約・マナー</span>
+              をご確認ください
+            </span>
           </Link>
         </section>
 
         <h2 className="pet-rules-page__title">なぜ犬種制限があるのか</h2>
-        <div className="pet-rules-slider">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="pet-rules-slider__img"
-            src="/src/dog_breeds/slide_01.png"
-            alt="犬種制限の説明"
-            width={276}
-            height={191}
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-            }}
-          />
-        </div>
-        <div className="pet-rules-pagination" role="group" aria-label="スライダー操作">
-          <button type="button" className="pet-rules-pagination__btn" aria-label="前へ">前</button>
-          <span className="pet-rules-pagination__info">1 / 9</span>
-          <button type="button" className="pet-rules-pagination__btn" aria-label="次へ">次</button>
-        </div>
+        <PetFlipBook />
       </main>
-      <div className="pet-rules-footer">
-        <Link href="/#booking" className="pet-rules-footer__btn">予約・空き確認</Link>
-      </div>
+      <PetBookingFooter />
     </div>
   );
 }

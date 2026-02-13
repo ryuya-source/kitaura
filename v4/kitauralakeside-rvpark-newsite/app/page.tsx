@@ -118,7 +118,10 @@ export default function Home() {
 
         <div className="site-type-notice" aria-hidden>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/src/anime/apology4.png" alt="" width={700} height="auto" loading="lazy" style={{ maxHeight: 680, objectFit: "contain" }} />
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/src/anime/apology4_trim.png" />
+            <img src="/src/anime/apology4.png" alt="" className="site-type-notice__img" loading="lazy" />
+          </picture>
         </div>
 
         <h1 className="section-title" id="site-type">サイト種別</h1>
