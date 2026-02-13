@@ -2395,10 +2395,98 @@
     }
     .contact-form .form-group select:invalid,
     .contact-form .form-group select option[value=""] {
-      color: #6B8E6B;
+      color: #1C1C1C;
     }
     .contact-form .form-group select option:not([value=""]) {
       color: #1C1C1C;
+    }
+
+    /* 犬種・頭数：頭数選択1行 → 選んだ数だけ犬種入力 */
+    .contact-form .form-row--dog-first {
+      margin-bottom: 0;
+    }
+    .contact-form .form-row__select-wrap--full {
+      width: 100%;
+      max-width: 200px;
+    }
+    .contact-form .form-row__select-wrap--full select {
+      width: 100%;
+      min-height: 48px;
+      height: 48px;
+    }
+    .contact-form .form-rows-dog {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .contact-form .form-row--dog {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+    }
+    .contact-form .form-row--dog .form-row__label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .contact-form .form-row--dog .form-row__input {
+      width: 100%;
+      min-height: 48px;
+      height: 48px;
+    }
+    /* 案B: 犬種×頭数（行追加） */
+    .contact-form .form-rows-dog--breed-count {
+      margin-top: 8px;
+    }
+    .contact-form .form-row--dog-breed-count {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+    }
+    .contact-form .form-row--dog-breed-count .form-row__input--breed {
+      flex: 1;
+      min-width: 0;
+      min-height: 48px;
+      height: 48px;
+    }
+    .contact-form .form-row--dog-breed-count .form-row__select-wrap--count {
+      flex-shrink: 0;
+      width: 80px;
+    }
+    .contact-form .form-row--dog-breed-count .form-row__select-wrap--count select {
+      width: 100%;
+      min-height: 48px;
+      height: 48px;
+    }
+    .contact-form .form-row__remove {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #6B6B6B;
+      background: transparent;
+      border: 1px solid #E8E5E0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .contact-form .form-add-row {
+      margin-top: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--accent-green);
+      background: transparent;
+      border: 1px solid var(--accent-green);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .contact-form .form-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      width: 100%;
     }
 
     /* input[type=date]：iOSネイティブをやめて独自スタイル（電話番号欄と同じ高さ） */
@@ -2440,6 +2528,15 @@
       color: #6B6B6B;
       line-height: 1.5;
       margin-top: 2px;
+    }
+    .contact-form .form-note--under-label {
+      margin-top: 2px;
+      margin-bottom: 6px;
+    }
+    .contact-form .form-note__link {
+      color: var(--accent-green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
     .contact-form .form-submit {
       width: 100%;
