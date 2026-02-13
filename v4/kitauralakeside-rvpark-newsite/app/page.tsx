@@ -128,7 +128,7 @@ export default function Home() {
         <div className="site-type-notice" aria-hidden>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <picture>
-            <source media="(max-width: 768px)" srcSet="/src/anime/apology4_trim_tight_nofade.png" />
+            <source media="(max-width: 768px)" srcSet="/src/anime/apology4_trim.png" />
             <img src="/src/anime/apology4.png" alt="" className="site-type-notice__img" loading="lazy" />
           </picture>
         </div>

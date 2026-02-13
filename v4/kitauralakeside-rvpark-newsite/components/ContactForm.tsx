@@ -78,6 +78,18 @@ export default function ContactForm() {
 
           <div className="form-group">
             <label>
+              ご連絡先 <span className="required">必須</span>
+            </label>
+            <input
+              type="tel"
+              name="ご連絡先"
+              required
+              placeholder="例：090-1234-5678"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>
               メールアドレス <span className="required">必須</span>
             </label>
             <input
@@ -85,18 +97,6 @@ export default function ContactForm() {
               name="メールアドレス"
               required
               placeholder="例：example@email.com"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>
-              電話番号 <span className="required">必須</span>
-            </label>
-            <input
-              type="tel"
-              name="電話番号"
-              required
-              placeholder="例：090-1234-5678"
             />
           </div>
 
@@ -112,6 +112,7 @@ export default function ContactForm() {
               ご利用人数 <span className="required">必須</span>
             </label>
             <select name="ご利用人数" required>
+              <option value="">選択してください</option>
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <option key={n} value={n}>{n}</option>
               ))}
@@ -119,61 +120,72 @@ export default function ContactForm() {
           </div>
 
           <div className="form-group">
-            <label>ご希望のご宿泊スタイル</label>
-            <select name="ご希望のご宿泊スタイル">
+            <label>
+              チェックイン時間 <span className="required">必須</span>
+            </label>
+            <select name="チェックイン時間" required>
               <option value="">選択してください</option>
-              <option value="テント泊">テント泊</option>
-              <option value="車中泊">車中泊</option>
-              <option value="両方">両方</option>
+              <option value="13時〜14時">13時〜14時</option>
+              <option value="14時〜15時">14時〜15時</option>
+              <option value="15時〜16時">15時〜16時</option>
+              <option value="16時〜17時">16時〜17時</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>チェックイン時間</label>
-            <select name="チェックイン時間">
+            <label>
+              ご希望のサイト番号 <span className="required">必須</span>
+            </label>
+            <select name="ご希望のサイト番号" required>
               <option value="">選択してください</option>
-              {[12, 13, 14, 15, 16, 17, 18].flatMap((h) =>
-                [0, 15, 30, 45].map((m) => {
-                  const value = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
-                  const label = m === 0 ? `${h}:00` : `${h}:${m.toString().padStart(2, "0")}`;
-                  return h === 18 && m > 0 ? null : (
-                    <option key={value} value={value}>{label}</option>
-                  );
-                })
-              ).filter(Boolean)}
+              <option value="サイト1">サイト1</option>
+              <option value="サイト2">サイト2</option>
+              <option value="サイト3">サイト3</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>ワンちゃんの頭数</label>
-            <select name="ワンちゃんの頭数">
-              <option value="なし">なし</option>
-              {[1, 2, 3, 4, 5].map((n) => (
-                <option key={n} value={n}>{n}</option>
-              ))}
-            </select>
-            <p className="form-note">※ペット同伴されない場合は「なし」をご選択ください。</p>
-          </div>
-
-          <div className="form-group">
-            <label>犬種</label>
+            <label>
+              ワンちゃんの頭数と犬種 <span className="required">必須</span>
+            </label>
             <input
               type="text"
-              name="犬種"
-              placeholder="例：トイプードル"
+              name="ワンちゃんの頭数と犬種"
+              required
+              placeholder="例：1頭 トイプードル（ペット同伴なしの場合は 0）"
             />
             <p className="form-note">
-              ※アレルギー対策のため、プードル（スタンダード・ミディアム・トイ）・ヨークシャテリア・ミニチュアシュナウザー・ビジョンフリーゼ・マルチーズ・シーズー・チャイニーズクレステッドドッグ・オーストラリアン・ラブラドゥードルに制限があります。上記犬種の組み合わせ以外のプードルミックス（チワプー・ダップー・ポメプー・ペキプー等）はご入場いただけます。
+              ⚠️アレルギー対策の為、犬種制限あり。ご入場可能な犬種につきましてはHPよりご確認をお願いいたします。
+              （ペット同伴されない場合は［0］とご入力お願いします。）
             </p>
           </div>
 
           <div className="form-group">
-            <label>お問い合わせ内容</label>
-            <textarea
-              name="お問い合わせ内容"
-              placeholder="ご質問・ご要望などをご記入ください"
-            />
+            <label>
+              当rvパークのご利用は初めてですか？ <span className="required">必須</span>
+            </label>
+            <select name="当rvパークのご利用は初めてですか？" required>
+              <option value="">選択してください</option>
+              <option value="はい（初めて）">はい（初めて）</option>
+              <option value="いいえ（利用したことがある）">いいえ（利用したことがある）</option>
+            </select>
           </div>
+
+          <div className="form-group">
+            <label>
+              ご希望のご宿泊スタイル <span className="required">必須</span>
+            </label>
+            <select name="ご希望のご宿泊スタイル" required>
+              <option value="">選択してください</option>
+              <option value="車中泊">車中泊</option>
+              <option value="テント泊">テント泊</option>
+              <option value="両方">両方</option>
+            </select>
+          </div>
+
+          <p className="form-note">
+            メッセージを確認して担当者から順次返信します。
+          </p>
 
           <button
             ref={submitBtnRef}
