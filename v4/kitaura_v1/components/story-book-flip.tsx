@@ -96,7 +96,8 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
                   alt={`犬種制限の説明 ${index + 1}`}
                   fill
                   className="object-contain"
-                  loading="lazy"
+                  priority={index < 2}
+                  loading={index < 2 ? undefined : "lazy"}
                   sizes="(max-width: 768px) 100vw, 600px"
                   onError={(e) => {
                     const target = e.target as HTMLElement
