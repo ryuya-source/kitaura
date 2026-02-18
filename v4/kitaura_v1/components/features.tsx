@@ -1,7 +1,21 @@
 import { Droplets, Dog } from "lucide-react"
+import { SafeImage } from "@/components/safe-image"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
+
+const watterImages = Array.from(
+  { length: 10 },
+  (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.jpg`
+)
+const smallDogImages = Array.from(
+  { length: 7 },
+  (_, i) => `/features/small-dog/small-dog-${String(i + 1).padStart(2, "0")}.jpg`
+)
+const smallDogFallbackImages = Array.from(
+  { length: 7 },
+  (_, i) => `/small-dog-${String(i + 1).padStart(2, "0")}.jpg`
+)
 
 export function Features() {
   return (
@@ -25,10 +39,10 @@ export function Features() {
               </p>
             </div>
             <div className="grid grid-cols-4 gap-1 px-1 pb-1">
-              {Array.from({ length: 7 }).map((_, i) => (
+              {watterImages.map((src, i) => (
                 <div key={i} className="aspect-square overflow-hidden rounded-lg bg-secondary">
                   <img
-                    src={`/placeholder.svg?height=200&width=200`}
+                    src={src}
                     alt={`水回り設備写真 ${i + 1}`}
                     className="h-full w-full object-cover"
                   />
@@ -49,10 +63,11 @@ export function Features() {
               </h3>
             </div>
             <div className="grid grid-cols-4 gap-1 px-1 pb-1">
-              {Array.from({ length: 7 }).map((_, i) => (
+              {smallDogImages.map((src, i) => (
                 <div key={i} className="aspect-square overflow-hidden rounded-lg bg-secondary">
-                  <img
-                    src={`/placeholder.svg?height=200&width=200`}
+                  <SafeImage
+                    src={src}
+                    fallbackSrc={smallDogFallbackImages[i]}
                     alt={`小型犬写真 ${i + 1}`}
                     className="h-full w-full object-cover"
                   />

@@ -30,28 +30,14 @@ export function PetBanner() {
               >
                 ペット同伴ルールを見る
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                予約・空き確認
-              </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl bg-secondary">
-              <img
-                src="/placeholder.svg?height=500&width=600"
-                alt="ペットとの過ごし方"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-4 -right-4 rounded-xl bg-card p-4 shadow-lg">
-              <p className="text-xs text-muted-foreground">受け入れ条件と場内ルールをご案内しています。</p>
-              <Link href="/pet" className="mt-1 block text-sm font-medium text-primary hover:underline">
-                ペット同伴ルールを見る
-              </Link>
-            </div>
+          <div className="overflow-hidden rounded-2xl bg-secondary">
+            <img
+              src="/pet-with-dog.png"
+              alt="ペットとの過ごし方"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </Container>

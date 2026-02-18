@@ -3,21 +3,35 @@
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-const sites = [
-  { name: "サイト1", images: 11 },
-  { name: "サイト2", images: 11 },
-  { name: "サイト3", images: 11 },
+const site1Images = Array.from({ length: 11 }, (_, i) => `/sites/site1/site1-${String(i + 1).padStart(2, "0")}.jpg`)
+const site2Images = Array.from({ length: 10 }, (_, i) => `/sites/site2/site2-${String(i + 1).padStart(2, "0")}.jpg`)
+const site3Images = Array.from({ length: 8 }, (_, i) => `/sites/site3/site3-${String(i + 1).padStart(2, "0")}.jpg`)
+
+const sites: { name: string; imageUrls?: string[]; imageCount: number }[] = [
+  { name: "サイト1", imageUrls: site1Images, imageCount: site1Images.length },
+  { name: "サイト2", imageUrls: site2Images, imageCount: site2Images.length },
+  { name: "サイト3", imageUrls: site3Images, imageCount: site3Images.length },
 ]
 
-function SiteCarousel({ name, imageCount }: { name: string; imageCount: number }) {
+function SiteCarousel({
+  name,
+  imageCount,
+  imageUrls,
+}: {
+  name: string
+  imageCount: number
+  imageUrls?: string[]
+}) {
   const [current, setCurrent] = useState(0)
+  const src = imageUrls?.[current] ?? `/placeholder.svg?height=400&width=600`
+  const alt = `${name} 写真 ${current + 1}`
 
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         <img
-          src={`/placeholder.svg?height=400&width=600`}
-          alt={`${name} 写真 ${current + 1}`}
+          src={src}
+          alt={alt}
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 flex items-center justify-between px-3">
@@ -52,7 +66,7 @@ function SiteCarousel({ name, imageCount }: { name: string; imageCount: number }
       <div className="p-4">
         <h3 className="text-lg font-bold text-foreground">{name}</h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          {`写真が${imageCount}枚表示`}
+          {imageUrls ? `${imageCount}枚の写真` : `写真が${imageCount}枚表示`}
         </p>
       </div>
     </div>
@@ -71,7 +85,12 @@ export function SiteTypes() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {sites.map((site) => (
-            <SiteCarousel key={site.name} name={site.name} imageCount={site.images} />
+            <SiteCarousel
+              key={site.name}
+              name={site.name}
+              imageCount={site.imageCount}
+              imageUrls={site.imageUrls}
+            />
           ))}
         </div>
       </Container>

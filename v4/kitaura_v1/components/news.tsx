@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { Newspaper, Video, Instagram } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
@@ -123,15 +122,6 @@ export function News() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/contact"
-            className="inline-flex rounded-lg bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            予約・空き確認
-          </Link>
-        </div>
       </Container>
     </Section>
   )
