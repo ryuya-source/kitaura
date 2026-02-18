@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
+import Image from "next/image"
 import { Droplets, Dog, MapPin, Settings } from "lucide-react"
 import { ImageCarousel } from "@/components/image-carousel"
 import { Section } from "@/components/layout"
@@ -161,13 +162,14 @@ export function Features() {
           </div>
         </div>
 
-        <div className="mt-12">
-          <img
+        <div className="mt-12 mx-auto w-full max-w-3xl">
+          <Image
             src="/dividers/apology4b.png"
             alt=""
-            className="mx-auto w-full max-w-3xl"
-            loading="lazy"
-            decoding="async"
+            width={960}
+            height={240}
+            className="w-full h-auto"
+            sizes="(max-width: 768px) 100vw, 48rem"
           />
         </div>
       </Container>

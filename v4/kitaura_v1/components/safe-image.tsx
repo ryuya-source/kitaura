@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import Image from "next/image"
 
 interface SafeImageProps {
   src: string
@@ -14,15 +15,14 @@ interface SafeImageProps {
 }
 
 /**
- * プリレンダ時に Event handler を渡さないためのクライアント用 img ラッパー。
- * Next.js の静的エクスポートで onError が渡るとビルドエラーになるため使用。
+ * next/image を使い WebP/AVIF 等で最適化配信。フォールバック付き。
+ * カルーセル用（src 切り替え・onError で fallback 表示）。
  */
 export function SafeImage({ src, alt, fallbackSrc, className, width, height, loading }: SafeImageProps) {
   const [currentSrc, setCurrentSrc] = useState(src)
   const [failed, setFailed] = useState(false)
   const [visible, setVisible] = useState(true)
 
-  // カルーセルなどで src が切り替わったときに表示を更新する（表示もリセット）
   useEffect(() => {
     setCurrentSrc(src)
     setFailed(false)
@@ -34,15 +34,19 @@ export function SafeImage({ src, alt, fallbackSrc, className, width, height, loa
     return fallbackSrc === src ? undefined : fallbackSrc
   }, [fallbackSrc, src])
 
+  if (!visible) return null
+
+  const useFill = width == null && height == null
+
   return (
-    <img
+    <Image
       src={currentSrc}
       alt={alt}
+      {...(useFill
+        ? { fill: true, sizes: "(max-width: 768px) 100vw, 50vw" }
+        : { width: width!, height: height! })}
       className={className}
-      width={width}
-      height={height}
       loading={loading}
-      style={{ display: visible ? undefined : "none" }}
       onError={() => {
         if (!failed && normalizedFallback) {
           setFailed(true)

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const site1Images = Array.from({ length: 11 }, (_, i) => `/sites/site1/site1-${String(i + 1).padStart(2, "0")}.jpg`)
@@ -29,10 +30,12 @@ function SiteCarousel({
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        <img
+        <Image
           src={src}
           alt={alt}
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
         <div className="absolute inset-0 flex items-center justify-between px-3">
           <button

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronDown, PawPrint } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
@@ -65,7 +66,7 @@ export function PetSection() {
           <div className="mb-10 text-center">
             <p className="text-sm font-medium tracking-widest text-primary">PET RULES</p>
             <div className="mt-2 flex items-center justify-center gap-3 md:gap-6">
-              <img
+              <Image
                 src="/dog-kezukuroi.png"
                 alt=""
                 width={56}
@@ -75,7 +76,7 @@ export function PetSection() {
               <h2 className="font-sans text-3xl font-bold text-foreground md:text-5xl">
                 犬種制限について
               </h2>
-              <img
+              <Image
                 src="/dog-kezukuroi.png"
                 alt=""
                 width={56}
@@ -137,9 +138,11 @@ export function PetSection() {
                     </p>
                   </div>
                   <div className="mt-6 flex justify-center">
-                    <img
+                    <Image
                       src="/dogs-illustration.png"
                       alt="多様な犬種のイラスト"
+                      width={320}
+                      height={240}
                       className="max-h-48 w-auto object-contain md:max-h-64"
                     />
                   </div>

@@ -1,15 +1,17 @@
+import Image from "next/image"
+
 export function Hero() {
   return (
     <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-[#3d5240]">
       {/* Background image overlay - 北浦湖畔の夕景 */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/hero-lakeside.png"
-          srcSet="/hero-lakeside.png 1x, /hero-lakeside@2x.png 2x"
           alt="北浦湖畔の夕景"
-          className="h-full w-full object-cover object-center"
-          loading="eager"
-          decoding="async"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
         />
       </div>
 

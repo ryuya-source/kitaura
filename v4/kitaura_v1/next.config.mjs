@@ -4,7 +4,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // WebP/AVIF 等の自動最適化を有効化（未指定時は true）
+    unoptimized: false,
   },
 }
 

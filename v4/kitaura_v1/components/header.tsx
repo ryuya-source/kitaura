@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Container } from "@/components/layout"
 
@@ -58,9 +59,9 @@ export function Header() {
             className="flex flex-col items-center gap-1.5 text-center"
             aria-label="KITAURA LAKESIDE RV park"
           >
-            <img
+            <Image
               src="/futter_logo.png"
-              alt=""
+              alt="KITAURA LAKESIDE RV park"
               width={80}
               height={78}
               className="h-14 w-14 object-contain sm:h-16 sm:w-16"
