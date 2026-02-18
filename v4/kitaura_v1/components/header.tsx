@@ -5,20 +5,28 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Container } from "@/components/layout"
+import { BookingModal } from "@/components/BookingModal"
 
-const navItems = [
+const navItems: { label: string; href: string; openBooking?: boolean }[] = [
   { label: "犬種制限について", href: "#pet" },
   { label: "サイト案内", href: "#sites" },
   { label: "料金", href: "#pricing" },
   { label: "利用規約・マナー", href: "#rules" },
   { label: "アクセス", href: "#access" },
   { label: "お知らせ・メディア", href: "#news" },
+  { label: "ご予約", href: "/contact", openBooking: true },
   { label: "お問い合わせ", href: "/contact" },
 ]
 
-export function Header() {
+interface HeaderProps {
+  /** true のときロゴを隠し、ハンバーガーメニューのみ表示（お問い合わせページ用） */
+  onlyHamburger?: boolean
+}
+
+export function Header({ onlyHamburger }: HeaderProps) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [bookingOpen, setBookingOpen] = useState(false)
 
   const closeMenu = useCallback(() => setOpen(false), [])
   const toggleMenu = useCallback(() => setOpen((o) => !o), [])
@@ -52,31 +60,33 @@ export function Header() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-10 bg-transparent">
-        <Container className="flex items-center py-3">
-          <Link
-            href="/"
-            className="flex flex-col items-center gap-1.5 text-center"
-            aria-label="KITAURA LAKESIDE RV park"
-          >
-            <Image
-              src="/futter_logo.png"
-              alt="KITAURA LAKESIDE RV park"
-              width={80}
-              height={78}
-              className="h-14 w-14 object-contain sm:h-16 sm:w-16"
-            />
-            <div className="flex flex-col gap-0.5 text-white drop-shadow-sm">
-              <span className="text-xs font-semibold tracking-widest sm:text-sm">
-                KITAURA LAKESIDE
-              </span>
-              <span className="text-[10px] tracking-[0.3em] sm:text-xs">
-                RV park
-              </span>
-            </div>
-          </Link>
-        </Container>
-      </header>
+      {!onlyHamburger && (
+        <header className="absolute top-0 left-0 right-0 z-10 bg-transparent">
+          <Container className="flex items-center py-3">
+            <Link
+              href="/"
+              className="flex flex-col items-center gap-1.5 text-center"
+              aria-label="KITAURA LAKESIDE RV park"
+            >
+              <Image
+                src="/futter_logo.png"
+                alt="KITAURA LAKESIDE RV park"
+                width={80}
+                height={78}
+                className="h-14 w-14 object-contain sm:h-16 sm:w-16"
+              />
+              <div className="flex flex-col gap-0.5 text-white drop-shadow-sm">
+                <span className="text-xs font-semibold tracking-widest sm:text-sm">
+                  KITAURA LAKESIDE
+                </span>
+                <span className="text-[10px] tracking-[0.3em] sm:text-xs">
+                  RV park
+                </span>
+              </div>
+            </Link>
+          </Container>
+        </header>
+      )}
 
       <div className="fixed top-0 right-0 z-50 flex items-center p-3 pt-[max(12px,env(safe-area-inset-top))] pr-[max(12px,env(safe-area-inset-right))] lg:hidden">
         <button
@@ -135,26 +145,41 @@ export function Header() {
       >
         <div className="nav-overlay__panel">
           <ul className="nav-overlay__list">
-            {navItems.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={getSectionLinkHref(href)}
-                  className="nav-overlay__link"
-                  onClick={(e) => {
-                    if (pathname === "/" && href.startsWith("#")) {
-                      handleSectionClick(e, href)
-                    } else {
+            {navItems.map(({ href, label, openBooking }) => (
+              <li key={`${href}-${label}`}>
+                {openBooking ? (
+                  <button
+                    type="button"
+                    className="nav-overlay__link w-full text-left"
+                    onClick={() => {
                       closeMenu()
-                    }
-                  }}
-                >
-                  {label}
-                </Link>
+                      setBookingOpen(true)
+                    }}
+                  >
+                    {label}
+                  </button>
+                ) : (
+                  <Link
+                    href={getSectionLinkHref(href)}
+                    className="nav-overlay__link"
+                    onClick={(e) => {
+                      if (pathname === "/" && href.startsWith("#")) {
+                        handleSectionClick(e, href)
+                      } else {
+                        closeMenu()
+                      }
+                    }}
+                  >
+                    {label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
         </div>
       </div>
+
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   )
 }

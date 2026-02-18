@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { PageLayout } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { Section } from "@/components/layout"
-import { PageHero } from "@/components/page-hero"
+import { SectionHeading } from "@/components/section-heading"
 import { ContactForm } from "@/components/contact-form"
 
 export const metadata: Metadata = {
@@ -12,11 +12,10 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageLayout mainClassName="pt-16">
-      <PageHero label="CONTACT" title="お問い合わせ" />
-
+    <PageLayout headerOnlyHamburger mainClassName="pt-12">
       <Section className="bg-background py-16 md:py-24">
         <Container size="form">
+          <SectionHeading label="CONTACT" title="お問い合わせ" />
           <ContactForm />
         </Container>
       </Section>
