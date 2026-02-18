@@ -4,7 +4,7 @@ import { PageLayout } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { Section } from "@/components/layout"
 import { PageCta } from "@/components/page-cta"
-import { StoryBookCarousel } from "@/components/story-book-carousel"
+import { StoryBookFlip } from "@/components/story-book-flip"
 
 export const metadata: Metadata = {
   title: "犬種制限について | KITAURA LAKESIDE RV park",
@@ -93,12 +93,12 @@ export default function PetPage() {
       </Section>
 
       <Section className="bg-secondary py-16 md:py-24">
-        <Container size="narrow">
+        <Container>
           <h2 className="py-12 text-center font-sans text-2xl font-bold text-foreground md:py-16 md:text-3xl">
             なぜ犬種制限があるのか
           </h2>
           <div className="mt-8">
-            <StoryBookCarousel images={storyBookImages} />
+            <StoryBookFlip images={storyBookImages} />
           </div>
         </Container>
       </Section>

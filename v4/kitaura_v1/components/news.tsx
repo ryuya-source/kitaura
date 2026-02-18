@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Newspaper, Video, Instagram } from "lucide-react"
+import { Newspaper, Video, Instagram, FileText } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 
-type Tab = "news" | "media"
+type Tab = "news" | "media" | "newsTab"
 
 export function News() {
   const [tab, setTab] = useState<Tab>("news")
@@ -17,27 +17,38 @@ export function News() {
         <SectionHeading label="NEWS & MEDIA" title="お知らせ・メディア" />
 
         {/* Tabs */}
-        <div className="mx-auto mt-10 flex max-w-xs gap-2 rounded-lg bg-secondary p-1">
+        <div className="mx-auto mt-10 flex max-w-md flex-wrap justify-center gap-2 rounded-lg bg-secondary p-1">
           <button
             onClick={() => setTab("news")}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex flex-1 min-w-0 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
               tab === "news"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <Newspaper className="h-4 w-4" />
+            <Newspaper className="h-4 w-4 shrink-0" />
             お知らせ
           </button>
           <button
+            onClick={() => setTab("newsTab")}
+            className={`flex flex-1 min-w-0 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
+              tab === "newsTab"
+                ? "bg-card text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <FileText className="h-4 w-4 shrink-0" />
+            NEWS
+          </button>
+          <button
             onClick={() => setTab("media")}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex flex-1 min-w-0 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors ${
               tab === "media"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <Video className="h-4 w-4" />
+            <Video className="h-4 w-4 shrink-0" />
             メディア
           </button>
         </div>
@@ -71,6 +82,24 @@ export function News() {
                 {'これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。'}
                 <br />
                 {'キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。'}
+              </p>
+            </article>
+          </div>
+        )}
+
+        {/* NEWS Tab */}
+        {tab === "newsTab" && (
+          <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-4">
+            <article className="rounded-xl bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
+              <div className="flex items-center gap-3">
+                <time className="text-xs text-muted-foreground">2026年02月15日</time>
+                <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">NEWS</span>
+              </div>
+              <h3 className="mt-2 text-base font-semibold text-foreground">
+                最新のお知らせ
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                NEWSタブのコンテンツです。ここに掲載する情報を追加・編集できます。
               </p>
             </article>
           </div>

@@ -200,3 +200,14 @@
     color: var(--foreground);
   }
 }
+
+/* 犬種制限スライダー：kitauralakeside-rvpark-newsite pet (68-80) と同様の仕様 */
+.pet-rules-slider {
+  overflow: hidden;
+  background: #ede9e3;
+}
+.pet-rules-slider__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

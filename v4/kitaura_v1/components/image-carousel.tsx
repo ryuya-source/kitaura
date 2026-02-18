@@ -18,6 +18,10 @@ interface ImageCarouselProps {
   onCurrentChange?: (index: number) => void
   /** 画像に渡す className（例: object-contain で切り抜けず表示） */
   imageClassName?: string
+  /** 下部のドットインジケーターを表示するか（省略時は true） */
+  showDots?: boolean
+  /** img の loading（参照: newsite pet と同様 lazy 指定） */
+  imageLoading?: "lazy" | "eager"
 }
 
 export function ImageCarousel({
@@ -29,6 +33,8 @@ export function ImageCarousel({
   current: controlledCurrent,
   onCurrentChange,
   imageClassName,
+  showDots = true,
+  imageLoading,
 }: ImageCarouselProps) {
   const imageCount = images.length
   const [internalCurrent, setInternalCurrent] = useState(0)
@@ -75,6 +81,7 @@ export function ImageCarousel({
         fallbackSrc={fallbackImages?.[current]}
         alt={`${altPrefix} ${current + 1}`}
         className={cn("h-full w-full object-cover", imageClassName)}
+        loading={imageLoading}
       />
 
       <div className="absolute inset-0 flex items-center justify-between px-3">
@@ -96,20 +103,22 @@ export function ImageCarousel({
         </button>
       </div>
 
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-        {Array.from({ length: imageCount }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setCurrent(() => i)}
-            className={cn(
-              "h-1.5 rounded-full transition-all",
-              i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
-            )}
-            aria-label={`写真 ${i + 1}`}
-          />
-        ))}
-      </div>
+      {showDots && (
+        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+          {Array.from({ length: imageCount }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setCurrent(() => i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all",
+                i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
+              )}
+              aria-label={`写真 ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
     </div>
   )

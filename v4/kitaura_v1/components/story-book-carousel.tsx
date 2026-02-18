@@ -40,13 +40,15 @@ export function StoryBookCarousel({ images }: StoryBookCarouselProps) {
           <ChevronRight className="h-5 w-5" />
         </button>
       </div>
-      {/* 絵本画像は 1748×1240 → 比率に合わせて見切れないよう大きく表示 */}
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-xl bg-card shadow-sm">
+      {/* 参照: newsite pet (68-80) と同様 — スライダーラッパー・loading lazy・onError で非表示 */}
+      <div className="pet-rules-slider mx-auto w-full max-w-5xl overflow-hidden rounded-xl bg-card shadow-sm">
         <ImageCarousel
           images={images}
-          altPrefix="犬種制限の理由"
+          altPrefix="犬種制限の説明"
           className="aspect-[1748/1240] rounded-xl"
-          imageClassName="object-contain"
+          imageClassName="pet-rules-slider__img object-contain"
+          imageLoading="lazy"
+          showDots={false}
           current={current}
           onCurrentChange={setCurrent}
         />
