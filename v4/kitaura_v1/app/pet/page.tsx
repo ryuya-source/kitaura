@@ -5,6 +5,7 @@ import { Container } from "@/components/layout"
 import { Section } from "@/components/layout"
 import { PageHero } from "@/components/page-hero"
 import { PageCta } from "@/components/page-cta"
+import { SafeImage } from "@/components/safe-image"
 import { Dog, ChevronLeft, ChevronRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -101,7 +102,7 @@ export default function PetPage() {
           </div>
           <div className="mt-6 overflow-hidden rounded-xl bg-card shadow-sm">
             <div className="aspect-[16/9] bg-muted">
-              <img
+              <SafeImage
                 src="/placeholder.svg?height=500&width=900"
                 alt="犬種制限の理由"
                 className="h-full w-full object-cover"
