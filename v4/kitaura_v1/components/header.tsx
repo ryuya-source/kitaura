@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { Container } from "@/components/layout"
 
 const navItems = [
-  { label: "犬種制限について", href: "/pet" },
+  { label: "犬種制限について", href: "#pet" },
   { label: "サイト案内", href: "#sites" },
   { label: "料金", href: "#pricing" },
   { label: "利用規約・マナー", href: "#rules" },

@@ -205,7 +205,7 @@ export function ContactForm() {
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
             <p className="text-xs leading-relaxed text-accent-foreground">
               {'アレルギー対策の為、犬種制限あり。ご入場可能な犬種につきましては'}
-              <Link href="/pet" className="font-semibold text-primary hover:underline">
+              <Link href="/#pet" className="font-semibold text-primary hover:underline">
                 犬種制限について
               </Link>
               {'よりご確認をお願いいたします。'}

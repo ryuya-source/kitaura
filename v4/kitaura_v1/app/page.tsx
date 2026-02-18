@@ -1,6 +1,6 @@
 import { PageLayout } from "@/components/layout"
 import { Hero } from "@/components/hero"
-import { PetBanner } from "@/components/pet-banner"
+import { PetSection } from "@/components/pet-section"
 import { Features } from "@/components/features"
 import { SiteTypes } from "@/components/site-types"
 import { Pricing } from "@/components/pricing"
@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <PageLayout>
       <Hero />
-      <PetBanner />
+      <PetSection />
       <Features />
       <SiteTypes />
       <Pricing />

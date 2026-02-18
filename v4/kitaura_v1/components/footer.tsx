@@ -23,7 +23,7 @@ export function Footer() {
           </nav>
 
           <nav className="flex flex-col gap-2" aria-label="Secondary navigation">
-            <Link href="/pet" className="text-sm text-[#faf8f5]/70 transition-colors hover:text-[#faf8f5]">ペット同伴ルール</Link>
+            <Link href="/#pet" className="text-sm text-[#faf8f5]/70 transition-colors hover:text-[#faf8f5]">ペット同伴ルール</Link>
             <Link href="/contact" className="text-sm text-[#faf8f5]/70 transition-colors hover:text-[#faf8f5]">お問い合わせ</Link>
           </nav>
         </div>
