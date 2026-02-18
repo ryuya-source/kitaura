@@ -61,7 +61,7 @@ const allowedBreeds = [
 export function PetSection() {
   return (
     <>
-      <Section id="pet" className="border-t-0 bg-background py-16 md:py-24">
+      <Section id="pet" className="-mt-px border-t-0 bg-background py-16 md:py-24">
         <Container size="narrow">
           <div className="mb-10 text-center">
             <p className="text-sm font-medium tracking-widest text-primary">PET RULES</p>

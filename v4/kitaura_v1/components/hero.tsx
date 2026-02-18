@@ -22,8 +22,8 @@ export function Hero() {
       </div>
 
       {/* Bottom curve */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+      <div className="absolute -bottom-px left-0 right-0">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="block w-full">
           <path d="M0 80V40C360 0 1080 0 1440 40V80H0Z" fill="var(--background)" />
         </svg>
       </div>
