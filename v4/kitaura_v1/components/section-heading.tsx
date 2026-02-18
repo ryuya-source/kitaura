@@ -9,8 +9,13 @@ interface SectionHeadingProps {
 }
 
 export function SectionHeading({ label, title, className }: SectionHeadingProps) {
+  // 英語ラベル＋mt-2 の高さ分だけ下部余白を足し、日本語タイトルから見た上下の余白を揃える
+  const paddingClass = label
+    ? "pt-12 pb-[4.75rem] text-center md:pt-16 md:pb-[5.75rem]"
+    : "py-12 text-center md:py-16"
+
   return (
-    <div className={cn("text-center", className)}>
+    <div className={cn(paddingClass, className)}>
       {label && (
         <p className="text-sm font-medium tracking-widest text-primary">{label}</p>
       )}

@@ -3,15 +3,18 @@ import Link from "next/link"
 import { PageLayout } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { Section } from "@/components/layout"
-import { PageHero } from "@/components/page-hero"
 import { PageCta } from "@/components/page-cta"
-import { SafeImage } from "@/components/safe-image"
-import { Dog, ChevronLeft, ChevronRight } from "lucide-react"
+import { StoryBookCarousel } from "@/components/story-book-carousel"
 
 export const metadata: Metadata = {
   title: "犬種制限について | KITAURA LAKESIDE RV park",
   description: "入場可能なワンちゃんについて。アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。",
 }
+
+const storyBookImages = Array.from(
+  { length: 10 },
+  (_, i) => `/srory-book/${i + 1}.png`
+)
 
 const allowedBreeds = [
   { name: "プードル", desc: "スタンダード / ミディアム / トイ" },
@@ -30,11 +33,15 @@ const allowedBreeds = [
 
 export default function PetPage() {
   return (
-    <PageLayout mainClassName="pt-16">
-      <PageHero label="PET RULES" title="犬種制限について" icon={<Dog />} />
-
-      <Section className="bg-background py-16 md:py-24">
+    <PageLayout>
+      <Section className="bg-background pt-8 pb-16 md:pt-12 md:pb-24">
         <Container size="narrow">
+          <div className="mb-10 text-center">
+            <p className="text-sm font-medium tracking-widest text-primary">PET RULES</p>
+            <h1 className="mt-2 font-sans text-3xl font-bold text-foreground md:text-5xl">
+              犬種制限について
+            </h1>
+          </div>
           <h2 className="font-sans text-2xl font-bold text-foreground md:text-3xl">
             入場可能なワンちゃんについて
           </h2>
@@ -75,39 +82,23 @@ export default function PetPage() {
               {'をご確認ください'}
             </p>
           </div>
+          <div className="mt-8 flex justify-center">
+            <img
+              src="/dogs-illustration.png"
+              alt="多様な犬種のイラスト"
+              className="max-h-48 w-auto object-contain md:max-h-64"
+            />
+          </div>
         </Container>
       </Section>
 
       <Section className="bg-secondary py-16 md:py-24">
         <Container size="narrow">
-          <h2 className="font-sans text-2xl font-bold text-foreground md:text-3xl">
+          <h2 className="py-12 text-center font-sans text-2xl font-bold text-foreground md:py-16 md:text-3xl">
             なぜ犬種制限があるのか
           </h2>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <button
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-secondary"
-              aria-label="前"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <span className="text-sm text-muted-foreground">
-              {'前 1 / 9 次'}
-            </span>
-            <button
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-secondary"
-              aria-label="次"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-          <div className="mt-6 overflow-hidden rounded-xl bg-card shadow-sm">
-            <div className="aspect-[16/9] bg-muted">
-              <SafeImage
-                src="/placeholder.svg?height=500&width=900"
-                alt="犬種制限の理由"
-                className="h-full w-full object-cover"
-              />
-            </div>
+          <div className="mt-8">
+            <StoryBookCarousel images={storyBookImages} />
           </div>
         </Container>
       </Section>

@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Container } from "@/components/layout"
 
 const navItems = [
@@ -15,6 +16,7 @@ const navItems = [
 ]
 
 export function Header() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
   const closeMenu = useCallback(() => setOpen(false), [])
@@ -27,20 +29,25 @@ export function Header() {
     }
   }, [open])
 
-  const handleLinkClick = (
+  const handleSectionClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (href.startsWith("#")) {
+    if (!href.startsWith("#")) return
+    const id = href.slice(1)
+    const el = document.getElementById(id)
+    if (el) {
       e.preventDefault()
       closeMenu()
-      const id = href.slice(1)
-      const el = document.getElementById(id)
-      el?.scrollIntoView({ behavior: "smooth", block: "start" })
+      window.history.pushState(null, "", `/${href}`)
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
     } else {
       closeMenu()
     }
   }
+
+  const getSectionLinkHref = (href: string) =>
+    href.startsWith("#") ? `/${href}` : href
 
   return (
     <>
@@ -70,7 +77,6 @@ export function Header() {
         </Container>
       </header>
 
-      {/* ハンバーガーメニューのみ上部固定 */}
       <div className="fixed top-0 right-0 z-50 flex items-center p-3 pt-[max(12px,env(safe-area-inset-top))] pr-[max(12px,env(safe-area-inset-right))] lg:hidden">
         <button
           type="button"
@@ -130,23 +136,19 @@ export function Header() {
           <ul className="nav-overlay__list">
             {navItems.map(({ href, label }) => (
               <li key={href}>
-                {href.startsWith("#") ? (
-                  <a
-                    href={href}
-                    className="nav-overlay__link"
-                    onClick={(e) => handleLinkClick(e, href)}
-                  >
-                    {label}
-                  </a>
-                ) : (
-                  <Link
-                    href={href}
-                    className="nav-overlay__link"
-                    onClick={closeMenu}
-                  >
-                    {label}
-                  </Link>
-                )}
+                <Link
+                  href={getSectionLinkHref(href)}
+                  className="nav-overlay__link"
+                  onClick={(e) => {
+                    if (pathname === "/" && href.startsWith("#")) {
+                      handleSectionClick(e, href)
+                    } else {
+                      closeMenu()
+                    }
+                  }}
+                >
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
-import { Droplets, Dog, LayoutGrid, MapPin } from "lucide-react"
+import { Droplets, Dog, MapPin, Settings } from "lucide-react"
 import { ImageCarousel } from "@/components/image-carousel"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
@@ -117,7 +117,7 @@ export function Features() {
             <div className="p-6 md:p-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-1.5">
-                  <LayoutGrid className="h-4 w-4 text-foreground" />
+                  <Settings className="h-4 w-4 text-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
                   その他
