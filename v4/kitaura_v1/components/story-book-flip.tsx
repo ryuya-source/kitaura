@@ -68,12 +68,12 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
             maxHeight={Math.round(600 * (1240 / 1748))}
             showCover={true}
             drawShadow={true}
-            flippingTime={500}
+            flippingTime={1000}
             usePortrait={true}
             startPage={0}
             startZIndex={0}
             autoSize={true}
-            maxShadowOpacity={1}
+            maxShadowOpacity={0.35}
             mobileScrollSupport={true}
             clickEventForward={true}
             useMouseEvents={true}
