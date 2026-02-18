@@ -1,16 +1,24 @@
 # Vercel プレビュー（v5）
 
-このフォルダ（v5）は Next.js アプリです。Vercel でプレビューする手順です。
+このフォルダ（v5）は Next.js アプリです。kitaura リポジトリの **v5 ブランチ** で管理されています。
 
-## リポジトリが `dev/4.rv_park` ルートの場合
+## すでにやったこと
 
-1. [Vercel](https://vercel.com) で **Import Git Repository** から `ryuya-source/kitaura` を選択
-2. **Branch**: `v5` を選択
-3. **Root Directory**: `v5` を指定（重要）
-4. **Framework Preset**: Next.js（自動検出）
-5. Deploy
+- リポジトリ: **https://github.com/ryuya-source/kitaura**
+- ブランチ: **v5**（main とは別）
+- `v5` ブランチはリモートに push 済み
 
-ブランチ `v5` に push するたびに、Vercel がプレビュー用の URL を発行します。
+## Vercel でプレビューする手順
+
+1. [Vercel](https://vercel.com) にログイン → **Add New Project**
+2. **Import Git Repository** で `ryuya-source/kitaura` を選択
+3. 設定:
+   - **Branch**: `v5`
+   - **Root Directory**: `v5` を指定（**必須**。指定しないとビルドが失敗します）
+   - **Framework Preset**: Next.js（自動検出）
+4. **Deploy** を実行
+
+以降、`v5` ブランチに push するたびに、Vercel がプレビュー用の URL を自動で発行します。
 
 ## 環境
 
