@@ -35,7 +35,7 @@ export default function PetPage() {
 
       <Section className="bg-background py-16 md:py-24">
         <Container size="narrow">
-          <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+          <h2 className="font-sans text-2xl font-bold text-foreground md:text-3xl">
             入場可能なワンちゃんについて
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
@@ -80,7 +80,7 @@ export default function PetPage() {
 
       <Section className="bg-secondary py-16 md:py-24">
         <Container size="narrow">
-          <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+          <h2 className="font-sans text-2xl font-bold text-foreground md:text-3xl">
             なぜ犬種制限があるのか
           </h2>
           <div className="mt-8 flex items-center justify-center gap-4">
@@ -112,7 +112,7 @@ export default function PetPage() {
         </Container>
       </Section>
 
-      <PageCta />
+      <PageCta showCta={false} />
     </PageLayout>
   )
 }

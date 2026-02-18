@@ -7,6 +7,8 @@ interface PageCtaProps {
   backLabel?: string
   /** 戻るリンクの href（省略時は "/"） */
   backHref?: string
+  /** 右側のメインCTAを表示するか（省略時は true） */
+  showCta?: boolean
   /** メインCTAラベル（省略時は「予約・空き確認」） */
   ctaLabel?: string
   /** メインCTAの href（省略時は "/contact"） */
@@ -17,6 +19,7 @@ interface PageCtaProps {
 export function PageCta({
   backLabel = "TOPに戻る",
   backHref = "/",
+  showCta = true,
   ctaLabel = "予約・空き確認",
   ctaHref = "/contact",
   className,
@@ -31,12 +34,14 @@ export function PageCta({
           <ArrowLeft className="h-4 w-4" />
           {backLabel}
         </Link>
-        <Link
-          href={ctaHref}
-          className="inline-flex rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-        >
-          {ctaLabel}
-        </Link>
+        {showCta && (
+          <Link
+            href={ctaHref}
+            className="inline-flex rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            {ctaLabel}
+          </Link>
+        )}
       </div>
     </section>
   )

@@ -29,7 +29,7 @@ export function PageHero({ label, title, icon, className }: PageHeroProps) {
             {label}
           </span>
         </div>
-        <h1 className="mt-4 font-serif text-3xl font-bold text-[#faf8f5] md:text-5xl">
+        <h1 className="mt-4 font-sans text-3xl font-bold text-[#faf8f5] md:text-5xl">
           {title}
         </h1>
       </div>

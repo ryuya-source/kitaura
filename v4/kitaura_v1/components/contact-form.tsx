@@ -19,7 +19,7 @@ export function ContactForm() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
           <Send className="h-7 w-7 text-primary" />
         </div>
-        <h2 className="font-serif text-2xl font-bold text-foreground">送信完了</h2>
+        <h2 className="font-sans text-2xl font-bold text-foreground">送信完了</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           メッセージを確認して担当者から順次返信します。
         </p>

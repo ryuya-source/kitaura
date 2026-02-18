@@ -14,7 +14,7 @@ export function SectionHeading({ label, title, className }: SectionHeadingProps)
       {label && (
         <p className="text-sm font-medium tracking-widest text-primary">{label}</p>
       )}
-      <h2 className="mt-2 font-serif text-3xl font-bold text-foreground md:text-4xl">
+      <h2 className="mt-2 font-sans text-3xl font-bold text-foreground md:text-4xl">
         {title}
       </h2>
     </div>

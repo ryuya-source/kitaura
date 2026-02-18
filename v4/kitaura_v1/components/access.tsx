@@ -48,7 +48,7 @@ export function Access() {
             <div className="overflow-hidden rounded-xl bg-card shadow-sm">
               <div className="aspect-[4/3] bg-secondary">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.5!2d140.5!3d36.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDAwJzAwLjAiTiAxNDDCsDMwJzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1600000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.2417857230967!2d140.5344194!3d36.1119668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60224fa01ff7d6e9%3A0x79981e4f948c6858!2z5YyX5rWm44Os44Kk44Kv44K144Kk44OJUlbjg5Hjg7zjgq8!5e0!3m2!1sja!2sjp!4v1771445133494!5m2!1sja!2sjp"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

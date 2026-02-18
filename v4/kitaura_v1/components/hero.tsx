@@ -5,13 +5,16 @@ export function Hero() {
       <div className="absolute inset-0">
         <img
           src="/hero-lakeside.png"
+          srcSet="/hero-lakeside.png 1x, /hero-lakeside@2x.png 2x"
           alt="北浦湖畔の夕景"
-          className="h-full w-full object-cover object-center opacity-70"
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+          decoding="async"
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center px-4 text-center">
-        <p className="text-lg font-light tracking-widest text-[#faf8f5]/90 md:text-xl">
+      <div className="relative z-10 flex flex-col items-center px-4 text-center -translate-y-[8vh]">
+        <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
           大切な人と、心ほどける時間
         </p>
       </div>

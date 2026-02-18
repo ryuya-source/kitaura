@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
 import { Container } from "@/components/layout"
 
 const navItems = [
@@ -16,63 +15,143 @@ const navItems = [
 ]
 
 export function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+
+  const closeMenu = useCallback(() => setOpen(false), [])
+  const toggleMenu = useCallback(() => setOpen((o) => !o), [])
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [open])
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault()
+      closeMenu()
+      const id = href.slice(1)
+      const el = document.getElementById(id)
+      el?.scrollIntoView({ behavior: "smooth", block: "start" })
+    } else {
+      closeMenu()
+    }
+  }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <Container className="flex items-center justify-between py-3">
-        <Link href="/" className="flex items-center" aria-label="KITAURA LAKESIDE RV park">
-          <img
-            src="/futter_logo.png"
-            alt="KITAURA LAKESIDE RV park"
-            width={60}
-            height={58}
-            className="h-10 w-10 object-cover sm:h-12 sm:w-12"
-          />
-        </Link>
-
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <button
-            className="rounded-lg p-2 text-foreground transition-colors hover:bg-secondary lg:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "メニューを閉じる" : "メニューを開く"}
+    <>
+      <header className="absolute top-0 left-0 right-0 z-10 bg-transparent">
+        <Container className="flex items-center py-3">
+          <Link
+            href="/"
+            className="flex flex-col items-center gap-1.5 text-center"
+            aria-label="KITAURA LAKESIDE RV park"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </Container>
+            <img
+              src="/futter_logo.png"
+              alt=""
+              width={80}
+              height={78}
+              className="h-14 w-14 object-contain sm:h-16 sm:w-16"
+            />
+            <div className="flex flex-col gap-0.5 text-white drop-shadow-sm">
+              <span className="text-xs font-semibold tracking-widest sm:text-sm">
+                KITAURA LAKESIDE
+              </span>
+              <span className="text-[10px] tracking-[0.3em] sm:text-xs">
+                RV park
+              </span>
+            </div>
+          </Link>
+        </Container>
+      </header>
 
-      {/* Mobile menu（予約・空き確認は表示しない） */}
-      {mobileOpen && (
-        <div className="border-t border-border bg-background lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col px-4 py-4 lg:px-8" aria-label="Mobile navigation">
-            {navItems
-              .filter((item) => item.href !== "/contact")
-              .map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-lg px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-          </nav>
+      {/* ハンバーガーメニューのみ上部固定 */}
+      <div className="fixed top-0 right-0 z-50 flex items-center p-3 pt-[max(12px,env(safe-area-inset-top))] pr-[max(12px,env(safe-area-inset-right))] lg:hidden">
+        <button
+          type="button"
+          className={`hamburger-icon ${open ? "is-open" : ""}`}
+          aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+          onClick={toggleMenu}
+          aria-expanded={open}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden
+          >
+            <line
+              className="hamburger-icon__line hamburger-icon__line--top"
+              x1={5}
+              y1={7}
+              x2={19}
+              y2={7}
+              strokeWidth={2}
+              strokeLinecap="round"
+              stroke="currentColor"
+            />
+            <line
+              className="hamburger-icon__line hamburger-icon__line--mid"
+              x1={5}
+              y1={12}
+              x2={19}
+              y2={12}
+              strokeWidth={2}
+              strokeLinecap="round"
+              stroke="currentColor"
+            />
+            <line
+              className="hamburger-icon__line hamburger-icon__line--btm"
+              x1={5}
+              y1={17}
+              x2={19}
+              y2={17}
+              strokeWidth={2}
+              strokeLinecap="round"
+              stroke="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* フルスクリーンオーバーレイ（kitauralakeside-rvpark-newsite 同様） */}
+      <div
+        className={`nav-overlay ${open ? "is-open" : ""}`}
+        aria-hidden={!open}
+        onClick={(e) => e.target === e.currentTarget && closeMenu()}
+      >
+        <div className="nav-overlay__panel">
+          <ul className="nav-overlay__list">
+            {navItems.map(({ href, label }) => (
+              <li key={href}>
+                {href.startsWith("#") ? (
+                  <a
+                    href={href}
+                    className="nav-overlay__link"
+                    onClick={(e) => handleLinkClick(e, href)}
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    href={href}
+                    className="nav-overlay__link"
+                    onClick={closeMenu}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   )
 }

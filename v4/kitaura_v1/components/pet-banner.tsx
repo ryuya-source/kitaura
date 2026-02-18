@@ -13,7 +13,7 @@ export function PetBanner() {
               <Dog className="h-4 w-4 text-primary" />
               <span className="text-xs font-medium tracking-wider text-primary">PET FRIENDLY</span>
             </div>
-            <h2 className="font-serif text-3xl font-bold leading-relaxed text-foreground md:text-4xl">
+            <h2 className="font-sans text-3xl font-bold leading-relaxed text-foreground md:text-4xl">
               犬種制限と<br />ペット同伴のマナー
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">

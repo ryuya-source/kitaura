@@ -65,9 +65,6 @@ function SiteCarousel({
       </div>
       <div className="p-4">
         <h3 className="text-lg font-bold text-foreground">{name}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {imageUrls ? `${imageCount}枚の写真` : `写真が${imageCount}枚表示`}
-        </p>
       </div>
     </div>
   )
