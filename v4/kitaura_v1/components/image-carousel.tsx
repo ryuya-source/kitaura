@@ -21,6 +21,7 @@ export function ImageCarousel({ images, fallbackImages, altPrefix, className }: 
   return (
     <div className={cn("relative aspect-[4/3] overflow-hidden bg-secondary", className)}>
       <SafeImage
+        key={current}
         src={images[current]}
         fallbackSrc={fallbackImages?.[current]}
         alt={`${altPrefix} ${current + 1}`}

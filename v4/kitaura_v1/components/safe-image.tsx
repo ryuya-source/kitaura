@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 interface SafeImageProps {
   src: string
@@ -18,6 +18,14 @@ interface SafeImageProps {
 export function SafeImage({ src, alt, fallbackSrc, className, width, height }: SafeImageProps) {
   const [currentSrc, setCurrentSrc] = useState(src)
   const [failed, setFailed] = useState(false)
+  const [visible, setVisible] = useState(true)
+
+  // カルーセルなどで src が切り替わったときに表示を更新する（表示もリセット）
+  useEffect(() => {
+    setCurrentSrc(src)
+    setFailed(false)
+    setVisible(true)
+  }, [src])
 
   const normalizedFallback = useMemo(() => {
     if (!fallbackSrc) return undefined
@@ -31,13 +39,14 @@ export function SafeImage({ src, alt, fallbackSrc, className, width, height }: S
       className={className}
       width={width}
       height={height}
-      onError={(e) => {
+      style={{ display: visible ? undefined : "none" }}
+      onError={() => {
         if (!failed && normalizedFallback) {
           setFailed(true)
           setCurrentSrc(normalizedFallback)
           return
         }
-        e.currentTarget.style.display = "none"
+        setVisible(false)
       }}
     />
   )

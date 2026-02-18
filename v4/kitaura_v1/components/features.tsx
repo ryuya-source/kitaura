@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
-import { Droplets, Dog, MapPin, Sparkles } from "lucide-react"
+import { Droplets, Dog, LayoutGrid, MapPin } from "lucide-react"
 import { ImageCarousel } from "@/components/image-carousel"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
@@ -26,13 +26,22 @@ const watterImages =
         (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.jpg`
       )
 
-const scannedOtherImages = listPublicImages("features/other")
+// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3_els の画像を使用
+const scannedOtherImages = listPublicImages("features/3_els")
 const otherImages =
   scannedOtherImages.length > 0
     ? scannedOtherImages
-    : ["/hero-lakeside.png", "/pet-with-dog.png", "/small-dog-01.jpg"]
+    : [
+        "/features/3_els/01-elec.jpg",
+        "/features/3_els/02-trash.jpg",
+        "/features/3_els/03-trash2.jpg",
+        "/features/3_els/04-72994D5A-FA90-469A-884E-BF89DB666517.jpg",
+        "/features/3_els/05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg",
+        "/features/3_els/10-エアコン.jpg",
+        "/features/3_els/2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg",
+      ]
 
-// 周辺環境（サイト1カード同様に public 配下の画像を列挙）
+// 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）
 const scannedSurroundingsImages = listPublicImages("features/4_nearby")
 const surroundingsImages =
   scannedSurroundingsImages.length > 0
@@ -108,7 +117,7 @@ export function Features() {
             <div className="p-6 md:p-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-1.5">
-                  <Sparkles className="h-4 w-4 text-foreground" />
+                  <LayoutGrid className="h-4 w-4 text-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
                   その他
