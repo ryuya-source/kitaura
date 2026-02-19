@@ -134,6 +134,7 @@ export function Features() {
                 altPrefix="その他設備写真"
                 className="overflow-hidden rounded-xl"
                 imageClassName="object-contain"
+                variableAspect
               />
             </div>
           </div>

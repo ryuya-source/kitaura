@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SafeImage } from "@/components/safe-image"
@@ -22,6 +22,8 @@ interface ImageCarouselProps {
   showDots?: boolean
   /** img の loading（参照: newsite pet と同様 lazy 指定） */
   imageLoading?: "lazy" | "eager"
+  /** true のとき、表示中画像のアスペクト比に合わせて枠の高さを可変にする */
+  variableAspect?: boolean
 }
 
 export function ImageCarousel({
@@ -35,6 +37,7 @@ export function ImageCarousel({
   imageClassName,
   showDots = true,
   imageLoading,
+  variableAspect = false,
 }: ImageCarouselProps) {
   const imageCount = images.length
   const [internalCurrent, setInternalCurrent] = useState(0)
@@ -44,10 +47,25 @@ export function ImageCarousel({
     ? (fn: (prev: number) => number) => onCurrentChange(fn(controlledCurrent))
     : setInternalCurrent
 
+  const [aspectRatio, setAspectRatio] = useState<{ w: number; h: number } | null>(null)
+  const handleNaturalSize = useCallback((w: number, h: number) => {
+    setAspectRatio({ w, h })
+  }, [])
+
+  useEffect(() => {
+    if (variableAspect) setAspectRatio(null)
+  }, [variableAspect, current])
+
   if (imageCount === 0) return null
 
   const goPrev = () => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
   const goNext = () => setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+
+  const containerStyle =
+    variableAspect
+      ? { aspectRatio: aspectRatio ? `${aspectRatio.w} / ${aspectRatio.h}` : "4/3" }
+      : undefined
+  const containerAspectClass = variableAspect ? "" : "aspect-[4/3]"
 
   return (
     <div>
@@ -74,7 +92,10 @@ export function ImageCarousel({
           </button>
         </div>
       )}
-    <div className={cn("relative aspect-[4/3] overflow-hidden bg-secondary", className)}>
+    <div
+      className={cn("relative overflow-hidden bg-secondary", containerAspectClass, className)}
+      style={containerStyle}
+    >
       <SafeImage
         key={current}
         src={images[current]}
@@ -82,6 +103,7 @@ export function ImageCarousel({
         alt={`${altPrefix} ${current + 1}`}
         className={cn("h-full w-full object-cover", imageClassName)}
         loading={imageLoading}
+        onNaturalSize={variableAspect ? handleNaturalSize : undefined}
       />
 
       <div className="absolute inset-0 flex items-center justify-between px-3">
