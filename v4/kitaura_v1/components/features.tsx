@@ -7,7 +7,7 @@ import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 
-function listPublicImages(relativeDir: string) {
+function listPublicImages(relativeDir: string, options?: { cacheBust?: boolean }) {
   const dirPath = path.join(process.cwd(), "public", ...relativeDir.split("/"))
   if (!fs.existsSync(dirPath)) return []
 
@@ -15,7 +15,18 @@ function listPublicImages(relativeDir: string) {
     .readdirSync(dirPath)
     .filter((name) => /\.avif$/i.test(name))
     .sort((a, b) => a.localeCompare(b, "ja"))
-    .map((name) => `/${relativeDir}/${name}`)
+    .map((name) => {
+      const base = `/${relativeDir}/${name}`
+      if (options?.cacheBust) {
+        try {
+          const stat = fs.statSync(path.join(dirPath, name))
+          return `${base}?v=${Math.floor(stat.mtimeMs)}`
+        } catch {
+          return base
+        }
+      }
+      return base
+    })
 }
 
 const scannedWatterImages = listPublicImages("features/watter")
@@ -27,8 +38,8 @@ const watterImages =
         (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
       )
 
-// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3_els の画像を使用
-const scannedOtherImages = listPublicImages("features/3_els")
+// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3_els の画像を使用（差し替え時にキャッシュを避けるため cacheBust 有効）
+const scannedOtherImages = listPublicImages("features/3_els", { cacheBust: true })
 const otherImages =
   scannedOtherImages.length > 0
     ? scannedOtherImages

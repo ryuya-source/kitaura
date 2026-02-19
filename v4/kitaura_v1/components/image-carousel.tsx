@@ -1,9 +1,11 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SafeImage } from "@/components/safe-image"
+
+const SWIPE_THRESHOLD = 50
 
 interface ImageCarouselProps {
   images: string[]
@@ -48,6 +50,8 @@ export function ImageCarousel({
     : setInternalCurrent
 
   const [aspectRatio, setAspectRatio] = useState<{ w: number; h: number } | null>(null)
+  const touchStartX = useRef<number | null>(null)
+
   const handleNaturalSize = useCallback((w: number, h: number) => {
     setAspectRatio({ w, h })
   }, [])
@@ -56,10 +60,26 @@ export function ImageCarousel({
     if (variableAspect) setAspectRatio(null)
   }, [variableAspect, current])
 
-  if (imageCount === 0) return null
-
   const goPrev = () => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
   const goNext = () => setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }, [])
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStartX.current == null) return
+      const endX = e.changedTouches[0].clientX
+      const deltaX = endX - touchStartX.current
+      touchStartX.current = null
+      if (deltaX > SWIPE_THRESHOLD) goPrev()
+      else if (deltaX < -SWIPE_THRESHOLD) goNext()
+    },
+    [goPrev, goNext]
+  )
+
+  if (imageCount === 0) return null
 
   const containerStyle =
     variableAspect
@@ -93,8 +113,10 @@ export function ImageCarousel({
         </div>
       )}
     <div
-      className={cn("relative overflow-hidden bg-secondary", containerAspectClass, className)}
+      className={cn("relative overflow-hidden bg-secondary touch-pan-y", containerAspectClass, className)}
       style={containerStyle}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
       <SafeImage
         key={current}
