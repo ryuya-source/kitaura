@@ -37,10 +37,11 @@ function AccordionItem({
   )
 }
 
-const storyBookImages = Array.from(
-  { length: 10 },
-  (_, i) => `/srory-book/${i + 1}.png`
-)
+const storyBookImages = [
+  "/srory-book/絵本v2.0/0.png",
+  "/srory-book/絵本v2.0/01%20(2).png",
+  "/srory-book/絵本v2.0/01.png",
+]
 
 const allowedBreeds = [
   { name: "プードル", desc: "スタンダード / ミディアム / トイ" },
@@ -67,7 +68,7 @@ export function PetSection() {
             <p className="text-sm font-medium tracking-widest text-primary">PET RULES</p>
             <div className="mt-2 flex items-center justify-center gap-3 md:gap-6">
               <Image
-                src="/dog-kezukuroi.png"
+                src="/dog-kezukuroi.avif"
                 alt=""
                 width={56}
                 height={72}
@@ -77,7 +78,7 @@ export function PetSection() {
                 犬種制限について
               </h2>
               <Image
-                src="/dog-kezukuroi.png"
+                src="/dog-kezukuroi.avif"
                 alt=""
                 width={56}
                 height={72}
@@ -139,7 +140,7 @@ export function PetSection() {
                   </div>
                   <div className="mt-6 flex justify-center">
                     <Image
-                      src="/dogs-illustration.png"
+                      src="/dogs-illustration.avif"
                       alt="多様な犬種のイラスト"
                       width={320}
                       height={240}

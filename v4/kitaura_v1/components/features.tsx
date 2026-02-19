@@ -13,7 +13,7 @@ function listPublicImages(relativeDir: string) {
 
   return fs
     .readdirSync(dirPath)
-    .filter((name) => /\.(png|jpe?g|webp|gif)$/i.test(name))
+    .filter((name) => /\.avif$/i.test(name))
     .sort((a, b) => a.localeCompare(b, "ja"))
     .map((name) => `/${relativeDir}/${name}`)
 }
@@ -24,7 +24,7 @@ const watterImages =
     ? scannedWatterImages
     : Array.from(
         { length: 10 },
-        (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.jpg`
+        (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
       )
 
 // その他（ゴミ置き場・コードリール・エアコン等）— public/features/3_els の画像を使用
@@ -33,13 +33,13 @@ const otherImages =
   scannedOtherImages.length > 0
     ? scannedOtherImages
     : [
-        "/features/3_els/01-elec.jpg",
-        "/features/3_els/02-trash.jpg",
-        "/features/3_els/03-trash2.jpg",
-        "/features/3_els/04-72994D5A-FA90-469A-884E-BF89DB666517.jpg",
-        "/features/3_els/05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg",
-        "/features/3_els/10-エアコン.jpg",
-        "/features/3_els/2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg",
+        "/features/3_els/01-elec.avif",
+        "/features/3_els/02-trash.avif",
+        "/features/3_els/03-trash2.avif",
+        "/features/3_els/04-72994D5A-FA90-469A-884E-BF89DB666517.avif",
+        "/features/3_els/05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.avif",
+        "/features/3_els/10-エアコン.avif",
+        "/features/3_els/2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.avif",
       ]
 
 // 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）
@@ -47,14 +47,14 @@ const scannedSurroundingsImages = listPublicImages("features/4_nearby")
 const surroundingsImages =
   scannedSurroundingsImages.length > 0
     ? scannedSurroundingsImages
-    : ["/hero-lakeside.png", "/pet-with-dog.png", "/small-dog-01.jpg"]
+    : ["/hero-lakeside.avif", "/pet-with-dog.avif", "/small-dog-01.avif"]
 const smallDogImages = Array.from(
   { length: 7 },
-  (_, i) => `/features/small-dog/small-dog-${String(i + 1).padStart(2, "0")}.jpg`
+  (_, i) => `/features/small-dog/small-dog-${String(i + 1).padStart(2, "0")}.avif`
 )
 const smallDogFallbackImages = Array.from(
   { length: 7 },
-  (_, i) => `/small-dog-${String(i + 1).padStart(2, "0")}.jpg`
+  (_, i) => `/small-dog-${String(i + 1).padStart(2, "0")}.avif`
 )
 
 export function Features() {
@@ -133,6 +133,7 @@ export function Features() {
                 images={otherImages}
                 altPrefix="その他設備写真"
                 className="overflow-hidden rounded-xl"
+                imageClassName="object-contain"
               />
             </div>
           </div>
@@ -164,7 +165,7 @@ export function Features() {
 
         <div className="mt-12 mx-auto w-full max-w-3xl">
           <Image
-            src="/dividers/apology4b.png"
+            src="/dividers/apology4b.avif"
             alt=""
             width={960}
             height={240}

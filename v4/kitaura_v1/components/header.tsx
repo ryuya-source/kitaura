@@ -69,7 +69,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
               aria-label="KITAURA LAKESIDE RV park"
             >
               <Image
-                src="/futter_logo.png"
+                src="/futter_logo.avif"
                 alt="KITAURA LAKESIDE RV park"
                 width={80}
                 height={78}

@@ -6,7 +6,7 @@ export function Hero() {
       {/* Background image overlay - 北浦湖畔の夕景 */}
       <div className="absolute inset-0">
         <Image
-          src="/hero-lakeside.png"
+          src="/hero-lakeside.avif"
           alt="北浦湖畔の夕景"
           fill
           className="object-cover object-center"

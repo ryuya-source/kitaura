@@ -4,9 +4,9 @@ import { useState } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-const site1Images = Array.from({ length: 11 }, (_, i) => `/sites/site1/site1-${String(i + 1).padStart(2, "0")}.jpg`)
-const site2Images = Array.from({ length: 10 }, (_, i) => `/sites/site2/site2-${String(i + 1).padStart(2, "0")}.jpg`)
-const site3Images = Array.from({ length: 8 }, (_, i) => `/sites/site3/site3-${String(i + 1).padStart(2, "0")}.jpg`)
+const site1Images = Array.from({ length: 11 }, (_, i) => `/sites/site1/site1-${String(i + 1).padStart(2, "0")}.avif`)
+const site2Images = Array.from({ length: 10 }, (_, i) => `/sites/site2/site2-${String(i + 1).padStart(2, "0")}.avif`)
+const site3Images = Array.from({ length: 8 }, (_, i) => `/sites/site3/site3-${String(i + 1).padStart(2, "0")}.avif`)
 
 const sites: { name: string; imageUrls?: string[]; imageCount: number }[] = [
   { name: "サイト1", imageUrls: site1Images, imageCount: site1Images.length },

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useCallback } from "react"
-import Image from "next/image"
 import HTMLFlipBook from "react-pageflip"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -86,22 +85,21 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
           >
             {images.map((src, index) => (
               <div
-                key={`${src}-${index}`}
+                key={`page-${index}`}
                 data-density="hard"
-                className={`${PAGE_CLASS} relative`}
+                className={PAGE_CLASS}
                 style={{ width: "100%", height: "100%" }}
               >
-                <Image
+                {/* react-pageflip が DOM を直接操作するため、next/image だと removeChild で競合するため img を使用 */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={src}
                   alt={`犬種制限の説明 ${index + 1}`}
-                  fill
-                  className="object-contain"
-                  priority={index < 2}
-                  loading={index < 2 ? undefined : "lazy"}
-                  sizes="(max-width: 768px) 100vw, 600px"
+                  className="h-full w-full object-contain"
+                  loading="lazy"
                   onError={(e) => {
-                    const target = e.target as HTMLElement
-                    if (target?.parentElement) target.parentElement.style.display = "none"
+                    const el = e.target as HTMLImageElement
+                    if (el?.parentElement) el.parentElement.style.display = "none"
                   }}
                 />
               </div>
