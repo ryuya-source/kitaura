@@ -7,13 +7,18 @@ import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 
-function listPublicImages(relativeDir: string, options?: { cacheBust?: boolean }) {
+function listPublicImages(
+  relativeDir: string,
+  options?: { cacheBust?: boolean; extensions?: string[] }
+) {
   const dirPath = path.join(process.cwd(), "public", ...relativeDir.split("/"))
   if (!fs.existsSync(dirPath)) return []
+  const exts = options?.extensions ?? ["avif"]
+  const pattern = new RegExp(`\\.(${exts.join("|")})$`, "i")
 
   return fs
     .readdirSync(dirPath)
-    .filter((name) => /\.avif$/i.test(name))
+    .filter((name) => pattern.test(name))
     .sort((a, b) => a.localeCompare(b, "ja"))
     .map((name) => {
       const base = `/${relativeDir}/${name}`
@@ -38,19 +43,20 @@ const watterImages =
         (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
       )
 
-// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3_els の画像を使用（差し替え時にキャッシュを避けるため cacheBust 有効）
-const scannedOtherImages = listPublicImages("features/3_els", { cacheBust: true })
+// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の画像を使用（.avif / .png 対応、差し替え時にキャッシュを避けるため cacheBust 有効）
+const scannedOtherImages = listPublicImages("features/3-els", {
+  cacheBust: true,
+  extensions: ["avif", "png"],
+})
 const otherImages =
   scannedOtherImages.length > 0
     ? scannedOtherImages
     : [
-        "/features/3_els/01-elec.avif",
-        "/features/3_els/02-trash.avif",
-        "/features/3_els/03-trash2.avif",
-        "/features/3_els/04-72994D5A-FA90-469A-884E-BF89DB666517.avif",
-        "/features/3_els/05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.avif",
-        "/features/3_els/10-エアコン.avif",
-        "/features/3_els/2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.avif",
+        "/features/3-els/01.png",
+        "/features/3-els/02.png",
+        "/features/3-els/03.png",
+        "/features/3-els/04.png",
+        "/features/3-els/05.png",
       ]
 
 // 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）

@@ -6,7 +6,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const site1Images = Array.from({ length: 11 }, (_, i) => `/sites/site1/site1-${String(i + 1).padStart(2, "0")}.avif`)
 const site2Images = Array.from({ length: 10 }, (_, i) => `/sites/site2/site2-${String(i + 1).padStart(2, "0")}.avif`)
-const site3Images = Array.from({ length: 8 }, (_, i) => `/sites/site3/site3-${String(i + 1).padStart(2, "0")}.avif`)
+// site3: 01.png・06.png を差し替え済み（ゴミ置き場・コードリール / 室内設備）
+const site3Images = [
+  "/sites/site3/01.png",
+  "/sites/site3/site3-02.avif",
+  "/sites/site3/site3-04.avif",
+  "/sites/site3/site3-05.avif",
+  "/sites/site3/06.png",
+  "/sites/site3/site3-07.avif",
+  "/sites/site3/site3-08.avif",
+]
 
 const sites: { name: string; imageUrls?: string[]; imageCount: number }[] = [
   { name: "サイト1", imageUrls: site1Images, imageCount: site1Images.length },
