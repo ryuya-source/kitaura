@@ -6,6 +6,7 @@ import { ImageCarousel } from "@/components/image-carousel"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
+import { WaterFacilitiesAccordion } from "@/components/water-facilities-accordion"
 
 function listPublicImages(
   relativeDir: string,
@@ -89,12 +90,13 @@ export function Features() {
                   <Droplets className="h-4 w-4 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
-                  全サイト水回り・電源完備
+                  各サイト水回り・電源完備
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
                 トイレ・シャワー・炊事場・電源完備
               </p>
+              <WaterFacilitiesAccordion />
             </div>
             <div className="px-1 pb-1">
               <ImageCarousel
@@ -113,11 +115,11 @@ export function Features() {
                   <Dog className="h-4 w-4 text-accent" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
-                  小型犬対応
+                  超小型犬にも対応
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                小型犬に配慮した設計・ゲートを閉じるとドックランになります
+                超小型のワンちゃんも安心の設計。ゲートを閉じるとドックランになります
               </p>
             </div>
             <div className="px-1 pb-1">
@@ -142,8 +144,7 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                ゴミ置き場・コードリール完備・エアコンの有料貸出し(夏季限定)
-              </p>
+                ゴミ置き場・コードリール完備・有料貸出（エアコン・ストーブ）</p>
             </div>
             <div className="px-1 pb-1">
               <ImageCarousel

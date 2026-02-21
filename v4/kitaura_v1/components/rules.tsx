@@ -173,7 +173,7 @@ export function Rules() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">{'✓'}</span>
-                <span className="text-sm leading-relaxed text-muted-foreground">1羽まで</span>
+                <span className="text-sm leading-relaxed text-muted-foreground">2羽まで</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">{'✓'}</span>

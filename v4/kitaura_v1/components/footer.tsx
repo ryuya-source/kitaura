@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Container } from "@/components/layout"
 
 export function Footer() {
@@ -7,9 +8,24 @@ export function Footer() {
       <Container>
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="font-serif text-lg font-bold tracking-wider">KITAURA LAKESIDE</h3>
-            <p className="text-sm tracking-wider text-muted-foreground">RV park</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <Link href="/" className="flex flex-col items-center gap-1.5 text-center" aria-label="KITAURA LAKESIDE RV park">
+              <Image
+                src="/futter_logo.avif"
+                alt="KITAURA LAKESIDE RV park"
+                width={80}
+                height={78}
+                className="h-14 w-14 object-contain sm:h-16 sm:w-16"
+              />
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-semibold tracking-widest text-foreground sm:text-sm">
+                  KITAURA LAKESIDE
+                </span>
+                <span className="text-[10px] tracking-[0.3em] text-muted-foreground sm:text-xs">
+                  RV park
+                </span>
+              </div>
+            </Link>
+            <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground">
               {'〒311-2104 茨城県鉾田市根山2947'}
             </p>
           </div>

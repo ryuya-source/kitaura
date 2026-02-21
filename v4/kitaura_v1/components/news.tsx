@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Instagram } from "lucide-react"
+import { ChevronDown, Instagram } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
@@ -22,15 +22,15 @@ const ALL_ITEMS: NewsItem[] = [
     date: "2026-02-01",
     dateLabel: "2026年02月01日",
     category: "お知らせ",
-    title: "RV協会の全国アンケートで10位に選ばれました",
-    body: "〇〇ランキングにて当施設が全国10位に選出されました。※本文は仮テキストです（Pencilの内容に合わせて差し替えできます）",
+    title: "第3回RVパークアワード10位に選ばれました",
+    body: "全国のRVパークの認知拡大・ブランドアップ・活用・普及の拡大を目的に、1年に1度「あなたが最も素敵だと思うRVパークは？」のもと、一般ユーザーから投票を募り、高い評価を得たRVパークに対し、1～10位を発表・表彰をするのが「RVパークアワード」です。",
   },
   {
     date: "2026-01-25",
     dateLabel: "2026年01月25日",
     category: "お知らせ",
     title: "小鳥（オウム・インコ等）の同伴について",
-    body: "これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。",
+    body: "これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。キャンピングカー利用の方のみ／2羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。",
   },
   {
     date: "2026-01-01",
@@ -53,20 +53,37 @@ const ALL_ITEMS: NewsItem[] = [
 const LATEST_COUNT = 5
 
 function ArticleCard({ item }: { item: NewsItem }) {
+  const [open, setOpen] = useState(false)
   return (
-    <article className="rounded-xl bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
-      <div className="flex items-center gap-3">
-        <time className="text-xs text-muted-foreground">{item.dateLabel}</time>
-        <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-          {item.category}
-        </span>
-      </div>
-      <h3 className="mt-2 text-base font-semibold text-foreground">{item.title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-      {item.mediaMeta && (
-        <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
-          <span>{item.mediaMeta.label}</span>
-          <span>{item.mediaMeta.stats}</span>
+    <article className="overflow-hidden rounded-xl bg-card shadow-sm transition-shadow hover:shadow-md">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-start justify-between gap-3 p-6 text-left transition-colors hover:bg-secondary/50"
+        aria-expanded={open}
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-3">
+            <time className="text-xs text-muted-foreground">{item.dateLabel}</time>
+            <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+              {item.category}
+            </span>
+          </div>
+          <h3 className="mt-2 text-base font-semibold text-foreground">{item.title}</h3>
+        </div>
+        <ChevronDown
+          className={`mt-1 h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <div className="border-t border-border px-6 pb-6 pt-2">
+          <p className="text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+          {item.mediaMeta && (
+            <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
+              <span>{item.mediaMeta.label}</span>
+              <span>{item.mediaMeta.stats}</span>
+            </div>
+          )}
         </div>
       )}
     </article>

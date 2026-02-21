@@ -41,6 +41,9 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
           <span className="booking-modal__main-cta-sub">お問い合わせ・空き状況確認</span>
         </a>
         <p className="booking-modal__other-label">その他の予約方法</p>
+        <p className="booking-modal__other-note">
+          当日予約や急ぎの連絡はLINEがスムーズです。（電話は折り返しに時間がかかります）
+        </p>
         <div className="booking-modal__other-btns" role="group" aria-label="その他の予約方法">
           <a href="https://www.nap-camp.com/ibaraki/16590/plans" target="_blank" rel="noopener noreferrer" className="booking-modal__other-btn booking-modal__other-btn--web">
             <span className="booking-modal__other-icon" aria-hidden>

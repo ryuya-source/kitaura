@@ -304,6 +304,12 @@
   color: #6b6b6b;
   margin: 0 0 2px;
 }
+.booking-modal__other-note {
+  font-size: 12px;
+  color: #c97a70;
+  margin: 0 0 10px;
+  line-height: 1.45;
+}
 .booking-modal__other-btns {
   display: flex;
   flex-direction: row;

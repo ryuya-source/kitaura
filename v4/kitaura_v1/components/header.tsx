@@ -4,8 +4,8 @@ import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useBookingModal } from "@/components/booking-modal-context"
 import { Container } from "@/components/layout"
-import { BookingModal } from "@/components/BookingModal"
 
 const navItems: { label: string; href: string; openBooking?: boolean }[] = [
   { label: "犬種制限について", href: "#pet" },
@@ -25,8 +25,8 @@ interface HeaderProps {
 
 export function Header({ onlyHamburger }: HeaderProps) {
   const pathname = usePathname()
+  const { openBookingModal } = useBookingModal()
   const [open, setOpen] = useState(false)
-  const [bookingOpen, setBookingOpen] = useState(false)
 
   const closeMenu = useCallback(() => setOpen(false), [])
   const toggleMenu = useCallback(() => setOpen((o) => !o), [])
@@ -153,7 +153,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
                     className="nav-overlay__link w-full text-left"
                     onClick={() => {
                       closeMenu()
-                      setBookingOpen(true)
+                      openBookingModal()
                     }}
                   >
                     {label}
@@ -178,8 +178,6 @@ export function Header({ onlyHamburger }: HeaderProps) {
           </ul>
         </div>
       </div>
-
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   )
 }

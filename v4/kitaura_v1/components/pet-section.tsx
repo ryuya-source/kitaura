@@ -1,41 +1,10 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ChevronDown, PawPrint } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { StoryBookFlip } from "@/components/story-book-flip"
-
-function AccordionItem({
-  title,
-  icon,
-  children,
-}: {
-  title: string
-  icon: React.ReactNode
-  children: React.ReactNode
-}) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div className="overflow-hidden rounded-xl bg-card shadow-sm">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-3 px-6 py-5 text-left transition-colors hover:bg-secondary/50"
-        aria-expanded={open}
-      >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          {icon}
-        </span>
-        <span className="flex-1 text-base font-semibold text-foreground">{title}</span>
-        <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open && <div className="border-t border-border px-6 py-5">{children}</div>}
-    </div>
-  )
-}
 
 const storyBookImages = [
   "/srory-book/絵本v2.0/0.png",
@@ -85,18 +54,13 @@ export function PetSection() {
                 className="h-12 w-auto scale-x-[-1] object-contain md:h-14"
               />
             </div>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              ペットも、飼い主さまも、<br />
-              そして周囲の方々も穏やかに過ごせるように。
-            </p>
-            <p className="mt-2 leading-relaxed text-muted-foreground">
-              受け入れ条件と場内ルールをご案内しています。
+            <p className="mt-4 text-sm text-muted-foreground">
+              場内ルールをご案内しております。
             </p>
           </div>
 
-          <div className="mt-8">
-            <AccordionItem title="ペット同伴ルールを確認する" icon={<PawPrint className="h-5 w-5" />}>
-              <div className="flex flex-col gap-8">
+          <div className="mt-8 overflow-hidden rounded-xl bg-card shadow-sm">
+            <div className="flex flex-col gap-8 px-6 py-5">
                 <div>
                   <div className="text-center">
                     <h3 className="font-sans text-xl font-bold text-foreground md:text-2xl">
@@ -110,20 +74,30 @@ export function PetSection() {
                     <h4 className="mb-3 text-sm font-semibold tracking-wider text-primary">
                       同伴可能な犬種
                     </h4>
-                    <div className="flex flex-col gap-3">
-                      {allowedBreeds.map((breed) => (
-                        <div
-                          key={breed.name}
-                          className="rounded-lg border border-border bg-secondary/50 p-4"
-                        >
-                          <p className="font-medium text-foreground">{breed.name}</p>
-                          {breed.desc && (
-                            <p className="mt-1 text-sm text-muted-foreground">
-                              {breed.desc}
-                            </p>
-                          )}
-                        </div>
-                      ))}
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start">
+                      <div className="flex flex-1 flex-col gap-3 min-w-0">
+                        {allowedBreeds.map((breed) => (
+                          <div
+                            key={breed.name}
+                            className="rounded-lg border border-border bg-secondary/50 p-4"
+                          >
+                            <p className="font-medium text-foreground">{breed.name}</p>
+                            {breed.desc && (
+                              <p className="mt-1 text-sm text-muted-foreground">
+                                {breed.desc}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex shrink-0 justify-center md:justify-end">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src="/dog-breed-card.png"
+                          alt="同伴可能な犬種のイラスト"
+                          className="h-20 w-auto object-contain md:h-24"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="mt-6 rounded-lg bg-secondary p-5">
@@ -158,7 +132,6 @@ export function PetSection() {
                   </div>
                 </div>
               </div>
-            </AccordionItem>
           </div>
         </Container>
       </Section>

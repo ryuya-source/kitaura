@@ -17,7 +17,7 @@ export function Hero() {
 
       <div className="relative z-10 flex flex-col items-center px-4 text-center -translate-y-[8vh]">
         <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
-          大切な人と、心ほどける時間
+          北浦湖畔で、心ほどける時間
         </p>
       </div>
 

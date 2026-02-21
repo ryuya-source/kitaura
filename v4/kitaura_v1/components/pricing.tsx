@@ -1,9 +1,13 @@
+"use client"
+
+import { useBookingModal } from "@/components/booking-modal-context"
 import { Check } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 
 export function Pricing() {
+  const { openBookingModal } = useBookingModal()
   return (
     <Section id="pricing" className="bg-secondary py-16 md:py-24">
       <Container>
@@ -96,6 +100,16 @@ export function Pricing() {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <button
+            type="button"
+            onClick={openBookingModal}
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            予約・空き確認
+          </button>
         </div>
       </Container>
     </Section>

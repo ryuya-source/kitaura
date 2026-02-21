@@ -1,3 +1,4 @@
+import { BookingModalProvider } from "@/components/booking-modal-context"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToHash } from "@/components/scroll-to-hash"
@@ -15,11 +16,11 @@ interface PageLayoutProps {
 
 export function PageLayout({ children, mainClassName, hideHeader, headerOnlyHamburger }: PageLayoutProps) {
   return (
-    <>
+    <BookingModalProvider>
       {!hideHeader && <Header onlyHamburger={headerOnlyHamburger} />}
       <ScrollToHash />
       <main className={cn(mainClassName)}>{children}</main>
       <Footer />
-    </>
+    </BookingModalProvider>
   )
 }
