@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -16,14 +16,29 @@ function SiteCarousel({
   imageUrls?: string[]
 }) {
   const [current, setCurrent] = useState(0)
-  /** 表示するスロット (0=前, 1=中央, 2=次)。次/前押下時は既に描画済みのスロットを即表示して白フラッシュを防ぐ */
+  const containerRef = useRef<HTMLDivElement>(null)
   const [visibleSlot, setVisibleSlot] = useState<0 | 1 | 2>(1)
+  /** viewport に入ったら true。そのカルーセル分の全画像を読み込む */
+  const [loadAllImages, setLoadAllImages] = useState(false)
   const urls = imageUrls ?? []
   const prevIdx = imageCount > 0 ? (current - 1 + imageCount) % imageCount : 0
   const nextIdx = imageCount > 0 ? (current + 1) % imageCount : 0
 
   useEffect(() => {
-    if (visibleSlot !== 1) {
+    const el = containerRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setLoadAllImages(true)
+      },
+      { rootMargin: "100px", threshold: 0 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!loadAllImages && visibleSlot !== 1) {
       const id = requestAnimationFrame(() => {
         if (visibleSlot === 2) {
           setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
@@ -34,47 +49,82 @@ function SiteCarousel({
       })
       return () => cancelAnimationFrame(id)
     }
-  }, [visibleSlot, imageCount])
+  }, [loadAllImages, visibleSlot, imageCount])
 
   const showSlot = imageCount > 0 ? visibleSlot : 0
-  const isVisible = (slot: number) => (imageCount > 0 && slot === showSlot) || (imageCount === 0 && slot === 0)
+  const isVisibleSlot = (slot: number) =>
+    (imageCount > 0 && slot === showSlot) || (imageCount === 0 && slot === 0)
 
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        {(imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
-          const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
-          return (
-            <div
-              key={`${slot}-${idx}`}
-              className={
-                isVisible(slot)
-                  ? "absolute inset-0 z-10"
-                  : "absolute inset-0 z-0 opacity-0 pointer-events-none"
-              }
-              aria-hidden={!isVisible(slot)}
-            >
-              <Image
-                src={src}
-                alt={`${name} 写真 ${idx + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                loading={isVisible(slot) ? undefined : "lazy"}
-              />
-            </div>
-          )
-        })}
+      <div ref={containerRef} className="relative aspect-[4/3] overflow-hidden bg-secondary">
+        {loadAllImages && imageCount > 0 ? (
+          Array.from({ length: imageCount }, (_, i) => i).map((idx) => {
+            const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
+            return (
+              <div
+                key={idx}
+                className={
+                  idx === current
+                    ? "absolute inset-0 z-10"
+                    : "absolute inset-0 z-0 opacity-0 pointer-events-none"
+                }
+                aria-hidden={idx !== current}
+              >
+                <Image
+                  src={src}
+                  alt={`${name} 写真 ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
+            )
+          })
+        ) : (
+          (imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
+            const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
+            return (
+              <div
+                key={`${slot}-${idx}`}
+                className={
+                  isVisibleSlot(slot)
+                    ? "absolute inset-0 z-10"
+                    : "absolute inset-0 z-0 opacity-0 pointer-events-none"
+                }
+                aria-hidden={!isVisibleSlot(slot)}
+              >
+                <Image
+                  src={src}
+                  alt={`${name} 写真 ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading={isVisibleSlot(slot) ? undefined : "lazy"}
+                />
+              </div>
+            )
+          })
+        )}
         <div className="absolute inset-0 z-20 flex items-center justify-between px-3">
           <button
-            onClick={() => setVisibleSlot(0)}
+            onClick={() =>
+              loadAllImages
+                ? setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
+                : setVisibleSlot(0)
+            }
             className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
             aria-label="前の写真"
           >
             <ChevronLeft className="h-4 w-4 text-foreground" />
           </button>
           <button
-            onClick={() => setVisibleSlot(2)}
+            onClick={() =>
+              loadAllImages
+                ? setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+                : setVisibleSlot(2)
+            }
             className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
             aria-label="次の写真"
           >
@@ -87,7 +137,7 @@ function SiteCarousel({
               key={i}
               onClick={() => {
                 setCurrent(i)
-                setVisibleSlot(1)
+                if (!loadAllImages) setVisibleSlot(1)
               }}
               className={`h-1.5 rounded-full transition-all ${
                 i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
