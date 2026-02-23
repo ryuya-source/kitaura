@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Section } from "@/components/layout"
@@ -39,11 +40,27 @@ const allowedBreeds = [
 
 /** ルートページ用：ペットページの内容をそのまま表示（犬種制限についてセクション） */
 export function PetSection() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [sectionInView, setSectionInView] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setSectionInView(true)
+      },
+      { rootMargin: "50px", threshold: 0 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <>
       <Section id="pet" className="-mt-px border-t-0 bg-white py-16 md:py-24">
         <Container size="narrow">
-          <div className="mb-10 text-center">
+          <div ref={sectionRef} className="mb-10 text-center">
             <p className="text-sm font-medium tracking-widest text-primary">PET RULES</p>
             <div className="mt-2 flex items-center justify-center gap-3 md:gap-6">
               <Image
@@ -138,7 +155,7 @@ export function PetSection() {
                     なぜ犬種制限があるのか
                   </h3>
                   <div className="mt-6">
-                    <StoryBookFlip images={storyBookImages} />
+                    <StoryBookFlip images={storyBookImages} sectionInView={sectionInView} />
                   </div>
                 </div>
               </div>

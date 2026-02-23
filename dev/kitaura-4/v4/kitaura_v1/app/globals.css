@@ -201,17 +201,23 @@
   }
 }
 
-/* 犬種制限スライダー：グレー背景なし・画像は枠いっぱい（余白なし） */
+/* 犬種制限スライダー：スマホで上下見切れないようビューポートに収める */
 .pet-rules-slider {
   overflow: hidden;
 }
-/* タブレット等で上下が見切れないよう、ビューポート内に収めてスケール */
 .pet-rules-slider__book-outer {
   position: relative;
   container-type: size;
   container-name: book;
+  /* スマホ: 70dvh/70vh で十分な高さを確保。PCは 284px または 55vh で従来どおり */
   height: min(284px, 55vh);
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  .pet-rules-slider__book-outer {
+    height: min(70dvh, 70vh);
+    min-height: 240px;
+  }
 }
 .pet-rules-slider__book-inner {
   position: absolute;
@@ -221,8 +227,8 @@
   height: 284px;
   width: 400px;
   transform-origin: top center;
-  /* スマホで見切れないよう、幅・高さの両方に収まるようスケール（パレート：1箇所で本質解決） */
-  transform: scale(min(calc(100cqw / 400), calc(100cqh / 284)));
+  /* 幅・高さの両方に収まるようスケール。1 を超えないよう min(1, ...) でキャップ */
+  transform: scale(min(1, min(calc(100cqw / 400), calc(100cqh / 284))));
 }
 @container book (min-width: 400px) and (min-height: 284px) {
   .pet-rules-slider__book-inner {

@@ -1,11 +1,13 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import HTMLFlipBook from "react-pageflip"
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react"
 
 interface StoryBookFlipProps {
   images: string[]
+  /** 親で「犬種制限について」セクションに到達した」と検知した場合に true。渡されると全ページを読み込む */
+  sectionInView?: boolean
 }
 
 /** 全ページを data-density="hard" でハードめくりにする（背景はカードに合わせる） */
@@ -14,11 +16,66 @@ const PAGE_CLASS =
 
 type FlipState = "user_fold" | "fold_corner" | "flipping" | "read"
 
-export function StoryBookFlip({ images }: StoryBookFlipProps) {
+export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
   const bookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } }>(null)
+  const bookWrapRef = useRef<HTMLDivElement | null>(null)
+  const didPreloadRef = useRef(false)
   const [currentPage, setCurrentPage] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
+  const [bookWidth, setBookWidth] = useState(320)
+  /** viewport に入ったら true。全ページ分の画像を読み込む（カルーセルと同様） */
+  const [loadAllImages, setLoadAllImages] = useState(false)
   const count = images.length
+
+  const bookHeight = Math.round(bookWidth * (1240 / 1748))
+
+  useEffect(() => {
+    const el = bookWrapRef.current
+    if (!el) return
+
+    const update = () => {
+      const w = Math.floor(el.clientWidth)
+      if (!w) return
+      const next = Math.max(1, Math.min(400, w))
+      setBookWidth((prev) => (prev === next ? prev : next))
+    }
+
+    update()
+
+    const ro = new ResizeObserver(() => update())
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  // 親から sectionInView が渡されていないときだけ、絵本本体が viewport に入ったら全ページ読み込み
+  useEffect(() => {
+    if (sectionInView !== undefined) return
+    const el = bookWrapRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setLoadAllImages(true)
+      },
+      { rootMargin: "100px", threshold: 0 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [sectionInView])
+
+  // 「犬種制限について」セクション到達（または絵本が viewport 進入）で全ページをプリロードする
+  useEffect(() => {
+    const effectiveInView = sectionInView ?? loadAllImages
+    if (!effectiveInView) return
+    if (didPreloadRef.current) return
+    if (typeof window === "undefined") return
+
+    didPreloadRef.current = true
+    for (const src of images) {
+      const img = new window.Image()
+      img.decoding = "async"
+      img.src = src
+    }
+  }, [sectionInView, loadAllImages, images])
 
   const onFlip = useCallback((e: { data: number }) => {
     setCurrentPage(e.data)
@@ -65,26 +122,26 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
           <ChevronRight className="h-5 w-5" />
         </button>
       </div>
-      {/* 高さ固定でレイアウトシフト防止。タブレットでは 55vh 内に収めて見切れ防止 */}
-      <div className="pet-rules-slider mx-auto w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-sm">
-        <div className="pet-rules-slider__book-outer mx-auto w-full max-w-[480px]">
-          <div className="pet-rules-slider__book-inner">
+      {/* 根本対応: 親の幅に合わせて FlipBook 自体の width/height を可変にする（見切れ防止） */}
+      <div className="pet-rules-slider mx-auto w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-sm px-2 py-3 md:px-0 md:py-0">
+        <div ref={bookWrapRef} className="mx-auto w-full max-w-[400px]">
           <HTMLFlipBook
+            key={`${bookWidth}x${bookHeight}`}
             ref={bookRef}
-            width={400}
-            height={284}
+            width={bookWidth}
+            height={bookHeight}
             size="fixed"
-            minWidth={400}
-            maxWidth={400}
-            minHeight={284}
-            maxHeight={284}
+            minWidth={bookWidth}
+            maxWidth={bookWidth}
+            minHeight={bookHeight}
+            maxHeight={bookHeight}
             showCover={false}
             drawShadow={true}
             flippingTime={1000}
             usePortrait={true}
             startPage={0}
             startZIndex={0}
-            autoSize={false}
+            autoSize={true}
             maxShadowOpacity={0.35}
             mobileScrollSupport={true}
             clickEventForward={true}
@@ -98,7 +155,8 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
             className="mx-auto"
             style={{}}
           >
-            {images.map((src, index) => (
+            {images.map((src, index) => {
+              return (
               <div
                 key={`page-${index}`}
                 data-density="hard"
@@ -110,7 +168,7 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
                 <img
                   src={src}
                   alt={`犬種制限の説明 ${index + 1}`}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain object-center"
                   loading="lazy"
                   onError={(e) => {
                     const el = e.target as HTMLImageElement
@@ -135,9 +193,9 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
                   </p>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </HTMLFlipBook>
-          </div>
         </div>
       </div>
     </>
