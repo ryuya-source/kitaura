@@ -51,6 +51,8 @@ export function ImageCarousel({
 
   const [aspectRatio, setAspectRatio] = useState<{ w: number; h: number } | null>(null)
   const touchStartX = useRef<number | null>(null)
+  /** 表示するスロット (0=前, 1=中央=current, 2=次)。次/前押下時は先に 2 or 0 を表示してから current を更新し一瞬の白を防ぐ */
+  const [visibleSlot, setVisibleSlot] = useState<0 | 1 | 2>(1)
 
   const handleNaturalSize = useCallback((w: number, h: number) => {
     setAspectRatio({ w, h })
@@ -64,8 +66,23 @@ export function ImageCarousel({
   const prevIdx = (current - 1 + imageCount) % imageCount
   const nextIdx = (current + 1) % imageCount
 
-  const goPrev = () => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
-  const goNext = () => setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+  // 表示スロットを戻す: visibleSlot が 0 or 2 のとき、current を更新してから visibleSlot=1 に戻す
+  useEffect(() => {
+    if (visibleSlot !== 1) {
+      const id = requestAnimationFrame(() => {
+        if (visibleSlot === 2) {
+          setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+        } else {
+          setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
+        }
+        setVisibleSlot(1)
+      })
+      return () => cancelAnimationFrame(id)
+    }
+  }, [visibleSlot, imageCount])
+
+  const goPrev = () => setVisibleSlot(0)
+  const goNext = () => setVisibleSlot(2)
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX
@@ -122,23 +139,23 @@ export function ImageCarousel({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* 前・現在・次の3枚を常にDOMに置いてプリロードし、表示は current のみ */}
+      {/* 前・現在・次の3枚を常にDOMに置き、表示するスロット(visibleSlot)だけ前面に。次/前押下時は既に描画済みのスロットを即表示して白フラッシュを防ぐ */}
       {[prevIdx, current, nextIdx].map((idx, slot) => (
         <div
           key={`${slot}-${idx}`}
           className={cn(
             "absolute inset-0",
-            slot === 1 ? "z-10" : "z-0 opacity-0 pointer-events-none"
+            slot === visibleSlot ? "z-10" : "z-0 opacity-0 pointer-events-none"
           )}
-          aria-hidden={slot !== 1}
+          aria-hidden={slot !== visibleSlot}
         >
           <SafeImage
             src={images[idx]}
             fallbackSrc={fallbackImages?.[idx]}
             alt={`${altPrefix} ${idx + 1}`}
             className={cn("h-full w-full object-cover", imageClassName)}
-            loading={slot === 1 ? imageLoading : "lazy"}
-            onNaturalSize={slot === 1 && variableAspect ? handleNaturalSize : undefined}
+            loading={slot === visibleSlot ? imageLoading : "lazy"}
+            onNaturalSize={slot === visibleSlot && variableAspect ? handleNaturalSize : undefined}
           />
         </div>
       ))}
@@ -170,7 +187,10 @@ export function ImageCarousel({
             <button
               key={i}
               type="button"
-              onClick={() => setCurrent(() => i)}
+              onClick={() => {
+              setCurrent(() => i)
+              setVisibleSlot(1)
+            }}
               style={{ pointerEvents: "auto" }}
               className={cn(
                 "h-1.5 rounded-full transition-all",

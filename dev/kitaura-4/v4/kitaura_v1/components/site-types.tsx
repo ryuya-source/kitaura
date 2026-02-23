@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -16,25 +16,43 @@ function SiteCarousel({
   imageUrls?: string[]
 }) {
   const [current, setCurrent] = useState(0)
+  /** 表示するスロット (0=前, 1=中央, 2=次)。次/前押下時は既に描画済みのスロットを即表示して白フラッシュを防ぐ */
+  const [visibleSlot, setVisibleSlot] = useState<0 | 1 | 2>(1)
   const urls = imageUrls ?? []
   const prevIdx = imageCount > 0 ? (current - 1 + imageCount) % imageCount : 0
   const nextIdx = imageCount > 0 ? (current + 1) % imageCount : 0
 
+  useEffect(() => {
+    if (visibleSlot !== 1) {
+      const id = requestAnimationFrame(() => {
+        if (visibleSlot === 2) {
+          setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
+        } else {
+          setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
+        }
+        setVisibleSlot(1)
+      })
+      return () => cancelAnimationFrame(id)
+    }
+  }, [visibleSlot, imageCount])
+
+  const showSlot = imageCount > 0 ? visibleSlot : 0
+  const isVisible = (slot: number) => (imageCount > 0 && slot === showSlot) || (imageCount === 0 && slot === 0)
+
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        {/* 前・現在・次の3枚を常にDOMに置いてプリロードし、表示は current のみ（0枚のときは1枚だけ表示） */}
         {(imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
           const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
           return (
             <div
               key={`${slot}-${idx}`}
               className={
-                (imageCount > 0 && slot === 1) || (imageCount === 0 && slot === 0)
+                isVisible(slot)
                   ? "absolute inset-0 z-10"
                   : "absolute inset-0 z-0 opacity-0 pointer-events-none"
               }
-              aria-hidden={imageCount > 0 ? slot !== 1 : slot !== 0}
+              aria-hidden={!isVisible(slot)}
             >
               <Image
                 src={src}
@@ -42,21 +60,21 @@ function SiteCarousel({
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
-                loading={slot === 1 ? undefined : "lazy"}
+                loading={isVisible(slot) ? undefined : "lazy"}
               />
             </div>
           )
         })}
         <div className="absolute inset-0 z-20 flex items-center justify-between px-3">
           <button
-            onClick={() => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))}
+            onClick={() => setVisibleSlot(0)}
             className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
             aria-label="前の写真"
           >
             <ChevronLeft className="h-4 w-4 text-foreground" />
           </button>
           <button
-            onClick={() => setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))}
+            onClick={() => setVisibleSlot(2)}
             className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
             aria-label="次の写真"
           >
@@ -67,7 +85,10 @@ function SiteCarousel({
           {Array.from({ length: imageCount }).map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
+              onClick={() => {
+                setCurrent(i)
+                setVisibleSlot(1)
+              }}
               className={`h-1.5 rounded-full transition-all ${
                 i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
               }`}

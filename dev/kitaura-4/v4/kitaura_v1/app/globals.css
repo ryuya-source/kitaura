@@ -221,9 +221,10 @@
   height: 284px;
   width: 400px;
   transform-origin: top center;
-  transform: scale(calc(100cqh / 284));
+  /* スマホで見切れないよう、幅・高さの両方に収まるようスケール（パレート：1箇所で本質解決） */
+  transform: scale(min(calc(100cqw / 400), calc(100cqh / 284)));
 }
-@container book (min-height: 284px) {
+@container book (min-width: 400px) and (min-height: 284px) {
   .pet-rules-slider__book-inner {
     transform: scale(1);
   }
