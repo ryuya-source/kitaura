@@ -1,0 +1,56 @@
+- 対象: SP基準幅 375px、縦スクロール1カラム
+- 背景: `bg-[#FAF8F5]`
+- コンテナ: `px-[24px]`、`pt-[24px]`、`pb-[88px]`
+- フォント: 和文ゴシック、本文 `text-[#1C1C1C]`
+
+**ヘッダー**
+- タイトル「アクセス」: `text-[18px] font-light tracking-[-0.4px] text-center`
+- タイトル直下の余白: `mt-[8px]`〜`mt-[12px]`
+
+**所在地・ナビ設定**
+- セクション見出し: `text-[12px] font-semibold text-[#1C1C1C]`
+- 見出し直下のカード:
+  - `bg-white border border-[#E8E5E0] rounded-[10px] p-[12px]`
+  - 内部は縦 `gap-[10px]`
+- 住所行:
+  - 左に丸アイコン（ピン）`w-[18px] h-[18px] rounded-full bg-[#F5F2EE] border border-[#E8E5E0]`
+  - 住所テキスト `text-[10px] font-semibold`
+- 注意ブロック（黄色）:
+  - `bg-[#FFF4DA] border border-[#F1E1B8] rounded-[8px] p-[10px]`
+  - 見出し: `text-[10px] font-semibold text-[#B27A1F]`
+  - 本文: `text-[9px] leading-[1.6] text-[#7A6A4A]`
+- ナビ目的地ブロック（薄緑）:
+  - `bg-[#EEF6EE] border border-[#CFE3CF] rounded-[8px] p-[10px]`
+  - 見出し: `text-[10px] font-semibold text-[#4F7B4F]`
+  - 本文: `text-[9px] leading-[1.6] text-[#4F6A4F]`
+
+**マップ枠**
+- 外枠: `border border-[#E8E5E0] rounded-[10px] overflow-hidden`
+- サイズ: `w-full h-[210px]` 目安（画像の縦感）
+- 背景はチェック柄のプレースホルダ
+
+**お車での所要時間**
+- セクション見出し: `text-[12px] font-semibold`
+- 説明文: `text-[9px] text-[#6B6B6B] leading-[1.6]`
+- アコーディオンカード（高速道路別）:
+  - 外枠: `bg-white border border-[#E8E5E0] rounded-[10px]`
+  - ヘッダー行: `flex items-center justify-between px-[12px] py-[10px]`
+  - 左に車アイコン丸 `w-[18px] h-[18px] bg-[#F5F2EE] border`
+  - タイトル: `text-[10px] font-semibold text-[#6B6B6B]`
+  - 右に▼アイコン
+- 展開リスト行:
+  - `border-t border-[#E8E5E0]`
+  - 行: `flex items-center justify-between px-[12px] py-[10px]`
+  - 左IC名 `text-[10px]`
+  - 右時間 `text-[10px] text-[#1E3A5F] font-semibold`
+
+**CTA固定**
+- 右下固定: `fixed right-[16px] bottom-[16px]`
+- ボタン: `bg-[#6B8E6B] text-white text-[11px] font-semibold rounded-[20px] px-[16px] py-[10px] shadow-lg`
+- ラベル: 「予約・空き確認」
+
+**共通トークン**
+- 主要テキスト: `#1C1C1C`
+- 補助テキスト: `#6B6B6B`
+- ボーダー: `#E8E5E0`
+- アクセント: `#6B8E6B`（CTA）

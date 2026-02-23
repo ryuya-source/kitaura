@@ -1,0 +1,94 @@
+**画面/レイアウト**
+- 対象: SP基準幅 375px、縦スクロール1カラム
+- 背景: `bg-[#FAF8F5]`、全セクション同一
+- コンテナ: `px-[24px]`〜`px-[26px]`、上余白 `pt-[24px]`、下余白はCTAに被らない `pb-[80px]` 目安
+- セクション間: `gap-[20px]`〜`gap-[28px]`
+- 中央見出しは `text-center`、本文は左寄せ
+
+**カラー/トークン**
+- 背景: `#FAF8F5`
+- 主要テキスト: `#1C1C1C`
+- 補助テキスト: `#6B6B6B`
+- ミュート: `#9A9A9A`
+- 強調ネイビー: `#1E3A5F`
+- アクセントグリーン: `#6B8E6B`（リンク/CTA/アイコン）
+- ボーダー薄: `#E8E5E0`
+- サーフェス白: `#FFFFFF`
+
+**タイポ**
+- 大見出し（「こだわりポイント」「サイト種別」「料金」）: `text-[16px]`〜`text-[18px]`、`font-light`、`tracking-[-0.3px]`、`text-[#1C1C1C]`
+- セクションタイトル（アイコン付き）: `text-[11px]`〜`text-[12px]`、`font-semibold`、`text-[#1C1C1C]`
+- 説明文: `text-[9px]`、`leading-[1.6]`、`text-[#6B6B6B]`
+- リンク/案内: `text-[9px]`、`text-[#6B8E6B]`
+- 表のヘッダー: `text-[9px]`〜`text-[10px]`、`text-[#6B6B6B]`
+- 表の本文: `text-[10px]`、`text-[#1C1C1C]`
+- 注記: `text-[8px]`、`text-[#6B8E6B]`
+
+**セクション構成（上から順）**
+- こだわりポイント（4カテゴリ）
+- サイト種別（サイト1/2/3）
+- 料金（テーブル）
+- ペット料金・頭数制限（カード）
+- オプション（カード）
+- 右下固定CTA
+
+**こだわりポイント（各カテゴリ共通）**
+- 左に小アイコン + 見出しの横並び
+- 見出し行: `flex items-center gap-[6px]`
+- 説明文は見出し直下、`mt-[4px]`
+- 写真列は4枚横並び、`gap-[6px]`〜`gap-[8px]`
+- 写真サイズ: `w-[70px] h-[70px]` 目安、`rounded-[6px]`
+- 写真は `object-cover`、明度・彩度は実写
+
+**リンク風案内**
+- 「←スクロールして他の写真を見る」: `text-[9px] text-[#6B8E6B]`
+- 矢印は左向き、本文と同じ行
+
+**サイト種別**
+- 中央見出し「サイト種別」
+- サイト名（サイト1/2/3）は左寄せ、`text-[11px] font-semibold`
+- 各サイトごとに写真4枚横並び、`rounded-[6px]`、`gap-[6px]`
+- サイト名と写真の間 `mt-[8px]`
+
+**料金テーブル**
+- セクション見出し「料金」中央
+- サブ見出し「サイト別料金」左寄せ、`text-[10px] text-[#6B6B6B]`
+- テーブル外枠: `bg-white border border-[#E8E5E0] rounded-[8px]`
+- ヘッダー行: 薄い背景 `bg-[#F5F2EE]` 目安
+- 行高さ: `py-[10px]` 前後
+- 列: 項目 + サイト1 + サイト2 + サイト3（4列）
+- 罫線: `border-b border-[#E8E5E0]`、最後の行は無し
+- 金額は `text-[#1C1C1C]`、見出しより少し濃い
+
+**注記**
+- テーブル直下に1行
+- `text-[8px] text-[#6B8E6B]`、`leading-[1.4]`
+
+**ペット料金・頭数制限**
+- セクションタイトル左寄せ、`text-[11px] font-semibold`
+- カード: `bg-white border border-[#E8E5E0] rounded-[8px] p-[12px]`
+- チェックリスト: アイコン左、`gap-[6px]`
+- テキスト: `text-[10px] text-[#1C1C1C]`
+- チェックアイコンはグリーン `#6B8E6B`
+
+**オプション**
+- タイトル左寄せ、`text-[11px] font-semibold`
+- カードは上と同じスタイル
+- テキスト `text-[10px]`
+
+**固定CTA**
+- 右下固定: `fixed right-[16px] bottom-[16px]`
+- ボタン: `bg-[#6B8E6B] text-white text-[11px] font-semibold rounded-[20px] px-[16px] py-[10px] shadow-lg`
+- ラベル: 「予約・空き確認」
+- 影: `shadow-[0_10px_20px_rgba(107,142,107,0.25)]`
+
+**画像実装**
+- `next/image` 推奨、`width/height` 固定
+- 4枚横並びは `flex` か `grid grid-cols-4`
+- 横スクロールの余地がある場合は `overflow-x-auto` + `snap-x` も選択可
+
+**推奨Tailwindユーティリティ**
+- コンテナ: `min-h-screen bg-[#FAF8F5] px-[24px] pt-[24px] pb-[80px]`
+- セクション: `flex flex-col gap-[8px]`
+- 写真: `w-[70px] h-[70px] rounded-[6px] object-cover`
+- テーブル: `border border-[#E8E5E0] rounded-[8px] overflow-hidden`

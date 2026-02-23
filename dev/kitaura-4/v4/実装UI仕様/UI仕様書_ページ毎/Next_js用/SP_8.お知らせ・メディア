@@ -1,0 +1,65 @@
+- 対象: SP基準幅 375px、縦スクロール1カラム
+- 背景: `bg-[#FAF8F5]`
+- コンテナ: `px-[24px]`、`pt-[24px]`、`pb-[88px]`
+- フォント: 和文ゴシック、本文 `text-[#1C1C1C]`
+
+**共通トークン**
+- 主要テキスト: `#1C1C1C`
+- 補助テキスト: `#6B6B6B`
+- ミュート: `#9A9A9A`
+- アクセントグリーン: `#6B8E6B`
+- ボーダー: `#E8E5E0`
+- サーフェス白: `#FFFFFF`
+- 角丸: カード `rounded-[10px]`、小要素 `rounded-[8px]`
+
+**ページヘッダー**
+- タイトル「お知らせ・メディア」: `text-[18px] font-light tracking-[-0.4px] text-center`
+- タイトル直下余白: `mt-[10px]` 目安
+
+**セクション見出し**
+- 「メディア掲載情報」「お知らせ」「インスタグラム」: `text-[12px] font-semibold text-[#1C1C1C]`
+- 見出し直下 `mt-[8px]`〜`mt-[12px]`
+
+**メディア掲載情報（カード2枚）**
+- カード外枠: `bg-white border border-[#E8E5E0] rounded-[10px] p-[12px]`
+- カード間隔: `gap-[12px]`
+- 左にアイコン（YouTube）:
+  - `w-[28px] h-[28px] rounded-[6px] bg-[#FF0000] text-white`
+  - 中央に再生三角
+- 右側コンテンツ: `flex flex-col gap-[6px]`
+- タイトル: `text-[11px] font-semibold`
+- 説明文: `text-[9px] leading-[1.6] text-[#6B6B6B]`
+- 投稿日: `text-[9px] text-[#9A9A9A]`
+- メタ情報行（再生数/いいね）:  
+  - `flex items-center gap-[10px] text-[9px] text-[#6B6B6B]`
+  - アイコンは `w-[12px] h-[12px]`
+
+**お知らせ（アコーディオン）**
+- 各アコーディオン外枠: `bg-white border border-[#E8E5E0] rounded-[10px]`
+- ヘッダー行:
+  - `flex items-center justify-between px-[12px] py-[10px]`
+  - 左にカレンダーアイコン丸 `w-[18px] h-[18px] bg-[#F5F2EE] border`
+  - 日付: `text-[10px] text-[#6B8E6B] font-semibold`
+  - タイトル: `text-[10px] font-semibold text-[#1C1C1C]`
+  - 右に▼アイコン
+- 展開本文:
+  - `border-t border-[#E8E5E0] px-[12px] py-[10px]`
+  - 見出し: `text-[11px] font-semibold`
+  - 本文: `text-[9px] leading-[1.6] text-[#6B6B6B]`
+  - 注意文: `text-[8px] text-[#9A9A9A] leading-[1.4]`
+
+**インスタグラム**
+- 写真グリッド: 4枚横並び
+  - `grid grid-cols-4 gap-[6px]`
+  - 各枠: `w-full aspect-square bg-[#BFBFBF] rounded-[6px]`
+- フォローボタン:
+  - 外枠: `bg-white border border-[#E8E5E0] rounded-[20px]`
+  - `px-[12px] py-[8px]`、中央寄せ
+  - 左にInstagramアイコン（ピンク）
+  - テキスト: `text-[10px] font-semibold`
+  - `@kitaura_lakeside_rvpark をフォロー`
+
+**CTA固定**
+- 右下固定: `fixed right-[16px] bottom-[16px]`
+- ボタン: `bg-[#6B8E6B] text-white text-[11px] font-semibold rounded-[20px] px-[16px] py-[10px] shadow-lg`
+- ラベル: 「予約・空き確認」

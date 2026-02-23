@@ -1,0 +1,829 @@
+# SP_8.お知らせ・メディア — HTML+CSS実装仕様書
+
+**ノードID:** `WawUF`  
+**画面名:** SP_8.お知らせ・メディア  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: WawUF
+width: 375px
+高さ: 可変（コンテンツに応じて）
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `gap: 32px`
+- `padding: 32px 10px` (上下32px、左右10px)
+
+### 背景
+- **背景色:** `#FAF8F5` (明るいベージュ)
+
+---
+
+## 2. ヘッダー (`I2mAW`)
+
+```
+type: frame
+id: I2mAW
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 5px`
+- `align-items: center`
+
+**子要素:**
+
+### タイトル (`z6ags`)
+- **テキスト:** `お知らせ・メディア`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 18px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: -0.5px`
+
+---
+
+## 3. セクション1: メディア掲載 (`jnMSf`)
+
+```
+type: frame
+id: jnMSf
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+
+### 3.1 セクションヘッダー (`RhQsi`)
+
+**タイトル (`rNafz`):**
+- **テキスト:** `メディア掲載情報`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: 500` (medium)
+  - `letter-spacing: -0.3px`
+
+---
+
+### 3.2 メディアカード（共通構造）
+
+メディアカードは以下の共通構造を持ちます：
+
+**スタイル:**
+- **背景色:** `#FFFFFF` (白)
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #E8E5E0`
+- **gap:** `7px`
+- **padding:** `9px`
+- **レイアウト:** 横並び（アイコン + コンテンツ）
+
+---
+
+### 3.3 メディアカード1: 板倉 趣味チャンネル (`uxsQb`)
+
+```
+type: frame
+id: uxsQb
+```
+
+**構造:**
+
+#### A) アイコン (`UoLKh`)
+- **サイズ:** 20×20px
+- **背景色:** `#FF0000` (YouTube Red)
+- **角丸:** `border-radius: 5px`
+- **アイコン (`7PxNm`):** `play` (lucide) — 9×9px、#FFFFFF
+
+#### B) コンテンツ (`wQdZU`)
+- **レイアウト:** vertical、gap: 4px
+
+**子要素:**
+
+##### タイトル (`VLth3`)
+- **テキスト:** `板倉 趣味チャンネル`
+- **スタイル:** 9px、font-weight 600、#1C1C1C
+
+##### 説明文 (`TmJjO`)
+- **テキスト:**  
+  ```
+  インパルスの板倉俊之さんのYouTubeチャンネルにて、
+  当施設をご利用いただいた様子が公開されています。
+  ```
+- **スタイル:** 10px、line-height 1.6、#6B6B6B
+
+##### 日付 (`dZpWk`)
+- **テキスト:** `2025年7月25日投稿`
+- **スタイル:** 9px、font-weight 500、#9B9B9B
+
+##### 統計情報 (`Ml0uU`)
+- **レイアウト:** 横並び、gap: 7px
+
+**内容:**
+- **視聴回数 (`WYGE7`):**
+  - アイコン: `eye` (lucide) — 9×9px、#6B6B6B
+  - テキスト: `54万回` (9px、font-weight 500、#6B6B6B)
+
+- **高評価数 (`MOBVS`):**
+  - アイコン: `thumbs-up` (lucide) — 9×9px、#6B6B6B
+  - テキスト: `4.7K` (9px、font-weight 500、#6B6B6B)
+
+---
+
+### 3.4 メディアカード2: ARJべんちゃん (`3uD0N`)
+
+```
+type: frame
+id: 3uD0N
+```
+
+**構造:** メディアカード1と同じ
+
+**内容:**
+- **タイトル:** `ARJべんちゃん`
+- **説明文:**  
+  ```
+  キャンピングカーや車中泊情報を発信する
+  「ARJべんちゃん」チャンネルにてご紹介いただきました。
+  ```
+- **日付:** `2024年12月20日掲載`
+- **視聴回数:** `0.2万回`
+- **高評価数:** `2.1K`
+
+---
+
+## 4. セクション2: お知らせ (`BwQ6Z`)
+
+```
+type: frame
+id: BwQ6Z
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+
+### 4.1 セクションヘッダー (`QYmzK`)
+
+**タイトル (`FuiRm`):**
+- **テキスト:** `お知らせ`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-size: 12px`
+  - `font-weight: 500`
+  - `letter-spacing: -0.3px`
+
+---
+
+### 4.2 アコーディオンカード（共通構造）
+
+お知らせカードはアコーディオン形式で、以下の共通構造を持ちます：
+
+**スタイル:**
+- **背景色:** `#FFFFFF`
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:**
+1. **ヘッダー**（クリック可能）
+   - 下枠線: 1px solid #E8E5E0
+   - padding: 9px 7px
+   - レイアウト: `justify-content: space-between`
+
+2. **コンテンツ**（展開時に表示）
+   - padding: 9px 7px
+   - gap: 7px
+
+---
+
+### 4.3 お知らせカード1: ご利用料金の改定 (`f84a7`)
+
+```
+type: frame
+id: f84a7
+```
+
+**構造:**
+
+#### A) アコーディオンヘッダー (`YwwMw`)
+
+**左側コンテンツ (`QOu9r`):**
+- **レイアウト:** 横並び、gap: 5px
+- **内容:**
+  - **カレンダーアイコン (`nOtKw`):** 6×6px、#3D6B4F
+  - **日付 (`6uvwJ`):** `2026/1/1` (7px、font-weight 600、#3D6B4F)
+  - **タイトル (`6o7J3`):** `ご利用料金の改定` (9px、font-weight 600、#1C1C1C)
+
+**右側:**
+- **chevron-downアイコン (`tiF3W`):** 9×9px、#6B6B6B
+
+#### B) アコーディオンコンテンツ (`0xNcU`)
+
+**内容:**
+
+##### タイトル (`cTqDJ`)
+- **テキスト:** `ご利用料金の改定`
+- **スタイル:** 9px、font-weight 600、#1C1C1C
+
+##### 説明文 (`NiMV4`)
+- **テキスト:** `昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。`
+- **スタイル:** 9px、line-height 1.6、#4A4A4A
+
+##### 項目リスト (`E0CkE`)
+- **gap:** 5px
+
+**項目1 (`fW2u8`):**
+- テキスト: `「サイト1」料金改定：オープン記念価格を終了し、新料金を適用いたします。`
+- スタイル: 9px、line-height 1.6、#4A4A4A
+
+**項目2 (`1goPU`):**
+- テキスト: `お子様料金の変更：これまで無料だった3歳以下のお子様も、大人と同料金となります。`
+- スタイル: 9px、line-height 1.6、#4A4A4A
+
+##### 注釈 (`PEhug`)
+- **テキスト:** `※改定日より前に完了しているご予約には、予約時点の料金が適用されます。`
+- **スタイル:** 7px、line-height 1.5、#9B9B9B
+
+---
+
+### 4.4 お知らせカード2 (`BNvk1`)
+
+```
+type: frame
+id: BNvk1
+```
+
+**構造:** カード1と同じアコーディオン形式
+
+（内容は別のお知らせ項目）
+
+---
+
+## 5. 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_8.お知らせ・メディア</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム WawUF -->
+  <div class="sp8-news">
+    
+    <!-- ヘッダー -->
+    <header class="page-header">
+      <h1 class="page-title">お知らせ・メディア</h1>
+    </header>
+    
+    <!-- セクション1: メディア掲載 -->
+    <section class="news-section">
+      <h2 class="section-title">メディア掲載情報</h2>
+      
+      <!-- メディアカード1 -->
+      <div class="media-card">
+        <div class="media-icon media-icon--youtube">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+            <polygon points="5 3 19 12 5 21 5 3" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="media-content">
+          <h3 class="media-title">板倉 趣味チャンネル</h3>
+          <p class="media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、<br>当施設をご利用いただいた様子が公開されています。</p>
+          <p class="media-date">2025年7月25日投稿</p>
+          <div class="media-stats">
+            <div class="stat-item">
+              <svg class="stat-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="12" r="3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+              </svg>
+              <span class="stat-text">54万回</span>
+            </div>
+            <div class="stat-item">
+              <svg class="stat-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+              </svg>
+              <span class="stat-text">4.7K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- メディアカード2 -->
+      <div class="media-card">
+        <div class="media-icon media-icon--youtube">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+            <polygon points="5 3 19 12 5 21 5 3" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="media-content">
+          <h3 class="media-title">ARJべんちゃん</h3>
+          <p class="media-desc">キャンピングカーや車中泊情報を発信する<br>「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
+          <p class="media-date">2024年12月20日掲載</p>
+          <div class="media-stats">
+            <div class="stat-item">
+              <svg class="stat-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="12" r="3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+              </svg>
+              <span class="stat-text">0.2万回</span>
+            </div>
+            <div class="stat-item">
+              <svg class="stat-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+              </svg>
+              <span class="stat-text">2.1K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション2: お知らせ -->
+    <section class="news-section">
+      <h2 class="section-title">お知らせ</h2>
+      
+      <!-- お知らせカード1 -->
+      <div class="accordion-card">
+        <button class="accordion-header" onclick="this.parentElement.classList.toggle('is-open')">
+          <div class="accordion-title">
+            <svg class="calendar-icon" width="6" height="6" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="18" rx="2" stroke="#3D6B4F" stroke-width="2" fill="none"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke="#3D6B4F" stroke-width="2"/>
+            </svg>
+            <span class="accordion-date">2026/1/1</span>
+            <span class="accordion-heading">ご利用料金の改定</span>
+          </div>
+          <svg class="chevron-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+            <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <h3 class="content-title">ご利用料金の改定</h3>
+          <p class="content-desc">昔今の光熱費や資材価格の高騰に伴い、利用料金を一部見直します。</p>
+          <ul class="content-list">
+            <li class="content-item">「サイト1」料金改定：オープン記念価格を終了し、<br>新料金を適用いたします。</li>
+            <li class="content-item">お子様料金の変更：これまで無料だった3歳以下の<br>お子様も、大人と同料金となります。</li>
+          </ul>
+          <p class="content-note">※改定日より前に完了しているご予約には、予約時点の料金が適用されます。</p>
+        </div>
+      </div>
+      
+      <!-- お知らせカード2 -->
+      <div class="accordion-card">
+        <button class="accordion-header" onclick="this.parentElement.classList.toggle('is-open')">
+          <div class="accordion-title">
+            <svg class="calendar-icon" width="6" height="6" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="18" rx="2" stroke="#3D6B4F" stroke-width="2" fill="none"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke="#3D6B4F" stroke-width="2"/>
+            </svg>
+            <span class="accordion-date">2025/12/15</span>
+            <span class="accordion-heading">その他のお知らせ</span>
+          </div>
+          <svg class="chevron-icon" width="9" height="9" viewBox="0 0 24 24" fill="none">
+            <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <p class="content-desc">お知らせの内容がここに入ります。</p>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+</body>
+</html>
+```
+
+---
+
+## 6. CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #FAF8F5;
+}
+
+/* ルートフレーム */
+.sp8-news {
+  width: 375px;
+  padding: 32px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: #FAF8F5;
+}
+
+/* ページヘッダー */
+.page-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.page-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* セクション */
+.news-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.section-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+/* メディアカード */
+.media-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 7px;
+  border: 1px solid #E8E5E0;
+  padding: 9px;
+  display: flex;
+  gap: 7px;
+}
+
+.media-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-icon--youtube {
+  background: #FF0000;
+}
+
+.media-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.media-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.media-desc {
+  margin: 0;
+  color: #6B6B6B;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.media-date {
+  margin: 0;
+  color: #9B9B9B;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.media-stats {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.stat-item {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.stat-icon {
+  flex-shrink: 0;
+}
+
+.stat-text {
+  color: #6B6B6B;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* アコーディオンカード */
+.accordion-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 7px;
+  border: 1px solid #E8E5E0;
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  background: #FFFFFF;
+  border: none;
+  border-bottom: 1px solid #E8E5E0;
+  padding: 9px 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+  background: #F9F9F9;
+}
+
+.accordion-title {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.calendar-icon {
+  flex-shrink: 0;
+}
+
+.accordion-date {
+  color: #3D6B4F;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+.accordion-heading {
+  color: #1C1C1C;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.chevron-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.accordion-card.is-open .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  display: none;
+  padding: 9px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.accordion-card.is-open .accordion-content {
+  display: flex;
+}
+
+.content-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.content-desc {
+  margin: 0;
+  color: #4A4A4A;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.content-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.content-item {
+  color: #4A4A4A;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.content-note {
+  margin: 0;
+  color: #9B9B9B;
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+  .sp8-news {
+    max-width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+---
+
+## 7. JavaScriptによるアコーディオン実装
+
+```javascript
+// アコーディオンの初期化
+document.addEventListener('DOMContentLoaded', () => {
+  const accordionCards = document.querySelectorAll('.accordion-card');
+  
+  accordionCards.forEach(card => {
+    const header = card.querySelector('.accordion-header');
+    const content = card.querySelector('.accordion-content');
+    
+    // 初期状態でコンテンツを非表示
+    content.style.display = 'none';
+    
+    // ヘッダークリックイベント
+    header.addEventListener('click', () => {
+      const isOpen = card.classList.contains('is-open');
+      
+      if (isOpen) {
+        // 閉じる
+        card.classList.remove('is-open');
+        content.style.display = 'none';
+      } else {
+        // 開く
+        card.classList.add('is-open');
+        content.style.display = 'flex';
+      }
+    });
+  });
+});
+```
+
+---
+
+## 8. アイコン実装の詳細
+
+### Lucideアイコン（SVG直接記述）
+
+**play（再生）:**
+```html
+<svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+  <polygon points="5 3 19 12 5 21 5 3" fill="#FFFFFF"/>
+</svg>
+```
+
+**eye（目）:**
+```html
+<svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+  <circle cx="12" cy="12" r="3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+**thumbs-up（いいね）:**
+```html
+<svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+**calendar（カレンダー）:**
+```html
+<svg width="6" height="6" viewBox="0 0 24 24" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" stroke="#3D6B4F" stroke-width="2" fill="none"/>
+  <line x1="16" y1="2" x2="16" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+  <line x1="8" y1="2" x2="8" y2="6" stroke="#3D6B4F" stroke-width="2"/>
+  <line x1="3" y1="10" x2="21" y2="10" stroke="#3D6B4F" stroke-width="2"/>
+</svg>
+```
+
+**chevron-down（下矢印）:**
+```html
+<svg width="9" height="9" viewBox="0 0 24 24" fill="none">
+  <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+---
+
+## 9. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面幅: 375px
+- [ ] 背景色: #FAF8F5
+- [ ] padding: 32px 10px, gap: 32px
+- [ ] ページタイトル: 18px, font-weight 300
+- [ ] セクション数: 2つ（メディア掲載、お知らせ）
+- [ ] メディアカード: 白背景、7px角丸
+- [ ] YouTubeアイコン: 20×20px、#FF0000背景
+- [ ] 統計情報: eyeアイコン + thumbs-upアイコン
+- [ ] アコーディオンカード: 白背景、7px角丸
+- [ ] アコーディオンヘッダー: カレンダーアイコン + 日付 + タイトル
+- [ ] アコーディオン開閉動作が正常
+- [ ] chevron-downアイコンが回転する
+- [ ] Inter フォントが読み込まれている
+
+---
+
+## 10. アクセシビリティ
+
+### セマンティックHTML
+```html
+<section class="news-section" aria-labelledby="media-section-title">
+  <h2 id="media-section-title" class="section-title">メディア掲載情報</h2>
+  <!-- ... -->
+</section>
+
+<article class="media-card">
+  <h3 class="media-title">板倉 趣味チャンネル</h3>
+  <!-- ... -->
+</article>
+```
+
+### ARIA属性
+```html
+<button 
+  class="accordion-header" 
+  aria-expanded="false" 
+  aria-controls="accordion-content-1"
+  onclick="toggleAccordion(this)">
+  <!-- ヘッダー内容 -->
+</button>
+
+<div 
+  id="accordion-content-1" 
+  class="accordion-content" 
+  role="region" 
+  aria-labelledby="accordion-header-1">
+  <!-- コンテンツ -->
+</div>
+```
+
+---
+
+## 11. 参考情報
+
+- **元ノードID:** `WawUF`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **メディアカード数:** 2枚
+- **お知らせカード数:** 2枚以上（可変）
+- **アイコン:** play, eye, thumbs-up, calendar, chevron-down（Lucide）
+
+---
+
+以上が `SP_8.お知らせ・メディア` の HTML+CSS+JavaScript 実装仕様書です。この仕様に従って実装することで、メディア掲載情報とアコーディオン形式のお知らせを表示するページを再現できます。

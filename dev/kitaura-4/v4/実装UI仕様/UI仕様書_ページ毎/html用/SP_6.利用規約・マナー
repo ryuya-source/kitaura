@@ -1,0 +1,714 @@
+# SP_6.利用規約・マナー — HTML+CSS実装仕様書
+
+**ノードID:** `3UNaB`  
+**画面名:** SP_6.利用規約・マナー（最適化版）  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: 3UNaB
+width: 375px
+高さ: 可変（コンテンツに応じて）
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `gap: 40px`
+- `padding: 32px 10px` (上下32px、左右10px)
+
+### 背景
+- **背景色:** `#FAF8F5` (明るいベージュ)
+
+---
+
+## 2. ヘッダー (`LENAp`)
+
+```
+type: frame
+id: LENAp
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 16px`
+- `align-items: center`
+
+**子要素:**
+
+### 2.1 タイトル (`un1q5`)
+- **テキスト:** `利用規約・マナー`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 23px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: -0.5px`
+
+### 2.2 リード文 (`FIFM1`)
+- **テキスト:**  
+  ```
+  すべてのお客様が快適で安全な時間を過ごせるよう、
+  以下の規約を設けております。
+  ```
+- **スタイル:**
+  - `color: #6B6B6B`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: normal` (400)
+  - `line-height: 1.8`
+  - `text-align: center`
+  - `width: 320px`
+
+---
+
+## 3. セクション構造
+
+このページは以下の2つのメインセクションで構成されています：
+
+1. **予約・キャンセル** (`Zed5V`) — チェックイン・アウト、キャンセルポリシー、免責事項
+2. **基本ルール** (`nClN7`) — 基本ルール・禁止事項
+
+---
+
+## 4. セクション1: 予約・キャンセル (`Zed5V`)
+
+```
+type: frame
+id: Zed5V
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 16px`
+
+### 4.1 セクションヘッダー (`H4xqa`)
+
+**タイトル (`9xo0B`):**
+- **テキスト:** `予約・キャンセル・その他`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: 500` (medium)
+  - `letter-spacing: -0.3px`
+
+---
+
+### 4.2 チェックイン・アウトカード (`I910U`)
+
+```
+type: frame
+id: I910U
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF` (白)
+- **角丸:** `border-radius: 12px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:**
+
+#### A) ラベル (`r5fjv`)
+- **背景色:** `#F5F3F0`
+- **角丸:** 上部のみ12px（`border-radius: 12px 12px 0 0`）
+- **padding:** `7px 5px`
+- **テキスト (`hPfq8`):** `チェックイン・アウト`
+  - `color: #6B6B6B`
+  - `font-size: 9px`
+  - `font-weight: 600`
+
+#### B) 行1: チェックイン (`fff4F`)
+- **枠線:** 下のみ1px (#E8E5E0)
+- **padding:** `9px 8px`
+- **レイアウト:** 横並び
+- **内容:**
+  - ラベル: `IN` (100px幅、#6B6B6B、12px、font-weight 600)
+  - 値: `13:00 ～ 17:00` (#1C1C1C、12px)
+
+#### C) 行2: チェックアウト (`cuxPh`)
+- **padding:** `9px 8px`
+- **レイアウト:** 横並び
+- **内容:**
+  - ラベル: `OUT` (100px幅、#6B6B6B、12px、font-weight 600)
+  - 値: `～ 10:00` (#1C1C1C、12px)
+
+---
+
+### 4.3 キャンセルポリシーカード (`f9umC`)
+
+```
+type: frame
+id: f9umC
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF`
+- **角丸:** `border-radius: 12px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:**
+
+#### A) ラベル (`P6JY1`)
+- **背景色:** `#F5F3F0`
+- **角丸:** 上部のみ12px
+- **padding:** `7px 5px`
+- **テキスト (`MRDBU`):** `キャンセルポリシー`
+  - `color: #6B6B6B`
+  - `font-size: 9px`
+  - `font-weight: 600`
+
+#### B) 行1: 1～3日前 (`iTm3Z`)
+- **枠線:** 下のみ1px (#E8E5E0)
+- **padding:** `9px 8px`
+- **内容:**
+  - ラベル: `1日前 ～ 3日前` (140px幅、#6B6B6B、12px、font-weight 500)
+  - 値: `宿泊代の50％` (#1C1C1C、12px)
+
+#### C) 行2: 当日 (`aGs8w`)
+- **padding:** `9px 8px`
+- **内容:**
+  - ラベル: `当日` (140px幅、#6B6B6B、12px、font-weight 500)
+  - 値: `宿泊代の100％` (#1C1C1C、12px)
+
+---
+
+### 4.4 免責事項カード (`WQ2vh`)
+
+```
+type: frame
+id: WQ2vh
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF`
+- **角丸:** `border-radius: 12px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:**
+
+#### A) ラベル (`w3uft`)
+- **背景色:** `#F5F3F0`
+- **角丸:** 上部のみ12px
+- **padding:** `7px 5px`
+- **テキスト (`Mye85`):** `免責事項・環境について`
+  - `color: #6B6B6B`
+  - `font-size: 9px`
+  - `font-weight: 600`
+
+#### B) リスト (`pt8nJ`)
+- **padding:** `9px`
+- **gap:** `12px`
+- **項目:**
+  - `・ 場内での事故、盗難、ペット間のトラブル等について、当施設は一切の責任を負いません。`
+  - `・ ゴミはサイト内のゴミ置き場で分別回収しております。買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。`
+  - `・ 県道に隣接しているため、時間帯によっては車両の走行音が聞こえる場合がございます。`
+  - `・ 暴力団およびその関係者のご利用はお断りいたします。`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-size: 10px`
+  - `line-height: 1.6`
+
+---
+
+## 5. セクション2: 基本ルール (`nClN7`)
+
+```
+type: frame
+id: nClN7
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 16px`
+
+### 5.1 セクションヘッダー (`Vq1Ee`)
+
+**タイトル (`UIOvI`):**
+- **テキスト:** `基本ルール・禁止事項`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-size: 12px`
+  - `font-weight: 500`
+  - `letter-spacing: -0.3px`
+
+---
+
+### 5.2 ルールカード (`78l3X`)
+
+```
+type: frame
+id: 78l3X
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF`
+- **角丸:** `border-radius: 12px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:** 各ルールは以下の共通フォーマット
+
+#### ルール行の共通構造
+- **gap:** `16px`
+- **padding:** `9px`
+- **枠線:** 下のみ1px (#E8E5E0) — 最後の行は枠線なし
+
+**子要素:**
+1. **アイコン** (20×20px)
+   - 背景: #F5F3F0
+   - 角丸: 8px
+   - アイコンサイズ: 12×12px
+   - アイコン色: #1E3A5F
+
+2. **コンテンツ** (幅: fill_container)
+   - メインテキスト: 12px、#1C1C1C
+   - サブテキスト: 9px、#9A9A9A
+   - gap: 2px
+
+---
+
+### 5.3 各ルールの詳細
+
+#### ルール1: クワイエットタイム (`ugv97`)
+- **アイコン:** `moon` (lucide)
+- **メインテキスト:** `クワイエットタイム：21:00 ～ 翌7:00`
+- **サブテキスト:** `話し声や生活音が隣のサイトに漏れないようご配慮ください`
+
+#### ルール2: 直火禁止 (`zXnQH`)
+- **アイコン:** `flame` (lucide)
+- **メインテキスト:** `直火禁止（焼き火台・焼き火シート必須）`
+- **サブテキスト:** `灰は指定の灰捨て場へ処理をお願いします`
+
+#### ルール3: 音楽・騒音禁止 (`lXzxI`)
+- **アイコン:** `volume-x` (lucide)
+- **メインテキスト:** 音楽・騒音禁止に関する内容
+- **サブテキスト:** 注意事項
+
+---
+
+## 6. 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_6.利用規約・マナー</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム 3UNaB -->
+  <div class="sp6-terms">
+    
+    <!-- ヘッダー -->
+    <header class="page-header">
+      <h1 class="page-title">利用規約・マナー</h1>
+      <p class="page-lead">すべてのお客様が快適で安全な時間を過ごせるよう、<br>以下の規約を設けております。</p>
+    </header>
+    
+    <!-- セクション1: 予約・キャンセル -->
+    <section class="terms-section">
+      <h2 class="section-title">予約・キャンセル・その他</h2>
+      
+      <!-- チェックイン・アウトカード -->
+      <div class="info-card">
+        <div class="card-label">チェックイン・アウト</div>
+        <div class="card-body">
+          <div class="info-row info-row--border">
+            <div class="info-label">IN</div>
+            <div class="info-value">13:00 ～ 17:00</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">OUT</div>
+            <div class="info-value">～ 10:00</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- キャンセルポリシーカード -->
+      <div class="info-card">
+        <div class="card-label">キャンセルポリシー</div>
+        <div class="card-body">
+          <div class="info-row info-row--border">
+            <div class="info-label info-label--wide">1日前 ～ 3日前</div>
+            <div class="info-value">宿泊代の50％</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label info-label--wide">当日</div>
+            <div class="info-value">宿泊代の100％</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 免責事項カード -->
+      <div class="info-card">
+        <div class="card-label">免責事項・環境について</div>
+        <div class="card-body">
+          <div class="disclaimer-list">
+            <p class="disclaimer-item">・ 場内での事故、盗難、ペット間のトラブル等について、<br>　 当施設は一切の責任を負いません。</p>
+            <p class="disclaimer-item">・ ゴミはサイト内のゴミ置き場で分別回収しております。<br>　 買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。</p>
+            <p class="disclaimer-item">・ 県道に隣接しているため、時間帯によっては<br>　 車両の走行音が聞こえる場合がございます。</p>
+            <p class="disclaimer-item">・ 暴力団およびその関係者のご利用はお断りいたします。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション2: 基本ルール -->
+    <section class="terms-section">
+      <h2 class="section-title">基本ルール・禁止事項</h2>
+      
+      <!-- ルールカード -->
+      <div class="rule-card">
+        <!-- ルール1 -->
+        <div class="rule-item rule-item--border">
+          <div class="rule-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#1E3A5F"/>
+            </svg>
+          </div>
+          <div class="rule-content">
+            <div class="rule-main">クワイエットタイム：21:00 ～ 翌7:00</div>
+            <div class="rule-sub">話し声や生活音が隣のサイトに漏れないようご配慮ください</div>
+          </div>
+        </div>
+        
+        <!-- ルール2 -->
+        <div class="rule-item rule-item--border">
+          <div class="rule-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#1E3A5F"/>
+            </svg>
+          </div>
+          <div class="rule-content">
+            <div class="rule-main">直火禁止（焼き火台・焼き火シート必須）</div>
+            <div class="rule-sub">灰は指定の灰捨て場へ処理をお願いします</div>
+          </div>
+        </div>
+        
+        <!-- ルール3 -->
+        <div class="rule-item">
+          <div class="rule-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path d="M11 5L6 9H2v6h4l5 4V5z" fill="#1E3A5F"/>
+              <line x1="23" y1="9" x2="17" y2="15" stroke="#1E3A5F" stroke-width="2"/>
+              <line x1="17" y1="9" x2="23" y2="15" stroke="#1E3A5F" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="rule-content">
+            <div class="rule-main">音楽・騒音禁止</div>
+            <div class="rule-sub">場内では常に静粛性を保ってください</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+</body>
+</html>
+```
+
+---
+
+## 7. CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #FAF8F5;
+}
+
+/* ルートフレーム */
+.sp6-terms {
+  width: 375px;
+  padding: 32px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: #FAF8F5;
+}
+
+/* ページヘッダー */
+.page-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.page-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 23px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.page-lead {
+  margin: 0;
+  width: 320px;
+  color: #6B6B6B;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* セクション */
+.terms-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+/* 情報カード */
+.info-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E8E5E0;
+  overflow: hidden;
+}
+
+.card-label {
+  background: #F5F3F0;
+  padding: 7px 5px;
+  color: #6B6B6B;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 情報行 */
+.info-row {
+  display: flex;
+  padding: 9px 8px;
+}
+
+.info-row--border {
+  border-bottom: 1px solid #E8E5E0;
+}
+
+.info-label {
+  width: 100px;
+  color: #6B6B6B;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.info-label--wide {
+  width: 140px;
+  font-weight: 500;
+}
+
+.info-value {
+  flex: 1;
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* 免責事項リスト */
+.disclaimer-list {
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.disclaimer-item {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ルールカード */
+.rule-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E8E5E0;
+  overflow: hidden;
+}
+
+/* ルール項目 */
+.rule-item {
+  display: flex;
+  gap: 16px;
+  padding: 9px;
+}
+
+.rule-item--border {
+  border-bottom: 1px solid #E8E5E0;
+}
+
+/* ルールアイコン */
+.rule-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: #F5F3F0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ルールコンテンツ */
+.rule-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rule-main {
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.rule-sub {
+  color: #9A9A9A;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+  .sp6-terms {
+    max-width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+---
+
+## 8. アイコン実装の詳細
+
+### Lucideアイコン（SVG直接記述）
+
+**moon（月）:**
+```html
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#1E3A5F"/>
+</svg>
+```
+
+**flame（炎）:**
+```html
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#1E3A5F"/>
+</svg>
+```
+
+**volume-x（音量ミュート）:**
+```html
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="#1E3A5F"/>
+  <line x1="23" y1="9" x2="17" y2="15" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+  <line x1="17" y1="9" x2="23" y2="15" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+</svg>
+```
+
+---
+
+## 9. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面幅: 375px
+- [ ] 背景色: #FAF8F5
+- [ ] padding: 32px 10px, gap: 40px
+- [ ] ページタイトル: 23px, font-weight 300
+- [ ] リード文: 12px, 幅320px, 中央揃え
+- [ ] セクション数: 2つ（予約・キャンセル、基本ルール）
+- [ ] カードデザイン: 白背景、12px角丸、#E8E5E0枠線
+- [ ] カードラベル: #F5F3F0背景、9px
+- [ ] 情報行: padding 9px 8px、枠線で区切り
+- [ ] ルールアイコン: 20×20px、#F5F3F0背景、8px角丸
+- [ ] ルールコンテンツ: 12px（メイン）、9px（サブ）
+- [ ] Inter フォントが読み込まれている
+
+---
+
+## 10. アクセシビリティ
+
+### セマンティックHTML
+```html
+<section class="terms-section" aria-labelledby="section-1-title">
+  <h2 id="section-1-title" class="section-title">予約・キャンセル・その他</h2>
+  <!-- ... -->
+</section>
+
+<dl class="info-row">
+  <dt class="info-label">IN</dt>
+  <dd class="info-value">13:00 ～ 17:00</dd>
+</dl>
+```
+
+### アイコンのaria属性
+```html
+<div class="rule-icon" aria-hidden="true">
+  <svg>...</svg>
+</div>
+```
+
+---
+
+## 11. 参考情報
+
+- **元ノードID:** `3UNaB`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **カード数:** 4枚（チェックイン、キャンセル、免責、ルール）
+- **アイコン:** moon, flame, volume-x（Lucide）
+
+---
+
+以上が `SP_6.利用規約・マナー` の HTML+CSS 実装仕様書です。この仕様に従って実装することで、見やすく整理された利用規約とマナーのページを再現できます。

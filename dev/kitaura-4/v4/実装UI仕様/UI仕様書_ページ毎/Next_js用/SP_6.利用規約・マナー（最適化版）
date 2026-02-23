@@ -1,0 +1,37 @@
+- 対象: SP基準幅 375px、縦スクロール1カラム
+- 背景: `bg-[#FAF8F5]`
+- コンテナ: `px-[24px]` 前後、`pt-[24px]`、`pb-[88px]`（CTA被り回避）
+- 主要フォント: 和文ゴシック系、`text-[#1C1C1C]`
+- セクション間隔: `gap-[20px]`〜`gap-[28px]`
+- 見出し（最上部「利用規約・マナー」）: `text-[18px] font-light tracking-[-0.4px] text-center`
+- サブ説明文: `text-[10px] leading-[1.6] text-[#6B6B6B] text-center`
+- セクションタイトル（「予約・キャンセル・その他」等）: `text-[12px] font-semibold text-[#1C1C1C]`
+- カード基本: `bg-white border border-[#E8E5E0] rounded-[10px]`
+- カード余白: `px-[12px] py-[10px]`
+- カード内区切り線: `border-b border-[#E8E5E0]`
+- カード内見出し（小見出し）: `text-[10px] text-[#6B6B6B] font-medium`
+- テキスト本文: `text-[10px] leading-[1.6] text-[#1C1C1C]`
+- ミュート説明: `text-[9px] text-[#9A9A9A]`
+- 予約・キャンセル・その他: 3つのカード構成（チェックイン/アウト、キャンセルポリシー、免責事項）
+- チェックイン/アウト表: 2行、左ラベル `IN/OUT` 右時刻、行高さ `py-[8px]`
+- キャンセル表: 2行、左「1日前〜3日前」「当日」右料金率、行高さ `py-[8px]`
+- 免責事項カード: 箇条書き風の本文、行間 `leading-[1.7]`
+- 基本ルール・禁止事項: アイコン付きリストカード群
+- ルールアイテム: `flex gap-[10px] items-start`
+- ルールアイコン: `w-[22px] h-[22px] rounded-full border border-[#E8E5E0] bg-[#F7F5F2]` 中央配置
+- ルールタイトル: `text-[11px] font-semibold`
+- ルール補足: `text-[9px] text-[#6B6B6B] leading-[1.5]`
+- ルールカードの区切り: 各アイテムごとに `border-b border-[#E8E5E0]`、最後は無し
+- グループ利用の制限: アイコン付き2項目カード
+- ペット同伴規約: セクション見出し + サブ説明文（`text-[9px] text-[#6B6B6B]`）
+- ペット規約アイテム: アイコン付き3項目、構造は基本ルールと同一
+- 追記事項（小さな注意文）: `text-[8px] text-[#9A9A9A]`、カード外に配置
+- 小鳥（オウム・インコ）の同伴について: チェックマーク付きリストカード
+- チェックアイコン: `text-[#6B8E6B]`、左配置、`w-[12px]` 目安
+- CTA固定: 右下固定 `fixed right-[16px] bottom-[16px]`
+- CTAボタン: `bg-[#6B8E6B] text-white text-[11px] font-semibold rounded-[20px] px-[16px] py-[10px] shadow-lg`
+- CTAラベル: 「予約・空き確認」
+- 角丸基準: カード `rounded-[10px]`、小アイコン円形
+- 余白の一貫性: セクション内は `gap-[8px]`〜`gap-[12px]`
+- Tailwindでの構造推奨: `flex flex-col`、`space-y-[...]` を主体に構成
+- 画像なし構成だが、アイコンは `svg` か `inline-flex` で統一サイズ運用

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>アクセス</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --accent: #6B8E6B;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 24px 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .address {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .pin {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #F5F2EE;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+    }
+
+    .notice {
+      background: #FFF4DA;
+      border: 1px solid #F1E1B8;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .notice .headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #B27A1F;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .notice .text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #7A6A4A;
+      margin: 0;
+    }
+
+    .navbox {
+      background: #EEF6EE;
+      border: 1px solid #CFE3CF;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .navbox .headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #4F7B4F;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .navbox .text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #4F6A4F;
+      margin: 0;
+    }
+
+    .map {
+      width: 100%;
+      height: 210px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: repeating-conic-gradient(#d9d9d9 0% 25%, #efefef 0% 50%) 0 0 / 24px 24px;
+      display: grid;
+      place-items: end start;
+      padding: 8px;
+      color: #3b7bdc;
+      font-size: 10px;
+    }
+
+    .desc {
+      font-size: 9px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .accordion {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .acc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .car {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #F5F2EE;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      margin-right: 8px;
+    }
+
+    .acc-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .acc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .time {
+      color: #1E3A5F;
+      font-weight: 600;
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      pointer-events: none;
+    }
+
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">アクセス</h1>
+
+    <section>
+      <h2 class="section-title">所在地・ナビ設定</h2>
+      <div class="card">
+        <div class="address">
+          <span class="pin">📍</span>
+          <span>〒311-2104 茨城県鉾田市根山2947</span>
+        </div>
+
+        <div class="notice">
+          <div class="headline">⚠ 重要：ナビ設定時のご注意</div>
+          <p class="text">住所検索を行うと、地図上のピンが実際の場所とズレて表示される場合がございます。</p>
+        </div>
+
+        <div class="navbox">
+          <div class="headline">🧭 ナビの目的地設定</div>
+          <p class="text">「セブンイレブン 鉾田根山店」を目的地に設定してお越しください。当施設はすぐ隣です。</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="map">Google</div>
+
+    <section>
+      <h2 class="section-title">お車での所要時間</h2>
+      <p class="desc">最寄りのインターチェンジからの目安時間です。</p>
+
+      <div class="accordion">
+        <div class="acc-head">
+          <div class="acc-title"><span class="car">🚗</span><span>東関東自動車道をご利用の方</span></div>
+          <span>▾</span>
+        </div>
+        <div class="acc-row"><span>鉾田IC</span><span class="time">約15分</span></div>
+        <div class="acc-row"><span>潮来IC</span><span class="time">約30分</span></div>
+      </div>
+
+      <div class="accordion">
+        <div class="acc-head">
+          <div class="acc-title"><span class="car">🚗</span><span>常磐自動車道をご利用の方</span></div>
+          <span>▾</span>
+        </div>
+        <div class="acc-row"><span>土浦北IC</span><span class="time">約50分</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="fixed-cta">
+    <button type="button">予約・空き確認</button>
+  </div>
+</body>
+</html>
+EOF

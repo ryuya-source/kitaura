@@ -1,0 +1,913 @@
+# SP_7.アクセス — HTML+CSS実装仕様書
+
+**ノードID:** `g5WKr`  
+**画面名:** SP_7.アクセス  
+**実装方法:** HTML + CSS（Vanilla / インラインCSS推奨）
+
+---
+
+## 1. 画面全体（ルートフレーム）
+
+```
+type: frame
+id: g5WKr
+width: 375px
+高さ: 可変（コンテンツに応じて）
+```
+
+### レイアウト
+- `display: flex`
+- `flex-direction: column` (vertical layout)
+- `gap: 32px`
+- `padding: 32px 10px` (上下32px、左右10px)
+
+### 背景
+- **背景色:** `#FAF8F5` (明るいベージュ)
+
+---
+
+## 2. ヘッダー (`BcXwJ`)
+
+```
+type: frame
+id: BcXwJ
+width: fill_container (100%)
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 5px`
+- `align-items: center`
+
+**子要素:**
+
+### タイトル (`SQmzR`)
+- **テキスト:** `アクセス`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 23px`
+  - `font-weight: 300` (light)
+  - `letter-spacing: -0.5px`
+
+---
+
+## 3. セクション1: 所在地 (`R22RR`)
+
+```
+type: frame
+id: R22RR
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+
+### 3.1 セクションヘッダー (`q0qGj`)
+
+**タイトル (`TufBl`):**
+- **テキスト:** `所在地・ナビ設定`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-family: Inter`
+  - `font-size: 12px`
+  - `font-weight: 500` (medium)
+  - `letter-spacing: -0.3px`
+
+---
+
+### 3.2 住所カード (`r7ELh`)
+
+```
+type: frame
+id: r7ELh
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF` (白)
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #E8E5E0`
+- **gap:** `7px`
+- **padding:** `9px`
+
+**子要素:**
+
+#### A) 住所行 (`EWHVz`)
+- **レイアウト:** 横並び
+- **gap:** `5px`
+- **align-items:** `center`
+
+**内容:**
+- **アイコン (`CJns5`):** 
+  - サイズ: 14×14px
+  - 背景: #F5F3F0
+  - 角丸: 4px
+  - アイコン: `map-pin` (lucide) — 8×8px、#1E3A5F
+
+- **住所テキスト (`M7yLA`):**
+  - テキスト: `〒311-2104 茨城県鋒田市梖山2947`
+  - スタイル: 10px、font-weight 500、#1C1C1C
+
+---
+
+#### B) 警告ボックス (`imNYA`)
+
+```
+type: frame
+id: imNYA
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFF8E6` (淡い黄色)
+- **角丸:** `border-radius: 5px`
+- **枠線:** `border: 1px solid #F0E4C8`
+- **gap:** `5px`
+- **padding:** `7px`
+
+**構造:**
+
+##### ヘッダー行 (`mg2wk`)
+- **gap:** `4px`
+- **align-items:** `center`
+- **アイコン (`wDp7E`):** `alert-circle` (lucide) — 7×7px、#B8860B
+- **タイトル (`UBmb5`):** `重要：ナビ設定時のご注意`
+  - 10px、font-weight 600、#8B6914
+
+##### 本文 (`i1GVt`)
+- **テキスト:**  
+  ```
+  住所検索を行うと、地図上のピンが実際の場所とズレて
+  表示される場合がございます。
+  ```
+- **スタイル:**
+  - `color: #6B5A2A`
+  - `font-size: 10px`
+  - `line-height: 1.6`
+
+---
+
+#### C) ヒントボックス (`fAh18`)
+
+```
+type: frame
+id: fAh18
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#F0F7F0` (淡い緑)
+- **角丸:** `border-radius: 5px`
+- **枠線:** `border: 1px solid #D4E8D4`
+- **gap:** `4px`
+- **padding:** `7px`
+
+**構造:**
+
+##### ヘッダー行 (`cZFPR`)
+- **gap:** `4px`
+- **align-items:** `center`
+- **アイコン (`fD04m`):** `navigation` (lucide) — 7×7px、#3D6B4F
+- **タイトル (`o8Rn4`):** `ナビの目的地設定`
+  - 10px、font-weight 600、#3D6B4F
+
+##### 本文 (`nkxjv`)
+- **テキスト:**  
+  ```
+  「セブンイレブン 鋒田梖山店」を目的地に設定して
+  お越しください。当施設はすぐ隣です。
+  ```
+- **スタイル:**
+  - `color: #2D5A3F`
+  - `font-size: 10px`
+  - `line-height: 1.6`
+
+---
+
+### 3.3 地図コンテナ (`b1w1U`)
+
+```
+type: frame
+id: b1w1U
+width: fill_container
+height: 178px
+```
+
+**スタイル:**
+- **背景画像:** `./src/maps.png`
+- `background-size: cover`
+- `background-position: center`
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #E8E5E0`
+- **position:** `relative`
+
+**実装メモ:**
+- 実際には Google Maps の埋め込みまたは静的画像を使用
+- Google ロゴを左下に配置（28×12px、白背景、角丸2px）
+- マーカーアイコンを適切な位置に配置（18×22px）
+
+---
+
+## 4. セクション2: 所要時間 (`FYTyA`)
+
+```
+type: frame
+id: FYTyA
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 7px`
+
+### 4.1 セクションヘッダー (`RCGIA`)
+
+**タイトル (`dE07a`):**
+- **テキスト:** `お車での所要時間`
+- **スタイル:**
+  - `color: #1C1C1C`
+  - `font-size: 12px`
+  - `font-weight: 500`
+  - `letter-spacing: -0.3px`
+
+**サブタイトル (`xqqwP`):**
+- **テキスト:** `最寄りのインターチェンジからの目安時間です。`
+- **スタイル:**
+  - `color: #6B6B6B`
+  - `font-size: 9px`
+
+---
+
+### 4.2 ルートカード1: 東関東自動車道 (`Gxn0Y`)
+
+```
+type: frame
+id: Gxn0Y
+width: fill_container
+```
+
+**スタイル:**
+- **背景色:** `#FFFFFF`
+- **角丸:** `border-radius: 7px`
+- **枠線:** `border: 1px solid #E8E5E0`
+
+**構造:**
+
+#### A) ラベル (`W77mB`)
+- **背景色:** `#F5F3F0`
+- **角丸:** 上部のみ7px（`border-radius: 7px 7px 0 0`）
+- **padding:** `7px 5px`
+- **レイアウト:** 横並び、`justify-content: space-between`、`align-items: center`
+
+**内容:**
+- **carアイコン (`oVHG9`):** 12×12px、#6B6B6B
+- **テキスト (`BILQT`):** `東関東自動車道をご利用の方`
+  - 9px、font-weight 600、#6B6B6B
+- **chevron-downアイコン (`ClwQU`):** 12×12px、#6B6B6B
+
+#### B) 行1: 鋒田IC (`nFl3w`)
+- **枠線:** 下のみ1px (#E8E5E0)
+- **padding:** `7px 6px`
+- **レイアウト:** `justify-content: space-between`
+
+**内容:**
+- ラベル: `鋒田IC` (9px、font-weight 500、#1C1C1C)
+- 値: `約15分` (9px、font-weight 500、#1E3A5F)
+
+#### C) 行2: 潮来IC (`nHrrn`)
+- **padding:** `7px 6px`
+- **レイアウト:** `justify-content: space-between`
+
+**内容:**
+- ラベル: `潮来IC` (9px、font-weight 500、#1C1C1C)
+- 値: `約30分` (9px、font-weight 500、#1E3A5F)
+
+---
+
+### 4.3 ルートカード2: 常磐自動車道 (`zhqlJ`)
+
+```
+type: frame
+id: zhqlJ
+width: fill_container
+```
+
+**スタイル:**
+- 同上（ルートカード1と同じスタイル）
+
+**構造:**
+
+#### A) ラベル (`C3FC6`)
+- **テキスト (`sXFVH`):** `常磐自動車道をご利用の方`
+
+#### B) 行1: 土浦北IC (`YcYCB`)
+- **padding:** `7px 6px`
+- **内容:**
+  - ラベル: `土浦北IC` (9px、font-weight 500、#1C1C1C)
+  - 値: `約50分` (9px、font-weight 500、#1E3A5F)
+
+---
+
+## 5. 固定フッター (`SynTm`)
+
+```
+type: frame
+id: SynTm
+width: fill_container
+```
+
+**レイアウト:**
+- `display: flex`
+- `flex-direction: column`
+- `gap: 4px`
+- `padding: 0 9px 9px 0` (右下のみ)
+- `align-items: flex-end`
+
+**子要素:**
+
+### フッターボタン (`S3QQi`)
+- **背景色:** `#6B8E6B` (緑)
+- **角丸:** `border-radius: 20px`
+- **padding:** `10px 16px`
+- **テキスト (`2dmT2`):** `予約・空き確認`
+  - `color: #FFFFFF`
+  - `font-size: 12px`
+  - `font-weight: 600`
+
+---
+
+## 6. 実装例（HTMLテンプレート構造）
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP_7.アクセス</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ここにCSSを記述 */
+  </style>
+</head>
+<body>
+  <!-- ルートフレーム g5WKr -->
+  <div class="sp7-access">
+    
+    <!-- ヘッダー -->
+    <header class="page-header">
+      <h1 class="page-title">アクセス</h1>
+    </header>
+    
+    <!-- セクション1: 所在地 -->
+    <section class="access-section">
+      <h2 class="section-title">所在地・ナビ設定</h2>
+      
+      <!-- 住所カード -->
+      <div class="address-card">
+        <!-- 住所行 -->
+        <div class="address-row">
+          <div class="address-icon">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="none">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#1E3A5F"/>
+              <circle cx="12" cy="10" r="3" fill="#FAF8F5"/>
+            </svg>
+          </div>
+          <div class="address-text">〒311-2104 茨城県鋒田市梖山2947</div>
+        </div>
+        
+        <!-- 警告ボックス -->
+        <div class="alert-box alert-box--warning">
+          <div class="alert-header">
+            <svg class="alert-icon" width="7" height="7" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#B8860B" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="#B8860B" stroke-width="2"/>
+              <circle cx="12" cy="16" r="1" fill="#B8860B"/>
+            </svg>
+            <div class="alert-title">重要：ナビ設定時のご注意</div>
+          </div>
+          <div class="alert-text">住所検索を行うと、地図上のピンが実際の場所とズレて<br>表示される場合がございます。</div>
+        </div>
+        
+        <!-- ヒントボックス -->
+        <div class="alert-box alert-box--tip">
+          <div class="alert-header">
+            <svg class="alert-icon" width="7" height="7" viewBox="0 0 24 24" fill="none">
+              <polygon points="3,11 22,2 13,21 11,13 3,11" fill="#3D6B4F"/>
+            </svg>
+            <div class="alert-title">ナビの目的地設定</div>
+          </div>
+          <div class="alert-text">「セブンイレブン 鋒田梖山店」を目的地に設定して<br>お越しください。当施設はすぐ隣です。</div>
+        </div>
+      </div>
+      
+      <!-- 地図コンテナ -->
+      <div class="map-container">
+        <div class="map-placeholder">
+          <img src="./src/maps.png" alt="地図" class="map-image">
+          <div class="map-logo">Google</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション2: 所要時間 -->
+    <section class="access-section">
+      <div class="section-header">
+        <h2 class="section-title">お車での所要時間</h2>
+        <p class="section-subtitle">最寄りのインターチェンジからの目安時間です。</p>
+      </div>
+      
+      <!-- ルートカード1 -->
+      <div class="route-card">
+        <div class="route-label">
+          <svg class="route-icon" width="12" height="12" viewBox="0 0 24 24" fill="none">
+            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+            <circle cx="7" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+            <circle cx="17" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="route-label-text">東関東自動車道をご利用の方</span>
+          <svg class="route-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none">
+            <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="route-body">
+          <div class="route-row route-row--border">
+            <span class="route-location">鋒田IC</span>
+            <span class="route-time">約15分</span>
+          </div>
+          <div class="route-row">
+            <span class="route-location">潮来IC</span>
+            <span class="route-time">約30分</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- ルートカード2 -->
+      <div class="route-card">
+        <div class="route-label">
+          <svg class="route-icon" width="12" height="12" viewBox="0 0 24 24" fill="none">
+            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+            <circle cx="7" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+            <circle cx="17" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="route-label-text">常磐自動車道をご利用の方</span>
+          <svg class="route-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none">
+            <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="route-body">
+          <div class="route-row">
+            <span class="route-location">土浦北IC</span>
+            <span class="route-time">約50分</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 固定フッター -->
+    <div class="fixed-footer">
+      <button class="footer-btn">予約・空き確認</button>
+    </div>
+    
+  </div>
+</body>
+</html>
+```
+
+---
+
+## 7. CSS実装例（主要スタイル）
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #FAF8F5;
+}
+
+/* ルートフレーム */
+.sp7-access {
+  width: 375px;
+  padding: 32px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: #FAF8F5;
+}
+
+/* ページヘッダー */
+.page-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.page-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 23px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* セクション */
+.access-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title {
+  margin: 0;
+  color: #1C1C1C;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+  margin: 0;
+  color: #6B6B6B;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* 住所カード */
+.address-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 7px;
+  border: 1px solid #E8E5E0;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* 住所行 */
+.address-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.address-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background: #F5F3F0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-text {
+  color: #1C1C1C;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* アラートボックス */
+.alert-box {
+  width: 100%;
+  border-radius: 5px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.alert-box--warning {
+  background: #FFF8E6;
+  border: 1px solid #F0E4C8;
+}
+
+.alert-box--warning .alert-title {
+  color: #8B6914;
+}
+
+.alert-box--warning .alert-text {
+  color: #6B5A2A;
+}
+
+.alert-box--tip {
+  background: #F0F7F0;
+  border: 1px solid #D4E8D4;
+}
+
+.alert-box--tip .alert-title {
+  color: #3D6B4F;
+}
+
+.alert-box--tip .alert-text {
+  color: #2D5A3F;
+}
+
+.alert-header {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+}
+
+.alert-title {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.alert-text {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* 地図コンテナ */
+.map-container {
+  width: 100%;
+  height: 178px;
+  border-radius: 7px;
+  border: 1px solid #E8E5E0;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #E5E3DF;
+  position: relative;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-logo {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  width: 28px;
+  height: 12px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7px;
+  font-weight: 600;
+  color: #4285F4;
+}
+
+/* ルートカード */
+.route-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 7px;
+  border: 1px solid #E8E5E0;
+  overflow: hidden;
+}
+
+.route-label {
+  width: 100%;
+  background: #F5F3F0;
+  padding: 7px 5px;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.route-icon {
+  flex-shrink: 0;
+}
+
+.route-label-text {
+  flex: 1;
+  color: #6B6B6B;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.route-chevron {
+  flex-shrink: 0;
+}
+
+.route-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.route-row {
+  width: 100%;
+  padding: 7px 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.route-row--border {
+  border-bottom: 1px solid #E8E5E0;
+}
+
+.route-location {
+  color: #1C1C1C;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.route-time {
+  color: #1E3A5F;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* 固定フッター */
+.fixed-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 9px 9px 0;
+  align-items: flex-end;
+}
+
+.footer-btn {
+  background: #6B8E6B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.footer-btn:hover {
+  background: #5A7A5A;
+  box-shadow: 0 4px 12px rgba(107, 142, 107, 0.3);
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+  .sp7-access {
+    max-width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+---
+
+## 8. アイコン実装の詳細
+
+### Lucideアイコン（SVG直接記述）
+
+**map-pin（ピン）:**
+```html
+<svg width="8" height="8" viewBox="0 0 24 24" fill="none">
+  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#1E3A5F"/>
+  <circle cx="12" cy="10" r="3" fill="#FAF8F5"/>
+</svg>
+```
+
+**alert-circle（警告）:**
+```html
+<svg width="7" height="7" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="12" r="10" stroke="#B8860B" stroke-width="2"/>
+  <line x1="12" y1="8" x2="12" y2="12" stroke="#B8860B" stroke-width="2"/>
+  <circle cx="12" cy="16" r="1" fill="#B8860B"/>
+</svg>
+```
+
+**navigation（ナビ）:**
+```html
+<svg width="7" height="7" viewBox="0 0 24 24" fill="none">
+  <polygon points="3,11 22,2 13,21 11,13 3,11" fill="#3D6B4F"/>
+</svg>
+```
+
+**car（車）:**
+```html
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+  <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+  <circle cx="7" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+  <circle cx="17" cy="17" r="2" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+**chevron-down（下矢印）:**
+```html
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+  <polyline points="6 9 12 15 18 9" stroke="#6B6B6B" stroke-width="2" fill="none"/>
+</svg>
+```
+
+---
+
+## 9. チェックリスト
+
+実装時に確認すべき項目:
+
+- [ ] 画面幅: 375px
+- [ ] 背景色: #FAF8F5
+- [ ] padding: 32px 10px, gap: 32px
+- [ ] ページタイトル: 23px, font-weight 300
+- [ ] セクション数: 2つ（所在地、所要時間）
+- [ ] 住所カード: 白背景、7px角丸、#E8E5E0枠線
+- [ ] 警告ボックス: #FFF8E6背景、#F0E4C8枠線
+- [ ] ヒントボックス: #F0F7F0背景、#D4E8D4枠線
+- [ ] 地図コンテナ: 178px高さ、7px角丸
+- [ ] ルートカード: 白背景、7px角丸
+- [ ] ルート行: 9px、時間は#1E3A5F
+- [ ] フッターボタン: 12px、緑背景、20px角丸
+- [ ] Inter フォントが読み込まれている
+
+---
+
+## 10. アクセシビリティ
+
+### セマンティックHTML
+```html
+<section class="access-section" aria-labelledby="section-1-title">
+  <h2 id="section-1-title" class="section-title">所在地・ナビ設定</h2>
+  <!-- ... -->
+</section>
+
+<address class="address-text">〒311-2104 茨城県鋒田市梖山2947</address>
+```
+
+### ARIA属性
+```html
+<div class="alert-box alert-box--warning" role="alert" aria-live="polite">
+  <!-- 警告内容 -->
+</div>
+
+<button class="footer-btn" aria-label="予約・空き確認ページへ">
+  予約・空き確認
+</button>
+```
+
+---
+
+## 11. Google Maps 埋め込み（実装例）
+
+静的画像の代わりにGoogle Maps を埋め込む場合:
+
+```html
+<div class="map-container">
+  <iframe
+    width="100%"
+    height="178"
+    frameborder="0"
+    style="border:0"
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=茨城県鋒田市梖山2947"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+---
+
+## 12. 参考情報
+
+- **元ノードID:** `g5WKr`
+- **デザインツール:** Pencil (PS_kitaura.pen)
+- **実装日:** 2026-02-10
+- **住所:** 〒311-2104 茨城県鋒田市梖山2947
+- **目印:** セブンイレブン 鋒田梖山店
+- **アイコン:** map-pin, alert-circle, navigation, car, chevron-down（Lucide）
+
+---
+
+以上が `SP_7.アクセス` の HTML+CSS 実装仕様書です。この仕様に従って実装することで、見やすく整理されたアクセス情報ページを再現できます。

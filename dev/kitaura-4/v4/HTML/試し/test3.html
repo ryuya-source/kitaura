@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>利用規約・マナー</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent: #6B8E6B;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+      --icon-bg: #F7F5F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 24px 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-align: center;
+      margin: -6px 0 0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card .card-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .row:last-child { border-bottom: none; }
+
+    .row .label {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .text {
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .text.muted {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .bullet::before {
+      content: "•";
+      margin-right: 6px;
+    }
+
+    .rule-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rule-item:last-child { border-bottom: none; }
+
+    .rule-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--icon-bg);
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      color: var(--text-secondary);
+      flex: 0 0 auto;
+    }
+
+    .rule-title {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .rule-desc {
+      font-size: 9px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .pet-note {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .check-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .check-item:last-child { border-bottom: none; }
+
+    .check {
+      color: var(--accent);
+      font-weight: 700;
+      width: 12px;
+      display: inline-block;
+      margin-top: 1px;
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      pointer-events: none;
+    }
+
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">利用規約・マナー</h1>
+    <p class="subtitle">すべてのお客様が快適で安全な時間を過ごせるよう、<br>以下の規約を設けております。</p>
+
+    <section>
+      <h2 class="section-title">予約・キャンセル・その他</h2>
+      <div class="card">
+        <div class="card-label">チェックイン・アウト</div>
+        <div class="rows">
+          <div class="row"><span class="label">IN</span><span>13:00 〜 17:00</span></div>
+          <div class="row"><span class="label">OUT</span><span>〜 10:00</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">キャンセルポリシー</div>
+        <div class="rows">
+          <div class="row"><span class="label">1日前 〜 3日前</span><span>宿泊代の50%</span></div>
+          <div class="row"><span class="label">当日</span><span>宿泊代の100%</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">免責事項・環境について</div>
+        <div class="bullets">
+          <div class="bullet">場内での事故、盗難、ペット間のトラブル等について、当施設は一切の責任を負いません。</div>
+          <div class="bullet">ゴミはサイト内のゴミ置き場で分別回収しております。買い物はセブンイレブン 鉾田根山店（徒歩30秒）が便利です。</div>
+          <div class="bullet">県道に隣接しているため、時間帯によっては車両の走行音が聞こえる場合がございます。</div>
+          <div class="bullet">暴力団およびその関係者のご利用はお断りいたします。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">基本ルール・禁止事項</h2>
+      <div class="rule-card">
+        <div class="rule-item">
+          <div class="rule-icon">🌙</div>
+          <div>
+            <div class="rule-title">クワイエットタイム：21:00 〜 翌7:00</div>
+            <div class="rule-desc">話し声や生活音が隣のサイトに漏れないようご配慮ください</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🔥</div>
+          <div>
+            <div class="rule-title">直火禁止（焚き火台・焚き火シート必須）</div>
+            <div class="rule-desc">床は指定の灰捨て場へ処理をお願いします</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🔊</div>
+          <div>
+            <div class="rule-title">騒音・音響の制限</div>
+            <div class="rule-desc">音楽は隣のサイトに聞こえない音量で。アイドリング禁止。</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🚭</div>
+          <div>
+            <div class="rule-title">喫煙はご自身のサイト内のみ</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">⚽</div>
+          <div>
+            <div class="rule-title">サッカーやフリスビー等、飛んでいく遊具の使用禁止</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">グループ利用の制限</h2>
+      <div class="rule-card">
+        <div class="rule-item">
+          <div class="rule-icon">🚫</div>
+          <div>
+            <div class="rule-title">グループ利用不可</div>
+            <div class="rule-desc">複数サイト予約、代表者名を変えての予約、現地での合流行為は一切禁止</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">📅</div>
+          <div>
+            <div class="rule-title">予約頻度の制限</div>
+            <div class="rule-desc">土曜・祝日のご予約は、1組につき「月に1回まで」（連泊除く）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">ペット同伴規約</h2>
+      <p class="text muted">愛犬と安心して過ごせるよう、マナーの遵守をお願いします。</p>
+      <div class="rule-card">
+        <div class="rule-item">
+          <div class="rule-icon">🐾</div>
+          <div>
+            <div class="rule-title">サイト外はリード着用</div>
+            <div class="rule-desc">サイト外では必ずリード着用。共有スペースで2m以内。</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">😷</div>
+          <div>
+            <div class="rule-title">噛みつき・破壊癖のあるペットは利用不可</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🚫</div>
+          <div>
+            <div class="rule-title">制限外の動物の持ち込み禁止</div>
+            <div class="rule-desc">発覚した場合は即退場（返金なし）</div>
+          </div>
+        </div>
+      </div>
+      <div class="pet-note">ペット同士のトラブルについて、施設側は責任を負いかねます。</div>
+    </section>
+
+    <section>
+      <h2 class="section-title">小鳥（オウム・インコ）の同伴について</h2>
+      <div class="check-card">
+        <div class="check-item"><span class="check">✓</span><span>キャンピングカー利用の方のみ<br><span class="text muted">テント泊での同伴はできません</span></span></div>
+        <div class="check-item"><span class="check">✓</span><span>1羽まで</span></div>
+        <div class="check-item"><span class="check">✓</span><span>必ずケージ内でお過ごしください（放鳥不可）</span></div>
+        <div class="check-item"><span class="check">✓</span><span>鳴き声など、周囲へのご配慮をお願いします</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="fixed-cta">
+    <button type="button">予約・空き確認</button>
+  </div>
+</body>
+</html>
+EOF

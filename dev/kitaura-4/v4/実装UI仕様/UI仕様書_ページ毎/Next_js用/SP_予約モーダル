@@ -1,0 +1,27 @@
+- 対象: SP/モーダル、画面中央配置
+- 背景オーバーレイ: `fixed inset-0 bg-black/60`（薄暗く）
+- モーダル本体: `bg-white rounded-[16px] w-[320px]` 目安、`p-[16px]`
+- 影: `shadow-[0_20px_60px_rgba(0,0,0,0.25)]`
+- ヘッダー: `flex items-center justify-between`
+- タイトル: `text-[14px] font-semibold text-[#1C1C1C]`
+- 閉じるボタン: `w-[28px] h-[28px] rounded-full bg-[#F1F1F1] text-[#6B6B6B]` 中央に `×`
+
+**メインCTA（LINE）**
+- ボタン: `bg-[#10C24A] text-white rounded-[12px] w-full py-[14px]`
+- 上段テキスト: `text-[14px] font-semibold`
+- 下段テキスト: `text-[10px] opacity-90`
+- ボタン内は `flex flex-col items-center gap-[2px]`
+
+**その他の予約方法**
+- セクション見出し: `text-[10px] text-[#6B6B6B] mt-[12px]`
+- 3カラムボタン行: `grid grid-cols-3 gap-[8px] mt-[8px]`
+- サブボタン共通:
+  - `bg-white border-2 rounded-[10px] h-[56px] flex flex-col items-center justify-center gap-[4px]`
+  - テキスト `text-[10px] font-semibold`
+- WEB: `border-[#5B8A5B] text-[#5B8A5B]`、バッジ `bg-[#5B8A5B] text-white text-[8px] rounded-[4px] px-[6px] py-[2px]`
+- MAIL: `border-[#B58C5C] text-[#B58C5C]`、バッジ同色
+- TEL: `border-[#7F7F7F] text-[#7F7F7F]`、電話番号 `text-[10px] font-semibold`
+
+**レイアウト余白**
+- モーダル内の縦間隔: `gap-[12px]`
+- メインCTA下の余白: `mt-[8px]`

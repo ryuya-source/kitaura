@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>こだわりポイント / サイト種別 / 料金</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent-green: #6B8E6B;
+      --accent-navy: #1E3A5F;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+
+    .page {
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 24px 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 300;
+      letter-spacing: -0.3px;
+      margin: 0;
+    }
+
+    .subheading {
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .subtext {
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .note-link {
+      font-size: 9px;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .image-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #EDE9E3;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      font-size: 8px;
+      color: var(--text-muted);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0 0;
+    }
+
+    .site-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .site-title {
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0;
+      color: var(--accent-navy);
+    }
+
+    .table-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .table-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 10px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #F5F2EE;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-note {
+      font-size: 8px;
+      color: var(--accent-green);
+      line-height: 1.4;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--text-primary);
+      align-items: flex-start;
+    }
+
+    .check {
+      color: var(--accent-green);
+      font-weight: 700;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      pointer-events: none;
+    }
+
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent-green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="section-title">こだわりポイント</h1>
+
+    <section>
+      <h2 class="subheading">● 全サイト水回り・電源完備</h2>
+      <p class="subtext">トイレ・シャワー・炊事場・電源を全サイト完備</p>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+      <div class="note-link">&larr; スクロールして他の写真を見る</div>
+    </section>
+
+    <section>
+      <h2 class="subheading">● 小型犬対応</h2>
+      <p class="subtext">全サイト小型犬に配慮した設計・ノーリード可</p>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="subheading">＋ その他</h2>
+      <p class="subtext">全サイトコミュ障壁・電源コード完備・エアコンの有料貸出し（夏季限定）</p>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="subheading">● 周辺環境</h2>
+      <p class="subtext">セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景</p>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <h1 class="section-title">サイト種別</h1>
+
+    <section class="site-block">
+      <h3 class="site-title">サイト1</h3>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <section class="site-block">
+      <h3 class="site-title">サイト2</h3>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <section class="site-block">
+      <h3 class="site-title">サイト3</h3>
+      <div class="image-row">
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+        <div class="thumb">photo</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <h1 class="section-title">料金</h1>
+
+    <section class="table-section">
+      <div class="table-label">サイト別料金</div>
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>サイト1</th>
+            <th>サイト2</th>
+            <th>サイト3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>広さ</td>
+            <td>8m × 15m</td>
+            <td>11m × 13m</td>
+            <td>12m × 9m</td>
+          </tr>
+          <tr>
+            <td>定員</td>
+            <td>5名</td>
+            <td>5名</td>
+            <td>3名</td>
+          </tr>
+          <tr>
+            <td>電源容量</td>
+            <td>15A</td>
+            <td>15A</td>
+            <td>20A</td>
+          </tr>
+          <tr>
+            <td>平日料金</td>
+            <td>¥6,500</td>
+            <td>¥6,500</td>
+            <td>¥7,000</td>
+          </tr>
+          <tr>
+            <td>土日祝料金</td>
+            <td>¥9,500</td>
+            <td>¥9,500</td>
+            <td>¥10,000</td>
+          </tr>
+          <tr>
+            <td>ハイシーズン</td>
+            <td>¥11,000</td>
+            <td>¥11,000</td>
+            <td>¥11,500</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-note">※ハイシーズンはGW、7/20〜8/31、花火大会開催日、12/31〜1/2</div>
+    </section>
+
+    <section>
+      <h2 class="subheading">ペット料金・頭数制限</h2>
+      <div class="card">
+        <div class="check-item"><span class="check">✓</span><span>基本料金：2頭まで無料</span></div>
+        <div class="check-item"><span class="check">✓</span><span>追加料金：3頭目以降は1頭につき＋500円</span></div>
+        <div class="check-item"><span class="check">✓</span><span>受入上限：最大4頭まで同伴可能</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="subheading">オプション</h2>
+      <div class="card">
+        <div class="check-item"><span class="check">✓</span><span>人数追加は+2,000円／1名（大人・子供・幼児共通）</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="fixed-cta">
+    <button type="button">予約・空き確認</button>
+  </div>
+</body>
+</html>
+EOF

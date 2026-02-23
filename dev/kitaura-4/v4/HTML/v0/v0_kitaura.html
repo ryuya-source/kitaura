@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>SP_0.TOP画面 - KITAURA LAKESIDE RV park</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* リセット */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /*
+     * 【ボタン・クリッカブル要素のフォント】
+     * ボタンには font: inherit を使わないこと。
+     * font: inherit は font-size / font-weight / line-height などもまとめて継承するため、
+     * 子要素のフォント指定が効かず「スタイルが効かない」原因になる。
+     * 必要なのはフォント族だけ → font-family: inherit のみ使う。
+     */
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* ルートフレーム Bfg2T - フルサイズ対応 */
+    .sp0-top {
+      width: 100vw;
+      height: 100vh;
+      padding: min(2vw, 15px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: min(4vw, 25px);
+      background-image: url('src/image_side.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* ヘッダー W5yeq - レスポンシブ対応 */
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: min(2vh, 15px);
+    }
+
+    /* ロゴエリア Blklp */
+    .logo-frame {
+      display: flex;
+      flex-direction: column;
+      gap: min(1vw, 6px);
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* ロゴ画像 jy9TP - レスポンシブ対応 */
+    .logo-img {
+      width: min(10vw, 60px);
+      height: min(9.8vw, 58px);
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ロゴテキスト mr5Vc - レスポンシブ対応 */
+    .logo-text {
+      color: #fff8f8;
+      font-size: clamp(10px, 2vw, 16px);
+      font-weight: 400;
+      line-height: 1.25;
+      text-align: center;
+      white-space: pre-line;
+      user-select: none;
+    }
+
+    /* ナビゲーション pPCQB：ヘッダー固定・アイコンだけ浮かせる */
+    .nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 12px;
+      padding-top: max(12px, env(safe-area-inset-top));
+      padding-right: max(12px, env(safe-area-inset-right));
+    }
+
+    /* ハンバーガーアイコン - モダンデザイン（開閉で×に変形） */
+    .hamburger-icon {
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      padding: 10px;
+      box-sizing: border-box;
+      /* 白背景なし（透過） */
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-radius: 12px;
+      /* 背景が無いので影は控えめに */
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .hamburger-icon:hover {
+      background: transparent;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    .hamburger-icon:active {
+      transform: scale(0.96);
+    }
+
+    .hamburger-icon__line {
+      stroke: #1a1a1a;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+    }
+
+    .hamburger-icon__line--top {
+      transform-origin: 12px 7px;
+    }
+
+    .hamburger-icon__line--btm {
+      transform-origin: 12px 17px;
+    }
+
+    .hamburger-icon.is-open .hamburger-icon__line--top {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    .hamburger-icon.is-open .hamburger-icon__line--mid {
+      opacity: 0;
+    }
+
+    .hamburger-icon.is-open .hamburger-icon__line--btm {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    /* ハンバーガーメニューオーバーレイ */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      /* 予約モーダル（S3QQi）と同じ暗さ */
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .nav-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-overlay__panel {
+      background: #FAF8F5;
+      border-radius: 12px;
+      padding: 24px 32px;
+      min-width: 260px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-overlay__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-overlay__link {
+      display: block;
+      padding: 12px 16px;
+      color: #1C1C1C;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-overlay__link:hover,
+    .nav-overlay__link:focus {
+      background: rgba(0, 0, 0, 0.06);
+      color: #1C1C1C;
+    }
+
+    /* コンテンツエリア hpgef */
+    .content-area {
+      width: 100%;
+      flex: 1;
+      padding-top: min(20vh, 120px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* メインタイトル n3Cfn - レスポンシブ対応 */
+    .main-title {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(16px, 3.2vw, 28px);
+      font-weight: 400;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+      text-align: center;
+    }
+
+    /* ===============================================
+       SP_2.ペット (FhnNd)
+       =============================================== */
+    
+    /* ペットセクション全体 */
+    .sp2-pet {
+      width: 100vw;
+      height: 100vh;
+      padding: min(3vw, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: min(5vw, 30px);
+      background-image: url('src/pet_section_sunset.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* メインコンテンツ sE6TJ */
+    .pet-main-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: min(3.7vw, 18px);
+      padding-top: min(18vh, 90px);
+      padding-bottom: min(10vw, 50px);
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    /* グラスカード PHEvV */
+    .glass-card {
+      width: min(60vw, 280px);
+      min-height: min(46vw, 220px);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: min(2vw, 12px);
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      gap: min(3vw, 16px);
+      padding: min(3.5vw, 18px) min(5.5vw, 28px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* カードタイトル 4yOvy */
+    .glass-card__title {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(16px, 3.5vw, 22px);
+      font-weight: 300;
+      letter-spacing: clamp(2px, 0.5vw, 3px);
+      text-align: center;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+
+    /* カード説明 F6SyF */
+    .glass-card__desc {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(10px, 2vw, 14px);
+      font-weight: 400;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* CTAボタン rOqdq */
+    .pet-cta-btn {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: min(1.2vw, 8px);
+      border: 1px solid #ffffff;
+      padding: min(1.8vw, 10px) min(4vw, 20px);
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pet-cta-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .pet-cta-btn:active {
+      transform: translateY(0);
+    }
+
+    /* CTAテキスト u1vav */
+    .pet-cta-btn__text {
+      color: #ffffff;
+      font-size: clamp(11px, 2.2vw, 16px);
+      font-weight: 400;
+    }
+
+    /* ===============================================
+       こだわりポイント・サイト種別・料金セクション
+       =============================================== */
+    
+    :root {
+      --bg: #FAF8F5;
+      --text-primary: #1C1C1C;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent-green: #6B8E6B;
+      --accent-navy: #1E3A5F;
+      --border: #E8E5E0;
+      --surface: #FFFFFF;
+    }
+
+    .info-page {
+      width: 100vw;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: min(6.4vw, 24px) min(6.4vw, 24px) min(23.5vw, 88px);
+      display: flex;
+      flex-direction: column;
+      gap: min(6.4vw, 24px);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(15px, 4.5vw, 17px);
+      font-weight: 300;
+      letter-spacing: -0.3px;
+      margin: 36px 0 24px;
+    }
+
+    /* Pencil e7nNg（HeaderRow）: タイトルと画像を近づけて画面中央に配置 */
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 36px 0 24px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+    }
+    .section-title-row__left,
+    .section-title-row__right {
+      flex: 1;
+      min-width: 0;
+    }
+    .section-title-row__center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .section-title-row .section-title {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(15px, 4.5vw, 17px);
+      font-weight: 300;
+      letter-spacing: -0.3px;
+    }
+
+    /* Pencil tjRrM（L3AZkWrapper）: dIDF0 の上、右寄せ */
+    .site-type-notice {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+    .site-type-notice img {
+      width: min(700px, 96vw);
+      height: auto;
+      max-height: 680px;
+      object-fit: contain;
+    }
+
+    .subheading {
+      font-size: clamp(11px, 3.2vw, 12px);
+      font-weight: 500;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: min(0.8vw, 3px);
+      color: #1E3A5F;
+    }
+
+    .subheading .icon-wrapper {
+      width: 18px;
+      height: 18px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .subheading .icon-wrapper svg {
+      width: 14px;
+      height: 14px;
+      stroke: #5A8F7B;
+    }
+
+    /* こだわりポイントセクション */
+    .info-page .feature-section {
+      width: 100%;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* 料金セクション */
+    .info-page .pricing-section {
+      width: 100%;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      /* 料金エリアは左右余白を小さめにして“横に広げる” */
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .subtext {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #6B6B6B;
+      margin: 0;
+      font-weight: normal;
+    }
+
+    .note-link {
+      font-size: 9px;
+      color: #9B9B9B;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .image-row {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .image-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* こだわりポイント / サイト種別のギャラリーだけ右端いっぱい */
+    .info-page .feature-section .image-row {
+      width: calc(100% + min(2.7vw, 10px));
+      margin-right: calc(-1 * min(2.7vw, 10px));
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .thumb {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      background: #EDE9E3;
+      border-radius: 5px;
+      display: grid;
+      place-items: center;
+      font-size: clamp(7px, 2.1vw, 8px);
+      color: var(--text-muted);
+      object-fit: cover;
+    }
+
+    /* 実画像用（Pencil埋め込み画像を反映） */
+    .thumb-img {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      background: #EDE9E3;
+      border-radius: 5px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: min(2.1vw, 8px) 0 0;
+    }
+
+    .site-block {
+      display: flex;
+      flex-direction: column;
+      gap: min(2.1vw, 8px);
+    }
+
+    .site-title {
+      font-size: clamp(10px, 2.9vw, 11px);
+      font-weight: 600;
+      margin: 0;
+      color: var(--accent-navy);
+    }
+
+    .table-section {
+      display: flex;
+      flex-direction: column;
+      gap: min(2.1vw, 8px);
+    }
+
+    .table-label {
+      font-size: clamp(9px, 2.7vw, 10px);
+      color: var(--text-secondary);
+    }
+
+    /* 料金エリア見出し（CvkhF / AzYRb / l9hBl） */
+    .pricing-heading {
+      font-size: 12px;
+      color: #6B6B6B;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ===============================================
+       SP_6.利用規約・マナー（test3.html 移植 / スコープ付き）
+       =============================================== */
+    .sp6-terms {
+      width: 100%;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .sp6-terms__page {
+      width: 100%;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    /* 他のセクションタイトル(.section-title)と同じ余白：上36px・下24px */
+    .sp6-terms__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 36px 0 24px;
+    }
+
+    .sp6-terms__subtitle {
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-align: center;
+      margin: -6px 0 0;
+    }
+
+    .sp6-terms__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 36px 0 16px;
+      color: var(--text-primary);
+    }
+
+    .sp6-terms__section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* r5fjv / P6JY1 / w3uft 相当：ヘッダー帯付きカード（I910U, f9umC, WQ2vh） */
+    .sp6-terms__table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 0 2px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 各カードの間に余白 */
+    .sp6-terms__table-card + .sp6-terms__table-card {
+      margin-top: 16px;
+    }
+
+    .sp6-terms__table-label {
+      width: 100%;
+      background: #F5F3F0;
+      padding: 7px 5px;
+      border-radius: 12px 12px 0 0;
+      font-size: 9px;
+      font-weight: 600;
+      color: #6B6B6B;
+    }
+
+    .sp6-terms__table-body--pad {
+      padding: 9px;
+    }
+
+    .sp6-terms__rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sp6-terms__row {
+      display: grid;
+      align-items: center;
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp6-terms__row:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__row-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* I910U: 左カラム 100px / f9umC: 左カラム 140px */
+    .sp6-terms__rows--w100 .sp6-terms__row {
+      grid-template-columns: 100px 1fr;
+    }
+
+    .sp6-terms__rows--w140 .sp6-terms__row {
+      grid-template-columns: 140px 1fr;
+    }
+
+    /* 右側テキストも左詰め（Pencilの見た目に合わせる） */
+    .sp6-terms__rows--w100 .sp6-terms__row > span:last-child,
+    .sp6-terms__rows--w140 .sp6-terms__row > span:last-child {
+      justify-self: start;
+      text-align: left;
+    }
+
+    .sp6-terms__text {
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .sp6-terms__text--muted {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .sp6-terms__bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 12px; /* pt8nJ */
+      font-size: 10px;
+      line-height: 1.6; /* pt8nJ */
+      color: #1C1C1C; /* pt8nJ */
+    }
+
+    /* ぶら下げインデント（pt8nJの見た目） */
+    .sp6-terms__bullet {
+      padding-left: 18px;
+      text-indent: -18px;
+    }
+
+    .sp6-terms__bullet::before {
+      content: "・ ";
+      display: inline-block;
+      width: 18px;
+    }
+
+    .sp6-terms__rule-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 0 2px;
+      overflow: hidden;
+    }
+
+    .sp6-terms__rule-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sp6-terms__rule-item:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__rule-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #F7F5F2;
+      display: grid;
+      place-items: center;
+      color: #1E3A5F; /* Pencilのicon_font(fill)に合わせる */
+      flex: 0 0 auto;
+    }
+
+    .sp6-terms__rule-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp6-terms__rule-title {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    .sp6-terms__rule-desc {
+      font-size: 9px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .sp6-terms__pet-note {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .sp6-terms__check-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 0 2px;
+      overflow: hidden;
+    }
+
+    .sp6-terms__check-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp6-terms__check-item:last-child {
+      border-bottom: none;
+    }
+
+    .sp6-terms__check {
+      color: var(--accent-green);
+      font-weight: 700;
+      width: 12px;
+      display: inline-block;
+      margin-top: 1px;
+    }
+
+    /* ===============================================
+       SP_7.アクセス（test4.html 移植 / スコープ付き）
+       =============================================== */
+    .sp7-access {
+      width: 100%;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+    }
+
+    .sp7-access__page {
+      width: 100%;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    /* 他のセクションタイトルと同じ余白：上36px・下24px */
+    .sp7-access__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      text-align: center;
+      margin: 36px 0 24px;
+    }
+
+    /* q0qGj sec1Header：所在地・ナビ設定など */
+    .sp7-access__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 36px 0 20px;
+      color: var(--text-primary);
+    }
+
+    .sp7-access__section-title:first-child {
+      margin-top: 0;
+    }
+
+    .sp7-access__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sp7-access__address {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sp7-access__pin {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: #F5F3F0;
+      display: grid;
+      place-items: center;
+      color: #1E3A5F; /* aLHmM */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__pin svg {
+      width: 8px;
+      height: 8px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__notice {
+      background: #FFF4DA;
+      border: 1px solid #F1E1B8;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp7-access__notice-headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #8B6914; /* UBmb5 */
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sp7-access__notice-icon {
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #B8860B; /* wDp7E */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__notice-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__notice-text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #7A6A4A;
+      margin: 0;
+    }
+
+    .sp7-access__navbox {
+      background: #EEF6EE;
+      border: 1px solid #CFE3CF;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sp7-access__navbox-headline {
+      font-size: 10px;
+      font-weight: 600;
+      color: #3D6B4F; /* o8Rn4 */
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sp7-access__tip-icon {
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #3D6B4F; /* fD04m */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__tip-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__navbox-text {
+      font-size: 9px;
+      line-height: 1.6;
+      color: #4F6A4F;
+      margin: 0;
+    }
+
+    .sp7-access__map {
+      width: 100%;
+      height: 210px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .sp7-access__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .sp7-access__desc {
+      font-size: 9px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* W77mB / C3FC6 route1Label・route2Label 仕様：角丸7・ヘッダー padding 7,5 */
+    .sp7-access__accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sp7-access__accordion {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .sp7-access__acc-head {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 5px;
+      background: #F5F3F0;
+      border: 0;
+      border-radius: 7px 7px 0 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+    }
+    .sp7-access__acc-head:focus-visible {
+      outline: 2px solid rgba(30, 58, 95, 0.45);
+      outline-offset: 2px;
+    }
+
+    .sp7-access__route-icon {
+      width: 12px;
+      height: 12px;
+      display: block;
+      color: #6B6B6B; /* oVHG9 */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__route-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp7-access__chevron {
+      width: 12px;
+      height: 12px;
+      display: block;
+      color: #6B6B6B; /* ClwQU */
+      flex: 0 0 auto;
+    }
+
+    .sp7-access__chevron svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      transition: transform 160ms ease;
+    }
+    .sp7-access__accordion.is-open .sp7-access__chevron svg {
+      transform: rotate(180deg);
+    }
+
+    .sp7-access__accordion:not(.is-open) .sp7-access__acc-body {
+      display: none;
+    }
+
+    .sp7-access__acc-title {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* アコーディオンタイトル文言（東関東・常磐）→ ここで必ず効く */
+    .sp7-access__acc-head .sp7-access__acc-title-text {
+      font-size: 10px;
+      font-weight: 600;
+      color: #6B6B6B;
+    }
+
+    .sp7-access__acc-row {
+      display: grid;
+      grid-template-columns: 140px 1fr; /* x13Tv と同じ右カラム開始位置 */
+      align-items: center;
+      padding: 9px 8px; /* x13Tv側の行(padding:9 8)に寄せる */
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .sp7-access__time {
+      color: #1E3A5F;
+      font-weight: 600;
+      justify-self: start;
+      text-align: left;
+    }
+
+    /* ===============================================
+       SP_8.お知らせ・メディア（test5.html 移植 / スコープ付き）
+       =============================================== */
+    .sp8-media {
+      width: 100%;
+      margin-left: calc(-1 * min(6.4vw, 24px));
+      margin-right: calc(-1 * min(6.4vw, 24px));
+      padding-left: min(2.7vw, 10px);
+      padding-right: min(2.7vw, 10px);
+      background: var(--bg);
+    }
+
+    .sp8-media__page {
+      width: 100%;
+      padding: 36px 0 0; /* 上余白を padding に（マージン相殺でタイトルが消えないように） */
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--text-primary);
+    }
+
+    /* 他のセクションタイトルと同じ余白：下24px（Vugpo 大見出し） */
+    .sp8-media__title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.4px;
+      line-height: 1.4;
+      text-align: center;
+      margin: 0 0 24px;
+      padding: 0;
+      color: #1C1C1C !important;
+      flex-shrink: 0;
+      min-height: 1.4em;
+    }
+
+    .sp8-media__section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 36px 0 20px;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__section-title:first-child {
+      margin-top: 0;
+    }
+
+    /* YPILL: タブバー（News #2C5F7C 56x33 / メディア・お知らせ #F5F3F0 stroke） */
+    .sp8-media__tab-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .sp8-media__tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 500;
+      font-family: inherit;
+      border: 1px solid #E8E5E0;
+      background: #F5F3F0;
+      color: #1C1C1C;
+      min-width: 56px;
+      height: 33px;
+      box-sizing: border-box;
+    }
+    .sp8-media__tab.is-active {
+      color: #FFFFFF;
+      border-color: transparent;
+    }
+    /* 押下時の色（Pencil: UXCkc / KbLlS / j8TZL に合わせる） */
+    .sp8-media__tab.is-active[data-tab="news"] {
+      background: #2C5F7C; /* News */
+      border-color: #2C5F7C;
+    }
+    .sp8-media__tab.is-active[data-tab="media"] {
+      background: #D4A017; /* メディア */
+      border-color: #D4A017;
+    }
+    .sp8-media__tab.is-active[data-tab="notice"] {
+      background: #4A7C59; /* お知らせ */
+      border-color: #4A7C59;
+    }
+
+    /* タブで表示切替するコンテンツ */
+    .sp8-media__content {
+      display: none;
+    }
+    .sp8-media__content.is-active {
+      display: block;
+    }
+
+    /* アコーディオンタイトル同士の間隔を等間隔（12px）に */
+    .sp8-media__content[data-panels="news notice"] + .sp8-media__content[data-panels="news media"] {
+      margin-top: -12px;
+    }
+
+    .sp8-media__media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* mQmwm / OsQ7A: メディアアコーディオン（camera #d4a017 12px, 角丸7） */
+    .sp8-media__media-card {
+      background: var(--surface);
+      border: 1px solid #E8E5E0;
+      border-radius: 7px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* hdHq4: アコーディオンヘッダー（お知らせと上下幅を揃える） */
+    .sp8-media__media-head {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 7px;
+      min-height: 32px;
+      box-sizing: border-box;
+      gap: 5px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E8E5E0;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+    }
+    .sp8-media__media-head:focus-visible {
+      outline: 2px solid rgba(44, 95, 124, 0.45);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    .sp8-media__media-head-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .sp8-media__yt-icon {
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4a017;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__yt-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp8-media__media-head .sp8-media__media-date {
+      font-size: 10px;
+      font-weight: 600;
+      color: #d4a017;
+    }
+
+    .sp8-media__media-body {
+      padding: 9px 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    /* デフォルトは閉（hidden属性で非表示）。開いたときだけ表示 */
+    .sp8-media__media-body[hidden] {
+      display: none;
+    }
+    .sp8-media__media-card.is-open .sp8-media__chevron svg {
+      transform: rotate(180deg);
+    }
+
+    .sp8-media__media-title {
+      font-size: 10px;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .sp8-media__date-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sp8-media__date-meta-row .sp8-media__media-date {
+      font-size: 9px;
+      font-weight: 500;
+      color: #9B9B9B;
+    }
+
+    /* TmJjO media1Desc：12px */
+    .sp8-media__media-desc {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #6B6B6B;
+      margin: 0;
+    }
+
+    .sp8-media__media-body .sp8-media__media-date {
+      font-size: 9px;
+      font-weight: 500;
+      color: #9B9B9B;
+    }
+
+    .sp8-media__media-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* WYGE7 viewsFrame1 / MOBVS likesFrame1：9px, 500, #6B6B6B */
+    .sp8-media__meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 9px;
+      font-weight: 500;
+      color: #6B6B6B;
+    }
+
+    .sp8-media__meta-icon {
+      width: 9px;
+      height: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B6B6B; /* MtOtw/x77np */
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__meta-icon svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+    }
+
+    /* 3q1Dx / 53lXe: お知らせアコーディオン（megaphone 12px #3D6B4F, date 10px, 角丸7） */
+    .sp8-media__accordion {
+      background: var(--surface);
+      border: 1px solid #E8E5E0;
+      border-radius: 7px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sp8-media__accordion + .sp8-media__accordion {
+      margin-top: 12px;
+    }
+
+    .sp8-media__acc-head {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 7px; /* YwwMw */
+      min-height: 32px;
+      box-sizing: border-box;
+      gap: 5px; /* YwwMw */
+      background: #FFFFFF;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+    }
+    .sp8-media__acc-head:focus-visible {
+      outline: 2px solid rgba(74, 124, 89, 0.45);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    .sp8-media__acc-left {
+      display: flex;
+      align-items: center;
+      gap: 5px; /* QOu9r */
+    }
+
+    .sp8-media__date-icon {
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3D6B4F;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__date-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    .sp8-media__date {
+      color: #3D6B4F;
+      font-weight: 600;
+      font-size: 10px;
+    }
+
+    .sp8-media__acc-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 10px;
+    }
+
+    .sp8-media__chevron {
+      width: 9px; /* tiF3W */
+      height: 9px; /* tiF3W */
+      display: block;
+      color: #6B6B6B;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__chevron svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+      transition: transform 160ms ease;
+    }
+
+    .sp8-media__acc-body {
+      border-top: 1px solid #E8E5E0;
+      padding: 9px 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sp8-media__acc-body[hidden] {
+      display: none;
+    }
+    .sp8-media__accordion.is-open .sp8-media__chevron svg {
+      transform: rotate(180deg);
+    }
+
+    .sp8-media__acc-body h4 {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* NiMV4 priceDesc / E0CkE priceItems 内テキスト：12px */
+    .sp8-media__acc-body p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .sp8-media__acc-note {
+      font-size: 8px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* BwQ6Z お知らせ：タイムラインデザイン */
+    .sp8-timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .sp8-timeline__line {
+      position: absolute;
+      left: 5px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #E8E5E0;
+      border-radius: 1px;
+    }
+
+    .sp8-timeline__item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .sp8-timeline__item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sp8-timeline__date {
+      font-size: 10px;
+      font-weight: 600;
+      color: #3D6B4F;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .sp8-timeline__card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5E0;
+      border-radius: 7px;
+      padding: 12px 14px;
+      margin-left: 0;
+    }
+
+    .sp8-timeline__card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1C1C1C;
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .sp8-timeline__card-body {
+      margin: 0;
+      padding-left: 1em;
+      list-style: disc;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #4a4a4a;
+    }
+
+    .sp8-timeline__card-body li {
+      margin-bottom: 4px;
+    }
+
+    .sp8-timeline__card-body li:last-child {
+      margin-bottom: 0;
+    }
+
+    .sp8-timeline__card-body p {
+      margin: 0 0 6px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .sp8-timeline__card-cta {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: var(--accent-green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 20px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .sp8-timeline__note {
+      font-size: 10px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-top: 14px;
+      padding-left: 0;
+    }
+
+    .sp8-media__insta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .sp8-media__insta-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #BFBFBF;
+      border-radius: 6px;
+    }
+
+    .sp8-media__follow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 11px; /* B9vTA */
+      padding: 5px 9px; /* B9vTA */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px; /* B9vTA */
+      font-size: 7px; /* Nlc4W */
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .sp8-media__ig {
+      width: 9px; /* y60Jz */
+      height: 9px; /* y60Jz */
+      color: #E1306C; /* y60Jz */
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .sp8-media__ig svg {
+      width: 9px;
+      height: 9px;
+      stroke: currentColor;
+    }
+
+    table {
+      width: calc(100% - 4px);
+      margin: 0 2px;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: min(2.1vw, 8px);
+      overflow: hidden;
+      font-size: clamp(9px, 2.7vw, 10px);
+    }
+
+    th, td {
+      padding: min(2.7vw, 10px) min(2.1vw, 8px);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #F5F2EE;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-note {
+      font-size: 10px;
+      color: var(--accent-green);
+      line-height: 1.4;
+      margin: 0 2px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: min(2.1vw, 8px);
+      padding: min(3.2vw, 12px);
+      display: flex;
+      flex-direction: column;
+      gap: min(2.1vw, 8px);
+    }
+
+    /* 料金セクションのカードはテーブルと同じ左右2px */
+    .info-page .pricing-section .card {
+      margin: 0 2px;
+    }
+
+    .check-item {
+      display: flex;
+      gap: min(1.6vw, 6px);
+      font-size: clamp(9px, 2.7vw, 10px);
+      color: var(--text-primary);
+      align-items: flex-start;
+    }
+
+    .check {
+      color: var(--accent-green);
+      font-weight: 700;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .fixed-cta {
+      position: fixed;
+      right: min(4.3vw, 16px);
+      bottom: min(4.3vw, 16px);
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Pencil mssla: 予約・空き確認ボタン（実装で少し大きく） */
+    .fixed-cta button {
+      pointer-events: auto;
+      background: var(--accent-green);
+      color: #fff;
+      font-size: clamp(12px, 3.5vw, 14px);
+      font-weight: 600;
+      border: none;
+      border-radius: min(5.3vw, 22px);
+      padding: min(3.2vw, 12px) min(5vw, 20px);
+      box-shadow: 0 10px 20px rgba(107, 142, 107, 0.25);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .fixed-cta button:hover {
+      background: #5a7a5a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(107, 142, 107, 0.3);
+    }
+
+    .fixed-cta button:active {
+      transform: translateY(0);
+    }
+
+    /* S73or SP_予約モーダル（画面中央表示） */
+    .booking-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .booking-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .booking-modal__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .booking-modal__sheet {
+      position: relative;
+      width: 100%;
+      max-width: 375px;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      background: #FFFFFF;
+      border-radius: 11px;
+      padding: 9px 11px 11px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .booking-modal__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Kck8n sheetHeader */
+    .booking-modal__title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1C1C1C;
+      margin: 0;
+    }
+
+    .booking-modal__close {
+      width: 18px;
+      height: 18px;
+      border: none;
+      border-radius: 9px;
+      background: #F5F3F0;
+      color: #6B6B6B;
+      font-size: 17px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .booking-modal__main-cta {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      background: #06C755;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 12px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .booking-modal__main-cta-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .booking-modal__other-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #6B6B6B;
+      margin: 0 0 2px;
+    }
+
+    /* CZBHa otherBtns：横並び */
+    .booking-modal__other-btns {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    .booking-modal__other-btn {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: 56px;
+      padding: 10px 6px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1.5px solid;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .booking-modal__other-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+    }
+
+    .booking-modal__other-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .booking-modal__other-btn--web {
+      border-color: #6B8E6B;
+      color: #6B8E6B;
+    }
+
+    .booking-modal__other-btn--mail {
+      border-color: #B8956B;
+      color: #B8956B;
+    }
+
+    .booking-modal__other-btn--tel {
+      border-color: #8B8680;
+      color: #8B8680;
+    }
+
+    /* スマホ（横向き含む）：左寄りになりすぎないよう余白を確保
+       ※iPhone横向きは CSS 幅が 800px 前後になるため 767px だと効かない */
+    @media (max-width: 900px) {
+      /* スマホは全体の左右余白をもう少し潰す */
+      .info-page {
+        padding-left: clamp(10px, 3.5vw, 16px);
+        padding-right: clamp(10px, 3.5vw, 16px);
+      }
+
+      /* セクションタイトル（こだわりポイント）を画面中央に固定 */
+      .section-title-row__left,
+      .section-title-row__right {
+        flex: 1 1 0%;
+        min-width: 0;
+      }
+
+      .info-page .feature-section,
+      .info-page .pricing-section,
+      .sp6-terms,
+      .sp7-access,
+      .sp8-media {
+        margin-left: 0;
+        margin-right: 0;
+        /* 親(.info-page)の左右paddingに揃える（= ここでは追加paddingしない） */
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    /* タブレット以上：セクション幅を広げて左右の余白を埋める */
+    @media (min-width: 768px) {
+      .info-page {
+        width: 100%;
+        /* 広めの画面でも余白が残りすぎないように、上限を上げる */
+        max-width: min(1400px, 96vw);
+      }
+    }
+
+    /* タブレット・PC用の調整 */
+    @media (min-width: 768px) {
+      .sp0-top {
+        padding: 20px;
+        gap: 30px;
+      }
+
+      .logo-img {
+        width: 60px;
+        height: 58px;
+      }
+
+      .logo-text {
+        font-size: 14px;
+      }
+
+      .hamburger-icon {
+        width: 44px;
+        height: 44px;
+      }
+
+      .main-title {
+        font-size: 24px;
+        letter-spacing: 4px;
+      }
+    }
+
+    /* スマートフォン横向き対応 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .content-area {
+        padding-top: 10vh;
+      }
+
+      .main-title {
+        font-size: clamp(14px, 2.5vh, 20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ルートフレーム Bfg2T: SP_0.TOP画面 -->
+  <div class="sp0-top" aria-label="TOP画面">
+    
+    <!-- ヘッダー W5yeq -->
+    <header class="header">
+      <!-- ロゴエリア Blklp -->
+      <div class="logo-frame" aria-label="ロゴ">
+        <!-- ロゴ画像 jy9TP -->
+        <img
+          class="logo-img"
+          src="src/futter_logo.png"
+          alt="KITAURA LAKESIDE RV park"
+          width="32"
+          height="31"
+        />
+        <!-- ロゴテキスト mr5Vc -->
+        <div class="logo-text">KITAURA LAKESIDE
+RV park</div>
+      </div>
+
+      <!-- ナビゲーション pPCQB -->
+      <nav class="nav" aria-label="メインナビゲーション">
+        <!-- ハンバーガーアイコン（モダン：開閉で×に変形） -->
+        <svg
+          class="hamburger-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-label="メニュー"
+          role="button"
+          tabindex="0"
+        >
+          <line class="hamburger-icon__line hamburger-icon__line--top" x1="5" y1="7" x2="19" y2="7" stroke-width="2" stroke-linecap="round"/>
+          <line class="hamburger-icon__line hamburger-icon__line--mid" x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line class="hamburger-icon__line hamburger-icon__line--btm" x1="5" y1="17" x2="19" y2="17" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </nav>
+    </header>
+
+    <!-- ハンバーガーメニューオーバーレイ -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <ul class="nav-overlay__list">
+          <li><a href="#pet" class="nav-overlay__link">犬種制限について</a></li>
+          <li><a href="#feature" class="nav-overlay__link">サイト案内</a></li>
+          <li><a href="#price" class="nav-overlay__link">料金</a></li>
+          <li><a href="#terms" class="nav-overlay__link">利用規約・マナー</a></li>
+          <li><a href="#access" class="nav-overlay__link">アクセス</a></li>
+          <li><a href="#news" class="nav-overlay__link">お知らせ・メディア</a></li>
+          <li><a href="contact.html" class="nav-overlay__link">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- コンテンツエリア hpgef -->
+    <main class="content-area">
+      <!-- メインタイトル n3Cfn -->
+      <h1 class="main-title">大切な人と、心ほどける時間</h1>
+    </main>
+
+  </div>
+
+  <!-- SP_2.ペット FhnNd -->
+  <section class="sp2-pet" id="pet">
+    
+    <!-- メインコンテンツ sE6TJ -->
+    <div class="pet-main-content">
+      
+      <!-- グラスカード PHEvV -->
+      <div class="glass-card">
+        <!-- カードタイトル 4yOvy -->
+        <h2 class="glass-card__title">犬種制限と
+ペット同伴のマナー</h2>
+        <!-- カード説明 F6SyF -->
+        <p class="glass-card__desc">ペットも、飼い主さまも、<br>そして周囲の方々も穏やかに過ごせるように。<br>受け入れ条件と場内ルールをご案内しています。</p>
+      </div>
+      
+      <!-- CTAボタン rOqdq → pet.html へ遷移 -->
+      <a href="pet.html" class="pet-cta-btn">
+        <span class="pet-cta-btn__text">ペット同伴ルールを見る</span>
+      </a>
+      
+    </div>
+    
+  </section>
+
+  <!-- こだわりポイント・サイト種別・料金 -->
+  <main class="info-page" id="feature">
+    <div class="section-title-row" aria-label="こだわりポイント">
+      <div class="section-title-row__left" aria-hidden="true"></div>
+      <div class="section-title-row__center">
+        <h1 class="section-title">こだわりポイント</h1>
+      </div>
+      <div class="section-title-row__right" aria-hidden="true"></div>
+    </div>
+
+    <section class="feature-section">
+      <h2 class="subheading">
+        <span class="icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/>
+            <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/>
+          </svg>
+        </span>
+        全サイト水回り・電源完備
+      </h2>
+      <p class="subtext">トイレ・シャワー・炊事場・電源完備</p>
+      <div class="image-row" id="water-image-row" data-src-folder="1-watter" aria-label="水回り写真（src/1-watter の枚数分表示）"></div>
+      <div class="note-link">← スクロールして他の写真を見る →</div>
+    </section>
+
+    <section class="feature-section">
+      <h2 class="subheading">
+        <span class="icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/>
+            <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/>
+            <path d="M8 14v.5"/>
+            <path d="M16 14v.5"/>
+            <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/>
+            <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/>
+          </svg>
+        </span>
+        小型犬対応
+      </h2>
+      <p class="subtext">小型犬に配慮した設計・ゲートを閉じるとドックランになります
+
+      </p>
+      <div class="image-row" id="small-dog-image-row" data-src-folder="2_dog"></div>
+    </section>
+
+    <section class="feature-section">
+      <h2 class="subheading">
+        <span class="icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/>
+            <path d="M12 5v14"/>
+          </svg>
+        </span>
+        その他
+      </h2>
+      <p class="subtext">ゴミ置き場・コードリール完備・エアコンの有料貸出し(夏季限定)</p>
+      <div class="image-row" id="other-image-row" data-src-folder="3_els"></div>
+    </section>
+
+    <section class="feature-section">
+      <h2 class="subheading">
+        <span class="icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/>
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/>
+            <path d="M2 7h20"/>
+            <path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/>
+          </svg>
+        </span>
+        周辺環境
+      </h2>
+      <p class="subtext">セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景</p>
+      <div class="image-row" id="surroundings-image-row" data-src-folder="4_nearby"></div>
+    </section>
+
+    <!-- Pencil tjRrM（L3AZkWrapper）: dIDF0（サイト種別）の上に表示（実装で大きく表示） -->
+    <div class="site-type-notice" aria-hidden="true">
+      <img src="src/anime/apology4.png" alt="" width="700" height="auto" loading="lazy">
+    </div>
+
+    <h1 class="section-title" id="site-type">サイト種別</h1>
+
+    <section class="site-block feature-section">
+      <h3 class="site-title">サイト1</h3>
+      <div class="image-row" id="site-no1-image-row" data-site-images="site_no1"></div>
+    </section>
+
+    <section class="site-block feature-section">
+      <h3 class="site-title">サイト2</h3>
+      <div class="image-row" id="site-no2-image-row" data-site-images="site_no2"></div>
+    </section>
+
+    <section class="site-block feature-section">
+      <h3 class="site-title">サイト3</h3>
+      <div class="image-row" id="site-no3-image-row" data-site-images="site_no3"></div>
+    </section>
+
+    <h1 class="section-title" id="price">料金</h1>
+
+    <section class="table-section pricing-section">
+      <div class="table-label pricing-heading">サイト別料金</div>
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>サイト1</th>
+            <th>サイト2</th>
+            <th>サイト3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>広さ</td>
+            <td>8m × 15m</td>
+            <td>11m × 13m</td>
+            <td>12m × 9m</td>
+          </tr>
+          <tr>
+            <td>定員</td>
+            <td>5名</td>
+            <td>5名</td>
+            <td>3名</td>
+          </tr>
+          <tr>
+            <td>電員容量</td>
+            <td>15A</td>
+            <td>15A</td>
+            <td>20A</td>
+          </tr>
+          <tr>
+            <td>平日料金</td>
+            <td>¥6,500</td>
+            <td>¥6,500</td>
+            <td>¥7,000</td>
+          </tr>
+          <tr>
+            <td>土日祝料金</td>
+            <td>¥9,500</td>
+            <td>¥9,500</td>
+            <td>¥10,000</td>
+          </tr>
+          <tr>
+            <td>ハイシーズン</td>
+            <td>¥11,000</td>
+            <td>¥11,000</td>
+            <td>¥11,500</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-note">※ハイシーズンはGW、7/20〜8/31、花火大会開催日、12/31〜1/2</div>
+    </section>
+
+    <section class="pricing-section">
+      <h2 class="subheading pricing-heading">ペット料金・頭数制限</h2>
+      <div class="card">
+        <div class="check-item"><span class="check">✓</span><span>基本料金：2頭まで無料</span></div>
+        <div class="check-item"><span class="check">✓</span><span>追加料金：3頭目以降は1頭につき＋500円</span></div>
+        <div class="check-item"><span class="check">✓</span><span>受入上限：最大4頭まで同伴可能</span></div>
+      </div>
+    </section>
+
+    <section class="pricing-section">
+      <h2 class="subheading pricing-heading">オプション</h2>
+      <div class="card">
+        <div class="check-item"><span class="check">✓</span><span>人数追加は+2,000円／1名（大人・子供・幼児共通）</span></div>
+      </div>
+    </section>
+
+    <!-- SP_6.利用規約・マナー（test3.html 移植） -->
+    <section class="sp6-terms" id="terms">
+      <div class="sp6-terms__page">
+        <h1 class="sp6-terms__title">利用規約・マナー</h1>
+        
+
+        <section>
+          <h2 class="sp6-terms__section-title">予約・キャンセル・その他</h2>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">チェックイン・アウト</div>
+            <div class="sp6-terms__rows sp6-terms__rows--w140">
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">IN</span><span>13:00 〜 17:00</span></div>
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">OUT</span><span>〜 10:00</span></div>
+            </div>
+          </div>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">キャンセルポリシー</div>
+            <div class="sp6-terms__rows sp6-terms__rows--w140">
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">1日前 〜 3日前</span><span>宿泊代の50%</span></div>
+              <div class="sp6-terms__row"><span class="sp6-terms__row-label">当日</span><span>宿泊代の100%</span></div>
+            </div>
+          </div>
+
+          <div class="sp6-terms__table-card">
+            <div class="sp6-terms__table-label">免責事項・環境について</div>
+            <div class="sp6-terms__table-body--pad">
+              <div class="sp6-terms__bullets">
+                <div class="sp6-terms__bullet">場内での事故、盗難、ペット間のトラブル等について、<br/>当施設は一切の責任を負いません。</div>
+                <div class="sp6-terms__bullet">ゴミはサイト内のゴミ置き場で分別回収しております。<br/>買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。</div>
+                <div class="sp6-terms__bullet">県道に隣接しているため、時間帯によっては<br/>車両の走行音が聞こえる場合がございます。</div>
+                <div class="sp6-terms__bullet">暴力団およびその関係者のご利用はお断りいたします。</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">基本ルール・禁止事項</h2>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="moon" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">クワイエットタイム：21:00 〜 翌7:00</div>
+                <div class="sp6-terms__rule-desc">話し声や生活音が隣のサイトに漏れないようご配慮ください</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="flame" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">直火禁止（焚き火台・焚き火シート必須）</div>
+                <div class="sp6-terms__rule-desc">床は指定の灰捨て場へ処理をお願いします</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="volume-x" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">騒音・音響の制限</div>
+                <div class="sp6-terms__rule-desc">音楽は隣のサイトに聞こえない音量で。アイドリング禁止。</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="cigarette" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">喫煙はご自身のサイト内のみ</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="circle-dot" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">サッカーやフリスビー等、飛んでいく遊具の使用禁止</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">グループ利用の制限</h2>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="ban" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">グループ利用不可</div>
+                <div class="sp6-terms__rule-desc">複数サイト予約、代表者名を変えての予約、現地での合流行為は一切禁止</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="calendar" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">予約頻度の制限</div>
+                <div class="sp6-terms__rule-desc">土曜・祝日のご予約は、1組につき「月に1回まで」（連泊除く）</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">ペット同伴規約</h2>
+          <p class="sp6-terms__text sp6-terms__text--muted">愛犬と安心して過ごせるよう、マナーの遵守をお願いします。</p>
+          <div class="sp6-terms__rule-card">
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="dog" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">サイト外はリード着用</div>
+                <div class="sp6-terms__rule-desc">サイト外では必ずリード着用。共有スペースで2m以内。</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="dog" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">噛みつき・破壊癖のあるペットは利用不可</div>
+              </div>
+            </div>
+            <div class="sp6-terms__rule-item">
+              <div class="sp6-terms__rule-icon"><i data-lucide="ban" aria-hidden="true"></i></div>
+              <div>
+                <div class="sp6-terms__rule-title">制限外の動物の持ち込み禁止</div>
+                <div class="sp6-terms__rule-desc">発覚した場合は即退場（返金なし）</div>
+              </div>
+            </div>
+          </div>
+          <div class="sp6-terms__pet-note">ペット同士のトラブルについて、施設側は責任を負いかねます。</div>
+        </section>
+
+        <section>
+          <h2 class="sp6-terms__section-title">小鳥（オウム・インコ）の同伴について</h2>
+          <div class="sp6-terms__check-card">
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>キャンピングカー利用の方のみ<br><span class="sp6-terms__text sp6-terms__text--muted">テント泊での同伴はできません</span></span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>1羽まで</span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>必ずケージ内でお過ごしください（放鳥不可）</span></div>
+            <div class="sp6-terms__check-item"><span class="sp6-terms__check">✓</span><span>鳴き声など、周囲へのご配慮をお願いします</span></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SP_7.アクセス（test4.html 移植） -->
+    <section class="sp7-access" id="access">
+      <div class="sp7-access__page">
+        <h1 class="sp7-access__title">アクセス</h1>
+
+        <section>
+          <h2 class="sp7-access__section-title">所在地・ナビ設定</h2>
+          <div class="sp7-access__card">
+            <div class="sp7-access__address">
+              <span class="sp7-access__pin"><i data-lucide="map-pin" aria-hidden="true"></i></span>
+              <span>〒311-2104 茨城県鉾田市根山2947</span>
+            </div>
+
+            <div class="sp7-access__notice">
+              <div class="sp7-access__notice-headline"><span class="sp7-access__notice-icon"><i data-lucide="alert-circle" aria-hidden="true"></i></span><span>重要：ナビ設定時のご注意</span></div>
+              <p class="sp7-access__notice-text">住所検索を行うと、地図上のピンが実際の場所とズレて表示される場合がございます。</p>
+            </div>
+
+            <div class="sp7-access__navbox">
+              <div class="sp7-access__navbox-headline"><span class="sp7-access__tip-icon"><i data-lucide="navigation" aria-hidden="true"></i></span><span>ナビの目的地設定</span></div>
+              <p class="sp7-access__navbox-text">「セブンイレブン 鉾田梶山店」を目的地に設定してお越しください。当施設はすぐ隣です。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="sp7-access__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.2417857230967!2d140.5344194!3d36.1119668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60224fa01ff7d6e9%3A0x79981e4f948c6858!2z5YyX5rWm44Os44Kk44Kv44K144Kk44OJUlbjg5Hjg7zjgq8!5e0!3m2!1sja!2sjp!4v1770747600676!5m2!1sja!2sjp"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <section class="sp7-access__travel-time">
+          <h2 class="sp7-access__section-title">お車での所要時間</h2>
+          <p class="sp7-access__desc">最寄りのインターチェンジからの目安時間です。</p>
+
+          <div class="sp7-access__accordion-group">
+            <div class="sp7-access__accordion">
+              <button type="button" class="sp7-access__acc-head" aria-expanded="false" aria-controls="sp7-access-body-1">
+                <span class="sp7-access__acc-title">
+                  <span class="sp7-access__route-icon" aria-hidden="true"><i data-lucide="car"></i></span>
+                  <span class="sp7-access__acc-title-text">東関東自動車道をご利用の方</span>
+                </span>
+                <span class="sp7-access__chevron" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+              </button>
+              <div class="sp7-access__acc-body" id="sp7-access-body-1" hidden>
+                <div class="sp7-access__acc-row"><span>鉾田IC</span><span class="sp7-access__time">約15分</span></div>
+                <div class="sp7-access__acc-row"><span>潮来IC</span><span class="sp7-access__time">約30分</span></div>
+              </div>
+            </div>
+
+            <div class="sp7-access__accordion">
+              <button type="button" class="sp7-access__acc-head" aria-expanded="false" aria-controls="sp7-access-body-2">
+                <span class="sp7-access__acc-title">
+                  <span class="sp7-access__route-icon" aria-hidden="true"><i data-lucide="car"></i></span>
+                  <span class="sp7-access__acc-title-text">常磐自動車道をご利用の方</span>
+                </span>
+                <span class="sp7-access__chevron" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+              </button>
+              <div class="sp7-access__acc-body" id="sp7-access-body-2" hidden>
+                <div class="sp7-access__acc-row"><span>土浦北IC</span><span class="sp7-access__time">約50分</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SP_8.お知らせ・メディア（test5.html 移植） -->
+    <section class="sp8-media" id="news">
+      <div class="sp8-media__page">
+        <h1 class="sp8-media__title">お知らせ・メディア</h1>
+
+        <div class="sp8-media__tab-bar" role="tablist" aria-label="News・メディア・お知らせ">
+          <button type="button" class="sp8-media__tab is-active" role="tab" aria-selected="true" data-tab="news">News</button>
+          <button type="button" class="sp8-media__tab" role="tab" aria-selected="false" data-tab="media">メディア</button>
+          <button type="button" class="sp8-media__tab" role="tab" aria-selected="false" data-tab="notice">お知らせ</button>
+        </div>
+
+        <!-- 3q1Dx / 53lXe（News と お知らせで表示）※Newsタブで一番上＝最新になるよう先に配置 -->
+        <section class="sp8-media__content is-active" data-panels="news notice">
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-1">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年02月01日</span>
+                <div class="sp8-media__acc-title">RV協会の全国アンケートで10位に選ばれました</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-1" hidden>
+              <h4>お知らせ</h4>
+              <p>〇〇ランキングにて当施設が全国10位に選出されました。</p>
+              <div class="sp8-media__acc-note">※本文は仮テキストです（Pencilの内容に合わせて差し替えできます）</div>
+            </div>
+          </div>
+
+          <div class="sp8-media__accordion">
+            <button type="button" class="sp8-media__acc-head" aria-expanded="false" aria-controls="sp8-notice-body-2">
+              <div class="sp8-media__acc-left">
+                <span class="sp8-media__date-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span>
+                <span class="sp8-media__date">2026年01月25日</span>
+                <div class="sp8-media__acc-title">小鳥（オウム・インコ等）の同伴について</div>
+              </div>
+              <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+            </button>
+            <div class="sp8-media__acc-body" id="sp8-notice-body-2" hidden>
+              <h4>お知らせ</h4>
+              <p>これまで禁止としておりました小鳥の同伴が可能になりますが、以下の条件付きとなります。</p>
+              <p>キャンピングカー利用の方のみ／1羽まで／必ずケージ内（放鳥不可）／鳴き声など周囲へのご配慮をお願いします。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- mQmwm / OsQ7A（News と メディアで表示） -->
+        <section class="sp8-media__content is-active" data-panels="news media">
+          <div class="sp8-media__media-list">
+            <div class="sp8-media__media-card">
+              <button type="button" class="sp8-media__media-head" aria-expanded="false" aria-controls="sp8-media-body-itakura">
+                <div class="sp8-media__media-head-left">
+                  <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
+                  <span class="sp8-media__media-date">2025年08月15日</span>
+                  <div class="sp8-media__media-title">板倉 趣味チャンネル</div>
+                </div>
+                <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+              </button>
+              <div class="sp8-media__media-body" id="sp8-media-body-itakura" hidden>
+                <p class="sp8-media__media-desc">インパルスの板倉俊之さんのYouTubeチャンネルにて、当施設をご利用いただいた様子が公開されています。</p>
+                <div class="sp8-media__date-meta-row">
+                  <span class="sp8-media__media-date">2025年7月25日投稿</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>54万回</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>4.7K</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp8-media__media-card">
+              <button type="button" class="sp8-media__media-head" aria-expanded="false" aria-controls="sp8-media-body-arj">
+                <div class="sp8-media__media-head-left">
+                  <span class="sp8-media__yt-icon"><i data-lucide="camera" aria-hidden="true"></i></span>
+                  <span class="sp8-media__media-date">2026年01月01日</span>
+                  <div class="sp8-media__media-title">ARJべんちゃん</div>
+                </div>
+                <span class="sp8-media__chevron" aria-hidden="true"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+              </button>
+              <div class="sp8-media__media-body" id="sp8-media-body-arj" hidden>
+                <p class="sp8-media__media-desc">キャンピングカーや車中泊情報を発信する「ARJべんちゃん」チャンネルにてご紹介いただきました。</p>
+                <div class="sp8-media__date-meta-row">
+                  <span class="sp8-media__media-date">2024年12月20日掲載</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="eye" aria-hidden="true"></i></span>0.2万回</span>
+                  <span class="sp8-media__meta-item"><span class="sp8-media__meta-icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>2.1K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- インスタ（jScjk相当）：タブに関係なく常に表示） -->
+        <section>
+          <h2 class="sp8-media__section-title">インスタグラム</h2>
+          <div class="sp8-media__insta-grid">
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+            <div class="sp8-media__insta-thumb"></div>
+          </div>
+          <div class="sp8-media__follow">
+            <span class="sp8-media__ig"><i data-lucide="instagram" aria-hidden="true"></i></span>
+            <span>@kitaura_lakeside_rvpark をフォロー</span>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- 固定CTAボタン -->
+  <div class="fixed-cta">
+    <button type="button" id="booking-cta-btn" class="js-open-booking">予約・空き確認</button>
+  </div>
+
+  <!-- S73or 予約モーダル -->
+  <div class="booking-modal" id="booking-modal" aria-hidden="true" aria-label="予約方法を選択">
+    <div class="booking-modal__overlay" id="booking-modal-overlay"></div>
+    <div class="booking-modal__sheet">
+      <div class="booking-modal__header">
+        <h2 class="booking-modal__title">予約方法を選択</h2>
+        <button type="button" class="booking-modal__close" id="booking-modal-close" aria-label="閉じる">×</button>
+      </div>
+      <a href="#" class="booking-modal__main-cta" id="booking-line-cta">
+        LINE
+        <span class="booking-modal__main-cta-sub">お問い合わせ・空き状況確認</span>
+      </a>
+      <p class="booking-modal__other-label">その他の予約方法</p>
+      <div class="booking-modal__other-btns" role="group" aria-label="その他の予約方法">
+        <a href="#" class="booking-modal__other-btn booking-modal__other-btn--web">
+          <span class="booking-modal__other-icon" aria-hidden="true"><i data-lucide="globe" aria-hidden="true"></i></span>
+          <span>WEB</span>
+        </a>
+        <a href="contact.html" class="booking-modal__other-btn booking-modal__other-btn--mail">
+          <span class="booking-modal__other-icon" aria-hidden="true"><i data-lucide="mail" aria-hidden="true"></i></span>
+          <span>メール</span>
+        </a>
+        <a href="tel:0299-00-0000" class="booking-modal__other-btn booking-modal__other-btn--tel">
+          <span class="booking-modal__other-icon" aria-hidden="true"><i data-lucide="phone" aria-hidden="true"></i></span>
+          <span>TEL</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ハンバーガーメニュー開閉・セクションスクロール -->
+  <script>
+    (function () {
+      var overlay = document.getElementById('nav-overlay');
+      var hamburger = document.querySelector('.hamburger-icon');
+      var links = document.querySelectorAll('.nav-overlay__link');
+
+      function openMenu() {
+        overlay.classList.add('is-open');
+        if (hamburger) hamburger.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        overlay.classList.remove('is-open');
+        if (hamburger) hamburger.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function toggleMenu() {
+        if (overlay.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      hamburger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+          closeMenu();
+        }
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            closeMenu();
+            var id = href.slice(1);
+            var target = document.getElementById(id);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    })();
+
+    /* 予約・空き確認 → S73or 予約モーダル */
+    (function () {
+      var modal = document.getElementById('booking-modal');
+      var closeBtn = document.getElementById('booking-modal-close');
+      var overlay = document.getElementById('booking-modal-overlay');
+
+      function openBookingModal() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeBookingModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.js-open-booking').forEach(function (btn) {
+        btn.addEventListener('click', openBookingModal);
+      });
+      if (closeBtn) closeBtn.addEventListener('click', closeBookingModal);
+      if (overlay) overlay.addEventListener('click', closeBookingModal);
+    })();
+
+    /* SP_8 タブ切替（YPILL） */
+    (function () {
+      var tabs = document.querySelectorAll('.sp8-media__tab');
+      var contents = document.querySelectorAll('.sp8-media__content');
+
+      function setActive(tabName) {
+        // tabs
+        tabs.forEach(function (t) {
+          var isActive = t.dataset.tab === tabName;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        // contents
+        contents.forEach(function (c) {
+          var panels = (c.getAttribute('data-panels') || '').split(/\s+/).filter(Boolean);
+          c.classList.toggle('is-active', panels.indexOf(tabName) !== -1);
+        });
+      }
+
+      // init from markup
+      var initial = document.querySelector('.sp8-media__tab.is-active');
+      setActive((initial && initial.dataset.tab) ? initial.dataset.tab : 'news');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          setActive(tab.dataset.tab);
+        });
+      });
+    })();
+
+    /* SP_8 メディアカード：アコーディオン（mQmwm相当） */
+    (function () {
+      var cards = document.querySelectorAll('.sp8-media__media-card');
+      cards.forEach(function (card) {
+        var head = card.querySelector('.sp8-media__media-head');
+        var bodyId = head && head.getAttribute('aria-controls');
+        var body = bodyId ? document.getElementById(bodyId) : null;
+        if (!head || !body) return;
+
+        // 初期状態は閉（hidden）
+        head.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+        card.classList.remove('is-open');
+
+        head.addEventListener('click', function () {
+          var isOpen = card.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          body.hidden = !isOpen;
+        });
+      });
+    })();
+
+    /* SP_8 お知らせ・メディア：表示順を「一番上が最新」にソート */
+    (function () {
+      function parseDateYMD(text) {
+        if (!text) return 0;
+        var m = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+        if (!m) return 0;
+        return new Date(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10)).getTime();
+      }
+      var accordionParent = document.querySelector('.sp8-media__content[data-panels="news notice"]');
+      if (accordionParent) {
+        var accs = Array.from(accordionParent.querySelectorAll('.sp8-media__accordion'));
+        accs.sort(function (a, b) {
+          var dateElA = a.querySelector('.sp8-media__date');
+          var dateElB = b.querySelector('.sp8-media__date');
+          var tA = parseDateYMD(dateElA ? dateElA.textContent : '');
+          var tB = parseDateYMD(dateElB ? dateElB.textContent : '');
+          return tB - tA;
+        });
+        accs.forEach(function (node) { accordionParent.appendChild(node); });
+      }
+      var mediaList = document.querySelector('.sp8-media__media-list');
+      if (mediaList) {
+        var cards = Array.from(mediaList.querySelectorAll('.sp8-media__media-card'));
+        cards.sort(function (a, b) {
+          var headA = a.querySelector('.sp8-media__media-head');
+          var headB = b.querySelector('.sp8-media__media-head');
+          var dateElA = headA ? headA.querySelector('.sp8-media__media-date') : null;
+          var dateElB = headB ? headB.querySelector('.sp8-media__media-date') : null;
+          var tA = parseDateYMD(dateElA ? dateElA.textContent : '');
+          var tB = parseDateYMD(dateElB ? dateElB.textContent : '');
+          return tB - tA;
+        });
+        cards.forEach(function (node) { mediaList.appendChild(node); });
+      }
+    })();
+
+    /* SP_8 お知らせカード：アコーディオン（3q1Dx / 53lXe相当） */
+    (function () {
+      var accs = document.querySelectorAll('.sp8-media__accordion');
+      accs.forEach(function (acc) {
+        var head = acc.querySelector('.sp8-media__acc-head');
+        var bodyId = head && head.getAttribute('aria-controls');
+        var body = bodyId ? document.getElementById(bodyId) : null;
+        if (!head || !body) return;
+
+        // 初期状態は閉（hidden）
+        head.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+        acc.classList.remove('is-open');
+
+        head.addEventListener('click', function () {
+          var isOpen = acc.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          body.hidden = !isOpen;
+        });
+      });
+    })();
+
+    /* SP_7 お車での所要時間：アコーディオン開閉（タイトル文字サイズはそのまま） */
+    (function () {
+      var accs = document.querySelectorAll('.sp7-access__accordion');
+      accs.forEach(function (acc) {
+        var head = acc.querySelector('.sp7-access__acc-head');
+        var body = acc.querySelector('.sp7-access__acc-body');
+        if (!head || !body) return;
+
+        head.addEventListener('click', function () {
+          var isOpen = acc.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          body.hidden = !isOpen;
+        });
+      });
+    })();
+
+    /* 水回り（Pencil hme4H スクロールエリア）: src/1-watter/list.json の番号順（配列順）で左から表示 */
+    (function () {
+      var row = document.getElementById('water-image-row');
+      if (!row) return;
+      var folder = 'src/1-watter/';
+      var listUrl = folder + 'list.json';
+      var fallbackNames = [
+        '01_サイト１案内_トイレ.jpg',
+        '02_サイト１案内_シャワー.jpg',
+        '03_サイト１案内_シャワールーム.jpg',
+        '04_サイト１案内_炊事場.jpg',
+        '05_サイト１案内_トイレシャワー.jpg',
+        '05炊事場.jpg',
+        'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
+        'S__34291715_0.jpg',
+        'S__34291717_0.jpg',
+        '炊事場.jpg'
+      ];
+      function render(names, useFolder) {
+        row.innerHTML = '';
+        names.forEach(function (name) {
+          var img = document.createElement('img');
+          img.className = 'thumb-img';
+          img.src = useFolder ? folder + name : name;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
+          row.appendChild(img);
+        });
+      }
+      fetch(listUrl)
+        .then(function (res) { return res.ok ? res.json() : []; })
+        .catch(function () { return []; })
+        .then(function (names) {
+          if (Array.isArray(names) && names.length > 0) {
+            render(names, true);
+          } else {
+            render(fallbackNames, true);
+          }
+        });
+    })();
+
+    /* 共通: list.json の枚数分表示。相対パスで Vercel（Root=v4/HTML/v0）・ローカル両対応 */
+    function renderImageRow(rowId, folderName, fallbackNames, fallbackPaths) {
+      var row = document.getElementById(rowId);
+      if (!row) return;
+      var folder = 'src/' + folderName + '/';
+      var listUrl = folder + 'list.json';
+      function render(list, useFolder) {
+        row.innerHTML = '';
+        list.forEach(function (item) {
+          var img = document.createElement('img');
+          img.className = 'thumb-img';
+          img.src = useFolder ? folder + item : item;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.onerror = function () { this.style.display = 'none'; };
+          row.appendChild(img);
+        });
+      }
+      fetch(listUrl)
+        .then(function (res) { return res.ok ? res.json() : []; })
+        .catch(function () { return []; })
+        .then(function (names) {
+          if (Array.isArray(names) && names.length > 0) {
+            render(names, true);
+          } else if (fallbackPaths && fallbackPaths.length > 0) {
+            render(fallbackPaths, false);
+          } else {
+            render(fallbackNames, true);
+          }
+        });
+    }
+
+    /* 小型犬（Pencil xYQHo）: src/2_dog/list.json の番号順（配列順）で左から表示 */
+    renderImageRow('small-dog-image-row', '2_dog', [
+      '01_61259783.jpg', '02__18489346-768x576.jpg', '02_サイト１案内_景観.jpg', '03_サイト１案内_小型犬-768x576.jpg',
+      '05_サイト１案内_広さ-768x576.jpg', '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'S__38764547_0.jpg'
+    ]);
+    /* その他（Pencil LXQHY）: src/3_els/list.json の番号順（配列順）で左から表示 */
+    renderImageRow('other-image-row', '3_els', [
+      '01-elec.jpg', '02-trash.jpg', '03-trash2.jpg', '04-72994D5A-FA90-469A-884E-BF89DB666517.jpg',
+      '05-D5D8F0A8-C3B2-4FB7-BB44-C8BB8EC72889.jpg', '10-エアコン.jpg', '2A6B4F16-ACCB-405A-92CA-A986F84FC3A1.jpg'
+    ]);
+    /* 周辺環境（Pencil R9swJ）: src/4_nearby/list.json の番号順（配列順）で左から表示 */
+    renderImageRow('surroundings-image-row', '4_nearby', [
+      '01-セブンイレブン.png', '02-image_side.jpg', '03-C489887B-5980-4B98-B4A9-39509D8506B4.jpg',
+      '04-337320DC-41EF-470B-BB71-E913B495280D.jpg', '05-353C0C94-D7E3-4461-8461-801B2EEF68C7.jpg'
+    ]);
+    /* サイト1（Pencil q53Bt） */
+    renderImageRow('site-no1-image-row', 'site_no1', [
+      '02_サイト１案内_景観.jpg', '03_サイト１案内_広さ-768x576.jpg', '04_サイト１案内_小型犬-768x576.jpg',
+      '05_サイト１案内_炊事場.jpg', '05_サイト１案内_トイレシャワー.jpg', '06_サイト１案内_トイレ.jpg',
+      '07_サイト１案内_シャワールーム.jpg', '08_サイト１案内_シャワー.jpg', 'S__18489346-768x576.jpg',
+      'S__18538510-1-1024x768.jpg', '湖総2-1-1024x768.jpg'
+    ]);
+    /* サイト2（Pencil Ynr7c） */
+    renderImageRow('site-no2-image-row', 'site_no2', [
+      'S__38764551_0.jpg', 'S__38764550_0.jpg', 'S__38764547_0.jpg', 'S__34291715_0.jpg', 'S__34291717_0.jpg',
+      'S__34291719_0.jpg', 'S__34291723_0.jpg', 'F4C8B59F-BED7-4769-B84F-CC5C5D2CA3CC.jpg', '炊事場.jpg', '景観.jpg'
+    ]);
+    /* サイト3（Pencil 8Zt6F） */
+    renderImageRow('site-no3-image-row', 'site_no3', [
+      'S__61259783.jpg', '119EDFE4-613C-4D14-8D52-82CF48CADF7E.jpg', '4FD5EA4E-7902-4AC8-9B8D-DBF2917D73AE.jpg',
+      'B392931C-3C9D-404F-84DC-13CCA3438639.jpg', '25214C0D-279C-4153-B11E-E98744486041.jpg',
+      '921F7B01-FD9C-4F2F-8637-76232126C816.jpg', 'CDE46B2B-D313-471D-A383-CA5456404EB9.jpg',
+      'E4B0EDFE-D6A3-424A-8569-E8CD5280E1E2.jpg', '景観.jpg'
+    ]);
+
+    /* 画像なし時は表示しない（Pencil hme4H 等のスクロールエリア対応） */
+    document.querySelectorAll('.thumb-img').forEach(function (img) {
+      img.onerror = function () { this.style.display = 'none'; };
+    });
+  </script>
+
+  <!-- lucide icons（Pencilのicon_fontに合わせる） -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.lucide?.createIcons?.();
+  </script>
+
+</body>
+</html>
