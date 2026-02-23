@@ -7,6 +7,7 @@ import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 import { WaterFacilitiesAccordion } from "@/components/water-facilities-accordion"
+import { RentalItemsAccordion } from "@/components/rental-items-accordion"
 
 function listPublicImages(
   relativeDir: string,
@@ -136,6 +137,8 @@ export function Features() {
                 fallbackImages={smallDogFallbackImages}
                 altPrefix="小型犬写真"
                 className="overflow-hidden rounded-xl"
+                imageClassName="object-contain"
+                variableAspect
               />
             </div>
           </div>
@@ -152,7 +155,9 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                ゴミ置き場・コードリール完備</p>
+                ゴミ置き場・コードリール完備
+              </p>
+              <RentalItemsAccordion />
             </div>
             <div className="px-1 pb-1">
               <ImageCarousel
