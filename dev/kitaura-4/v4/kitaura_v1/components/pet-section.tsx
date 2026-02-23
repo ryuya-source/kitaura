@@ -6,9 +6,11 @@ import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { StoryBookFlip } from "@/components/story-book-flip"
 
-/** 犬種制限についての絵本 — 1.avif ～ 10.avif を番号順に表示 */
+/** 犬種制限についての絵本 — 表紙(00.avif) + 1.avif ～ 10.avif を番号順に表示 */
 const STORY_BOOK_BASE = "/srory-book"
+const STORY_BOOK_V3 = "/srory-book/絵本v3.0"
 const storyBookImages = [
+  `${STORY_BOOK_V3}/00.avif`,
   `${STORY_BOOK_BASE}/1.avif`,
   `${STORY_BOOK_BASE}/2.avif`,
   `${STORY_BOOK_BASE}/3.avif`,
