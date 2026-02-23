@@ -44,7 +44,6 @@ export function Rules() {
           <AccordionItem
             title="予約・キャンセル・その他"
             icon={<Clock className="h-5 w-5" />}
-            defaultOpen={true}
           >
             <div className="flex flex-col gap-6">
               {/* Check-in/out */}
