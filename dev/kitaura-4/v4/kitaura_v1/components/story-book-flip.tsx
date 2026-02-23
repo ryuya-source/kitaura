@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback } from "react"
 import HTMLFlipBook from "react-pageflip"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react"
 
 interface StoryBookFlipProps {
   images: string[]
@@ -10,7 +10,7 @@ interface StoryBookFlipProps {
 
 /** 全ページを data-density="hard" でハードめくりにする */
 const PAGE_CLASS =
-  "flex h-full w-full items-center justify-center bg-[#ede9e3] overflow-hidden"
+  "relative flex h-full w-full items-center justify-center bg-[#ede9e3] overflow-hidden"
 
 export function StoryBookFlip({ images }: StoryBookFlipProps) {
   const bookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } }>(null)
@@ -22,11 +22,11 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
   }, [])
 
   const goPrev = useCallback(() => {
-    bookRef.current?.pageFlip()?.flipPrev("bottom")
+    bookRef.current?.pageFlip()?.flipPrev()
   }, [])
 
   const goNext = useCallback(() => {
-    bookRef.current?.pageFlip()?.flipNext("bottom")
+    bookRef.current?.pageFlip()?.flipNext()
   }, [])
 
   if (count === 0) return null
@@ -99,9 +99,26 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
                   loading="lazy"
                   onError={(e) => {
                     const el = e.target as HTMLImageElement
-                    if (el?.parentElement) el.parentElement.style.display = "none"
+                    el.style.display = "none"
+                    const fallback = el.nextElementSibling as HTMLElement
+                    if (fallback) {
+                      fallback.hidden = false
+                      fallback.style.display = "flex"
+                    }
                   }}
                 />
+                <div
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center text-muted-foreground"
+                  style={{ display: "none" }}
+                  hidden
+                  aria-hidden
+                >
+                  <ImageOff className="h-12 w-12 shrink-0 opacity-50" />
+                  <p className="text-sm">画像を読み込めません</p>
+                  <p className="text-xs">
+                    public/srory-book/絵本v3.0/ に 01.avif ～ 11.avif を配置してください
+                  </p>
+                </div>
               </div>
             ))}
           </HTMLFlipBook>

@@ -152,7 +152,7 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                ゴミ置き場・コードリール完備・有料貸出（エアコン・ストーブ）</p>
+                ゴミ置き場・コードリール完備</p>
             </div>
             <div className="px-1 pb-1">
               <ImageCarousel

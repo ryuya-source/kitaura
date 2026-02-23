@@ -13,10 +13,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const EXT_IMAGE = /\.(png|jpe?g|webp|gif|tiff?|bmp|heic)$/i;
 const dir = process.argv[2];
+const outDirArg = process.argv[3]; // 省略時は <フォルダ>/avif
 
 if (!dir) {
-  console.error("使い方: node images-to-avif.mjs <フォルダパス>");
-  console.error('例: node images-to-avif.mjs "/Users/ishikawatatsuya/Desktop/画像/北浦/採用"');
+  console.error("使い方: node images-to-avif.mjs <フォルダパス> [出力フォルダ]");
+  console.error('例: node images-to-avif.mjs "/path/to/images"');
+  console.error('例: node images-to-avif.mjs "/path/to/images" "/path/to/output"');
   process.exit(1);
 }
 
@@ -47,7 +49,7 @@ if (files.length === 0) {
   process.exit(0);
 }
 
-const outDir = path.join(dir, "avif");
+const outDir = outDirArg ? path.resolve(outDirArg) : path.join(dir, "avif");
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
 }
