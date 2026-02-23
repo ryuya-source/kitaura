@@ -116,7 +116,7 @@ export function StoryBookFlip({ images }: StoryBookFlipProps) {
                   <ImageOff className="h-12 w-12 shrink-0 opacity-50" />
                   <p className="text-sm">画像を読み込めません</p>
                   <p className="text-xs">
-                    public/srory-book/絵本v3.0/ に 01.avif ～ 11.avif を配置してください
+                    public/srory-book/ に 1.avif ～ 10.avif を配置してください
                   </p>
                 </div>
               </div>
