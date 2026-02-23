@@ -30,7 +30,7 @@ function ChipList({ items }: { items: string[] }) {
 }
 
 export function WaterFacilitiesAccordion() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   return (
     <div className="mt-3 rounded-lg border border-border bg-muted/30 px-3 py-1">
       <button

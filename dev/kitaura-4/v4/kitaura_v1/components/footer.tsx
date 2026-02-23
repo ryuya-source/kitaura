@@ -20,7 +20,7 @@ export function Footer() {
                 <span className="text-xs font-semibold tracking-widest text-foreground sm:text-sm">
                   KITAURA LAKESIDE
                 </span>
-                <span className="text-[10px] tracking-[0.3em] text-muted-foreground sm:text-xs">
+                <span className="text-xs font-semibold tracking-widest text-foreground sm:text-sm">
                   RV park
                 </span>
               </div>

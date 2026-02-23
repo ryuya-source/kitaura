@@ -79,7 +79,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
                 <span className="text-xs font-semibold tracking-widest sm:text-sm">
                   KITAURA LAKESIDE
                 </span>
-                <span className="text-[10px] tracking-[0.3em] sm:text-xs">
+                <span className="text-xs font-semibold tracking-widest sm:text-sm">
                   RV park
                 </span>
               </div>

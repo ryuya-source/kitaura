@@ -2,14 +2,50 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, AlertTriangle, Send } from "lucide-react"
+import { ArrowLeft, AlertTriangle, Send, Plus, Trash2 } from "lucide-react"
+
+const MAX_DOG_ENTRIES = 4
+
+type DogEntry = { breed: string; count: number }
+
+const initialDogEntry = (): DogEntry => ({ breed: "", count: 1 })
 
 export function ContactForm() {
   const [dogCompanion, setDogCompanion] = useState("")
+  const [dogs, setDogs] = useState<DogEntry[]>([])
   const [submitted, setSubmitted] = useState(false)
+
+  function onDogCompanionChange(value: string) {
+    setDogCompanion(value)
+    if (value === "yes") {
+      setDogs([initialDogEntry()])
+    } else {
+      setDogs([])
+    }
+  }
+
+  function addDog() {
+    if (dogs.length >= MAX_DOG_ENTRIES) return
+    setDogs((prev) => [...prev, initialDogEntry()])
+  }
+
+  function removeDog(index: number) {
+    if (index <= 0) return
+    setDogs((prev) => prev.filter((_, i) => i !== index))
+  }
+
+  function updateDog(index: number, field: keyof DogEntry, value: string | number) {
+    setDogs((prev) =>
+      prev.map((entry, i) => (i === index ? { ...entry, [field]: value } : entry))
+    )
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (dogCompanion === "yes") {
+      const filled = dogs.filter((d) => d.breed.trim() !== "")
+      if (filled.length === 0) return
+    }
     setSubmitted(true)
   }
 
@@ -182,7 +218,7 @@ export function ContactForm() {
             required
             defaultValue=""
             value={dogCompanion}
-            onChange={(e) => setDogCompanion(e.target.value)}
+            onChange={(e) => onDogCompanionChange(e.target.value)}
             className="w-full rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
           >
             <option value="" disabled>選択してください</option>
@@ -191,13 +227,69 @@ export function ContactForm() {
           </select>
 
           {dogCompanion === "yes" && (
-            <div className="mt-3">
-              <input
-                id="dog"
-                type="text"
-                placeholder="犬種と頭数を入力してください"
-                className="w-full rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
-              />
+            <div className="mt-3 space-y-3">
+              {dogs.map((entry, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col gap-2 rounded-lg border border-border bg-card/50 p-3 sm:flex-row sm:items-end sm:gap-3"
+                >
+                  <div className="min-w-0 flex-1">
+                    <label htmlFor={`dog-breed-${index}`} className="mb-1 block text-xs font-medium text-muted-foreground">
+                      犬種
+                    </label>
+                    <input
+                      id={`dog-breed-${index}`}
+                      type="text"
+                      placeholder="例：トイプードル"
+                      required={index === 0}
+                      value={entry.breed}
+                      onChange={(e) => updateDog(index, "breed", e.target.value)}
+                      className="w-full rounded-lg border border-input bg-card px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
+                    />
+                  </div>
+                  <div className="flex items-end gap-2 sm:w-28">
+                    <div className="min-w-0 flex-1">
+                      <label htmlFor={`dog-count-${index}`} className="mb-1 block text-xs font-medium text-muted-foreground">
+                        頭数
+                      </label>
+                      <select
+                        id={`dog-count-${index}`}
+                        value={entry.count}
+                        onChange={(e) => updateDog(index, "count", Number(e.target.value))}
+                        className="w-full rounded-lg border border-input bg-card px-4 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
+                      >
+                        {[1, 2, 3, 4].map((n) => (
+                          <option key={n} value={n}>
+                            {n}頭
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    {index > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => removeDog(index)}
+                        aria-label={`${index + 1}件目を削除`}
+                        className="shrink-0 rounded-lg border border-input p-2.5 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus:outline-none focus:ring-2 focus:ring-ring/20"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    ) : (
+                      <span className="w-10 shrink-0" aria-hidden />
+                    )}
+                  </div>
+                </div>
+              ))}
+              {dogs.length < MAX_DOG_ENTRIES && (
+                <button
+                  type="button"
+                  onClick={addDog}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-input py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring/20"
+                >
+                  <Plus className="h-4 w-4" />
+                  もう1頭追加
+                </button>
+              )}
             </div>
           )}
 

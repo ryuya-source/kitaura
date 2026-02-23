@@ -11,7 +11,7 @@ import { RentalItemsAccordion } from "@/components/rental-items-accordion"
 
 function listPublicImages(
   relativeDir: string,
-  options?: { cacheBust?: boolean; extensions?: string[] }
+  options?: { cacheBust?: boolean; extensions?: string[]; sortNumeric?: boolean }
 ) {
   const dirPath = path.join(process.cwd(), "public", ...relativeDir.split("/"))
   if (!fs.existsSync(dirPath)) return []
@@ -21,7 +21,9 @@ function listPublicImages(
   return fs
     .readdirSync(dirPath)
     .filter((name) => pattern.test(name))
-    .sort((a, b) => a.localeCompare(b, "ja"))
+    .sort((a, b) =>
+      options?.sortNumeric ? a.localeCompare(b, undefined, { numeric: true }) : a.localeCompare(b, "ja")
+    )
     .map((name) => {
       const base = `/${relativeDir}/${name}`
       if (options?.cacheBust) {
@@ -45,20 +47,24 @@ const watterImages =
         (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
       )
 
-// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の画像を使用（.avif / .png 対応、差し替え時にキャッシュを避けるため cacheBust 有効）
+// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の画像を使用（.avif、ファイル名の番号昇順、差し替え時にキャッシュを避けるため cacheBust 有効）
 const scannedOtherImages = listPublicImages("features/3-els", {
   cacheBust: true,
   extensions: ["avif", "png"],
+  sortNumeric: true,
 })
 const otherImages =
   scannedOtherImages.length > 0
-    ? scannedOtherImages
+    ? scannedOtherImages.filter((p) => p.endsWith(".avif")).length > 0
+      ? scannedOtherImages.filter((p) => p.endsWith(".avif"))
+      : scannedOtherImages
     : [
-        "/features/3-els/01.png",
-        "/features/3-els/02.png",
-        "/features/3-els/03.png",
-        "/features/3-els/04.png",
-        "/features/3-els/05.png",
+        "/features/3-els/01.avif",
+        "/features/3-els/02.avif",
+        "/features/3-els/03.avif",
+        "/features/3-els/04.avif",
+        "/features/3-els/05.avif",
+        "/features/3-els/06.avif",
       ]
 
 // 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）
@@ -128,7 +134,7 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                超小型のワンちゃんも安心の設計。ゲートを閉じるとドックランになります
+              ゲートを閉じるとドックフリーになります。隙間が狭く小型犬のワンちゃんにも安心設計。
               </p>
             </div>
             <div className="px-1 pb-1">
@@ -164,8 +170,6 @@ export function Features() {
                 images={otherImages}
                 altPrefix="その他設備写真"
                 className="overflow-hidden rounded-xl"
-                imageClassName="object-contain"
-                variableAspect
               />
             </div>
           </div>

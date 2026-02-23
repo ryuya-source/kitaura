@@ -152,13 +152,18 @@ export function News() {
 
         {/* Instagram */}
         <div className="mx-auto mt-12 max-w-3xl text-center">
-          <div className="rounded-xl bg-card p-6 shadow-sm md:p-8">
+          <a
+            href="https://www.instagram.com/kitaura_lakeside_rvpark/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl bg-card p-6 shadow-sm transition-colors hover:bg-accent/5 md:p-8"
+          >
             <h3 className="mb-2 flex items-center justify-center gap-2 text-lg font-semibold text-foreground">
               <Instagram className="h-5 w-5 text-accent" />
               インスタグラム
             </h3>
             <p className="text-sm text-muted-foreground">@kitaura_lakeside_rvpark をフォロー</p>
-          </div>
+          </a>
         </div>
 
       </Container>

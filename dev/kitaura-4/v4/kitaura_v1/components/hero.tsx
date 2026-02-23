@@ -15,9 +15,15 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center px-4 text-center -translate-y-[8vh]">
+      <div className="relative z-10 flex flex-col items-center gap-1 px-4 text-center -translate-y-[8vh]">
         <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
-          北浦湖畔で、心ほどける時間
+          北浦湖畔にある小さな RVパーク
+        </p>
+        <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
+          全区画専用サニタリー棟完備
+        </p>
+        <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
+          プライベートに過ごす大人時間
         </p>
       </div>
 

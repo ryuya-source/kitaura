@@ -16,20 +16,38 @@ function SiteCarousel({
   imageUrls?: string[]
 }) {
   const [current, setCurrent] = useState(0)
-  const src = imageUrls?.[current] ?? `/placeholder.svg?height=400&width=600`
-  const alt = `${name} 写真 ${current + 1}`
+  const urls = imageUrls ?? []
+  const prevIdx = imageCount > 0 ? (current - 1 + imageCount) % imageCount : 0
+  const nextIdx = imageCount > 0 ? (current + 1) % imageCount : 0
 
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-        <div className="absolute inset-0 flex items-center justify-between px-3">
+        {/* 前・現在・次の3枚を常にDOMに置いてプリロードし、表示は current のみ（0枚のときは1枚だけ表示） */}
+        {(imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
+          const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
+          return (
+            <div
+              key={`${slot}-${idx}`}
+              className={
+                (imageCount > 0 && slot === 1) || (imageCount === 0 && slot === 0)
+                  ? "absolute inset-0 z-10"
+                  : "absolute inset-0 z-0 opacity-0 pointer-events-none"
+              }
+              aria-hidden={imageCount > 0 ? slot !== 1 : slot !== 0}
+            >
+              <Image
+                src={src}
+                alt={`${name} 写真 ${idx + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading={slot === 1 ? undefined : "lazy"}
+              />
+            </div>
+          )
+        })}
+        <div className="absolute inset-0 z-20 flex items-center justify-between px-3">
           <button
             onClick={() => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))}
             className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
@@ -45,7 +63,7 @@ function SiteCarousel({
             <ChevronRight className="h-4 w-4 text-foreground" />
           </button>
         </div>
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5">
           {Array.from({ length: imageCount }).map((_, i) => (
             <button
               key={i}
@@ -73,7 +91,7 @@ export function SiteTypes({ sites }: { sites: SiteData[] }) {
   return (
     <Section id="sites" className="bg-background py-16 md:py-24">
       <Container>
-        <SectionHeading label="SITE TYPES" title="サイト種別" />
+        <SectionHeading label="SITE TYPES" title="サイト案内" />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {sites.map((site) => (

@@ -60,6 +60,10 @@ export function ImageCarousel({
     if (variableAspect) setAspectRatio(null)
   }, [variableAspect, current])
 
+  // 前後の画像をプリロード: 常に3枚（prev, current, next）をDOMに置き、next/image に読ませておく
+  const prevIdx = (current - 1 + imageCount) % imageCount
+  const nextIdx = (current + 1) % imageCount
+
   const goPrev = () => setCurrent((prev) => (prev === 0 ? imageCount - 1 : prev - 1))
   const goNext = () => setCurrent((prev) => (prev === imageCount - 1 ? 0 : prev + 1))
 
@@ -118,20 +122,32 @@ export function ImageCarousel({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <SafeImage
-        key={current}
-        src={images[current]}
-        fallbackSrc={fallbackImages?.[current]}
-        alt={`${altPrefix} ${current + 1}`}
-        className={cn("h-full w-full object-cover", imageClassName)}
-        loading={imageLoading}
-        onNaturalSize={variableAspect ? handleNaturalSize : undefined}
-      />
+      {/* 前・現在・次の3枚を常にDOMに置いてプリロードし、表示は current のみ */}
+      {[prevIdx, current, nextIdx].map((idx, slot) => (
+        <div
+          key={`${slot}-${idx}`}
+          className={cn(
+            "absolute inset-0",
+            slot === 1 ? "z-10" : "z-0 opacity-0 pointer-events-none"
+          )}
+          aria-hidden={slot !== 1}
+        >
+          <SafeImage
+            src={images[idx]}
+            fallbackSrc={fallbackImages?.[idx]}
+            alt={`${altPrefix} ${idx + 1}`}
+            className={cn("h-full w-full object-cover", imageClassName)}
+            loading={slot === 1 ? imageLoading : "lazy"}
+            onNaturalSize={slot === 1 && variableAspect ? handleNaturalSize : undefined}
+          />
+        </div>
+      ))}
 
-      <div className="absolute inset-0 flex items-center justify-between px-3">
+      <div className="absolute inset-0 z-20 flex items-center justify-between px-3" style={{ pointerEvents: "none" }}>
         <button
           type="button"
           onClick={goPrev}
+          style={{ pointerEvents: "auto" }}
           className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
           aria-label="前の写真"
         >
@@ -142,18 +158,20 @@ export function ImageCarousel({
           onClick={goNext}
           className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
           aria-label="次の写真"
+          style={{ pointerEvents: "auto" }}
         >
           <ChevronRight className="h-4 w-4 text-foreground" />
         </button>
       </div>
 
       {showDots && (
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5" style={{ pointerEvents: "none" }}>
           {Array.from({ length: imageCount }).map((_, i) => (
             <button
               key={i}
               type="button"
               onClick={() => setCurrent(() => i)}
+              style={{ pointerEvents: "auto" }}
               className={cn(
                 "h-1.5 rounded-full transition-all",
                 i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"

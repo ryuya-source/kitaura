@@ -46,7 +46,7 @@ export function StoryBookCarousel({ images }: StoryBookCarouselProps) {
           images={images}
           altPrefix="犬種制限の説明"
           className="aspect-[1748/1240] rounded-xl"
-          imageClassName="pet-rules-slider__img object-contain"
+          imageClassName="pet-rules-slider__img object-cover object-center"
           imageLoading="lazy"
           showDots={false}
           current={current}

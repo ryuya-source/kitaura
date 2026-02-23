@@ -14,10 +14,10 @@ export default function HomePage() {
   return (
     <PageLayout>
       <Hero />
-      <PetSection />
-      <Features />
       <SiteTypes sites={sites} />
       <Pricing />
+      <Features />
+      <PetSection />
       <Rules />
       <Access />
       <News />

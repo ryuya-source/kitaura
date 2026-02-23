@@ -201,15 +201,39 @@
   }
 }
 
-/* 犬種制限スライダー：kitauralakeside-rvpark-newsite pet (68-80) と同様の仕様 */
+/* 犬種制限スライダー：グレー背景なし・画像は枠いっぱい（余白なし） */
 .pet-rules-slider {
   overflow: hidden;
-  background: #ede9e3;
+}
+/* タブレット等で上下が見切れないよう、ビューポート内に収めてスケール */
+.pet-rules-slider__book-outer {
+  position: relative;
+  container-type: size;
+  container-name: book;
+  height: min(284px, 55vh);
+  overflow: hidden;
+}
+.pet-rules-slider__book-inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -200px; /* 400px の半分で中央寄せ */
+  height: 284px;
+  width: 400px;
+  transform-origin: top center;
+  transform: scale(calc(100cqh / 284));
+}
+@container book (min-height: 284px) {
+  .pet-rules-slider__book-inner {
+    transform: scale(1);
+  }
 }
 .pet-rules-slider__img {
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* 予約モーダル（kitauralakeside-rvpark-newsite と同様） */
