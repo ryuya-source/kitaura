@@ -3,25 +3,31 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
-/** スクロール量（px）で opacity 0→1。大きいほどゆっくりフェードイン */
-const FADE_RANGE_PX = 680
-/** Sticky の親の高さ。この分スクロールする間、ヒーローが固定され次のセクションまで滞留する */
-const HERO_SCROLL_HEIGHT = "280vh"
+/** 1行目・2行目・3行目のフェードインに使うスクロール量（px）。2・3行目を大きくするとゆっくりフェードイン */
+const LINE_FADE_RANGES = [180, 1020, 1020] as const
+/** Sticky の親の高さ。この分スクロールする間、ヒーローが固定され次のセクションまで滞留する（3行表示後の滞留を長くするなら大きく） */
+const HERO_SCROLL_HEIGHT = "380vh"
+
+function lineOpacity(scrollY: number, index: number): number {
+  const start = LINE_FADE_RANGES.slice(0, index).reduce((a, b) => a + b, 0)
+  const range = LINE_FADE_RANGES[index]
+  return Math.min(1, Math.max(0, (scrollY - start) / range))
+}
 
 export function Hero() {
-  const [opacity, setOpacity] = useState(0)
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     function update() {
-      const y = window.scrollY
-      setOpacity(Math.min(1, y / FADE_RANGE_PX))
+      setScrollY(window.scrollY)
     }
     update()
     window.addEventListener("scroll", update, { passive: true })
     return () => window.removeEventListener("scroll", update)
   }, [])
 
-  const textVisible = opacity > 0
+  const opacities = [0, 1, 2].map((i) => lineOpacity(scrollY, i))
+  const textVisible = opacities.some((o) => o > 0)
 
   return (
     <div className="relative" style={{ height: HERO_SCROLL_HEIGHT }}>
@@ -39,22 +45,45 @@ export function Hero() {
           />
         </div>
 
-        {/* GPU加速: opacity と transform のみ使用 */}
+        {/* 2行目表示タイミングで動画をフェードイン（GPU: opacity のみ） */}
         <div
-          className="relative z-10 flex flex-col items-center gap-1 px-4 text-center transition-opacity duration-150 ease-out"
-          style={{
-            opacity,
-            transform: "translateY(-8vh)",
-          }}
+          className="absolute inset-0 z-[1] transition-opacity duration-300 ease-out"
+          style={{ opacity: opacities[1] }}
+          aria-hidden={opacities[1] === 0}
+        >
+          <video
+            src="/hero-video.mov"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover object-center"
+            aria-hidden
+          />
+        </div>
+
+        {/* GPU加速: opacity と transform のみ。1行ずつ順にフェードイン */}
+        <div
+          className="relative z-10 flex flex-col items-center gap-1 px-4 text-center"
+          style={{ transform: "translateY(-8vh)" }}
           aria-hidden={!textVisible}
         >
-          <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
+          <p
+            className="text-lg font-bold tracking-widest text-[#faf8f5]/90 transition-opacity duration-200 ease-out md:text-xl"
+            style={{ opacity: opacities[0] }}
+          >
             北浦湖畔にある小さな RVパーク
           </p>
-          <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
+          <p
+            className="text-lg font-bold tracking-widest text-[#faf8f5]/90 transition-opacity duration-200 ease-out md:text-xl"
+            style={{ opacity: opacities[1] }}
+          >
             全区画専用サニタリー棟完備
           </p>
-          <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
+          <p
+            className="text-lg font-bold tracking-widest text-[#faf8f5]/90 transition-opacity duration-200 ease-out md:text-xl"
+            style={{ opacity: opacities[2] }}
+          >
             プライベートに過ごす大人時間
           </p>
         </div>
