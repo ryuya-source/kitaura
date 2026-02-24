@@ -1,6 +1,5 @@
 import { PageLayout } from "@/components/layout"
 import { Hero } from "@/components/hero"
-import { HeroScrollLock } from "@/components/hero-scroll-lock"
 import { PetSection } from "@/components/pet-section"
 import { Features } from "@/components/features"
 import { SiteTypes } from "@/components/site-types"
@@ -14,7 +13,6 @@ export default function HomePage() {
   const sites = getSiteImages()
   return (
     <PageLayout>
-      <HeroScrollLock />
       <Hero />
       <SiteTypes sites={sites} />
       <Pricing />

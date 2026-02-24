@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
+/** 1行目がフェードインを始めるまでのスクロール量（px）。「＋2スクロール後」に1行目が出るように多めにずらす */
+const FIRST_LINE_SCROLL_OFFSET = 200
 /** 1行目・2行目・3行目のフェードインに使うスクロール量（px）。2・3行目を大きくするとゆっくりフェードイン */
-const LINE_FADE_RANGES = [180, 1020, 1020] as const
+const LINE_FADE_RANGES = [100, 1600, 1600] as const
 /** Sticky の親の高さ。この分スクロールする間、ヒーローが固定され次のセクションまで滞留する（3行表示後の滞留を長くするなら大きく） */
-const HERO_SCROLL_HEIGHT = "380vh"
+const HERO_SCROLL_HEIGHT = "510vh"
 
 function lineOpacity(scrollY: number, index: number): number {
-  const start = LINE_FADE_RANGES.slice(0, index).reduce((a, b) => a + b, 0)
+  const rangeBefore = LINE_FADE_RANGES.slice(0, index).reduce((a, b) => a + b, 0)
+  const start = FIRST_LINE_SCROLL_OFFSET + rangeBefore
   const range = LINE_FADE_RANGES[index]
   return Math.min(1, Math.max(0, (scrollY - start) / range))
 }

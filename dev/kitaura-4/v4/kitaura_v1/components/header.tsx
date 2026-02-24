@@ -7,6 +7,9 @@ import { usePathname } from "next/navigation"
 import { useBookingModal } from "@/components/booking-modal-context"
 import { Container } from "@/components/layout"
 
+/** このスクロール量（px）でロゴを上部に流す */
+const HEADER_LOGO_RANGE_PX = 120
+
 const navItems: { label: string; href: string; openBooking?: boolean }[] = [
   { label: "犬種制限について", href: "#pet" },
   { label: "サイト案内", href: "#sites" },
@@ -27,8 +30,22 @@ export function Header({ onlyHamburger }: HeaderProps) {
   const pathname = usePathname()
   const { openBookingModal } = useBookingModal()
   const [open, setOpen] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    function update() {
+      setScrollY(window.scrollY)
+    }
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    return () => window.removeEventListener("scroll", update)
+  }, [])
 
   const closeMenu = useCallback(() => setOpen(false), [])
+
+  const isHome = pathname === "/"
+  const logoScrollProgress = isHome ? Math.min(1, scrollY / HEADER_LOGO_RANGE_PX) : 0
+  const logoTranslateY = -logoScrollProgress * 48
   const toggleMenu = useCallback(() => setOpen((o) => !o), [])
 
   useEffect(() => {
@@ -65,8 +82,9 @@ export function Header({ onlyHamburger }: HeaderProps) {
           <Container className="flex items-center py-3">
             <Link
               href="/"
-              className="flex flex-col items-center gap-1.5 text-center"
+              className="flex flex-col items-center gap-1.5 text-center transition-transform duration-200 ease-out"
               aria-label="KITAURA LAKESIDE RV park"
+              style={{ transform: `translateY(${logoTranslateY}px)` }}
             >
               <Image
                 src="/futter_logo.avif"
