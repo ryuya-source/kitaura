@@ -3,22 +3,38 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
-/** 1行目がフェードインを始めるまでのスクロール量（px）。「＋2スクロール後」に1行目が出るように多めにずらす */
-const FIRST_LINE_SCROLL_OFFSET = 200
-/** 1行目・2行目・3行目のフェードインに使うスクロール量（px）。2・3行目を大きくするとゆっくりフェードイン */
-const LINE_FADE_RANGES = [100, 1600, 1600] as const
-/** Sticky の親の高さ。この分スクロールする間、ヒーローが固定され次のセクションまで滞留する（3行表示後の滞留を長くするなら大きく） */
+/**
+ * vh 倍率ベースの定数（Pro Max = innerHeight 932px で従来の px 値と等価）
+ * FIRST_LINE: 1行目がフェードインを始めるまでのスクロール量（vh 倍率）≈ 200px / 932px
+ * LINE_FADE:  各行のフェードイン幅（vh 倍率）≈ [100, 1600, 1600]px / 932px
+ * どの画面サイズでも viewport 高さに比例してスケールするため、体感が均一になる
+ */
+const FIRST_LINE_VH = 0.21
+const LINE_FADE_VH = [0.11, 1.72, 1.72] as const
+/** Sticky の親の高さ。この分スクロールする間、ヒーローが固定され次のセクションまで滞留する */
 const HERO_SCROLL_HEIGHT = "510vh"
 
-function lineOpacity(scrollY: number, index: number): number {
-  const rangeBefore = LINE_FADE_RANGES.slice(0, index).reduce((a, b) => a + b, 0)
-  const start = FIRST_LINE_SCROLL_OFFSET + rangeBefore
-  const range = LINE_FADE_RANGES[index]
+function lineOpacity(scrollY: number, index: number, vh: number): number {
+  const firstLineOffset = FIRST_LINE_VH * vh
+  const fadePx = LINE_FADE_VH.map((v) => v * vh)
+  const rangeBefore = fadePx.slice(0, index).reduce((a, b) => a + b, 0)
+  const start = firstLineOffset + rangeBefore
+  const range = fadePx[index]
   return Math.min(1, Math.max(0, (scrollY - start) / range))
 }
 
 export function Hero() {
   const [scrollY, setScrollY] = useState(0)
+  const [vh, setVh] = useState(0)
+
+  useEffect(() => {
+    function updateVh() {
+      setVh(window.innerHeight)
+    }
+    updateVh()
+    window.addEventListener("resize", updateVh)
+    return () => window.removeEventListener("resize", updateVh)
+  }, [])
 
   useEffect(() => {
     function update() {
@@ -29,7 +45,7 @@ export function Hero() {
     return () => window.removeEventListener("scroll", update)
   }, [])
 
-  const opacities = [0, 1, 2].map((i) => lineOpacity(scrollY, i))
+  const opacities = [0, 1, 2].map((i) => lineOpacity(scrollY, i, vh))
   const textVisible = opacities.some((o) => o > 0)
 
   return (
