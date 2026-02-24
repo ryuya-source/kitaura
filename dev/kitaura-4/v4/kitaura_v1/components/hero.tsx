@@ -55,7 +55,7 @@ export function Hero() {
           aria-hidden={opacities[1] === 0}
         >
           <video
-            src="/hero-video.mov"
+            src="/hero-video.mp4"
             autoPlay
             muted
             loop
