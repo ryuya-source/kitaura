@@ -35,7 +35,7 @@ export function Hero() {
   return (
     <div className="relative" style={{ height: HERO_SCROLL_HEIGHT }}>
       {/* Sticky: このブロックが画面上に固定され、背景が「動いている間」テキストだけ固定してアニメーション */}
-      <section className="sticky top-0 flex h-[90vh] items-center justify-center overflow-hidden bg-[#3d5240]">
+      <section className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-[#3d5240]">
         {/* Background image - 北浦湖畔の夕景 */}
         <div className="absolute inset-0">
           <Image
