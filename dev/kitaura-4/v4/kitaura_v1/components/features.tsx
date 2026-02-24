@@ -134,7 +134,7 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-              ゲートを閉じるとドックフリーになります。隙間が狭く小型犬のワンちゃんにも安心設計。
+              ［ゲートを閉じるとドックフリーになります］<br/>隙間が狭く小型犬のワンちゃんにも安心設計
               </p>
             </div>
             <div className="px-1 pb-1">
