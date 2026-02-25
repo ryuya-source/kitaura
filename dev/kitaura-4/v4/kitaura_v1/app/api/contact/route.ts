@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 /** お問い合わせの送信先（固定） */
 const CONTACT_TO_EMAIL = "info@kitauralakeside.com"
 
@@ -76,6 +74,7 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
+  const resend = new Resend(apiKey)
 
   let body: ContactBody
   try {
