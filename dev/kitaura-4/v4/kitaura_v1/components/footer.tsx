@@ -8,10 +8,10 @@ export function Footer() {
       <Container>
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <Link href="/" className="flex flex-col items-center gap-1.5 text-center" aria-label="KITAURA LAKESIDE RV park">
+            <Link href="/" className="flex flex-col items-center gap-1.5 text-center" aria-label="KITAURA LAKESIDE RV PARK">
               <Image
                 src="/futter_logo.avif"
-                alt="KITAURA LAKESIDE RV park"
+                alt="KITAURA LAKESIDE RV PARK"
                 width={80}
                 height={78}
                 className="h-14 w-14 object-contain sm:h-16 sm:w-16"
@@ -21,7 +21,7 @@ export function Footer() {
                   KITAURA LAKESIDE
                 </span>
                 <span className="text-xs font-semibold tracking-widest text-foreground sm:text-sm">
-                  RV park
+                  RV PARK
                 </span>
               </div>
             </Link>
@@ -46,7 +46,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-border pt-6 text-center">
           <p className="text-xs text-muted-foreground">
-            {'© KITAURA LAKESIDE RV park. All Rights Reserved.'}
+            {'© KITAURA LAKESIDE RV PARK. All Rights Reserved.'}
           </p>
         </div>
       </Container>

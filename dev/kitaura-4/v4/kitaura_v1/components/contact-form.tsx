@@ -10,10 +10,17 @@ type DogEntry = { breed: string; count: number }
 
 const initialDogEntry = (): DogEntry => ({ breed: "", count: 1 })
 
+function getFormValue(form: HTMLFormElement, id: string): string {
+  const el = form.querySelector(`#${id}`) as HTMLInputElement | HTMLSelectElement | null
+  return el?.value?.trim() ?? ""
+}
+
 export function ContactForm() {
   const [dogCompanion, setDogCompanion] = useState("")
   const [dogs, setDogs] = useState<DogEntry[]>([])
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   function onDogCompanionChange(value: string) {
     setDogCompanion(value)
@@ -40,13 +47,44 @@ export function ContactForm() {
     )
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setError(null)
     if (dogCompanion === "yes") {
       const filled = dogs.filter((d) => d.breed.trim() !== "")
       if (filled.length === 0) return
     }
-    setSubmitted(true)
+    const form = e.currentTarget
+    const payload = {
+      name: getFormValue(form, "name"),
+      phone: getFormValue(form, "phone"),
+      email: getFormValue(form, "email"),
+      date: getFormValue(form, "date"),
+      guests: getFormValue(form, "guests"),
+      checkinTime: getFormValue(form, "checkin-time"),
+      site: getFormValue(form, "site"),
+      dogCompanion,
+      dogs,
+      firstTime: getFormValue(form, "first-time"),
+      stayStyle: getFormValue(form, "stay-style"),
+    }
+    setSubmitting(true)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error ?? "送信できませんでした。")
+      }
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "送信できませんでした。しばらくして再度お試しください。")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -347,12 +385,19 @@ export function ContactForm() {
           メッセージを確認して担当者から順次返信します。
         </p>
 
+        {error && (
+          <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        )}
+
         {/* Submit */}
         <button
           type="submit"
-          className="w-full rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          disabled={submitting}
+          className="w-full rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
         >
-          送信する
+          {submitting ? "送信中…" : "送信する"}
         </button>
 
         {/* Privacy note */}

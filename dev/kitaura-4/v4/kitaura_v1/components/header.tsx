@@ -11,14 +11,15 @@ import { Container } from "@/components/layout"
 const HEADER_LOGO_RANGE_PX = 120
 
 const navItems: { label: string; href: string; openBooking?: boolean }[] = [
-  { label: "犬種制限について", href: "#pet" },
+  { label: "ご予約", href: "/contact", openBooking: true },
   { label: "サイト案内", href: "#sites" },
   { label: "料金", href: "#pricing" },
-  { label: "利用規約・マナー", href: "#rules" },
+  { label: "特徴", href: "#features" },
+  { label: "犬種制限について", href: "#pet" },
+  { label: "利用規約", href: "#rules" },
   { label: "アクセス", href: "#access" },
-  { label: "お知らせ・メディア", href: "#news" },
-  { label: "ご予約", href: "/contact", openBooking: true },
-  { label: "お問い合わせ", href: "/contact" },
+  { label: "お知らせ", href: "#news" },
+  { label: "お問合せ", href: "/contact" },
 ]
 
 interface HeaderProps {
@@ -83,12 +84,12 @@ export function Header({ onlyHamburger }: HeaderProps) {
             <Link
               href="/"
               className="flex flex-col items-center gap-1.5 text-center transition-transform duration-200 ease-out"
-              aria-label="KITAURA LAKESIDE RV park"
+              aria-label="KITAURA LAKESIDE RV PARK"
               style={{ transform: `translateY(${logoTranslateY}px)` }}
             >
               <Image
                 src="/futter_logo.avif"
-                alt="KITAURA LAKESIDE RV park"
+                alt="KITAURA LAKESIDE RV PARK"
                 width={80}
                 height={78}
                 className="h-14 w-14 object-contain sm:h-16 sm:w-16"
@@ -98,7 +99,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
                   KITAURA LAKESIDE
                 </span>
                 <span className="text-xs font-semibold tracking-widest sm:text-sm">
-                  RV park
+                  RV PARK
                 </span>
               </div>
             </Link>
