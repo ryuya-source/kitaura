@@ -73,8 +73,8 @@ const scannedSurroundingsImages = listPublicImages("features/4_nearby")
 /** 周辺環境の動画カルーセル（9:16 推奨）。public/features/4_nearby/ に配置 */
 const SURROUNDINGS_VIDEOS = [
   "/features/4_nearby/surroundings-3.mp4",
+  "/features/4_nearby/surroundings-4.mp4",
   "/features/4_nearby/surroundings-2.mp4",
-  "/features/4_nearby/surroundings-1.mp4",
 ]
 const surroundingsImages =
   scannedSurroundingsImages.length > 0
