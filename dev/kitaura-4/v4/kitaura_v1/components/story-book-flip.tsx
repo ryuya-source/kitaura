@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react"
 import HTMLFlipBook from "react-pageflip"
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 interface StoryBookFlipProps {
   images: string[]
@@ -25,9 +26,21 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
   const [bookWidth, setBookWidth] = useState(320)
   /** viewport に入ったら true。全ページ分の画像を読み込む（カルーセルと同様） */
   const [loadAllImages, setLoadAllImages] = useState(false)
+  /** 拡大表示するページのインデックス。null のときモーダル非表示 */
+  const [zoomIndex, setZoomIndex] = useState<number | null>(null)
+  /** モーダル用 FlipBook: 開いた瞬間の開始ページ（startPage はマウント時のみ効く） */
+  const [modalStartPage, setModalStartPage] = useState(0)
+  /** モーダル用 FlipBook の幅（ResizeObserver で更新） */
+  const [modalBookWidth, setModalBookWidth] = useState(400)
+  /** モーダル内めくり中はボタン無効 */
+  const [isModalFlipping, setIsModalFlipping] = useState(false)
   const count = images.length
 
+  const modalWrapRef = useRef<HTMLDivElement | null>(null)
+  const modalBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void } }>(null)
+
   const bookHeight = Math.round(bookWidth * (1240 / 1748))
+  const modalBookHeight = Math.round(modalBookWidth * (1240 / 1748))
 
   useEffect(() => {
     const el = bookWrapRef.current
@@ -94,6 +107,58 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
     if (isFlipping) return
     bookRef.current?.pageFlip()?.flipNext()
   }, [isFlipping])
+
+  const prevZoomIndexRef = useRef<number | null>(null)
+  useEffect(() => {
+    const wasClosed = prevZoomIndexRef.current === null
+    if (zoomIndex !== null && wasClosed) setModalStartPage(zoomIndex)
+    prevZoomIndexRef.current = zoomIndex
+  }, [zoomIndex])
+
+  useEffect(() => {
+    if (zoomIndex === null) return
+    const el = modalWrapRef.current
+    if (!el) return
+    const update = () => {
+      const w = Math.floor(el.clientWidth)
+      if (!w) return
+      setModalBookWidth((prev) => {
+        const next = Math.max(200, Math.min(600, w))
+        return prev === next ? prev : next
+      })
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [zoomIndex])
+
+  const goPrevModal = useCallback(() => {
+    if (zoomIndex === null || isModalFlipping) return
+    modalBookRef.current?.pageFlip()?.flipPrev()
+  }, [zoomIndex, isModalFlipping])
+
+  const goNextModal = useCallback(() => {
+    if (zoomIndex === null || isModalFlipping) return
+    modalBookRef.current?.pageFlip()?.flipNext()
+  }, [zoomIndex, isModalFlipping])
+
+  const onModalFlip = useCallback((e: { data: number }) => {
+    setZoomIndex(e.data)
+  }, [])
+
+  const handleZoomModalKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault()
+        goPrevModal()
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault()
+        goNextModal()
+      }
+    },
+    [goPrevModal, goNextModal]
+  )
 
   if (count === 0) return null
 
@@ -168,8 +233,21 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
                 <img
                   src={src}
                   alt={`犬種制限の説明 ${index + 1}`}
-                  className="h-full w-full object-contain object-center"
+                  className="h-full w-full cursor-pointer object-contain object-center"
                   loading="lazy"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setZoomIndex(index)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      setZoomIndex(index)
+                    }
+                  }}
                   onError={(e) => {
                     const el = e.target as HTMLImageElement
                     el.style.display = "none"
@@ -198,6 +276,92 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
           </HTMLFlipBook>
         </div>
       </div>
+      <Dialog open={zoomIndex !== null} onOpenChange={(open) => !open && setZoomIndex(null)}>
+        <DialogContent
+          className="max-h-[95vh] max-w-[95vw] overflow-auto p-2 sm:p-4"
+          onKeyDown={handleZoomModalKeyDown}
+        >
+          <DialogTitle className="sr-only">絵本を拡大表示</DialogTitle>
+          {zoomIndex !== null && (
+            <>
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex w-full max-w-lg items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={goPrevModal}
+                    disabled={zoomIndex <= 0 || isModalFlipping}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+                    aria-label="前のページ"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <span className="min-w-[4rem] text-center text-sm text-muted-foreground">
+                    {zoomIndex + 1} / {count}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={goNextModal}
+                    disabled={zoomIndex >= count - 1 || isModalFlipping}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+                    aria-label="次のページ"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </div>
+                <div ref={modalWrapRef} className="mx-auto w-full max-w-[600px]">
+                  <HTMLFlipBook
+                    key={`modal-${modalBookWidth}x${modalBookHeight}-${modalStartPage}`}
+                    ref={modalBookRef}
+                    width={modalBookWidth}
+                    height={modalBookHeight}
+                    size="fixed"
+                    minWidth={modalBookWidth}
+                    maxWidth={modalBookWidth}
+                    minHeight={modalBookHeight}
+                    maxHeight={modalBookHeight}
+                    showCover={false}
+                    drawShadow={true}
+                    flippingTime={1000}
+                    usePortrait={true}
+                    startPage={modalStartPage}
+                    startZIndex={0}
+                    autoSize={true}
+                    maxShadowOpacity={0.35}
+                    mobileScrollSupport={true}
+                    clickEventForward={true}
+                    useMouseEvents={true}
+                    swipeDistance={30}
+                    showPageCorners={true}
+                    disableFlipByClick={false}
+                    renderOnlyPageLengthChange={true}
+                    onFlip={onModalFlip}
+                    onChangeState={(e: { data: FlipState }) => setIsModalFlipping(e.data === "flipping")}
+                    className="mx-auto"
+                    style={{}}
+                  >
+                    {images.map((src, index) => (
+                      <div
+                        key={`modal-page-${index}`}
+                        data-density="hard"
+                        className={PAGE_CLASS}
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={src}
+                          alt={`犬種制限の説明（拡大） ${index + 1}`}
+                          className="h-full w-full object-contain object-center"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </HTMLFlipBook>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

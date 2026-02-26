@@ -72,13 +72,13 @@ const otherImages =
 const scannedSurroundingsImages = listPublicImages("features/4_nearby")
 /** 周辺環境の動画カルーセル（9:16 推奨）。public/features/4_nearby/ に配置 */
 const SURROUNDINGS_VIDEOS = [
-  "/features/4_nearby/surroundings-3.mp4",
   "/features/4_nearby/surroundings-4.mp4",
+  "/features/4_nearby/surroundings-3.mp4",
   "/features/4_nearby/surroundings-2.mp4",
 ]
 const surroundingsImages =
   scannedSurroundingsImages.length > 0
-    ? scannedSurroundingsImages
+    ? scannedSurroundingsImages.slice(1)
     : ["/hero-lakeside.avif", "/pet-with-dog.avif", "/small-dog-01.avif"]
 
 // 超小型犬：public/features/small-dog 内の画像を自動読込（フォルダに追加すればUIに反映）
