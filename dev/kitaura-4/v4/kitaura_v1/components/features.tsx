@@ -3,6 +3,7 @@ import path from "node:path"
 import Image from "next/image"
 import { Droplets, Dog, MapPin, Settings } from "lucide-react"
 import { ImageCarousel } from "@/components/image-carousel"
+import { VideoCarousel } from "@/components/video-carousel"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
@@ -69,6 +70,12 @@ const otherImages =
 
 // 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）
 const scannedSurroundingsImages = listPublicImages("features/4_nearby")
+/** 周辺環境の動画カルーセル（9:16 推奨）。public/features/4_nearby/ に配置 */
+const SURROUNDINGS_VIDEOS = [
+  "/features/4_nearby/surroundings-3.mp4",
+  "/features/4_nearby/surroundings-2.mp4",
+  "/features/4_nearby/surroundings-1.mp4",
+]
 const surroundingsImages =
   scannedSurroundingsImages.length > 0
     ? scannedSurroundingsImages
@@ -143,8 +150,6 @@ export function Features() {
                 fallbackImages={smallDogFallbackImages}
                 altPrefix="小型犬写真"
                 className="overflow-hidden rounded-xl"
-                imageClassName="object-contain"
-                variableAspect
               />
             </div>
           </div>
@@ -174,7 +179,7 @@ export function Features() {
             </div>
           </div>
 
-          {/* Surroundings */}
+          {/* Surroundings: 2カラム（カルーセル｜縦長動画）、SPで縦積み */}
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
             <div className="p-6 md:p-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -189,12 +194,17 @@ export function Features() {
                 セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景
               </p>
             </div>
-            <div className="px-1 pb-1">
-              <ImageCarousel
-                images={surroundingsImages}
-                altPrefix="周辺環境写真"
-                className="overflow-hidden rounded-xl"
-              />
+            <div className="grid gap-6 px-1 pb-1 md:grid-cols-2 md:items-start">
+              <div className="min-w-0">
+                <ImageCarousel
+                  images={surroundingsImages}
+                  altPrefix="周辺環境写真"
+                  className="overflow-hidden rounded-xl"
+                />
+              </div>
+              <div className="min-w-0 w-full">
+                <VideoCarousel videos={SURROUNDINGS_VIDEOS} />
+              </div>
             </div>
           </div>
         </div>
