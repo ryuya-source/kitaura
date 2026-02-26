@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 
 /** お問い合わせの送信先（固定） */
 const CONTACT_TO_EMAIL = "info@kitauralakeside.com"
@@ -67,14 +67,25 @@ function buildEmailText(body: ContactBody): string {
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
+  const host = process.env.SMTP_HOST
+  const user = process.env.SMTP_USER
+  const pass = process.env.SMTP_PASS
+  if (!host?.trim() || !user?.trim() || !pass) {
     return NextResponse.json(
-      { error: "メール送信の設定が完了していません。" },
+      { error: "メール送信の設定が完了していません。（SMTP_HOST / SMTP_USER / SMTP_PASS）" },
       { status: 500 }
     )
   }
-  const resend = new Resend(apiKey)
+
+  const port = Number(process.env.SMTP_PORT) || 465
+  const secure = process.env.SMTP_SECURE !== "false"
+
+  const transport = nodemailer.createTransport({
+    host,
+    port,
+    secure,
+    auth: { user, pass },
+  })
 
   let body: ContactBody
   try {
@@ -104,23 +115,18 @@ export async function POST(request: Request) {
   }
 
   const text = buildEmailText(body)
-  const from = process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev"
+  const from = process.env.CONTACT_FROM_EMAIL ?? user
 
   try {
-    const { error } = await resend.emails.send({
+    await transport.sendMail({
       from,
       to: CONTACT_TO_EMAIL,
       subject: `[北浦レイクサイドRVパーク] お問い合わせ: ${body.name}`,
       text,
     })
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
     return new NextResponse(null, { status: 204 })
   } catch (err) {
-    return NextResponse.json(
-      { error: err instanceof Error ? err.message : "送信に失敗しました。" },
-      { status: 500 }
-    )
+    const message = err instanceof Error ? err.message : "送信に失敗しました。"
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
