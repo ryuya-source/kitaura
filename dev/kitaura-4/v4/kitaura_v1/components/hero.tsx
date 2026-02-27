@@ -4,9 +4,9 @@ import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative flex h-screen items-center justify-center overflow-hidden bg-[#3d5240]">
+    <section className="relative flex min-h-screen h-screen items-center justify-center overflow-hidden bg-[#3d5240]">
       {/* Background image - 北浦湖畔の夕景 */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 min-h-full">
         <Image
           src="/hero-lakeside.avif"
           alt="北浦湖畔の夕景"

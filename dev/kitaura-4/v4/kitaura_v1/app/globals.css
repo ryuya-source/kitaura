@@ -96,110 +96,125 @@
   }
 }
 
-/* ハンバーガーメニュー（kitauralakeside-rvpark-newsite 同様のオーバーレイ仕様） */
-@media (max-width: 1023px) {
-  .hamburger-icon {
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    padding: 10px;
-    box-sizing: border-box;
-    background: transparent;
-    border-radius: 12px;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1a1a1a;
-    transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  }
+/* ハンバーガーメニュー（全画面幅で同一：PC・タブレット・スマホ） */
+.hamburger-icon {
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  padding: 10px;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
 
-  .hamburger-icon:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
-  }
+.hamburger-icon:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+}
 
-  .hamburger-icon:active {
-    transform: scale(0.96);
-  }
+.hamburger-icon:active {
+  transform: scale(0.96);
+}
 
-  .hamburger-icon__line {
-    stroke: currentColor;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
-  }
+.hamburger-icon__line {
+  stroke: currentColor;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
 
-  .hamburger-icon__line--top {
-    transform-origin: 12px 7px;
-  }
+.hamburger-icon__line--top {
+  transform-origin: 12px 7px;
+}
 
-  .hamburger-icon__line--btm {
-    transform-origin: 12px 17px;
-  }
+.hamburger-icon__line--btm {
+  transform-origin: 12px 17px;
+}
 
-  .hamburger-icon.is-open .hamburger-icon__line--top {
-    transform: translateY(5px) rotate(45deg);
-  }
+.hamburger-icon.is-open .hamburger-icon__line--top {
+  transform: translateY(5px) rotate(45deg);
+}
 
-  .hamburger-icon.is-open .hamburger-icon__line--mid {
-    opacity: 0;
-  }
+.hamburger-icon.is-open .hamburger-icon__line--mid {
+  opacity: 0;
+}
 
-  .hamburger-icon.is-open .hamburger-icon__line--btm {
-    transform: translateY(-5px) rotate(-45deg);
-  }
+.hamburger-icon.is-open .hamburger-icon__line--btm {
+  transform: translateY(-5px) rotate(-45deg);
+}
 
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.nav-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-overlay__panel {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 24px 32px;
+  min-width: 260px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.nav-overlay__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-overlay__link {
+  display: block;
+  padding: 12px 16px;
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-overlay__link:hover,
+.nav-overlay__link:focus {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--foreground);
+}
+
+/* PC幅：パネルを右寄せにして中央ロゴとの重なりを防ぐ（13インチ等での表示崩れ対策） */
+@media (min-width: 1024px) {
   .nav-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-  }
-
-  .nav-overlay.is-open {
-    opacity: 1;
-    visibility: visible;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 24px 24px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nav-overlay__panel {
-    background: var(--background);
-    border-radius: 12px;
-    padding: 24px 32px;
-    min-width: 260px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
-  }
-
-  .nav-overlay__list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-overlay__link {
-    display: block;
-    padding: 12px 16px;
-    color: var(--foreground);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .nav-overlay__link:hover,
-  .nav-overlay__link:focus {
-    background: rgba(0, 0, 0, 0.06);
-    color: var(--foreground);
+    margin-top: 0;
+    margin-right: 0;
   }
 }
+
 
 /* 犬種制限スライダー：スマホで上下見切れないようビューポートに収める */
 .pet-rules-slider {

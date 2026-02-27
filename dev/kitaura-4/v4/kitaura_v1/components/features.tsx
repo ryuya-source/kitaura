@@ -91,7 +91,7 @@ export function Features() {
       <Container>
         <SectionHeading label="FEATURES" title="こだわりポイント" />
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-8">
           {/* Water Facilities */}
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
             <div className="p-6 md:p-8">
@@ -169,7 +169,7 @@ export function Features() {
             </div>
           </div>
 
-          {/* Surroundings: 2カラム（カルーセル｜縦長動画）、SPで縦積み */}
+          {/* Surroundings: 画像上・動画下で縦積み */}
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
             <div className="p-6 md:p-8">
               <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -184,7 +184,7 @@ export function Features() {
                 セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景
               </p>
             </div>
-            <div className="grid gap-6 px-1 pb-1 md:grid-cols-2 md:items-start">
+            <div className="flex flex-col gap-6 px-1 pb-1">
               <div className="min-w-0">
                 <ImageCarousel
                   images={surroundingsImages}

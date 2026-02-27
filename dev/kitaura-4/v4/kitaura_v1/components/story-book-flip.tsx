@@ -49,7 +49,21 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
     const update = () => {
       const w = Math.floor(el.clientWidth)
       if (!w) return
-      const next = Math.max(1, Math.min(400, w))
+
+      const isMd =
+        typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
+
+      let next: number
+      if (isMd) {
+        // タブレット・PC: 幅はカード幅まで(768)、縦は見切れないよう maxHeight で制限
+        const maxHeightPx = Math.min(window.innerHeight * 0.7, 600)
+        const widthByHeight = Math.floor(maxHeightPx * (1748 / 1240))
+        next = Math.max(1, Math.min(768, w, widthByHeight))
+      } else {
+        // スマホ: 現状どおり 400 まで
+        next = Math.max(1, Math.min(400, w))
+      }
+
       setBookWidth((prev) => (prev === next ? prev : next))
     }
 
@@ -123,7 +137,11 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
       const w = Math.floor(el.clientWidth)
       if (!w) return
       setModalBookWidth((prev) => {
-        const next = Math.max(200, Math.min(600, w))
+        const maxW =
+          typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
+            ? 1200
+            : 600
+        const next = Math.max(200, Math.min(maxW, w))
         return prev === next ? prev : next
       })
     }
@@ -188,8 +206,9 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
         </button>
       </div>
       {/* 根本対応: 親の幅に合わせて FlipBook 自体の width/height を可変にする（見切れ防止） */}
-      <div className="pet-rules-slider mx-auto w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-sm px-2 py-3 md:px-0 md:py-0">
-        <div ref={bookWrapRef} className="mx-auto w-full max-w-[400px]">
+      {/* タブレット・PC: カード内カルーセル幅(max-w-3xl)に合わせて縦見切れ防止 */}
+      <div className="pet-rules-slider mx-auto w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-sm px-2 py-3 md:max-w-3xl md:px-0 md:py-0">
+        <div ref={bookWrapRef} className="mx-auto w-full max-w-[400px] md:max-w-none">
           <HTMLFlipBook
             key={`${bookWidth}x${bookHeight}`}
             ref={bookRef}
@@ -239,13 +258,17 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
                   tabIndex={0}
                   onClick={(e) => {
                     e.stopPropagation()
-                    setZoomIndex(index)
+                    if (typeof window !== "undefined" && !window.matchMedia("(min-width: 768px)").matches) {
+                      setZoomIndex(index)
+                    }
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault()
                       e.stopPropagation()
-                      setZoomIndex(index)
+                      if (typeof window !== "undefined" && !window.matchMedia("(min-width: 768px)").matches) {
+                        setZoomIndex(index)
+                      }
                     }
                   }}
                   onError={(e) => {
@@ -278,7 +301,7 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
       </div>
       <Dialog open={zoomIndex !== null} onOpenChange={(open) => !open && setZoomIndex(null)}>
         <DialogContent
-          className="max-h-[95vh] max-w-[95vw] overflow-auto p-2 sm:p-4"
+          className="max-h-[95vh] max-w-[95vw] overflow-auto p-2 sm:p-4 md:max-h-[60vh] md:max-w-[60vw]"
           onKeyDown={handleZoomModalKeyDown}
         >
           <DialogTitle className="sr-only">絵本を拡大表示</DialogTitle>
@@ -308,7 +331,7 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
                     <ChevronRight className="h-5 w-5" />
                   </button>
                 </div>
-                <div ref={modalWrapRef} className="mx-auto w-full max-w-[600px]">
+                <div ref={modalWrapRef} className="mx-auto w-full max-w-[600px] md:max-w-[60vw]">
                   <HTMLFlipBook
                     key={`modal-${modalBookWidth}x${modalBookHeight}-${modalStartPage}`}
                     ref={modalBookRef}
