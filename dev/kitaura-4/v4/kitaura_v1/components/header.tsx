@@ -107,7 +107,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
         </header>
       )}
 
-      <div className="fixed top-0 right-0 z-50 flex items-center p-3 pt-[max(12px,env(safe-area-inset-top))] pr-[max(12px,env(safe-area-inset-right))] lg:hidden">
+      <div className="fixed top-0 right-0 z-50 flex items-center p-3 pt-[max(12px,env(safe-area-inset-top))] pr-[max(12px,env(safe-area-inset-right))]">
         <button
           type="button"
           className={`hamburger-icon ${open ? "is-open" : ""}`}

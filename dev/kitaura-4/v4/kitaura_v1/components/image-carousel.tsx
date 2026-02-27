@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useEffect, useRef } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SafeImage } from "@/components/safe-image"
 
@@ -13,6 +14,8 @@ interface ImageCarouselProps {
   className?: string
   /** 画像の上に「前 1 / 10 次」のカウンター行を表示する */
   showCounter?: boolean
+  /** サイト案内と同一仕様: 画像上に前後ボタン＋下部ドットインジケーター */
+  variant?: "default" | "site"
   /** 制御用: 現在のインデックス（showCounter で外に出す場合などに親で state を渡す） */
   current?: number
   /** 制御用: インデックス変更時のコールバック */
@@ -31,6 +34,7 @@ export function ImageCarousel({
   altPrefix,
   className,
   showCounter,
+  variant = "default",
   current: controlledCurrent,
   onCurrentChange,
   imageClassName,
@@ -204,6 +208,44 @@ export function ImageCarousel({
         ))
       )}
 
+      {variant === "site" && (
+        <>
+          <div className="absolute inset-0 z-20 flex items-center justify-between px-3 pointer-events-none [&>button]:pointer-events-auto">
+            <button
+              type="button"
+              onClick={goPrev}
+              className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
+              aria-label="前の写真"
+            >
+              <ChevronLeft className="h-4 w-4 text-foreground" />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
+              aria-label="次の写真"
+            >
+              <ChevronRight className="h-4 w-4 text-foreground" />
+            </button>
+          </div>
+          <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 pointer-events-none [&>button]:pointer-events-auto">
+            {Array.from({ length: imageCount }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  setCurrent(() => i)
+                  if (!loadAllImages) setVisibleSlot(1)
+                }}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
+                }`}
+                aria-label={`写真 ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
     </div>
   )

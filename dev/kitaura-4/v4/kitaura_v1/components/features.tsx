@@ -113,6 +113,7 @@ export function Features() {
                 images={watterImages}
                 altPrefix="水回り設備写真"
                 className="overflow-hidden rounded-xl"
+                variant="site"
               />
             </div>
           </div>
@@ -163,6 +164,7 @@ export function Features() {
                 images={otherImages}
                 altPrefix="その他設備写真"
                 className="overflow-hidden rounded-xl"
+                variant="site"
               />
             </div>
           </div>
@@ -188,6 +190,7 @@ export function Features() {
                   images={surroundingsImages}
                   altPrefix="周辺環境写真"
                   className="overflow-hidden rounded-xl"
+                  variant="site"
                 />
               </div>
               <div className="min-w-0 w-full">

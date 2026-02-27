@@ -76,7 +76,7 @@ function SiteCarousel({
                   alt={`${name} 写真 ${idx + 1}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 48rem"
                   loading="lazy"
                 />
               </div>
@@ -100,7 +100,7 @@ function SiteCarousel({
                   alt={`${name} 写真 ${idx + 1}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 48rem"
                   loading={isVisibleSlot(slot) ? undefined : "lazy"}
                 />
               </div>
@@ -164,7 +164,7 @@ export function SiteTypes({ sites }: { sites: SiteData[] }) {
       <Container>
         <SectionHeading label="SITE TYPES" title="サイト案内" />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-6">
           {sites.map((site) => (
             <SiteCarousel
               key={site.name}

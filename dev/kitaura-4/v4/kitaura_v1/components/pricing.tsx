@@ -14,7 +14,7 @@ export function Pricing() {
         <SectionHeading label="PRICING" title="料金" />
 
         {/* Site Price Table */}
-        <div className="mt-12">
+        <div className="mx-auto mt-12 max-w-3xl">
           <h3 className="mb-6 text-center text-lg font-semibold text-foreground">サイト別料金</h3>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[600px] overflow-hidden rounded-xl bg-card text-sm shadow-sm">
@@ -72,7 +72,7 @@ export function Pricing() {
         </div>
 
         {/* Pet & Options */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-3xl gap-6 md:grid-cols-2">
           <div className="rounded-xl bg-card p-6 shadow-sm md:p-8">
             <h3 className="mb-4 text-lg font-semibold text-foreground">ペット料金・頭数制限</h3>
             <ul className="flex flex-col gap-3">
