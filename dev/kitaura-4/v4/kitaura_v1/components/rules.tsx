@@ -160,6 +160,7 @@ export function Rules() {
             </div>
           </AccordionItem>
 
+
           {/* Birds */}
           <AccordionItem
             title="小鳥（オウム・インコ）の同伴について"
