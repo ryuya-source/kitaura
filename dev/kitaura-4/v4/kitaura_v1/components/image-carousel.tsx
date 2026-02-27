@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useCallback, useEffect, useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SafeImage } from "@/components/safe-image"
 
@@ -20,8 +19,6 @@ interface ImageCarouselProps {
   onCurrentChange?: (index: number) => void
   /** 画像に渡す className（例: object-contain で切り抜けず表示） */
   imageClassName?: string
-  /** 下部のドットインジケーターを表示するか（省略時は true） */
-  showDots?: boolean
   /** img の loading（参照: newsite pet と同様 lazy 指定） */
   imageLoading?: "lazy" | "eager"
   /** true のとき、表示中画像のアスペクト比に合わせて枠の高さを可変にする */
@@ -37,7 +34,6 @@ export function ImageCarousel({
   current: controlledCurrent,
   onCurrentChange,
   imageClassName,
-  showDots = true,
   imageLoading,
   variableAspect = false,
 }: ImageCarouselProps) {
@@ -208,47 +204,6 @@ export function ImageCarousel({
         ))
       )}
 
-      <div className="absolute inset-0 z-20 flex items-center justify-between px-3" style={{ pointerEvents: "none" }}>
-        <button
-          type="button"
-          onClick={goPrev}
-          style={{ pointerEvents: "auto" }}
-          className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
-          aria-label="前の写真"
-        >
-          <ChevronLeft className="h-4 w-4 text-foreground" />
-        </button>
-        <button
-          type="button"
-          onClick={goNext}
-          className="rounded-full bg-card/80 p-2 backdrop-blur-sm transition-colors hover:bg-card"
-          aria-label="次の写真"
-          style={{ pointerEvents: "auto" }}
-        >
-          <ChevronRight className="h-4 w-4 text-foreground" />
-        </button>
-      </div>
-
-      {showDots && (
-        <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5" style={{ pointerEvents: "none" }}>
-          {Array.from({ length: imageCount }).map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => {
-              setCurrent(() => i)
-              if (!loadAllImages) setVisibleSlot(1)
-            }}
-              style={{ pointerEvents: "auto" }}
-              className={cn(
-                "h-1.5 rounded-full transition-all",
-                i === current ? "w-6 bg-card" : "w-1.5 bg-card/50"
-              )}
-              aria-label={`写真 ${i + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </div>
     </div>
   )

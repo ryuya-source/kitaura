@@ -26,7 +26,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground">
-              {'〒311-2104 茨城県鉾田市根山2947'}
+              {'〒311-2104 茨城県鉾田市梶山2947'}
             </p>
           </div>
 

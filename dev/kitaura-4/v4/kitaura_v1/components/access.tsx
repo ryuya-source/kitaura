@@ -18,7 +18,7 @@ export function Access() {
                 所在地・ナビ設定
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {'〒311-2104 茨城県鉾田市根山2947'}
+                {'〒311-2104 茨城県鉾田市梶山2947'}
               </p>
 
               <div className="mt-5 rounded-lg bg-destructive/10 p-4">

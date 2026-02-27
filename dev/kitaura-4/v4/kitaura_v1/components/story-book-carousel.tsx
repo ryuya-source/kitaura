@@ -48,7 +48,6 @@ export function StoryBookCarousel({ images }: StoryBookCarouselProps) {
           className="aspect-[1748/1240] rounded-xl"
           imageClassName="pet-rules-slider__img object-cover object-center"
           imageLoading="lazy"
-          showDots={false}
           current={current}
           onCurrentChange={setCurrent}
         />

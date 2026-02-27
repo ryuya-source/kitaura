@@ -140,18 +140,18 @@ export function Rules() {
             icon={<Dog className="h-5 w-5" />}
           >
             <div>
-              <p className="mb-4 text-sm text-muted-foreground">愛犬と安心して過ごせるよう、マナーの遵守をお願いします。</p>
+              <p className="mb-4 text-sm text-muted-foreground">愛犬と安心してお過ごしいただくため、マナーの遵守をお願いいたします。</p>
               <ul className="flex flex-col gap-4">
                 <li>
                   <p className="text-sm font-semibold text-foreground">サイト外はリード着用</p>
-                  <p className="mt-1 text-sm text-muted-foreground">サイト外では必ずリード着用。共有スペースで2m以内。</p>
+                  <p className="mt-1 text-sm text-muted-foreground">犬が苦手な方もいらっしゃるため、サイト外はノーリード禁止といたします。共有スペースではリードは2m以内でお願いいたします。</p>
                 </li>
                 <li>
-                  <p className="text-sm font-semibold text-foreground">噛みつき・破壊癖のあるペットは利用不可</p>
+                  <p className="text-sm font-semibold text-foreground">噛みつき・破壊癖・常識の範囲を超えた無駄吠えがある場合はご利用いただけません。</p>
                 </li>
                 <li>
                   <p className="text-sm font-semibold text-foreground">制限外の動物の持ち込み禁止</p>
-                  <p className="mt-1 text-sm text-muted-foreground">発覚した場合は即退場（返金なし）</p>
+                  <p className="mt-1 text-sm text-muted-foreground">発覚した場合は、返金なしで即時退場とさせていただきます。</p>
                 </li>
               </ul>
               <p className="mt-4 rounded-lg bg-destructive/10 px-4 py-2.5 text-sm text-destructive">

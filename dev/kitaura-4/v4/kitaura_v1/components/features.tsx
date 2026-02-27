@@ -81,21 +81,9 @@ const surroundingsImages =
     ? scannedSurroundingsImages.slice(1)
     : ["/hero-lakeside.avif", "/pet-with-dog.avif", "/small-dog-01.avif"]
 
-// 超小型犬：public/features/small-dog 内の画像を自動読込（フォルダに追加すればUIに反映）
-const scannedSmallDogImages = listPublicImages("features/small-dog", {
-  extensions: ["avif", "png", "jpg", "webp"],
-})
-const smallDogImages =
-  scannedSmallDogImages.length > 0
-    ? scannedSmallDogImages
-    : Array.from(
-        { length: 7 },
-        (_, i) => `/features/small-dog/small-dog-${String(i + 1).padStart(2, "0")}.avif`
-      )
-const smallDogFallbackImages = Array.from(
-  { length: 7 },
-  (_, i) => `/small-dog-${String(i + 1).padStart(2, "0")}.avif`
-)
+// 超小型犬：ゲートを閉めるとドッグフリーに — small-dog-02.avif のみ表示
+const smallDogImages = ["/features/small-dog/small-dog-02.avif"]
+const smallDogFallbackImages = ["/features/small-dog/small-dog-02.avif"]
 
 export function Features() {
   return (
@@ -137,7 +125,7 @@ export function Features() {
                   <Dog className="h-4 w-4 text-accent" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
-                ゲートを閉じるとドックフリーになります
+                ゲートを閉めるとドッグフリーに
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
