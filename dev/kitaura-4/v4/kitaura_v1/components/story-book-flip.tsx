@@ -31,7 +31,10 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
   /** モーダル用 FlipBook: 開いた瞬間の開始ページ（startPage はマウント時のみ効く） */
   const [modalStartPage, setModalStartPage] = useState(0)
   /** モーダル用 FlipBook の幅（ResizeObserver で更新） */
-  const [modalBookWidth, setModalBookWidth] = useState(400)
+  const [modalBookWidth, setModalBookWidth] = useState(() => {
+    if (typeof window === "undefined") return 320
+    return Math.min(400, Math.max(250, window.innerWidth - 48))
+  })
   /** モーダル内めくり中はボタン無効 */
   const [isModalFlipping, setIsModalFlipping] = useState(false)
   const count = images.length
@@ -135,20 +138,39 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
     if (!el) return
     const update = () => {
       const w = Math.floor(el.clientWidth)
-      if (!w) return
+      const fallbackW =
+        typeof window !== "undefined"
+          ? Math.min(600, Math.max(280, (window.innerWidth ?? 393) - 32))
+          : 360
+      const effectiveW = w > 0 ? w : fallbackW
       setModalBookWidth((prev) => {
-        const maxW =
+        const isMd =
           typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
-            ? 1200
-            : 600
-        const next = Math.max(200, Math.min(maxW, w))
+        const maxW = isMd ? 1200 : 600
+        if (!isMd && typeof window !== "undefined") {
+          const vh = window.innerHeight ?? 852
+          const dialogMaxH = vh * 0.80
+          const dialogPadding = 24
+          const navRow = 56
+          const safeArea = 34
+          const availableH = dialogMaxH - dialogPadding - navRow - safeArea
+          const maxWByHeight = Math.floor(availableH * (1748 / 1240))
+          const viewportMaxW = Math.max(280, (window.innerWidth ?? 393) - 48)
+          const capped = Math.max(250, Math.min(maxW, maxWByHeight, effectiveW, viewportMaxW))
+          return prev === capped ? prev : capped
+        }
+        const next = Math.max(280, Math.min(maxW, effectiveW))
         return prev === next ? prev : next
       })
     }
     update()
+    const raf = requestAnimationFrame(() => update())
     const ro = new ResizeObserver(update)
     ro.observe(el)
-    return () => ro.disconnect()
+    return () => {
+      cancelAnimationFrame(raf)
+      ro.disconnect()
+    }
   }, [zoomIndex])
 
   const goPrevModal = useCallback(() => {
@@ -163,6 +185,7 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
 
   const onModalFlip = useCallback((e: { data: number }) => {
     setZoomIndex(e.data)
+    setModalStartPage(e.data)
   }, [])
 
   const handleZoomModalKeyDown = useCallback(
@@ -301,14 +324,14 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
       </div>
       <Dialog open={zoomIndex !== null} onOpenChange={(open) => !open && setZoomIndex(null)}>
         <DialogContent
-          className="max-h-[95vh] max-w-[95vw] overflow-auto p-2 sm:p-4 md:max-h-[60vh] md:max-w-[60vw]"
+          className="max-h-[80dvh] max-w-[calc(100vw-2rem)] overflow-hidden p-3 sm:p-4 md:max-h-[70vh] md:max-w-[60vw]"
           onKeyDown={handleZoomModalKeyDown}
         >
           <DialogTitle className="sr-only">絵本を拡大表示</DialogTitle>
           {zoomIndex !== null && (
             <>
               <div className="flex flex-col items-center gap-3">
-                <div className="flex w-full max-w-lg items-center justify-center gap-3">
+                <div className="flex w-full max-w-lg shrink-0 items-center justify-center gap-3">
                   <button
                     type="button"
                     onClick={goPrevModal}
@@ -331,9 +354,9 @@ export function StoryBookFlip({ images, sectionInView }: StoryBookFlipProps) {
                     <ChevronRight className="h-5 w-5" />
                   </button>
                 </div>
-                <div ref={modalWrapRef} className="mx-auto w-full max-w-[600px] md:max-w-[60vw]">
+                <div ref={modalWrapRef} className="mx-auto w-full max-w-[600px] overflow-hidden md:max-w-[60vw]">
                   <HTMLFlipBook
-                    key={`modal-${modalBookWidth}x${modalBookHeight}-${modalStartPage}`}
+                    key={`modal-${modalBookWidth}x${modalBookHeight}`}
                     ref={modalBookRef}
                     width={modalBookWidth}
                     height={modalBookHeight}

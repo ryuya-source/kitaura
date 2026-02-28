@@ -37,7 +37,8 @@ export function getSiteImages(): { name: string; imageUrls: string[]; imageCount
   return siteNames.map((name, i) => {
     const key = `site${i + 1}`
     const imageUrls = listPublicImages(`sites/${key}`, {
-      extensions: ["avif", "png", "jpg", "webp"],
+      cacheBust: true,
+      extensions: ["avif", "png", "jpg", "jpeg", "webp"],
       sortNumeric: true,
     })
     return { name, imageUrls, imageCount: imageUrls.length }
