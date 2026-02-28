@@ -48,17 +48,15 @@ const watterImages =
         (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
       )
 
-// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の画像を使用（.avif、ファイル名の番号昇順、差し替え時にキャッシュを避けるため cacheBust 有効）
+// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の全画像を使用（.avif .png .jpg、ファイル名の番号昇順）
 const scannedOtherImages = listPublicImages("features/3-els", {
   cacheBust: true,
-  extensions: ["avif", "png"],
+  extensions: ["avif", "png", "jpg", "jpeg"],
   sortNumeric: true,
 })
 const otherImages =
   scannedOtherImages.length > 0
-    ? scannedOtherImages.filter((p) => p.endsWith(".avif")).length > 0
-      ? scannedOtherImages.filter((p) => p.endsWith(".avif"))
-      : scannedOtherImages
+    ? scannedOtherImages
     : [
         "/features/3-els/01.avif",
         "/features/3-els/02.avif",

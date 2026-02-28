@@ -8,7 +8,7 @@ export function Hero() {
       {/* Background image - 北浦湖畔の夕景 */}
       <div className="absolute inset-0 min-h-full">
         <Image
-          src="/hero-lakeside.avif"
+          src="/hero-lakeside.png"
           alt="北浦湖畔の夕景"
           fill
           className="object-cover object-center"
@@ -23,13 +23,10 @@ export function Hero() {
         style={{ transform: "translateY(-8vh)" }}
       >
         <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
-          北浦湖畔にある小さな RVパーク
+          全サイト専用サニタリー棟完備
         </p>
         <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
-          全区画専用サニタリー棟完備
-        </p>
-        <p className="text-lg font-bold tracking-widest text-[#faf8f5]/90 md:text-xl">
-          プライベートに過ごす大人時間
+          北浦湖畔の小さなRVパーク
         </p>
       </div>
 

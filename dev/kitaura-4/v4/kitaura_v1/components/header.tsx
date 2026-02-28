@@ -83,15 +83,15 @@ export function Header({ onlyHamburger }: HeaderProps) {
           <Container className="flex items-center py-3">
             <Link
               href="/"
-              className="flex flex-col items-center gap-1.5 text-center transition-transform duration-200 ease-out"
+              className="flex shrink-0 flex-col items-center gap-1.5 text-center transition-transform duration-200 ease-out"
               aria-label="KITAURA LAKESIDE RV PARK"
               style={{ transform: `translateY(${logoTranslateY}px)` }}
             >
               <Image
-                src="/futter_logo.avif"
+                src="/logo-header.png"
                 alt="KITAURA LAKESIDE RV PARK"
                 width={80}
-                height={78}
+                height={80}
                 className="h-14 w-14 object-contain sm:h-16 sm:w-16"
               />
               <div className="flex flex-col gap-0.5 text-white drop-shadow-sm">
