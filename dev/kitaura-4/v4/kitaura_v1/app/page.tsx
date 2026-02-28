@@ -9,6 +9,9 @@ import { Access } from "@/components/access"
 import { News } from "@/components/news"
 import { getSiteImages } from "@/lib/list-public-images"
 
+/** サイト案内（site1/site2/site3）の画像をフォルダの内容で毎回取得するため動的生成 */
+export const dynamic = "force-dynamic"
+
 export default function HomePage() {
   const sites = getSiteImages()
   return (

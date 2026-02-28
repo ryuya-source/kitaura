@@ -1,5 +1,3 @@
-import fs from "node:fs"
-import path from "node:path"
 import Image from "next/image"
 import { Droplets, Dog, MapPin, Settings } from "lucide-react"
 import { ImageCarousel } from "@/components/image-carousel"
@@ -9,85 +7,35 @@ import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
 import { WaterFacilitiesAccordion } from "@/components/water-facilities-accordion"
 import { RentalItemsAccordion } from "@/components/rental-items-accordion"
+import { listPublicImages } from "@/lib/list-public-images"
 
-function listPublicImages(
-  relativeDir: string,
-  options?: { cacheBust?: boolean; extensions?: string[]; sortNumeric?: boolean }
-) {
-  const dirPath = path.join(process.cwd(), "public", ...relativeDir.split("/"))
-  if (!fs.existsSync(dirPath)) return []
-  const exts = options?.extensions ?? ["avif"]
-  const pattern = new RegExp(`\\.(${exts.join("|")})$`, "i")
-
-  return fs
-    .readdirSync(dirPath)
-    .filter((name) => pattern.test(name))
-    .sort((a, b) =>
-      options?.sortNumeric ? a.localeCompare(b, undefined, { numeric: true }) : a.localeCompare(b, "ja")
-    )
-    .map((name) => {
-      const base = `/${relativeDir}/${name}`
-      if (options?.cacheBust) {
-        try {
-          const stat = fs.statSync(path.join(dirPath, name))
-          return `${base}?v=${Math.floor(stat.mtimeMs)}`
-        } catch {
-          return base
-        }
-      }
-      return base
-    })
-}
-
-// アメニティ — public/features/watter の全画像を自動読込（.avif .png .jpg、ファイル名の番号昇順、差し替え時に cacheBust で反映）
-const scannedWatterImages = listPublicImages("features/watter", {
-  cacheBust: true,
-  extensions: ["avif", "png", "jpg", "jpeg"],
-  sortNumeric: true,
-})
-const watterImages =
-  scannedWatterImages.length > 0
-    ? scannedWatterImages
-    : ["/features/watter/00.jpg", "/features/watter/01.jpg", "/features/watter/02.jpg"]
-
-// その他 — public/features/3-els の全画像を自動読込（.avif .png .jpg、ファイル名の番号昇順、差し替え時に cacheBust で反映）
-const scannedOtherImages = listPublicImages("features/3-els", {
-  cacheBust: true,
-  extensions: ["avif", "png", "jpg", "jpeg"],
-  sortNumeric: true,
-})
-const otherImages =
-  scannedOtherImages.length > 0
-    ? scannedOtherImages
-    : [
-        "/features/3-els/01.avif",
-        "/features/3-els/02.avif",
-        "/features/3-els/03.avif",
-        "/features/3-els/04.avif",
-        "/features/3-els/05.avif",
-        "/features/3-els/06.avif",
-      ]
-
-// 周辺環境：public/features/4_nearby 内の画像を自動読込（.avif .png .jpg、番号昇順、差し替え時に cacheBust で反映）
-const scannedSurroundingsImages = listPublicImages("features/4_nearby", {
-  cacheBust: true,
-  extensions: ["avif", "png", "jpg", "jpeg"],
-  sortNumeric: true,
-})
 /** 周辺環境の動画カルーセル（9:16 推奨）。public/features/4_nearby/ に配置 */
 const SURROUNDINGS_VIDEOS = [
   "/features/4_nearby/surroundings-4.mp4",
   "/features/4_nearby/surroundings-3.mp4",
   "/features/4_nearby/surroundings-2.mp4",
 ]
-// 周辺環境は 4_nearby フォルダ内の画像のみ表示（フォールバックなし）
-const surroundingsImages = scannedSurroundingsImages
 
-// 超小型犬：ゲートを閉めるとドッグフリーに — small-dog-02.avif のみ表示
-const smallDogImages = ["/features/small-dog/small-dog-02.avif"]
-const smallDogFallbackImages = ["/features/small-dog/small-dog-02.avif"]
+const IMAGE_OPTS = {
+  cacheBust: true,
+  extensions: ["avif", "png", "jpg", "jpeg"],
+  sortNumeric: true,
+}
 
 export function Features() {
+  // 描画のたびにフォルダを読むため、サイト案内と同様にファイル追加が即時反映される
+  const watterImages = (() => {
+    const scanned = listPublicImages("features/watter", IMAGE_OPTS)
+    return scanned.length > 0 ? scanned : ["/features/watter/00.jpg", "/features/watter/01.jpg", "/features/watter/02.jpg"]
+  })()
+  const otherImages = (() => {
+    const scanned = listPublicImages("features/3-els", IMAGE_OPTS)
+    return scanned.length > 0 ? scanned : ["/features/3-els/01.avif", "/features/3-els/02.avif", "/features/3-els/03.avif"]
+  })()
+  const surroundingsImages = listPublicImages("features/4_nearby", IMAGE_OPTS)
+  const smallDogImages = ["/features/small-dog/small-dog-02.avif"]
+  const smallDogFallbackImages = ["/features/small-dog/small-dog-02.avif"]
+
   return (
     <Section id="features" className="bg-secondary py-16 md:py-24">
       <Container>
