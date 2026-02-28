@@ -39,7 +39,7 @@ function listPublicImages(
     })
 }
 
-// 水回り — public/features/watter の全画像を使用（.avif .png .jpg、ファイル名の番号昇順）
+// アメニティ — public/features/watter の全画像を自動読込（.avif .png .jpg、ファイル名の番号昇順、差し替え時に cacheBust で反映）
 const scannedWatterImages = listPublicImages("features/watter", {
   cacheBust: true,
   extensions: ["avif", "png", "jpg", "jpeg"],
@@ -48,12 +48,9 @@ const scannedWatterImages = listPublicImages("features/watter", {
 const watterImages =
   scannedWatterImages.length > 0
     ? scannedWatterImages
-    : Array.from(
-        { length: 10 },
-        (_, i) => `/features/watter/watter-${String(i + 1).padStart(2, "0")}.avif`
-      )
+    : ["/features/watter/00.jpg", "/features/watter/01.jpg", "/features/watter/02.jpg"]
 
-// その他（ゴミ置き場・コードリール・エアコン等）— public/features/3-els の全画像を使用（.avif .png .jpg、ファイル名の番号昇順）
+// その他 — public/features/3-els の全画像を自動読込（.avif .png .jpg、ファイル名の番号昇順、差し替え時に cacheBust で反映）
 const scannedOtherImages = listPublicImages("features/3-els", {
   cacheBust: true,
   extensions: ["avif", "png", "jpg", "jpeg"],
@@ -71,18 +68,20 @@ const otherImages =
         "/features/3-els/06.avif",
       ]
 
-// 周辺環境：public/features/4_nearby 内の画像を自動読込（フォルダに追加すればUIに反映）
-const scannedSurroundingsImages = listPublicImages("features/4_nearby")
+// 周辺環境：public/features/4_nearby 内の画像を自動読込（.avif .png .jpg、番号昇順、差し替え時に cacheBust で反映）
+const scannedSurroundingsImages = listPublicImages("features/4_nearby", {
+  cacheBust: true,
+  extensions: ["avif", "png", "jpg", "jpeg"],
+  sortNumeric: true,
+})
 /** 周辺環境の動画カルーセル（9:16 推奨）。public/features/4_nearby/ に配置 */
 const SURROUNDINGS_VIDEOS = [
   "/features/4_nearby/surroundings-4.mp4",
   "/features/4_nearby/surroundings-3.mp4",
   "/features/4_nearby/surroundings-2.mp4",
 ]
-const surroundingsImages =
-  scannedSurroundingsImages.length > 0
-    ? scannedSurroundingsImages.slice(1)
-    : ["/hero-lakeside.avif", "/pet-with-dog.avif", "/small-dog-01.avif"]
+// 周辺環境は 4_nearby フォルダ内の画像のみ表示（フォールバックなし）
+const surroundingsImages = scannedSurroundingsImages
 
 // 超小型犬：ゲートを閉めるとドッグフリーに — small-dog-02.avif のみ表示
 const smallDogImages = ["/features/small-dog/small-dog-02.avif"]
@@ -94,7 +93,7 @@ export function Features() {
       <Container>
         <SectionHeading label="FEATURES" title="こだわりポイント" />
 
-        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-8">
+        <div className="mx-auto mt-12 grid max-w-3xl gap-8 md:grid-cols-2">
           {/* Water Facilities */}
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
             <div className="p-6 md:p-8">
@@ -103,18 +102,18 @@ export function Features() {
                   <Droplets className="h-4 w-4 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
-                  各サイト水回り・電源完備
+                  アメニティ
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                トイレ・シャワー・炊事場・電源完備
+              
               </p>
               <WaterFacilitiesAccordion />
             </div>
             <div className="px-1 pb-1">
               <ImageCarousel
                 images={watterImages}
-                altPrefix="水回り設備写真"
+                altPrefix="アメニティ写真"
                 className="overflow-hidden rounded-xl"
                 variant="site"
               />
@@ -154,11 +153,11 @@ export function Features() {
                   <Settings className="h-4 w-4 text-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground md:text-2xl">
-                  その他
+                  レンタル
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                ゴミ置き場・コードリール完備
+            
               </p>
               <RentalItemsAccordion />
             </div>
@@ -188,14 +187,16 @@ export function Features() {
               </p>
             </div>
             <div className="flex flex-col gap-6 px-1 pb-1">
-              <div className="min-w-0">
-                <ImageCarousel
-                  images={surroundingsImages}
-                  altPrefix="周辺環境写真"
-                  className="overflow-hidden rounded-xl"
-                  variant="site"
-                />
-              </div>
+              {surroundingsImages.length > 0 && (
+                <div className="min-w-0">
+                  <ImageCarousel
+                    images={surroundingsImages}
+                    altPrefix="周辺環境写真"
+                    className="overflow-hidden rounded-xl"
+                    variant="site"
+                  />
+                </div>
+              )}
               <div className="min-w-0 w-full">
                 <VideoCarousel videos={SURROUNDINGS_VIDEOS} />
               </div>

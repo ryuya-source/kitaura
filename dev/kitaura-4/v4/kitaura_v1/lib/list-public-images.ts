@@ -32,6 +32,7 @@ export function listPublicImages(
     })
 }
 
+/** サイト案内 — public/sites/site1, site2, site3 の全画像を自動読込（差し替え時に cacheBust で反映） */
 export function getSiteImages(): { name: string; imageUrls: string[]; imageCount: number }[] {
   const siteNames = ["サイト1", "サイト2", "サイト3"] as const
   return siteNames.map((name, i) => {
