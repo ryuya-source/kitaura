@@ -39,7 +39,12 @@ function listPublicImages(
     })
 }
 
-const scannedWatterImages = listPublicImages("features/watter")
+// 水回り — public/features/watter の全画像を使用（.avif .png .jpg、ファイル名の番号昇順）
+const scannedWatterImages = listPublicImages("features/watter", {
+  cacheBust: true,
+  extensions: ["avif", "png", "jpg", "jpeg"],
+  sortNumeric: true,
+})
 const watterImages =
   scannedWatterImages.length > 0
     ? scannedWatterImages
