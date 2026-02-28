@@ -94,7 +94,7 @@ export function PetSection() {
                       入場可能なワンちゃんについて
                     </h3>
                     <p className="mt-4 leading-relaxed text-muted-foreground">
-                      アレルギー反応が出にくい環境を維持するため、抜け毛の少ないシングルコートの犬種に限定しています。
+                    アレルギー対策のため、抜け毛の少ないシングルコートの犬種に限定しています。
                     </p>
                   </div>
                   <div className="mt-6">
