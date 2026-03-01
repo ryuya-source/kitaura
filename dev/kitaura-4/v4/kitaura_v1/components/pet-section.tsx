@@ -7,20 +7,15 @@ import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { StoryBookFlip } from "@/components/story-book-flip"
 
-/** 犬種制限についての絵本 — 絵本v3.0 の画像をすべて使用（00 ～ 09 番号順） */
-const STORY_BOOK_V3 = "/srory-book/絵本v3.0"
-const storyBookImages = [
-  `${STORY_BOOK_V3}/00.avif`,
-  `${STORY_BOOK_V3}/01.avif`,
-  `${STORY_BOOK_V3}/02.avif`,
-  `${STORY_BOOK_V3}/03-fd73e99f-8a75-4ecd-b525-3966269a6375.avif`,
-  `${STORY_BOOK_V3}/04-c7d48d3d-2cf5-4293-85b1-eded4d621564.avif`,
-  `${STORY_BOOK_V3}/05-2be80df1-b5dc-4fc0-8a0d-d571b675eb90.avif`,
-  `${STORY_BOOK_V3}/06-dfd5c2e2-7d9e-48cc-ae83-5dc1a2978d37.avif`,
-  `${STORY_BOOK_V3}/6.1__2_-64f1167c-44c5-4dd7-9be6-4ca6249372da.avif`,
-  `${STORY_BOOK_V3}/07-78acc76f-451b-4491-87b1-c0874acad825.avif`,
-  `${STORY_BOOK_V3}/08-eb96a815-0169-42e8-83ab-bfaa33da0d63.avif`,
-  `${STORY_BOOK_V3}/09-c09bcb79-3842-4644-aac5-5d3a0569559e.avif`,
+interface PetSectionProps {
+  storyBookImages?: string[]
+}
+
+/** フォールバック（画像リストが渡されなかった場合） */
+const FALLBACK_IMAGES = [
+  "/srory-book/絵本v3.0/00.avif",
+  "/srory-book/絵本v3.0/01.avif",
+  "/srory-book/絵本v3.0/02.avif",
 ]
 
 const allowedBreeds = [
@@ -39,7 +34,8 @@ const allowedBreeds = [
 ]
 
 /** ルートページ用：ペットページの内容をそのまま表示（犬種制限についてセクション） */
-export function PetSection() {
+export function PetSection({ storyBookImages: imagesProp }: PetSectionProps) {
+  const storyBookImages = imagesProp && imagesProp.length > 0 ? imagesProp : FALLBACK_IMAGES
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionInView, setSectionInView] = useState(false)
 
