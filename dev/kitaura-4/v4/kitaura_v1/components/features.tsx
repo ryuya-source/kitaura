@@ -26,7 +26,7 @@ export function Features() {
   // 描画のたびにフォルダを読むため、サイト案内と同様にファイル追加が即時反映される
   const watterImages = (() => {
     const scanned = listPublicImages("features/watter", IMAGE_OPTS)
-    return scanned.length > 0 ? scanned : ["/features/watter/00.jpg", "/features/watter/01.jpg", "/features/watter/02.jpg"]
+    return scanned.length > 0 ? scanned : ["/features/watter/00.avif", "/features/watter/01.avif", "/features/watter/02.avif"]
   })()
   const otherImages = (() => {
     const scanned = listPublicImages("features/3-els", IMAGE_OPTS)

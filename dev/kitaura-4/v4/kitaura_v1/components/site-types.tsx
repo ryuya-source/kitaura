@@ -58,55 +58,31 @@ function SiteCarousel({
   return (
     <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div ref={containerRef} className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        {loadAllImages && imageCount > 0 ? (
-          Array.from({ length: imageCount }, (_, i) => i).map((idx) => {
-            const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
-            return (
-              <div
-                key={idx}
-                className={
-                  idx === current
-                    ? "absolute inset-0 z-10"
-                    : "absolute inset-0 z-0 opacity-0 pointer-events-none"
-                }
-                aria-hidden={idx !== current}
-              >
-                <Image
-                  src={src}
-                  alt={`${name} 写真 ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 48rem"
-                  loading="lazy"
-                />
-              </div>
-            )
-          })
-        ) : (
-          (imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
-            const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
-            return (
-              <div
-                key={`${slot}-${idx}`}
-                className={
-                  isVisibleSlot(slot)
-                    ? "absolute inset-0 z-10"
-                    : "absolute inset-0 z-0 opacity-0 pointer-events-none"
-                }
-                aria-hidden={!isVisibleSlot(slot)}
-              >
-                <Image
-                  src={src}
-                  alt={`${name} 写真 ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 48rem"
-                  loading={isVisibleSlot(slot) ? undefined : "lazy"}
-                />
-              </div>
-            )
-          })
-        )}
+        {/* 常に3枚のみDOMに配置（prev, current, next） */}
+        {(imageCount > 0 ? [prevIdx, current, nextIdx] : [0]).map((idx, slot) => {
+          const src = urls[idx] ?? `/placeholder.svg?height=400&width=600`
+          const isVisible = loadAllImages ? idx === current : isVisibleSlot(slot)
+          return (
+            <div
+              key={`${slot}-${idx}`}
+              className={
+                isVisible
+                  ? "absolute inset-0 z-10"
+                  : "absolute inset-0 z-0 opacity-0 pointer-events-none"
+              }
+              aria-hidden={!isVisible}
+            >
+              <Image
+                src={src}
+                alt={`${name} 写真 ${idx + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 48rem"
+                loading={isVisible ? undefined : "lazy"}
+              />
+            </div>
+          )
+        })}
         <div className="absolute inset-0 z-20 flex items-center justify-between px-3">
           <button
             onClick={() =>

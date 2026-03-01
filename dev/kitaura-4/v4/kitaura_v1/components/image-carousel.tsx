@@ -54,7 +54,7 @@ export function ImageCarousel({
   const containerRef = useRef<HTMLDivElement>(null)
   /** 表示するスロット (0=前, 1=中央, 2=次)。全枚読み込み前の次/前用 */
   const [visibleSlot, setVisibleSlot] = useState<0 | 1 | 2>(1)
-  /** viewport に入ったら true。そのカルーセル分の全画像を読み込む */
+  /** viewport に入ったら true（ナビゲーションを有効化） */
   const [loadAllImages, setLoadAllImages] = useState(false)
 
   const handleNaturalSize = useCallback((w: number, h: number) => {
@@ -164,49 +164,29 @@ export function ImageCarousel({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {loadAllImages ? (
-        /* viewport に入った後: 全枚をDOMに置き、current のみ表示。横スクロールは即時 */
-        Array.from({ length: imageCount }).map((_, idx) => (
-          <div
-            key={idx}
-            className={cn(
-              "absolute inset-0",
-              idx === current ? "z-10" : "z-0 opacity-0 pointer-events-none"
-            )}
-            aria-hidden={idx !== current}
-          >
-            <SafeImage
-              src={images[idx]}
-              fallbackSrc={fallbackImages?.[idx]}
-              alt={`${altPrefix} ${idx + 1}`}
-              className={cn("h-full w-full object-cover", imageClassName)}
-              loading="lazy"
-              onNaturalSize={idx === current && variableAspect ? handleNaturalSize : undefined}
-            />
-          </div>
-        ))
-      ) : (
-        /* 初期: 3枚だけ（prev, current, next）。viewport に入るまで節約 */
-        [prevIdx, current, nextIdx].map((idx, slot) => (
+      {/* 常に3枚のみDOMに配置（prev, current, next） */}
+      {[prevIdx, current, nextIdx].map((idx, slot) => {
+        const isVisible = loadAllImages ? idx === current : slot === visibleSlot
+        return (
           <div
             key={`${slot}-${idx}`}
             className={cn(
               "absolute inset-0",
-              slot === visibleSlot ? "z-10" : "z-0 opacity-0 pointer-events-none"
+              isVisible ? "z-10" : "z-0 opacity-0 pointer-events-none"
             )}
-            aria-hidden={slot !== visibleSlot}
+            aria-hidden={!isVisible}
           >
             <SafeImage
               src={images[idx]}
               fallbackSrc={fallbackImages?.[idx]}
               alt={`${altPrefix} ${idx + 1}`}
               className={cn("h-full w-full object-cover", imageClassName)}
-              loading={slot === visibleSlot ? imageLoading : "lazy"}
-              onNaturalSize={slot === visibleSlot && variableAspect ? handleNaturalSize : undefined}
+              loading={isVisible ? imageLoading : "lazy"}
+              onNaturalSize={isVisible && variableAspect ? handleNaturalSize : undefined}
             />
           </div>
-        ))
-      )}
+        )
+      })}
 
       {variant === "site" && (
         <>

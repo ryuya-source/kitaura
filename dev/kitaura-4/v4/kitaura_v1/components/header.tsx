@@ -88,7 +88,7 @@ export function Header({ onlyHamburger }: HeaderProps) {
               style={{ transform: `translateY(${logoTranslateY}px)` }}
             >
               <Image
-                src="/logo-header.png"
+                src="/logo-header.avif"
                 alt="KITAURA LAKESIDE RV PARK"
                 width={80}
                 height={80}

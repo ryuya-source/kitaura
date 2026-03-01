@@ -102,6 +102,7 @@ export function VideoCarousel({
             }}
             src={src}
             className="h-full w-full object-cover"
+            preload={idx === current && isInView ? "auto" : "none"}
             playsInline
             muted
             loop

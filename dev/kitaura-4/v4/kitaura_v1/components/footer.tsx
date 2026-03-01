@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <Link href="/" className="flex flex-col items-center gap-1.5 text-center" aria-label="KITAURA LAKESIDE RV PARK">
               <Image
-                src="/logo-header.png"
+                src="/logo-header.avif"
                 alt="KITAURA LAKESIDE RV PARK"
                 width={80}
                 height={80}

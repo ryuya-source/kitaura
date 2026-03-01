@@ -9,8 +9,8 @@ import { Access } from "@/components/access"
 import { News } from "@/components/news"
 import { getSiteImages, listPublicImages } from "@/lib/list-public-images"
 
-/** サイト案内・絵本などの画像をフォルダの内容で毎回取得するため動的生成 */
-export const dynamic = "force-dynamic"
+/** 60秒ごとに再生成（画像追加後も1分以内に反映、キャッシュが効くためTTFB改善） */
+export const revalidate = 60
 
 export default function HomePage() {
   const sites = getSiteImages()
