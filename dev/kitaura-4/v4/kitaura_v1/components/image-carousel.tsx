@@ -164,29 +164,47 @@ export function ImageCarousel({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* 常に3枚のみDOMに配置（prev, current, next） */}
-      {[prevIdx, current, nextIdx].map((idx, slot) => {
-        const isVisible = loadAllImages ? idx === current : slot === visibleSlot
-        return (
+      {loadAllImages ? (
+        Array.from({ length: imageCount }).map((_, idx) => (
           <div
-            key={`${slot}-${idx}`}
+            key={idx}
             className={cn(
               "absolute inset-0",
-              isVisible ? "z-10" : "z-0 opacity-0 pointer-events-none"
+              idx === current ? "z-10" : "z-0 opacity-0 pointer-events-none"
             )}
-            aria-hidden={!isVisible}
+            aria-hidden={idx !== current}
           >
             <SafeImage
               src={images[idx]}
               fallbackSrc={fallbackImages?.[idx]}
               alt={`${altPrefix} ${idx + 1}`}
               className={cn("h-full w-full object-cover", imageClassName)}
-              loading={isVisible ? imageLoading : "lazy"}
-              onNaturalSize={isVisible && variableAspect ? handleNaturalSize : undefined}
+              loading="lazy"
+              onNaturalSize={idx === current && variableAspect ? handleNaturalSize : undefined}
             />
           </div>
-        )
-      })}
+        ))
+      ) : (
+        [prevIdx, current, nextIdx].map((idx, slot) => (
+          <div
+            key={`${slot}-${idx}`}
+            className={cn(
+              "absolute inset-0",
+              slot === visibleSlot ? "z-10" : "z-0 opacity-0 pointer-events-none"
+            )}
+            aria-hidden={slot !== visibleSlot}
+          >
+            <SafeImage
+              src={images[idx]}
+              fallbackSrc={fallbackImages?.[idx]}
+              alt={`${altPrefix} ${idx + 1}`}
+              className={cn("h-full w-full object-cover", imageClassName)}
+              loading={slot === visibleSlot ? imageLoading : "lazy"}
+              onNaturalSize={slot === visibleSlot && variableAspect ? handleNaturalSize : undefined}
+            />
+          </div>
+        ))
+      )}
 
       {variant === "site" && (
         <>
