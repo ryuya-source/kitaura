@@ -41,7 +41,7 @@ export function Features() {
       <Container>
         <SectionHeading label="FEATURES" title="こだわりポイント" />
 
-        <div className="mx-auto mt-12 grid max-w-3xl gap-8 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-3xl gap-8">
           {/* Water Facilities */}
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
             <div className="p-6 md:p-8">
