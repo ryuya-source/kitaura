@@ -92,6 +92,9 @@ export function PetSection({ storyBookImages: imagesProp }: PetSectionProps) {
                     <p className="mt-4 leading-relaxed text-muted-foreground">
                     アレルギー対策のため、抜け毛の少ないシングルコートの犬種に限定しています。
                     </p>
+                    <p className="mt-3 leading-relaxed text-muted-foreground">
+                    尚、イタリアングレーハウンド・ジャックラッセルテリア・トイマンチェスターテリア等シングルコートであっても抜け毛の多い犬種も対象外となります。
+                    </p>
                   </div>
                   <div className="mt-6">
                     <div className="mb-3 flex items-center justify-between gap-4">
