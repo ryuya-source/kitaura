@@ -52,7 +52,7 @@ export function Pricing() {
                   <td className="px-4 py-3.5 text-center font-semibold text-primary">{'¥7,000'}</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <td className="px-4 py-3.5 font-medium text-foreground">土日祝料金</td>
+                  <td className="px-4 py-3.5 font-medium text-foreground">土・日・祝・祝前日</td>
                   <td className="px-4 py-3.5 text-center font-semibold text-accent">{'¥9,500'}</td>
                   <td className="px-4 py-3.5 text-center font-semibold text-accent">{'¥9,500'}</td>
                   <td className="px-4 py-3.5 text-center font-semibold text-accent">{'¥10,000'}</td>
