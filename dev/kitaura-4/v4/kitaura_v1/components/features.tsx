@@ -32,7 +32,12 @@ export function Features() {
     const scanned = listPublicImages("features/3-els", IMAGE_OPTS)
     return scanned.length > 0 ? scanned : ["/features/3-els/01.avif", "/features/3-els/02.avif", "/features/3-els/03.avif"]
   })()
-  const surroundingsImages = listPublicImages("features/4_nearby", IMAGE_OPTS)
+  // 周辺環境は表示順を固定し、セブンイレブン画像は含めない
+  const surroundingsImages = [
+    "/features/4_nearby/02-image_side.avif",
+    "/features/4_nearby/03-C489887B-5980-4B98-B4A9-39509D8506B4.avif",
+    "/features/4_nearby/05-353C0C94-D7E3-4461-8461-801B2EEF68C7.avif",
+  ]
   const smallDogImages = ["/features/small-dog/small-dog-02.avif"]
   const smallDogFallbackImages = ["/features/small-dog/small-dog-02.avif"]
 
@@ -131,7 +136,7 @@ export function Features() {
                 </h3>
               </div>
               <p className="leading-relaxed text-muted-foreground">
-                セブンイレブン徒歩30秒の好立地・夕陽や花火大会も絶景
+                夕陽や花火大会も絶景
               </p>
             </div>
             <div className="flex flex-col gap-6 px-1 pb-1">

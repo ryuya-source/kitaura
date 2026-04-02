@@ -15,6 +15,7 @@ export function Footer() {
                 width={80}
                 height={80}
                 className="h-14 w-14 object-contain sm:h-16 sm:w-16"
+                unoptimized
               />
               <div className="flex flex-col gap-0.5">
                 <span className="text-xs font-semibold tracking-widest text-foreground sm:text-sm">

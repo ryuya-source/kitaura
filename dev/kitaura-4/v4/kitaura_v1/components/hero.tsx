@@ -13,6 +13,7 @@ export function Hero() {
           fill
           className="object-cover object-center"
           priority
+          unoptimized
           sizes="100vw"
         />
       </div>
