@@ -89,12 +89,40 @@ export function PetSection({ storyBookImages: imagesProp }: PetSectionProps) {
                     <h3 className="font-sans text-xl font-bold text-foreground md:text-2xl">
                       入場可能なワンちゃんについて
                     </h3>
-                    <p className="mt-4 leading-relaxed text-muted-foreground">
-                    アレルギー対策のため、抜け毛の少ないシングルコートの犬種に限定しています。
-                    </p>
-                    <p className="mt-3 leading-relaxed text-muted-foreground">
-                    尚、イタリアングレーハウンド・ジャックラッセルテリア・トイマンチェスターテリア等シングルコートであっても抜け毛の多い犬種も対象外となります。
-                    </p>
+                    <div className="mt-4 rounded-xl border border-primary/35 border-l-8 border-l-primary bg-primary/10 px-4 py-4 text-left shadow-sm">
+                      <p className="inline-flex items-center rounded-full bg-primary px-2.5 py-1 text-xs font-bold tracking-wide text-primary-foreground">
+                        重要
+                      </p>
+                      <p className="mt-3 text-base leading-relaxed font-bold text-foreground md:text-xl">
+                        当施設ではアレルギー対策のため、
+                        <span className="text-primary">抜け毛の少ないシングルコート</span>
+                        の犬種に限定しております。
+                      </p>
+                    </div>
+                    <div className="mt-4 rounded-lg border border-primary/30 border-l-4 border-l-primary bg-primary/5 p-4 text-left">
+                      <p className="text-sm font-semibold tracking-wider text-primary">ご注意</p>
+                      <p className="mt-2 leading-relaxed text-foreground">
+                        なお、シングルコートであっても
+                      </p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
+                          イタリアン・グレーハウンド
+                        </span>
+                        <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
+                          ジャック・ラッセル・テリア
+                        </span>
+                        <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
+                          トイ・マンチェスター・テリア
+                        </span>
+                        <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
+                          ミニチュア・ブル・テリア
+                        </span>
+                      </div>
+                      <p className="mt-2 leading-relaxed text-foreground">
+                        など、比較的抜け毛の多い犬種は
+                        <span className="font-semibold text-foreground">対象外</span>とさせていただいております。
+                      </p>
+                    </div>
                   </div>
                   <div className="mt-6">
                     <div className="mb-3 flex items-center justify-between gap-4">
