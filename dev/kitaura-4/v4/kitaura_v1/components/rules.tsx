@@ -82,7 +82,6 @@ export function Rules() {
                 <div className="flex flex-col gap-2 text-sm leading-relaxed text-muted-foreground">
                   <p>場内での事故、盗難、ペット間のトラブル等について、当施設は一切の責任を負いません。</p>
                   <p>ゴミはサイト内のゴミ置き場で分別回収しております。</p>
-                  <p>買い物はセブンイレブン 鉾田梶山店（徒歩30秒）が便利です。</p>
                   <p>県道に隣接しているため、時間帯によっては車両の走行音が聞こえる場合がございます。</p>
                   <p>暴力団およびその関係者のご利用はお断りいたします。</p>
                 </div>
@@ -112,7 +111,7 @@ export function Rules() {
                 <p className="text-sm font-semibold text-foreground">喫煙はご自身のサイト内のみ</p>
               </li>
               <li>
-                <p className="text-sm font-semibold text-foreground">サッカーやフリスビー等、飛んでいく遊具の使用禁止</p>
+                <p className="text-sm font-semibold text-foreground">飛んでいく遊具(サッカー、フリスビー等)の使用、ドローン撮影は禁止</p>
               </li>
             </ul>
           </AccordionItem>
