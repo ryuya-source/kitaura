@@ -67,7 +67,7 @@ export function Pricing() {
             </table>
           </div>
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            {'※ハイシーズンはGW期間、7/20〜8/31の土曜、花火大会開催日、年末年始12/31〜1/2'}
+            {'※ハイシーズンはGW期間、7/20〜8/31の土曜、花火大会開催日、年末年始12/30〜1/2'}
           </p>
         </div>
 
