@@ -1,4 +1,4 @@
-import { MapPin, Navigation, Car, AlertTriangle } from "lucide-react"
+import { MapPin, Car, AlertTriangle } from "lucide-react"
 import { Section } from "@/components/layout"
 import { Container } from "@/components/layout"
 import { SectionHeading } from "@/components/section-heading"
@@ -47,16 +47,6 @@ export function Access() {
                       住所検索を行うと、地図上のピンが実際の場所とズレて表示される場合がございます。
                     </p>
                   </div>
-                </div>
-              </div>
-
-              <div className="mt-5 flex items-start gap-3 rounded-lg bg-primary/5 p-4">
-                <Navigation className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <div>
-                  <p className="text-sm font-semibold text-foreground">ナビの目的地設定</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    「セブンイレブン 鉾田梶山店」を目的地に設定してお越しください。当施設はすぐ隣です。
-                  </p>
                 </div>
               </div>
             </div>
