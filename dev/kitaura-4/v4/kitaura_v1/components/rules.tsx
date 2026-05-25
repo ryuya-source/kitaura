@@ -101,7 +101,7 @@ export function Rules() {
               </li>
               <li>
                 <p className="text-sm font-semibold text-foreground">花火・直火禁止（焚き火台・焚き火シート必須）</p>
-                <p className="mt-1 text-sm text-muted-foreground">床は指定の灰捨て場へ処理をお願いします</p>
+                <p className="mt-1 text-sm text-muted-foreground">花火の使用は禁止です。灰は指定の灰捨て場へ処理をお願いします。</p>
               </li>
               <li>
                 <p className="text-sm font-semibold text-foreground">騒音・音響の制限</p>
