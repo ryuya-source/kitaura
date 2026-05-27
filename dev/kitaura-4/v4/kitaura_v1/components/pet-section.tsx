@@ -117,6 +117,9 @@ export function PetSection({ storyBookImages: imagesProp }: PetSectionProps) {
                         <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
                           ミニチュア・ブル・テリア
                         </span>
+                        <span className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
+                        ミニチュアピンシャー
+                        </span>
                       </div>
                       <p className="mt-2 leading-relaxed text-foreground">
                         など、比較的抜け毛の多い犬種は

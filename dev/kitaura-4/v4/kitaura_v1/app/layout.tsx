@@ -17,7 +17,7 @@ const notoSerifJP = Noto_Serif_JP({
 
 export const metadata: Metadata = {
   title: 'KITAURA LAKESIDE RV park',
-  description: '大切な人と、心ほどける時間。茨城県鉾田市の湖畔RVパーク。ペット同伴可・全サイト水回り電源完備。',
+  description: '茨城県鉾田市の湖畔RVパーク。ペット同伴可・全サイト水回り電源完備。',
   icons: {
     icon: [
       {
