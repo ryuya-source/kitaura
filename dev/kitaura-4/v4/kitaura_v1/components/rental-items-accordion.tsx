@@ -4,7 +4,7 @@ import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
 const rentalItems = [
-  { name: "エアコン", price: "１日/1,500円" },
+  { name: "エアコン（屋外での使用不可）車内/テント内専用", price: "１日/2,000円" },
   { name: "ストーブ（灯油込）", price: "１日1,000円〜1,500円" },
 ]
 
